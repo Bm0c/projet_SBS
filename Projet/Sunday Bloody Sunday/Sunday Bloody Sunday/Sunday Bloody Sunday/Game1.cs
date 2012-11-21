@@ -51,9 +51,9 @@ namespace Sunday_Bloody_Sunday
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.BlueViolet);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
-                Main.Draw(spriteBatch);
+                    Main.Draw(spriteBatch);
                 spriteBatch.End();
             base.Draw(gameTime);
         }

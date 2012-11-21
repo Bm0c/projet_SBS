@@ -31,7 +31,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public Player()
         {
-            this.Hitbox = new Rectangle(375, 200, 25, 27);
+            this.Hitbox = new Rectangle(450, 200, 25, 27);
             this.frameLine = 1;
             this.frameColumn = 2;
             this.Direction = Direction.Down;
