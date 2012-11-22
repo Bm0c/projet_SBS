@@ -17,6 +17,8 @@ namespace Sunday_Bloody_Sunday
         SpriteBatch spriteBatch;
 
         GameMain Main;
+        Song GamePlayMusic;
+        SpriteFont font;
 
         public Game1()
         {
@@ -30,12 +32,28 @@ namespace Sunday_Bloody_Sunday
             base.Initialize();
         }
 
+        public void PlayMusic(Song song)
+        {
+            try
+            {
+                // Joue la musique
+                MediaPlayer.Play(song);
+
+                // Active la répétition de la musique
+                MediaPlayer.IsRepeating = true;
+            }
+            catch { }
+        }
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Ressources.LoadContent(Content);
             Main = new GameMain();
+            GamePlayMusic = Content.Load<Song>("GamePlayMusic");
+            PlayMusic(GamePlayMusic);
+            font = Content.Load<SpriteFont>("gameFont");
         }
 
         protected override void UnloadContent()
@@ -54,6 +72,7 @@ namespace Sunday_Bloody_Sunday
             GraphicsDevice.Clear(Color.CornflowerBlue);
                 spriteBatch.Begin();
                     Main.Draw(spriteBatch);
+                    spriteBatch.DrawString(font, "Health: " + Player.Health, new Vector2(650,440), Color.Red);
                 spriteBatch.End();
             base.Draw(gameTime);
         }

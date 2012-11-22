@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 namespace Sunday_Bloody_Sunday
 {
     public enum Direction
@@ -16,31 +18,48 @@ namespace Sunday_Bloody_Sunday
     class Player
     {
         // FIELDS
-        Rectangle Hitbox;
-
+        Rectangle PlayerTexture;
         Direction Direction;
         SpriteEffects Effect;
         int frameLine;
         int frameColumn;
         bool Animation;
         int Timer;
-
         int speed = 2;
         int AnimationSpeed = 10;
+        // State of the player
+        static public bool Active;
+        // Amount of health points that player has
+        static public int Health;
 
         // CONSTRUCTOR
         public Player()
         {
-            this.Hitbox = new Rectangle(450, 200, 25, 27);
+            this.PlayerTexture = new Rectangle(450, 200, 25, 27);
             this.frameLine = 1;
             this.frameColumn = 2;
             this.Direction = Direction.Down;
             this.Effect = SpriteEffects.None;
             this.Animation = true;
             this.Timer = 0;
+            Player.Active = true;
+            Player.Health = 100;
         }
 
         // METHODS
+        // Get the width of the player
+        public int Width
+        {
+            get { return PlayerTexture.Width; }
+        }
+
+        // Get the height of the player
+        public int Height
+        {
+            get { return PlayerTexture.Height; }
+        }
+
+        // Animation of the Player
         public void Animate()
         {
             this.Timer++;
@@ -73,25 +92,26 @@ namespace Sunday_Bloody_Sunday
         {
             if (keyboard.IsKeyDown(Keys.Up))
             {
-                this.Hitbox.Y -= this.speed;
+                this.PlayerTexture.Y -= this.speed;
                 this.Direction = Direction.Up;
                 this.Animate();
+                Player.Health++;
             }
             else if (keyboard.IsKeyDown(Keys.Down))
             {
-                this.Hitbox.Y += this.speed;
+                this.PlayerTexture.Y += this.speed;
                 this.Direction = Direction.Down;
                 this.Animate();
             }
             else if (keyboard.IsKeyDown(Keys.Right))
             {
-                this.Hitbox.X += this.speed;
+                this.PlayerTexture.X += this.speed;
                 this.Direction = Direction.Right;
                 this.Animate();
             }
             else if (keyboard.IsKeyDown(Keys.Left))
             {
-                this.Hitbox.X -= this.speed;
+                this.PlayerTexture.X -= this.speed;
                 this.Direction = Direction.Left;
                 this.Animate();
             }
@@ -121,7 +141,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.Pikachu, this.Hitbox, new Rectangle ((this.frameColumn -1) * 25, (this.frameLine -1) * 27, 25, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(Ressources.Player, this.PlayerTexture, new Rectangle((this.frameColumn - 1) * 25, (this.frameLine - 1) * 27, 25, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }
