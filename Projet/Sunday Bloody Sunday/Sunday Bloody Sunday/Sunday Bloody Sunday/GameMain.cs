@@ -22,8 +22,7 @@ namespace Sunday_Bloody_Sunday
         // CONCSTRUCTOR
         public GameMain()
         {
-            this.MainMap = new Map();
-            this.MainPlayer = new Player();
+            this.MainMap = new Map(new Player(), new PhysicsEngine());
             this.MainProjectile = new Projectile();
             this.MainParticule = new Particule();
         }
@@ -34,15 +33,15 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
-            MainPlayer.Update(mouse, keyboard);
+            MainMap.Update(mouse, keyboard);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             MainMap.Draw(spriteBatch);
-            MainPlayer.Draw(spriteBatch);
             MainProjectile.Draw(spriteBatch);
             MainParticule.Draw(spriteBatch);
+            MainMap.joueur.Draw(spriteBatch);
         }
     }
 }

@@ -11,18 +11,31 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
-    static class PhysicsEngine
+    public class PhysicsEngine
     {
-        static public bool IsHerosCollidingWall_UpDown(Player MainPlayer, List<Rectangle> listWall)
+
+        private bool[,] liste = new bool [100,100];
+
+        public PhysicsEngine()
         {
-            // detection des collisions vers le haut/bas
-            return false; //TODO
+
+            liste[0, 0] = true;
+
         }
 
-        static public bool IsHerosCollidingWall_RightLeft(Player MainPlayer, List<Rectangle> listWall)
+        public bool mur(int x, int y)
         {
-            // detection des collisions vers la gauche/droite
-            return false; //TODO
+
+            if ((x <= 0 ) || (y <= 0))
+                return true;
+            else
+                return this.liste[x / 32, y / 32]; ;
+
         }
+        public bool[,] liste_bool
+        {
+            get { return this.liste; }
+        }
+
     }
 }

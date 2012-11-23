@@ -27,6 +27,8 @@ namespace Sunday_Bloody_Sunday
         int Timer;
         int speed = 2;
         int AnimationSpeed = 10;
+        string action;
+
         // State of the player
         static public bool Active;
         // Amount of health points that player has
@@ -44,6 +46,7 @@ namespace Sunday_Bloody_Sunday
             this.Timer = 0;
             Player.Active = true;
             Player.Health = 100;
+            this.action = "";
         }
 
         // METHODS
@@ -87,33 +90,99 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        // UPDATE & DRAW
-        public void Update(MouseState mouse, KeyboardState keyboard)
+        public string actionjoueur
         {
-            if (keyboard.IsKeyDown(Keys.Up))
+            get { return this.action; }
+            set { this.action = value; }
+
+        }
+
+        public int futur_position_X()
+        {
+
+            if (this.actionjoueur == "right")
+            {
+                return (this.PlayerTexture.X + this.speed);
+
+            }
+            else if (this.actionjoueur == "left")
+            {
+                return (this.PlayerTexture.X - this.speed);
+
+            }
+            else
+            {
+                return (this.PlayerTexture.X);
+            }
+        }
+
+
+        public int futur_position_Y()
+        {
+            if (this.actionjoueur == "up")
+            {
+                return (this.PlayerTexture.Y - this.speed);
+
+            }
+            else if (this.actionjoueur == "down")
+            {
+                return (this.PlayerTexture.Y + this.speed);
+            }
+            else
+            {
+                return (this.PlayerTexture.Y);
+            }
+        }
+
+        public void mise_a_jour(string a)
+        {
+            if (a == "up")
             {
                 this.PlayerTexture.Y -= this.speed;
                 this.Direction = Direction.Up;
                 this.Animate();
-                Player.Health++;
             }
-            else if (keyboard.IsKeyDown(Keys.Down))
+            else if (a == "down")
             {
                 this.PlayerTexture.Y += this.speed;
                 this.Direction = Direction.Down;
                 this.Animate();
             }
-            else if (keyboard.IsKeyDown(Keys.Right))
+            else if (a == "right")
             {
                 this.PlayerTexture.X += this.speed;
                 this.Direction = Direction.Right;
                 this.Animate();
             }
-            else if (keyboard.IsKeyDown(Keys.Left))
+            else if (a == "left")
             {
                 this.PlayerTexture.X -= this.speed;
                 this.Direction = Direction.Left;
                 this.Animate();
+            }
+
+        }
+
+        // UPDATE & DRAW
+        public void Update(MouseState mouse, KeyboardState keyboard)
+        {
+            if (keyboard.IsKeyDown(Keys.Up))
+            {
+                this.action = "up";
+            }
+            else if (keyboard.IsKeyDown(Keys.Down))
+            {
+                this.action = "down";
+            }
+            else if (keyboard.IsKeyDown(Keys.Right))
+            {
+
+                this.action = "right";
+            }
+            else if (keyboard.IsKeyDown(Keys.Left))
+            {
+
+                this.action = "left";
             }
 
             if (keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right))
