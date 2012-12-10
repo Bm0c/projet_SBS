@@ -41,7 +41,6 @@ namespace Sunday_Bloody_Sunday
             get { return MapTexture.Height; }
         }
 
-        
 
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
