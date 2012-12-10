@@ -19,7 +19,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public Particule()
         {
-            
+            ExplosionTexture = new Rectangle();
         }
 
         // METHODS
@@ -42,7 +42,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+            spriteBatch.Draw(Ressources.ExplosionParticule, this.ExplosionTexture, Color.White);
         }
     }
 }

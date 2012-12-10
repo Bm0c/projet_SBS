@@ -38,7 +38,6 @@ namespace Sunday_Bloody_Sunday
             {
                 // Joue la musique
                 MediaPlayer.Play(song);
-
                 // Active la répétition de la musique
                 MediaPlayer.IsRepeating = true;
             }
@@ -49,11 +48,11 @@ namespace Sunday_Bloody_Sunday
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Ressources.LoadContent(Content);
-            Main = new GameMain();
-            GamePlayMusic = Content.Load<Song>("GamePlayMusic");
-            PlayMusic(GamePlayMusic);
-            font = Content.Load<SpriteFont>("gameFont");
+                Ressources.LoadContent(Content);
+                Main = new GameMain();
+                GamePlayMusic = Content.Load<Song>("GamePlayMusic");
+                PlayMusic(GamePlayMusic);
+                font = Content.Load<SpriteFont>("gameFont");
         }
 
         protected override void UnloadContent()
@@ -63,7 +62,7 @@ namespace Sunday_Bloody_Sunday
 
         protected override void Update(GameTime gameTime)
         {
-            Main.Update(Mouse.GetState(), Keyboard.GetState());
+                Main.Update(Mouse.GetState(), Keyboard.GetState());
             base.Update(gameTime);
         }
 

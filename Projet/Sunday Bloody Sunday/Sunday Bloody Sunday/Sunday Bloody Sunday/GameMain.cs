@@ -34,6 +34,7 @@ namespace Sunday_Bloody_Sunday
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
             MainMap.Update(mouse, keyboard);
+            MainProjectile.Update(keyboard);
         }
 
         public void Draw(SpriteBatch spriteBatch)
