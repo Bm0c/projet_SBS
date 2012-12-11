@@ -127,15 +127,7 @@ namespace Sunday_Bloody_Sunday
 
             else if (this.viewport == Aim.Up || this.viewport == Aim.Down)
             {
-                spriteBatch.Draw(Ressources.Projectile,                      // Texture (Image)
-                                 this.ProjectilePosition,                    // Position de l'image
-                                 null,                                       // Zone de l'image à afficher
-                                 Color.White,                                // Teinte
-                                 MathHelper.ToRadians(rotation),             // Rotation (en rad)
-                                 new Vector2(ProjectileTexture.Width / 2, ProjectileTexture.Height / 2),  // Origine
-                                 1.0f,                                       // Echelle
-                                 SpriteEffects.None,                         // Effet
-                                 0);                                         // Profondeur
+                spriteBatch.Draw(Ressources.Projectile, this.ProjectileTexture, Color.White);
             }
         }
     }

@@ -104,7 +104,7 @@ namespace Sunday_Bloody_Sunday
 
             if (this.actionjoueur == "right")
             {
-                return (this.PlayerTexture.X + this.speed);
+                return (this.PlayerTexture.X + this.speed + this.Width);
 
             }
             else if (this.actionjoueur == "left")
@@ -114,7 +114,7 @@ namespace Sunday_Bloody_Sunday
             }
             else
             {
-                return (this.PlayerTexture.X);
+                return (this.PlayerTexture.X );
             }
         }
 
@@ -128,7 +128,7 @@ namespace Sunday_Bloody_Sunday
             }
             else if (this.actionjoueur == "down")
             {
-                return (this.PlayerTexture.Y + this.speed);
+                return (this.PlayerTexture.Y + this.speed + this.Height);
             }
             else
             {

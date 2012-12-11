@@ -51,7 +51,7 @@ namespace Sunday_Bloody_Sunday
             //Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement.
             if (joueur.actionjoueur == "up" || joueur.actionjoueur == "down" || joueur.actionjoueur == "left" || joueur.actionjoueur == "right")
             {
-                if (!(map_physique.mur(this.joueur.futur_position_X(), this.joueur.futur_position_Y()))) // Teste de collision
+                if ((!(map_physique.mur(this.joueur.futur_position_X(), this.joueur.futur_position_Y()))) && (!(map_physique.mur(this.joueur.futur_position_X() + this.joueur.Width, this.joueur.futur_position_Y() + this.joueur.Height)))) // Teste de collision
                 {
                     this.joueur.mise_a_jour(joueur.actionjoueur); //Met le joueur à jour si le déplacement peut avoir lieu
                 }
