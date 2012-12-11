@@ -1,7 +1,0 @@
-Content\pikachu.xnb
-Content\map01.xnb
-Content\laser.xnb
-Content\GamePlayMusic.xnb
-Content\GamePlayMusic.wma
-Content\gameFont.xnb
-Content\explosion.xnb

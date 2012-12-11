@@ -90,6 +90,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
+        // Concerne l'action en cours du joueurs, permet d'y accéder et de la modifier
         public string actionjoueur
         {
             get { return this.action; }
@@ -97,6 +98,7 @@ namespace Sunday_Bloody_Sunday
 
         }
 
+        //Renvois la futur position X du joueur en cas d'un déplacement, à l'aide de l'action qui lui est attribué
         public int futur_position_X()
         {
 
@@ -116,7 +118,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-
+        //Renvois la futur position Y du joueur en cas d'un déplacement, à l'aide de l'action qui lui est attribué
         public int futur_position_Y()
         {
             if (this.actionjoueur == "up")
@@ -134,6 +136,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
+        //Met a jour le héros en fontion de l'action qui lui est donné, pour l'instant, seul le déplacement est géré
         public void mise_a_jour(string a)
         {
             if (a == "up")
@@ -166,6 +169,7 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
+            //Détermine les actions du joueur en fonction des retours claviers
             if (keyboard.IsKeyDown(Keys.Up))
             {
                 this.action = "up";

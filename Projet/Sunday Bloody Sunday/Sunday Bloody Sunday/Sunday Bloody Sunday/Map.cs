@@ -45,15 +45,18 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
+            //Update l'objet joueurs contenue par la map
             this.joueur.Update( mouse, keyboard);
 
-            if (!(map_physique.mur(this.joueur.futur_position_X(),this.joueur.futur_position_Y())))
+            //Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement.
+            if (joueur.actionjoueur == "up" || joueur.actionjoueur == "down" || joueur.actionjoueur == "left" || joueur.actionjoueur == "right")
             {
-                this.action_a_traite = this.joueur.actionjoueur;
-                this.joueur.mise_a_jour(action_a_traite);
+                if (!(map_physique.mur(this.joueur.futur_position_X(), this.joueur.futur_position_Y()))) // Teste de collision
+                {
+                    this.joueur.mise_a_jour(joueur.actionjoueur); //Met le joueur à jour si le déplacement peut avoir lieu
+                }
             }
-            this.joueur.actionjoueur = "";
-
+            this.joueur.actionjoueur = "";// "Remet à zéros" les actions du joueurs
         }
 
         public void Draw(SpriteBatch spriteBatch)

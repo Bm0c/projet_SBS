@@ -55,62 +55,62 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(KeyboardState keyboard)
         {
-            if (keyboard.IsKeyDown(Keys.Up))
+            if (keyboard.IsKeyDown(Keys.Enter))
             {
-                this.viewport = Aim.Up;
-
-                if (keyboard.IsKeyDown(Keys.Enter))
+                if (keyboard.IsKeyDown(Keys.Up))
                 {
+                    this.viewport = Aim.Up;
+
+
+
                     Active = true;
                     // Projectile move Up
                     ProjectileTexture.Y -= projectileMoveSpeed;
                     // Deactivate the bullet if it goes out of screen
                     // ...
+
                 }
-            }
 
-            else if (keyboard.IsKeyDown(Keys.Down))
-            {
-                this.viewport = Aim.Down;
-
-                if (keyboard.IsKeyDown(Keys.Enter))
+                else if (keyboard.IsKeyDown(Keys.Down))
                 {
+                    this.viewport = Aim.Down;
+
+
                     Active = true;
                     // Projectile move Down
                     ProjectileTexture.Y += projectileMoveSpeed;
                     // Deactivate the bullet if it goes out of screen
                     // ...
+
                 }
-            }
 
-            else if (keyboard.IsKeyDown(Keys.Right))
-            {
-                this.viewport = Aim.Right;
-
-                if (keyboard.IsKeyDown(Keys.Enter))
+                else if (keyboard.IsKeyDown(Keys.Right))
                 {
+                    this.viewport = Aim.Right;
+
+
+
                     Active = true;
                     // Projectile move to the Right
                     ProjectileTexture.X += projectileMoveSpeed;
                     // Deactivate the bullet if it goes out of screen
                     // ...
+
                 }
-            }
 
-            else if (keyboard.IsKeyDown(Keys.Left))
-            {
-                this.viewport = Aim.Left;
-
-                if (keyboard.IsKeyDown(Keys.Enter))
+                else if (keyboard.IsKeyDown(Keys.Left))
                 {
+                    this.viewport = Aim.Left;
+
+
                     Active = true;
                     // Projectile move to the Left
                     ProjectileTexture.X -= projectileMoveSpeed;
                     // Deactivate the bullet if it goes out of screen
                     // ...
+
                 }
             }
-
             if (keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right))
             {
                 Active = false;
