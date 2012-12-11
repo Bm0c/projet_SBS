@@ -16,11 +16,12 @@ namespace Sunday_Bloody_Sunday
     };
 
     class Player
-    {
-        // FIELDS
+    { // FIELDS
         Rectangle PlayerTexture;
         Direction Direction;
         SpriteEffects Effect;
+        // Relative Position
+        static public Vector2 PlayerPosition;
         int frameLine;
         int frameColumn;
         bool Animation;
@@ -28,16 +29,17 @@ namespace Sunday_Bloody_Sunday
         int speed = 2;
         int AnimationSpeed = 10;
         string action;
-
         // State of the player
         static public bool Active;
-        // Amount of health points that player has
+        // Amount of health points
+
         static public int Health;
 
         // CONSTRUCTOR
         public Player()
         {
-            this.PlayerTexture = new Rectangle(450, 200, 25, 27);
+            this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 25, 27);
+            Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
             this.frameLine = 1;
             this.frameColumn = 2;
             this.Direction = Direction.Down;
@@ -48,6 +50,7 @@ namespace Sunday_Bloody_Sunday
             Player.Health = 100;
             this.action = "";
         }
+
 
         // METHODS
         // Get the width of the player

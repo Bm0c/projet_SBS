@@ -18,6 +18,7 @@ namespace Sunday_Bloody_Sunday
         Map MainMap;
         Projectile MainProjectile;
         Particule MainParticule;
+        IA MainIA;
 
         // CONCSTRUCTOR
         public GameMain()
@@ -25,6 +26,7 @@ namespace Sunday_Bloody_Sunday
             this.MainMap = new Map(new Player(), new PhysicsEngine());
             this.MainProjectile = new Projectile();
             this.MainParticule = new Particule();
+            this.MainIA = new IA();
         }
 
         // METHODS
@@ -43,6 +45,7 @@ namespace Sunday_Bloody_Sunday
             MainProjectile.Draw(spriteBatch);
             MainParticule.Draw(spriteBatch);
             MainMap.joueur.Draw(spriteBatch);
+            MainIA.Draw(spriteBatch);
         }
     }
 }

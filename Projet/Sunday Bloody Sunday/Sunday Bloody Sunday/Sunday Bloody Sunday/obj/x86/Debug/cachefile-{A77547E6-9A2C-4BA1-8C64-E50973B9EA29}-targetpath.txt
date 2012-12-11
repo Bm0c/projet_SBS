@@ -5,3 +5,4 @@ Content\explosion.xnb
 Content\GamePlayMusic.xnb
 Content\GamePlayMusic.wma
 Content\gameFont.xnb
+Content\zombie01.xnb
