@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu.xnb</Output>
-      <Time>2012-12-10T23:15:43.3932519+01:00</Time>
+      <Time>2012-12-11T21:22:41.6358571+01:00</Time>
     </Item>
     <Item>
       <Source>map01.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map01.xnb</Output>
-      <Time>2012-12-10T23:15:43.3522496+01:00</Time>
+      <Time>2012-12-11T21:22:41.6038553+01:00</Time>
     </Item>
     <Item>
       <Source>laser.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\laser.xnb</Output>
-      <Time>2012-12-10T23:15:43.3502495+01:00</Time>
+      <Time>2012-12-11T21:22:41.6008551+01:00</Time>
     </Item>
     <Item>
       <Source>explosion.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion.xnb</Output>
-      <Time>2012-12-10T23:15:43.3472493+01:00</Time>
+      <Time>2012-12-11T21:22:41.5968549+01:00</Time>
     </Item>
     <Item>
       <Source>GamePlayMusic.mp3</Source>
@@ -45,7 +45,7 @@
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GamePlayMusic.xnb</Output>
       <Extra>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GamePlayMusic.wma</Extra>
-      <Time>2012-12-10T23:15:43.3372487+01:00</Time>
+      <Time>2012-12-11T21:22:41.581854+01:00</Time>
     </Item>
     <Item>
       <Source>gameFont.spritefont</Source>
@@ -54,7 +54,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameFont.xnb</Output>
-      <Time>2012-12-10T23:15:43.3482494+01:00</Time>
+      <Time>2012-12-11T21:22:41.598855+01:00</Time>
     </Item>
     <Item>
       <Source>zombie01.png</Source>
@@ -63,7 +63,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie01.xnb</Output>
-      <Time>2012-12-11T20:59:59.8569678+01:00</Time>
+      <Time>2012-12-11T21:22:41.6378572+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Map.bmp</Source>
+      <Name>Map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
+      <Time>2012-12-13T19:58:48.0064487+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Chara.png</Source>
+      <Name>Chara</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara.xnb</Output>
+      <Time>2012-12-13T20:01:59.7265603+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

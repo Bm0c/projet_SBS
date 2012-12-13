@@ -26,7 +26,7 @@ namespace Sunday_Bloody_Sunday
         int frameColumn;
         bool Animation;
         int Timer;
-        int speed = 2;
+        int speed = 1;
         int AnimationSpeed = 10;
         string action;
         // State of the player
@@ -38,7 +38,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public Player()
         {
-            this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 25, 27);
+            this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
             this.frameLine = 1;
             this.frameColumn = 2;
@@ -102,41 +102,37 @@ namespace Sunday_Bloody_Sunday
         }
 
         //Renvois la futur position X du joueur en cas d'un déplacement, à l'aide de l'action qui lui est attribué
-        public int futur_position_X()
+        public int futur_position_X_gauche()
         {
-
-            if (this.actionjoueur == "right")
-            {
-                return (this.PlayerTexture.X + this.speed + this.Width);
-
-            }
-            else if (this.actionjoueur == "left")
-            {
-                return (this.PlayerTexture.X - this.speed);
-
-            }
+            if (actionjoueur == "left")
+                return (this.PlayerTexture.X - this.speed + 1);
             else
-            {
-                return (this.PlayerTexture.X );
-            }
+                return (this.PlayerTexture.X + 1);
+        }
+
+        public int futur_position_X_droite()
+        {
+            if (actionjoueur == "right")
+                return (this.PlayerTexture.X + this.speed + 16 - 1);
+            else
+                return (this.PlayerTexture.X + 16 - 1);
         }
 
         //Renvois la futur position Y du joueur en cas d'un déplacement, à l'aide de l'action qui lui est attribué
-        public int futur_position_Y()
+        public int futur_position_Y_haut()
         {
-            if (this.actionjoueur == "up")
-            {
-                return (this.PlayerTexture.Y - this.speed);
-
-            }
-            else if (this.actionjoueur == "down")
-            {
-                return (this.PlayerTexture.Y + this.speed + this.Height);
-            }
+            if (actionjoueur == "up")
+                return (this.PlayerTexture.Y - this.speed + 1 + 10);
             else
-            {
-                return (this.PlayerTexture.Y);
-            }
+                return (this.PlayerTexture.Y + 1 + 10);
+        }
+
+        public int futur_position_Y_bas()
+        {
+            if (actionjoueur == "down")
+                return (this.PlayerTexture.Y + this.speed - 1 + 19);
+            else
+                return (this.PlayerTexture.Y - 1 + 19);
         }
 
         //Met a jour le héros en fontion de l'action qui lui est donné, pour l'instant, seul le déplacement est géré
@@ -217,7 +213,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.Player, this.PlayerTexture, new Rectangle((this.frameColumn - 1) * 25, (this.frameLine - 1) * 27, 25, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(Ressources.Player, this.PlayerTexture, new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }

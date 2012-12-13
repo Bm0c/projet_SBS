@@ -6,3 +6,5 @@ Content\GamePlayMusic.xnb
 Content\GamePlayMusic.wma
 Content\gameFont.xnb
 Content\zombie01.xnb
+Content\Map.xnb
+Content\Chara.xnb
