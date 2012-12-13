@@ -46,15 +46,44 @@ namespace Sunday_Bloody_Sunday
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
             //Update l'objet joueurs contenue par la map
-            this.joueur.Update( mouse, keyboard);
+            this.joueur.Update(mouse, keyboard);
 
             //Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement.
             if (joueur.actionjoueur == "up" || joueur.actionjoueur == "down" || joueur.actionjoueur == "left" || joueur.actionjoueur == "right")
             {
-                if ((!(map_physique.mur(this.joueur.futur_position_X(), this.joueur.futur_position_Y()))) && (!(map_physique.mur(this.joueur.futur_position_X() + this.joueur.Width, this.joueur.futur_position_Y() + this.joueur.Height)))) // Teste de collision
+                if (this.joueur.actionjoueur == "up")
                 {
-                    this.joueur.mise_a_jour(joueur.actionjoueur); //Met le joueur à jour si le déplacement peut avoir lieu
+                    if (!(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_haut())))
+                        this.joueur.mise_a_jour(joueur.actionjoueur);
+                    this.joueur.actionjoueur = "";
                 }
+
+                if (this.joueur.actionjoueur == "down")
+                {
+                    if (!(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_bas()))
+                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_bas())))
+                        this.joueur.mise_a_jour(joueur.actionjoueur);
+                    this.joueur.actionjoueur = "";
+                }
+
+                if (this.joueur.actionjoueur == "left")
+                {
+                    if (!(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_bas())))
+                        this.joueur.mise_a_jour(joueur.actionjoueur);
+                    this.joueur.actionjoueur = "";
+                }
+
+                if (this.joueur.actionjoueur == "right")
+                {
+                    if (!(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_bas())))
+                        this.joueur.mise_a_jour(joueur.actionjoueur);
+                    this.joueur.actionjoueur = "";
+                }
+
+
             }
             this.joueur.actionjoueur = "";// "Remet à zéros" les actions du joueurs
         }

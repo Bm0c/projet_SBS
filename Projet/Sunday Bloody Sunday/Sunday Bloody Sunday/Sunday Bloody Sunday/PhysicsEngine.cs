@@ -64,7 +64,7 @@ namespace Sunday_Bloody_Sunday
             if ((x <= 0) || (y <= 0))
                 return true;
             else
-                return this.liste[x / 32, y / 32]; ;
+                return this.liste[x / 16, y / 16]; ;
 
         }
 
