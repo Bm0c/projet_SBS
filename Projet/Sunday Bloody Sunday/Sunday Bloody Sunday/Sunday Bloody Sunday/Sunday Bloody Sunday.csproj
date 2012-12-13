@@ -112,7 +112,7 @@
     <Compile Include="HUD.cs" />
     <Compile Include="IA.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Particule.cs" />
+    <Compile Include="ExplosionParticule.cs" />
     <Compile Include="PhysicsEngine.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Projectile.cs" />
@@ -120,6 +120,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Ressources.cs" />
+    <Compile Include="Sound.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

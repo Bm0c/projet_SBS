@@ -31,9 +31,10 @@ namespace Sunday_Bloody_Sunday
         string action;
         // State of the player
         static public bool Active;
-        // Amount of health points
-
+        // Amount of health pointsstatic
         static public int Health;
+        // Amount of munition that player has
+        static public int Ammo;
 
         // CONSTRUCTOR
         public Player()
@@ -48,6 +49,7 @@ namespace Sunday_Bloody_Sunday
             this.Timer = 0;
             Player.Active = true;
             Player.Health = 100;
+            Player.Ammo = 42;
             this.action = "";
         }
 

@@ -15,13 +15,13 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         int health, munition;
-        SpriteFont font;
 
 
         // CONSTRUCTOR
         public HUD()
         {
-            
+            this.health = Player.Health;
+            this.munition = Player.Ammo;
         }
 
 
@@ -33,11 +33,11 @@ namespace Sunday_Bloody_Sunday
         {
 
         }
-        public void Draw(SpriteFont font)
-        {
-            
-        }
 
-        
+        public void Draw(SpriteBatch spriteBatch, SpriteFont font)
+        {
+            spriteBatch.DrawString(Ressources.HUD, "Health: " + Player.Health, new Vector2(650, 400), Color.White);
+            spriteBatch.DrawString(Ressources.HUD, "Ammo: " + Player.Ammo, new Vector2(650, 440), Color.White);
+        }
     }
 }

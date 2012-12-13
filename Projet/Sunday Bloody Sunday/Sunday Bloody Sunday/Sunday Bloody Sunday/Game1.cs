@@ -15,10 +15,10 @@ namespace Sunday_Bloody_Sunday
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteFont spriteFont;
 
         GameMain Main;
-        Song GamePlayMusic;
-        SpriteFont font;
+        //Song GamePlayMusic;
 
         public Game1()
         {
@@ -32,7 +32,16 @@ namespace Sunday_Bloody_Sunday
             base.Initialize();
         }
 
-        public void PlayMusic(Song song)
+        protected override void LoadContent()
+        {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            Ressources.LoadContent(Content);
+            Main = new GameMain();
+            //GamePlayMusic = Content.Load<Song>("GamePlayMusic");
+            //PlayMusic(GamePlayMusic);
+        }
+
+        /*        public void PlayMusic(Song song)
         {
             try
             {
@@ -42,18 +51,7 @@ namespace Sunday_Bloody_Sunday
                 MediaPlayer.IsRepeating = true;
             }
             catch { }
-        }
-
-        protected override void LoadContent()
-        {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-                Ressources.LoadContent(Content);
-                Main = new GameMain();
-                GamePlayMusic = Content.Load<Song>("GamePlayMusic");
-                PlayMusic(GamePlayMusic);
-                font = Content.Load<SpriteFont>("gameFont");
-        }
+        }*/
 
         protected override void UnloadContent()
         {
@@ -62,17 +60,16 @@ namespace Sunday_Bloody_Sunday
 
         protected override void Update(GameTime gameTime)
         {
-                Main.Update(Mouse.GetState(), Keyboard.GetState());
+            Main.Update(Mouse.GetState(), Keyboard.GetState());
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-                spriteBatch.Begin();
-                    Main.Draw(spriteBatch);
-                    spriteBatch.DrawString(font, "Health: " + Player.Health, new Vector2(650,440), Color.Red);
-                spriteBatch.End();
+            spriteBatch.Begin();
+            Main.Draw(spriteBatch, spriteFont);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

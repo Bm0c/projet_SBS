@@ -91,6 +91,7 @@ namespace Sunday_Bloody_Sunday
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
+            this.joueur.Draw(spriteBatch);
         }
     }
 }

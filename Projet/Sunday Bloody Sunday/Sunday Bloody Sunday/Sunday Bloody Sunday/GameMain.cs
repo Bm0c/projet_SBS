@@ -14,19 +14,22 @@ namespace Sunday_Bloody_Sunday
     class GameMain
     {
         // FIELDS
-        Player MainPlayer;
         Map MainMap;
         Projectile MainProjectile;
-        Particule MainParticule;
+        ExplosionParticule MainExplosionParticule;
         IA MainIA;
+        HUD MainHUD;
+        Sound MainSound;
 
         // CONCSTRUCTOR
         public GameMain()
         {
             this.MainMap = new Map(new Player(), new PhysicsEngine());
             this.MainProjectile = new Projectile();
-            this.MainParticule = new Particule();
+            this.MainExplosionParticule = new ExplosionParticule();
             this.MainIA = new IA();
+            this.MainHUD = new HUD();
+            this.MainSound = new Sound();
         }
 
         // METHODS
@@ -39,13 +42,13 @@ namespace Sunday_Bloody_Sunday
             MainProjectile.Update(keyboard);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
             MainMap.Draw(spriteBatch);
             MainProjectile.Draw(spriteBatch);
-            MainParticule.Draw(spriteBatch);
-            MainMap.joueur.Draw(spriteBatch);
+            MainExplosionParticule.Draw(spriteBatch);
             MainIA.Draw(spriteBatch);
+            MainHUD.Draw(spriteBatch, spriteFont);
         }
     }
 }
