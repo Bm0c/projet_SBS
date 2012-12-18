@@ -25,7 +25,7 @@ namespace Sunday_Bloody_Sunday
 
 
         // METHODS
-        public void PlayMusic(Song song)
+        /*public void PlayMusic(Song song)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace Sunday_Bloody_Sunday
                 MediaPlayer.IsRepeating = true;
             }
             catch { }
-        }
+        }*/
 
         // UPDATE
         public void Update()

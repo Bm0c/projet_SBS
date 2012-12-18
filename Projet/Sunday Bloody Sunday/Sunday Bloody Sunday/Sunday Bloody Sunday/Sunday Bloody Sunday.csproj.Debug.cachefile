@@ -1,5 +1,4 @@
 Content\pikachu.xnb
-Content\map01.xnb
 Content\laser.xnb
 Content\explosion.xnb
 Content\zombie01.xnb
@@ -7,4 +6,8 @@ Content\Map.xnb
 Content\Chara.xnb
 Content\GamePlayMusic.xnb
 Content\gameFont.xnb
+Content\Title.xnb
+Content\MenuOptions.xnb
+Content\Menu.xnb
+Content\zombie_groan.xnb
 Content\GamePlayMusic.wma
