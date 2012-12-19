@@ -76,9 +76,6 @@ namespace Sunday_Bloody_Sunday
                     IntelTexture.Y += this.speed;
                 else
                     IntelTexture.Y -= this.speed;
-
-                PositionIntel.X++;
-                PositionIntel.Y++;
             }
         }
 

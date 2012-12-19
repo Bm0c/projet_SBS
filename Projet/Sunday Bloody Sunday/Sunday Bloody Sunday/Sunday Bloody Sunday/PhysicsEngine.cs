@@ -26,7 +26,7 @@ namespace Sunday_Bloody_Sunday
 
                 
 
-                StreamReader monStreamReader = new StreamReader(("C:/Users/Alexis/SBS/Projet/Maps/map.txt"));
+                StreamReader monStreamReader = new StreamReader(("C:/Users/David/Documents/GitHub/projet_SBS/Projet/Maps/map.txt"));
                 string ligne = monStreamReader.ReadLine();
 
                 

@@ -21,7 +21,6 @@ namespace Sunday_Bloody_Sunday
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
-
             Projectile = content.Load<Texture2D>("laser");
             IA = content.Load<Texture2D>("zombie01");
             Map = content.Load<Texture2D>("Map");
@@ -30,7 +29,6 @@ namespace Sunday_Bloody_Sunday
             ExplosionParticule = content.Load<Texture2D>("explosion");
             HUD = content.Load<SpriteFont>("gameFont");
             GamePlayMusic = content.Load<Song>("GamePlayMusic");
-            
         }
     }
 }
