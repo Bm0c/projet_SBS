@@ -29,15 +29,6 @@
       <Time>2012-12-18T21:43:56.3657652+01:00</Time>
     </Item>
     <Item>
-      <Source>zombie01.png</Source>
-      <Name>zombie01</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie01.xnb</Output>
-      <Time>2012-12-18T21:43:56.3813653+01:00</Time>
-    </Item>
-    <Item>
       <Source>Map.bmp</Source>
       <Name>Map</Name>
       <Importer>TextureImporter</Importer>

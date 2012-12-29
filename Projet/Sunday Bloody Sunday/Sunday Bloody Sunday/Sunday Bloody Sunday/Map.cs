@@ -15,15 +15,17 @@ namespace Sunday_Bloody_Sunday
         // FIELDS
         Rectangle MapTexture;
         public Player joueur;
+        public IA ia;
         string action_a_traite = "";
         PhysicsEngine map_physique;
 
 
         // CONSTRUCTOR
-        public Map(Player j1, PhysicsEngine map_physique)
+        public Map(Player j1, IA ia1, PhysicsEngine map_physique)
         {
             MapTexture = new Rectangle(0, 0, 800, 480);
-            joueur = j1;
+            this.joueur = j1;
+            this.ia = ia1;
             this.map_physique = map_physique;
         }
 
@@ -45,10 +47,10 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
-            //Update l'objet joueurs contenue par la map
+            // Update l'objet joueurs contenue par la map
             this.joueur.Update(mouse, keyboard);
 
-            //Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement.
+            // Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement.
             if (joueur.actionjoueur == "up" || joueur.actionjoueur == "down" || joueur.actionjoueur == "left" || joueur.actionjoueur == "right")
             {
                 if (this.joueur.actionjoueur == "up")
@@ -85,13 +87,14 @@ namespace Sunday_Bloody_Sunday
 
 
             }
-            this.joueur.actionjoueur = "";// "Remet à zéros" les actions du joueurs
+            this.joueur.actionjoueur = ""; // "Remet à zéros" les actions du joueurs
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             this.joueur.Draw(spriteBatch);
+            this.ia.Draw(spriteBatch);
         }
     }
 }

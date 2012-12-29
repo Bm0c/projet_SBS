@@ -17,11 +17,12 @@ namespace Sunday_Bloody_Sunday
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
         GameMain Main;
+
         // Futur Sound.cs
         Song GamePlayMusic;
         SoundEffect Effect;
 
-        // Début Futur Menu.cs
+        // Futur Menu.cs
         private enum Screen
         {
             Title,
@@ -42,7 +43,7 @@ namespace Sunday_Bloody_Sunday
         Texture2D mMenu;
         Texture2D mMenuOptions;
         KeyboardState mPreviousKeyboardState;
-        // Fin future Menu.cs
+
 
         public Game1()
         {
@@ -65,6 +66,7 @@ namespace Sunday_Bloody_Sunday
 
             // Chargement de la musique de fond
             GamePlayMusic = Content.Load<Song>("GamePlayMusic");
+            // Chargement effet d'intro
             Effect = Content.Load<SoundEffect>("zombie_groan");
             Effect.Play();
 
@@ -111,7 +113,7 @@ namespace Sunday_Bloody_Sunday
                     }
                 case Screen.Main:
                     {
-                        // Escape key pause the game
+                        // Escape key = pause the game
                         if (aKeyboardState.IsKeyDown(Keys.Escape) == true)
                         {
                             mCurrentScreen = Screen.Menu;
@@ -120,7 +122,7 @@ namespace Sunday_Bloody_Sunday
                     }
                 case Screen.Inventory:
                     {
-                        // C key in the Inventory close it
+                        // C key in the Inventory = close it
                         if (aKeyboardState.IsKeyDown(Keys.C) == true)
                         {
                             mCurrentScreen = Screen.Main;
@@ -129,10 +131,10 @@ namespace Sunday_Bloody_Sunday
                     }
                 case Screen.Menu:
                     {
-                        //Move the currently highlighted menu option
+                        // Move the currently highlighted menu option
                         if (aKeyboardState.IsKeyDown(Keys.Down) == true && mPreviousKeyboardState.IsKeyDown(Keys.Down) == false)
                         {
-                            //Move selection down
+                            // Move selection down
                             switch (mCurrentMenuOption)
                             {
                                 case MenuOptions.Resume:
@@ -151,7 +153,7 @@ namespace Sunday_Bloody_Sunday
 
                         if (aKeyboardState.IsKeyDown(Keys.Up) == true && mPreviousKeyboardState.IsKeyDown(Keys.Up) == false)
                         {
-                            //Move selection up
+                            // Move selection up
                             switch (mCurrentMenuOption)
                             {
                                 case MenuOptions.Inventory:
@@ -192,7 +194,7 @@ namespace Sunday_Bloody_Sunday
                                     }
                             }
 
-                            //Reset the selected menu option to Resume
+                            // Reset the selected menu option to Resume
                             mCurrentMenuOption = MenuOptions.Resume;
                         }
                         break;
@@ -208,10 +210,8 @@ namespace Sunday_Bloody_Sunday
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
                 Main.Draw(spriteBatch, spriteFont);
-
-
+                
                 switch (mCurrentScreen)
                 {
                     case Screen.Title:
@@ -253,7 +253,6 @@ namespace Sunday_Bloody_Sunday
                             break;
                         }
                 }
-
             spriteBatch.End();
             base.Draw(gameTime);
         }
