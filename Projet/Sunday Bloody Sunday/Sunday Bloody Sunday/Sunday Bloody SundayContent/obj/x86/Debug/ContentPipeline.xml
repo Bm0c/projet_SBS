@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu.xnb</Output>
-      <Time>2012-12-18T21:43:56.3813653+01:00</Time>
+      <Time>2012-12-29T20:11:11.720603+01:00</Time>
     </Item>
     <Item>
       <Source>laser.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\laser.xnb</Output>
-      <Time>2012-12-18T21:43:56.3657652+01:00</Time>
+      <Time>2012-12-29T19:40:39.9727029+01:00</Time>
     </Item>
     <Item>
       <Source>explosion.png</Source>
@@ -26,16 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion.xnb</Output>
-      <Time>2012-12-18T21:43:56.3657652+01:00</Time>
-    </Item>
-    <Item>
-      <Source>zombie01.png</Source>
-      <Name>zombie01</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie01.xnb</Output>
-      <Time>2012-12-18T21:43:56.3813653+01:00</Time>
+      <Time>2012-12-29T19:40:39.9717028+01:00</Time>
     </Item>
     <Item>
       <Source>Map.bmp</Source>
@@ -44,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
-      <Time>2012-12-18T21:43:56.3657652+01:00</Time>
+      <Time>2012-12-29T19:40:39.9657025+01:00</Time>
     </Item>
     <Item>
       <Source>Chara.png</Source>
@@ -53,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara.xnb</Output>
-      <Time>2012-12-18T21:43:56.3189652+01:00</Time>
+      <Time>2012-12-29T19:40:39.9217+01:00</Time>
     </Item>
     <Item>
       <Source>GamePlayMusic.mp3</Source>
@@ -63,7 +54,7 @@
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GamePlayMusic.xnb</Output>
       <Extra>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GamePlayMusic.wma</Extra>
-      <Time>2012-12-18T21:43:56.3657652+01:00</Time>
+      <Time>2012-12-29T19:40:39.9597021+01:00</Time>
     </Item>
     <Item>
       <Source>gameFont.spritefont</Source>
@@ -72,7 +63,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameFont.xnb</Output>
-      <Time>2012-12-18T21:43:56.3657652+01:00</Time>
+      <Time>2012-12-29T19:40:39.9727029+01:00</Time>
     </Item>
     <Item>
       <Source>Title.png</Source>
@@ -81,7 +72,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Title.xnb</Output>
-      <Time>2012-12-18T23:27:49.1285489+01:00</Time>
+      <Time>2012-12-29T19:40:39.9697027+01:00</Time>
     </Item>
     <Item>
       <Source>MenuOptions.png</Source>
@@ -90,7 +81,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\MenuOptions.xnb</Output>
-      <Time>2008-12-29T18:32:16+01:00</Time>
+      <Time>2012-12-29T19:40:39.9677026+01:00</Time>
     </Item>
     <Item>
       <Source>Menu.png</Source>
@@ -99,7 +90,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Menu.xnb</Output>
-      <Time>2012-12-18T23:57:30.9129258+01:00</Time>
+      <Time>2012-12-29T19:40:39.9667025+01:00</Time>
     </Item>
     <Item>
       <Source>zombie_groan.wav</Source>
@@ -108,7 +99,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie_groan.xnb</Output>
-      <Time>2012-12-19T00:15:11.028528+01:00</Time>
+      <Time>2012-12-29T19:40:39.9827035+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -7,8 +7,8 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("Sunday Bloody Sunday")]
 [assembly: AssemblyProduct("Sunday Bloody Sunday")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("A Zombie Shooter Game in the Pokemon World")]
+[assembly: AssemblyCompany("DangerousCsharks")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

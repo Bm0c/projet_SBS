@@ -5,7 +5,7 @@ namespace Sunday_Bloody_Sunday
 {
     static class Divers
     {
-        // Récupération des paramètres relatif à la fenêtre de jeu
+        // Récupération des paramètres relatifs à la fenêtre de jeu
         static private int widthScreen = 800;
         static private int heightScreen = 480;
 

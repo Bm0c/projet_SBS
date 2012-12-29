@@ -17,20 +17,16 @@ namespace Sunday_Bloody_Sunday
         Map MainMap;
         Projectile MainProjectile;
         ExplosionParticule MainExplosionParticule;
-        IA MainIA;
         HUD MainHUD;
-        Sound MainSound;
 
 
         // CONCSTRUCTOR
         public GameMain()
         {
-            this.MainMap = new Map(new Player(), new PhysicsEngine());
+            this.MainMap = new Map(new Player(), new IA(), new PhysicsEngine());
             this.MainProjectile = new Projectile();
             this.MainExplosionParticule = new ExplosionParticule();
-            this.MainIA = new IA();
             this.MainHUD = new HUD();
-            this.MainSound = new Sound();
         }
 
 
@@ -49,7 +45,6 @@ namespace Sunday_Bloody_Sunday
             MainMap.Draw(spriteBatch);
             MainProjectile.Draw(spriteBatch);
             MainExplosionParticule.Draw(spriteBatch);
-            MainIA.Draw(spriteBatch);
             MainHUD.Draw(spriteBatch, spriteFont);
         }
     }
