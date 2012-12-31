@@ -29,7 +29,7 @@ namespace Sunday_Bloody_Sunday
 
 
         // UPDATE & DRAW
-        public void Update()
+        public void Update(KeyboardState keyboard)
         {
 
         }

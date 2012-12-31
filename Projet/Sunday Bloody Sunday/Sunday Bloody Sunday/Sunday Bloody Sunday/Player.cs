@@ -37,6 +37,9 @@ namespace Sunday_Bloody_Sunday
             static public int Health;
             // Amount of munition that player has
             static public int Ammo;
+            // The amount of damage the Player can inflict to the IA
+            static public int Damage;
+
 
             // CONSTRUCTOR
             public Player()
@@ -51,7 +54,8 @@ namespace Sunday_Bloody_Sunday
                 this.Timer = 0;
                 Player.Active = true;
                 Player.Health = 100;
-                Player.Ammo = 42;
+                Player.Ammo = 100;
+                Player.Damage = 10;
                 this.action = "";
             }
 

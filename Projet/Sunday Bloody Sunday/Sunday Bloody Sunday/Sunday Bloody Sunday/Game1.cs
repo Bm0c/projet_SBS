@@ -17,7 +17,7 @@ namespace Sunday_Bloody_Sunday
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
         GameMain Main;
-
+        
         // Futur Sound.cs
         Song GamePlayMusic;
         SoundEffect Effect;
@@ -44,12 +44,12 @@ namespace Sunday_Bloody_Sunday
         Texture2D mMenuOptions;
         KeyboardState mPreviousKeyboardState;
 
-
+        // Début fichier généré par XNA
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
         }
 
         protected override void Initialize()
@@ -193,14 +193,12 @@ namespace Sunday_Bloody_Sunday
                                         break;
                                     }
                             }
-
                             // Reset the selected menu option to Resume
                             mCurrentMenuOption = MenuOptions.Resume;
                         }
                         break;
                     }
             }
-
             // Store the Keyboard state
             mPreviousKeyboardState = aKeyboardState;
             base.Update(gameTime);
@@ -253,6 +251,7 @@ namespace Sunday_Bloody_Sunday
                             break;
                         }
                 }
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

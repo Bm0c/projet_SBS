@@ -35,12 +35,15 @@ namespace Sunday_Bloody_Sunday
             static public bool Active;
             // Amount of health
             static public int Health;
+            // The amount of damage the IA can inflict to the Player
+            static public int Damage;
+            Random rand = new Random();
 
 
             // CONSTRUCTOR
             public IA()
             {
-                this.IATexture = new Rectangle(100, 100, 23, 27);
+                this.IATexture = new Rectangle(rand.Next(0,840), rand.Next(0,480), 23, 27);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
                 this.frameLine = 1;
                 this.frameColumn = 2;
@@ -50,18 +53,19 @@ namespace Sunday_Bloody_Sunday
                 this.Timer = 0;
                 IA.Active = true;
                 IA.Health = 100;
+                IA.Damage = 10;
                 this.action = "";
             }
 
 
             // METHODS
-            // Get the width of the player
+            // Get the width of the IA
             public int Width
             {
                 get { return IATexture.Width; }
             }
 
-            // Get the height of the player
+            // Get the height of the IA
             public int Height
             {
                 get { return IATexture.Height; }
@@ -135,7 +139,7 @@ namespace Sunday_Bloody_Sunday
                 else
                     return (this.IATexture.Y - 1 + 19);
             }
-
+            
             // Met à jour l'IA en fontion de l'action qui lui est donné, pour l'instant, seul le déplacement est géré
             public void mise_a_jour(string a)
             {

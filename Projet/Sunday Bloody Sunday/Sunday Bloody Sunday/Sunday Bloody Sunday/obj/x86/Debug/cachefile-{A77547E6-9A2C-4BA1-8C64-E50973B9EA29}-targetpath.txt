@@ -1,5 +1,4 @@
 Content\pikachu.xnb
-Content\laser.xnb
 Content\explosion.xnb
 Content\Map.xnb
 Content\Chara.xnb
@@ -10,3 +9,4 @@ Content\Title.xnb
 Content\MenuOptions.xnb
 Content\Menu.xnb
 Content\zombie_groan.xnb
+Content\fireball.xnb

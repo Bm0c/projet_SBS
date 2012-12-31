@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+
 namespace Sunday_Bloody_Sunday
 {
     class Map
@@ -47,10 +48,10 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
-            // Update l'objet joueurs contenue par la map
+            // Update l'objet joueur contenu par la map
             this.joueur.Update(mouse, keyboard);
 
-            // Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement.
+            // Devrait vérifier si l'action du joueur est faisable, et si oui l'autorise, pour l'instant, ne permet que le déplacement
             if (joueur.actionjoueur == "up" || joueur.actionjoueur == "down" || joueur.actionjoueur == "left" || joueur.actionjoueur == "right")
             {
                 if (this.joueur.actionjoueur == "up")

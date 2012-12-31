@@ -14,7 +14,7 @@ namespace Sunday_Bloody_Sunday
 {
     public class PhysicsEngine
     {
-        // Tableau des booléens, le 100*100 est purement arbitraire, il devrait corréspondre a la longueure/largeure de la map
+        // Tableau des booléens, le 100*100 est purement arbitraire, il devrait correspondre à la longueure/largeure de la map
         private bool[,] liste = new bool[100, 100];
 
         public PhysicsEngine()
@@ -22,22 +22,22 @@ namespace Sunday_Bloody_Sunday
             // liste[x,y]
 
 
-            { // Début de travaille sur le lecteur de fichier, don't toutch !
+            {   // Début de travail sur le lecteur de fichier, don't toutch !
 
                 StreamReader monStreamReader = new StreamReader(("C:/Users/David/Documents/GitHub/projet_SBS/Projet/Maps/map.txt"));
                 string ligne = monStreamReader.ReadLine();
 
                 int i = 0;
                 while (ligne != null)
-                { // début de travaille sur le lecteur de fichier, don't toutch !
+                { // Début de travaille sur le lecteur de fichier, don't toutch !
                     int i1 = 0;
                     foreach ( char bool_ in ligne)                                          
                     {
-                        if (ligne[i1] == '0')//la zone est traversable
+                        if (ligne[i1] == '0') // la zone est franchissable
                         {
                             liste[i1, i] = false;
                         }
-                        else//la zone est infranchissable
+                        else // la zone est infranchissable
                         {
                             liste[i1, i] = true;
                         }
@@ -52,7 +52,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        // Teste si la zone est franchissble (false) ou infranchissable (true) à l'aide du tableau de bool, si x <= 0 ou y <= 0, on est hors de la map
+        // Teste si la zone est franchissable (false) ou infranchissable (true) à l'aide du tableau de bool, si x <= 0 ou y <= 0, on est hors de la map
         public bool mur(int x, int y)
         {
             if ((x <= 0) || (y <= 0))
