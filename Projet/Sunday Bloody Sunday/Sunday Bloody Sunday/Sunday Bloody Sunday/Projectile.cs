@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
@@ -38,12 +44,12 @@ namespace Sunday_Bloody_Sunday
 
 
         // METHODS (useful for collision)
-        // Get the width of the projectile ship
+        // Get the width of the projectile
         public int Width
         {
             get { return Ressources.Projectile.Width; }
         }
-        // Get the height of the projectile ship
+        // Get the height of the projectile
         public int Height
         {
             get { return Ressources.Projectile.Height; }

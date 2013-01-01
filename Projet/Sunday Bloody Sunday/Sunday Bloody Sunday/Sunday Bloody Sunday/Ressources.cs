@@ -22,7 +22,7 @@ namespace Sunday_Bloody_Sunday
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
-            Map = content.Load<Texture2D>("Map");
+            Map = content.Load<Texture2D>("map");
             Player = content.Load<Texture2D>("Chara");
             Projectile = content.Load<Texture2D>("fireball");
             IA = content.Load<Texture2D>("pikachu");

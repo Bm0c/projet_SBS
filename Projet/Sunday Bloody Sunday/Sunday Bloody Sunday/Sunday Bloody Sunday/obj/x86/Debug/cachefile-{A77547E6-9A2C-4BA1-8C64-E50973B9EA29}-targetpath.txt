@@ -1,6 +1,5 @@
 Content\pikachu.xnb
 Content\explosion.xnb
-Content\Map.xnb
 Content\Chara.xnb
 Content\GamePlayMusic.xnb
 Content\GamePlayMusic.wma
@@ -10,3 +9,5 @@ Content\MenuOptions.xnb
 Content\Menu.xnb
 Content\zombie_groan.xnb
 Content\fireball.xnb
+Content\Map.xnb
+Content\Inventory.xnb

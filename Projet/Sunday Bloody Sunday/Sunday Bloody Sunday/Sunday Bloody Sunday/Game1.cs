@@ -42,6 +42,7 @@ namespace Sunday_Bloody_Sunday
         Texture2D mTitleScreen;
         Texture2D mMenu;
         Texture2D mMenuOptions;
+        Texture2D mInventoryScreen;
         KeyboardState mPreviousKeyboardState;
 
         // Début fichier généré par XNA
@@ -49,7 +50,7 @@ namespace Sunday_Bloody_Sunday
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            this.IsMouseVisible = false;
+            this.IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -74,6 +75,7 @@ namespace Sunday_Bloody_Sunday
             mTitleScreen = Content.Load<Texture2D>("Title");
             mMenu = Content.Load<Texture2D>("Menu");
             mMenuOptions = Content.Load<Texture2D>("MenuOptions");
+            mInventoryScreen = Content.Load<Texture2D>("Inventory");
         }
 
         public void PlayMusic(Song song)
@@ -201,6 +203,7 @@ namespace Sunday_Bloody_Sunday
             }
             // Store the Keyboard state
             mPreviousKeyboardState = aKeyboardState;
+
             base.Update(gameTime);
         }
 
@@ -250,6 +253,11 @@ namespace Sunday_Bloody_Sunday
                             }
                             break;
                         }
+                    case Screen.Inventory:
+                    {
+                        spriteBatch.Draw(mInventoryScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
+                        break;
+                    }
                 }
 
             spriteBatch.End();

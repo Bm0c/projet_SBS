@@ -20,15 +20,6 @@
       <Time>2012-12-29T20:22:28.8543114+01:00</Time>
     </Item>
     <Item>
-      <Source>Map.bmp</Source>
-      <Name>Map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
-      <Time>2012-12-29T20:22:28.8543114+01:00</Time>
-    </Item>
-    <Item>
       <Source>Chara.png</Source>
       <Name>Chara</Name>
       <Importer>TextureImporter</Importer>
@@ -100,6 +91,24 @@
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\fireball.xnb</Output>
       <Time>2012-12-31T17:29:16.5401526+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Map.png</Source>
+      <Name>Map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
+      <Time>2013-01-01T00:04:42.5899083+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Inventory.png</Source>
+      <Name>Inventory</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Inventory.xnb</Output>
+      <Time>2013-01-01T00:32:05.4529937+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
