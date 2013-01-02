@@ -20,7 +20,7 @@ namespace Sunday_Bloody_Sunday
             // FIELDS Projectile
             Projectile MainProjectile;
             List<Projectile> projectiles = new List<Projectile>();
-            public Vector2 spritePosition = new Vector2(200, 200); // Must attach the fireball to the Player !
+            public Vector2 spritePosition = new Vector2(Player.PlayerPosition.X, Player.PlayerPosition.Y); // Must attach the fireball to the Player !
             float rotation;
             Vector2 spriteVelocity;
 
@@ -28,7 +28,7 @@ namespace Sunday_Bloody_Sunday
         // CONCSTRUCTOR
         public GameMain()
         {
-            this.MainMap = new Map(new Player(), new IA(), new PhysicsEngine());
+            this.MainMap = new Map(new Player(), new PhysicsEngine());
             this.MainProjectile = new Projectile(Ressources.Projectile);
             //this.MainExplosionParticule = new ExplosionParticule();
             this.MainHUD = new HUD();

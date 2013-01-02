@@ -19,7 +19,7 @@ namespace Sunday_Bloody_Sunday
         class Player
         { 
             // FIELDS
-            Rectangle PlayerTexture;
+            public Rectangle PlayerTexture;
             Direction Direction;
             SpriteEffects Effect;
             // Relative Position
@@ -28,7 +28,7 @@ namespace Sunday_Bloody_Sunday
             int frameColumn;
             bool Animation;
             int Timer;
-            int speed = 1;
+            int speed = 2;
             int AnimationSpeed = 10;
             string action;
             // State of the player
