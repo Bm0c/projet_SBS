@@ -35,12 +35,15 @@ namespace Sunday_Bloody_Sunday
             static public bool Active;
             // Amount of health
             static public int Health;
+            // The amount of damage the IA can inflict to the Player
+            static public int Damage;
+            Random randomPosition = new Random();
 
 
             // CONSTRUCTOR
             public IA()
             {
-                this.IATexture = new Rectangle(100, 100, 23, 27);
+                this.IATexture = new Rectangle(randomPosition.Next(0, 840), randomPosition.Next(0, 480), 23, 27);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
                 this.frameLine = 1;
                 this.frameColumn = 2;
@@ -50,18 +53,19 @@ namespace Sunday_Bloody_Sunday
                 this.Timer = 0;
                 IA.Active = true;
                 IA.Health = 100;
+                IA.Damage = 10;
                 this.action = "";
             }
 
 
             // METHODS
-            // Get the width of the player
+            // Get the width of the IA
             public int Width
             {
                 get { return IATexture.Width; }
             }
 
-            // Get the height of the player
+            // Get the height of the IA
             public int Height
             {
                 get { return IATexture.Height; }
@@ -135,7 +139,7 @@ namespace Sunday_Bloody_Sunday
                 else
                     return (this.IATexture.Y - 1 + 19);
             }
-
+            
             // Met à jour l'IA en fontion de l'action qui lui est donné, pour l'instant, seul le déplacement est géré
             public void mise_a_jour(string a)
             {
@@ -163,39 +167,12 @@ namespace Sunday_Bloody_Sunday
                     this.Direction = DirectionIA.Left;
                     this.Animate();
                 }
-
             }
-
+            
+            
             // UPDATE & DRAW
-            public void Update(MouseState mouse, KeyboardState keyboard)
+            public void Update()
             {
-                
-                /* // Détermine les actions du joueur en fonction des retours claviers
-                if (keyboard.IsKeyDown(Keys.Up))
-                {
-                    this.action = "up";
-                }
-                else if (keyboard.IsKeyDown(Keys.Down))
-                {
-                    this.action = "down";
-                }
-                else if (keyboard.IsKeyDown(Keys.Right))
-                {
-
-                    this.action = "right";
-                }
-                else if (keyboard.IsKeyDown(Keys.Left))
-                {
-
-                    this.action = "left";
-                }
-
-                if (keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right))
-                {
-                    this.frameColumn = 2;
-                    this.Timer = 0;
-                } */
-
                 switch (this.Direction)
                 {
                     case DirectionIA.Up: this.frameLine = 2;

@@ -22,12 +22,12 @@ namespace Sunday_Bloody_Sunday
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
-            Projectile = content.Load<Texture2D>("laser");
-            Map = content.Load<Texture2D>("Map");
+            Map = content.Load<Texture2D>("map");
             Player = content.Load<Texture2D>("Chara");
+            Projectile = content.Load<Texture2D>("fireball");
             IA = content.Load<Texture2D>("pikachu");
-            ExplosionParticule = content.Load<Texture2D>("explosion");
             HUD = content.Load<SpriteFont>("gameFont");
+            //ExplosionParticule = content.Load<Texture2D>("explosion");
             //GamePlayMusic = content.Load<Song>("GamePlayMusic");
             //Effect = content.Load<SoundEffect>("zombie_groan");
         }
