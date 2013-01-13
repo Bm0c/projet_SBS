@@ -165,12 +165,12 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((test) && !(ia1.est_update))
                 {
-                    test = !futur_rectangle.Intersects(ia1.rectangle_ia());
+                    test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/());
                 }
             }
             if (test)
-            { 
-                test = !futur_rectangle.Intersects(joueur.rectangle()); 
+            {
+                test = !futur_rectangle.Intersects(joueur.rectangle());
             }
 
             return test;
@@ -410,7 +410,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     liste_ia.Add(new IA(400, 470));
                 }
-                
+
                 compteur_2 = 0;
             }
             compteur_2++;
@@ -478,15 +478,57 @@ namespace Sunday_Bloody_Sunday
         }
 
         //Gere l'affichage de la liste d'ia
-        public void draw_ia(SpriteBatch spriteBatch)
+
+        public void swap(ref IA a, ref IA b)
         {
-            foreach (IA ia in liste_ia)
+            IA c = a;
+            a = b;
+            b = c;
+        }
+
+        public int minimum(IA[] tableau, int d, int f)
+        {
+            int pos = d;
+            int i = d + 1;
+            while (i < tableau.Length)
             {
-                this.ia = ia;
-                this.ia.Draw(spriteBatch);
+                if (tableau[i].IATexture.Y < tableau[pos].IATexture.Y)
+                {
+                    pos = i;
+                }
+                i++;
+            }
+
+            return pos;
+        }
+
+        public void tri(ref IA[] tableau)
+        {
+            int i = 0;
+            while (i < tableau.Length)
+            {
+                swap(ref tableau[i], ref tableau[minimum(tableau, i, tableau.Length)]);
+                i++;
             }
         }
 
+        public void draw_ordre(SpriteBatch spriteBatch)
+        {
+            IA[] tableau_ia = new IA[liste_ia.Count];
+            liste_ia.CopyTo(tableau_ia);
+            tri(ref tableau_ia);
+            bool test = true;
+            foreach (IA ia in tableau_ia)
+            {
+
+
+                ia.Draw(spriteBatch);
+                if ((ia.IATexture.Y < joueur.PlayerTexture.Y) && test)
+                {
+                    this.joueur.Draw(spriteBatch);
+                }
+            }
+        }
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
@@ -505,8 +547,7 @@ namespace Sunday_Bloody_Sunday
         {
 
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
-            this.joueur.Draw(spriteBatch);
-            draw_ia(spriteBatch);
+            draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch);
