@@ -17,12 +17,14 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public Player joueur;
         public List<IA> liste_ia;
+        public List<Projectile> liste_projectile;
+        Projectile balle;
         IA ia;
         PhysicsEngine map_physique;
 
 
         // CONSTRUCTOR
-        public Map(Player j1,PhysicsEngine map_physique)
+        public Map(Player j1, PhysicsEngine map_physique)
         {
             MapTexture = new Rectangle(0, 0, 800, 480);
             this.joueur = j1;
@@ -164,7 +166,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
@@ -179,7 +181,7 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                      && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                 {
-                    
+
                 }
                 else
                 {
@@ -190,7 +192,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                         {
-                            
+
                         }
                         else
                         {
@@ -203,7 +205,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
@@ -219,7 +221,7 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                  && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                 {
-                   
+
                 }
                 else
                 {
@@ -229,7 +231,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
@@ -242,7 +244,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
@@ -257,7 +259,7 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                  && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                 {
-                    
+
                 }
                 else
                 {
@@ -268,7 +270,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                         {
-                            
+
                         }
                         else
                         {
@@ -281,7 +283,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
@@ -297,7 +299,7 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                  && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                 {
-                   
+
                 }
                 else
                 {
@@ -307,7 +309,7 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
@@ -320,14 +322,14 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-                            
+
                         }
                         else
                         {
                             action = "";
                         }
                     }
-                
+
                 }
             }
 
@@ -345,6 +347,21 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
+        public void collision_balle(Projectile balle)
+        {
+            if (!(map_physique.mur(balle.futur_x, balle.futur_y())))
+            {
+            }
+        }
+
+        public void update_projectiles()
+        {
+            foreach (Projectile balle in liste_projectile)
+            {
+
+            }
+        }
+
         //Gere l'affichage de la liste d'ia
         public void draw_ia(SpriteBatch spriteBatch)
         {
@@ -354,6 +371,7 @@ namespace Sunday_Bloody_Sunday
                 this.ia.Draw(spriteBatch);
             }
         }
+
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
@@ -361,7 +379,7 @@ namespace Sunday_Bloody_Sunday
             this.joueur.Update(mouse, keyboard);
             action_hero();
             update_ia();
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -369,7 +387,7 @@ namespace Sunday_Bloody_Sunday
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             this.joueur.Draw(spriteBatch);
             draw_ia(spriteBatch);
-            
+
         }
     }
 }
