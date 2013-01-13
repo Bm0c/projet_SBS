@@ -17,10 +17,11 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public Player joueur;
         public List<IA> liste_ia;
-        public List<Projectile> liste_projectile;
+        public List<Projectile> liste_projectile = new List<Projectile>();
         Projectile balle;
         IA ia;
         PhysicsEngine map_physique;
+        int compteur = 0;
 
 
         // CONSTRUCTOR
@@ -36,6 +37,7 @@ namespace Sunday_Bloody_Sunday
             this.liste_ia.Add(ia1);
             this.liste_ia.Add(ia2);
             this.liste_ia.Add(ia3);
+
         }
 
 
@@ -349,8 +351,13 @@ namespace Sunday_Bloody_Sunday
 
         public void collision_balle(Projectile balle)
         {
-            if (!(map_physique.mur(balle.futur_x, balle.futur_y())))
+            if (!(map_physique.mur(balle.futur_x(), balle.futur_y())))
             {
+                balle.update_coordonne();
+            }
+            else
+            {
+                balle.isVisible = false;
             }
         }
 
@@ -358,7 +365,24 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Projectile balle in liste_projectile)
             {
+                balle.init = 0;
+            }
 
+            foreach (Projectile balle in liste_projectile)
+            {
+                while (balle.init < balle.projectileMoveSpeed)
+                {
+                    collision_balle(balle);
+                    balle.init++;
+                }
+            }
+
+            if (compteur == 60)
+            {
+                balle = new Projectile(Ressources.Projectile, this.joueur.PlayerTexture.X, this.joueur.PlayerTexture.Y, 10, this.joueur.Direction, 0);
+                liste_projectile.Add(balle);
+                compteur = 0;
+                Player.Ammo--;
             }
         }
 
@@ -379,6 +403,9 @@ namespace Sunday_Bloody_Sunday
             this.joueur.Update(mouse, keyboard);
             action_hero();
             update_ia();
+            update_projectiles();
+            compteur++;
+
 
         }
 
@@ -387,6 +414,10 @@ namespace Sunday_Bloody_Sunday
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             this.joueur.Draw(spriteBatch);
             draw_ia(spriteBatch);
+            foreach (Projectile projectile in liste_projectile)
+            {
+                projectile.Draw(spriteBatch);
+            }
 
         }
     }

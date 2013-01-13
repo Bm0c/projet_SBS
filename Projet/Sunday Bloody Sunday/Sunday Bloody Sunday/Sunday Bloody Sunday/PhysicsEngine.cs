@@ -24,7 +24,7 @@ namespace Sunday_Bloody_Sunday
 
             {   // Début de travail sur le lecteur de fichier, don't toutch !
 
-                StreamReader monStreamReader = new StreamReader(("C:/Users/Alexis/SBS/Projet/Maps/map.txt"));
+                StreamReader monStreamReader = new StreamReader(("C:/Users/Bmoc/SBS/Projet/Maps/map.txt"));
                 string ligne = monStreamReader.ReadLine();
 
                 int i = 0;
@@ -55,7 +55,7 @@ namespace Sunday_Bloody_Sunday
         // Teste si la zone est franchissable (false) ou infranchissable (true) à l'aide du tableau de bool, si x <= 0 ou y <= 0, on est hors de la map
         public bool mur(int x, int y)
         {
-            if ((x <= 0) || (y <= 0))
+            if ((x <= 0) || (y <= 0)||(x >= 800) ||(y >=480))
                 return true;
             else
                 return this.liste[x / 16, y / 16]; ;

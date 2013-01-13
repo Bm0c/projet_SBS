@@ -11,6 +11,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
+    public enum DirectionProjectile
+    {
+        Up, Down, Left, Right
+    };
+
     class Projectile
     {
         // FIELDS
@@ -18,21 +23,37 @@ namespace Sunday_Bloody_Sunday
         public Vector2 ProjectileOrigin;
         public bool isVisible;
         public int Damage;
-        int projectileMoveSpeed;
-        string direction;
+        public int projectileMoveSpeed;
         public bool update;
+        public int init;
+        public string direction;
 
 
         // CONSTRUCTOR
-        public Projectile(Texture2D newTexture, int x, int y, int vitesse, string direction, int dommage)
+        public Projectile(Texture2D newTexture, int x, int y, int vitesse, Direction direction, int dommage)
         {
             Ressources.Projectile = newTexture;
             this.ProjectilePosition = new Vector2(x, y);
             this.Damage = dommage;
             this.projectileMoveSpeed = vitesse;
-            isVisible = false;
-            this.direction = direction;
+            isVisible = true;
+            switch (direction)
+            {
+                case Direction.Up:
+                    this.direction = "up";
+                    break;
+                case Direction.Down: 
+                    this.direction = "down";
+                    break;
+                case Direction.Left:
+                    this.direction = "left";
+                    break;
+                case Direction.Right:
+                    this.direction = "right";
+                    break;
+            }
             this.update = true;
+            this.init = 0;
         }
 
 
@@ -50,19 +71,20 @@ namespace Sunday_Bloody_Sunday
 
         public int futur_x()
         {
+    
             if (this.direction == "right")
             {
-                return (int)ProjectilePosition.X - 1;
+                return (int)ProjectilePosition.X + 1;
             }
             else if (this.direction == "left")
             {
-                return (int)ProjectilePosition.X + 1;
+                return (int)ProjectilePosition.X - 1;
             }
             else
             {
                 return (int)ProjectilePosition.X;
             }
-            
+
         }
 
         public int futur_y()
@@ -82,22 +104,41 @@ namespace Sunday_Bloody_Sunday
 
         }
 
+        public void update_coordonne()
+        {
+            if (this.direction == "right")
+            {
+                ProjectilePosition.X--;
+            }
+            else if (this.direction == "left")
+            {
+                ProjectilePosition.X++;
+            }
+            if (this.direction == "up")
+            {
+                ProjectilePosition.Y--;
+            }
+            else if (this.direction == "down")
+            {
+                ProjectilePosition.Y++;
+            }
+        }
+
         // UPDATE & DRAW
         public void Update(KeyboardState keyboard)
         {
 
         }
         public void Draw(SpriteBatch spriteBatch)
-        {/*
-            if (this.viewport == Aim.Left || this.viewport == Aim.Right)
+        {
+            if (this.isVisible)
             {
-                spriteBatch.Draw(Ressources.Projectile, ProjectilePosition, null, Color.White, 0f, ProjectileOrigin, 1f, SpriteEffects.None, 0);
-            }
-            else if (this.viewport == Aim.Up || this.viewport == Aim.Down)
+                spriteBatch.Draw(Ressources.Projectile, ProjectilePosition/*, null*/, Color.White/*, 0f, ProjectileOrigin, 1f, SpriteEffects.None, 0*/);
+            }/*
             {
                 spriteBatch.Draw(Ressources.Projectile, ProjectilePosition, null, Color.White, 90.0f, ProjectileOrigin, 1f, SpriteEffects.None, 0);
-            }
-          * */
+            }*/
+
         }
     }
 }
