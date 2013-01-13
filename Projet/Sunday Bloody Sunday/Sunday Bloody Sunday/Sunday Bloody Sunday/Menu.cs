@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -11,108 +11,65 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
-    public class Game1 : Microsoft.Xna.Framework.Game
+    enum Screen
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        SpriteFont spriteFont;
-        GameMain Main;
+        Title,
+        Main,
+        Inventory,
+        Menu
+    }
 
-        // Futur Sound.cs
-        Song GamePlayMusic;
-        SoundEffect Effect;
+    enum MenuOptions
+    {
+        Resume,
+        Inventory,
+        ExitGame
+    }
 
-        
-        // Futur Menu.cs
-        private enum Screen
-        {
-            Title,
-            Main,
-            Inventory,
-            Menu
-        }
-        Screen mCurrentScreen = Screen.Title;
-
-        private enum MenuOptions
-        {
-            Resume,
-            Inventory,
-            ExitGame
-        }
-        MenuOptions mCurrentMenuOption = MenuOptions.Resume;
-        Texture2D mTitleScreen;
-        Texture2D mMenu;
-        Texture2D mMenuOptions;
-        Texture2D mInventoryScreen;
+    class Menu : Microsoft.Xna.Framework.Game
+    {
+        //FIELDS
+        Screen mCurrentScreen;
+        MenuOptions mCurrentMenuOption;
+        static public Texture2D mTitleScreen;
+        static public Texture2D mMenu;
+        static public Texture2D mMenuOptions;
+        static public Texture2D mInventoryScreen;
         KeyboardState mPreviousKeyboardState;
-        
+        static public bool Pause;
 
-        // Début fichier généré par XNA
-        public Game1()
+
+        //CONSTRUCTOR
+        public Menu()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            this.IsMouseVisible = true;
+            Menu.Pause = false;
+            this.mCurrentScreen = Screen.Title;
+            mCurrentMenuOption = MenuOptions.Resume;
+            mTitleScreen = Ressources.mTitleScreen;
+            mMenu = Ressources.mMenu;
+            mMenuOptions = Ressources.mMenuOptions;
+            mInventoryScreen = Ressources.mInventoryScreen;
         }
 
-        protected override void Initialize()
+
+        //METHODS
+
+
+        //UPDATE & DRAW
+        public void Update(KeyboardState keyboard)
         {
-            base.Initialize();
-        }
 
-        protected override void LoadContent()
-        {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            Ressources.LoadContent(Content);
-            // Chargement du jeu principal
-            Main = new GameMain();
-
-            // Chargement de la musique de fond
-            GamePlayMusic = Content.Load<Song>("GamePlayMusic");
-            // Chargement effet d'intro
-            Effect = Content.Load<SoundEffect>("zombie_groan");
-            Effect.Play();
-
-            // Chargement des images du Menu
-            mTitleScreen = Content.Load<Texture2D>("Title");
-            mMenu = Content.Load<Texture2D>("Menu");
-            mMenuOptions = Content.Load<Texture2D>("MenuOptions");
-            mInventoryScreen = Content.Load<Texture2D>("Inventory");
-        }
-
-        public void PlayMusic(Song song)
-        {
-            try
-            {
-                // Joue la musique
-                MediaPlayer.Play(song);
-                // Active la répétition de la musique
-                MediaPlayer.IsRepeating = true;
-            }
-            catch { }
-        }
-
-        protected override void UnloadContent()
-        {
-            Content.Unload();
-        }
-
-        protected override void Update(GameTime gameTime)
-        {
-            Main.Update(Mouse.GetState(), Keyboard.GetState());
-
-            
             KeyboardState aKeyboardState = Keyboard.GetState();
             switch (mCurrentScreen)
             {
-                
+
                 case Screen.Title:
                     {
                         // Enter key = launch the game
                         if (aKeyboardState.IsKeyDown(Keys.Enter) == true)
                         {
                             mCurrentScreen = Screen.Main;
-                            PlayMusic(GamePlayMusic);
+                            
                         }
                         break;
                     }
@@ -206,17 +163,10 @@ namespace Sunday_Bloody_Sunday
             }
             // Store the Keyboard state
             mPreviousKeyboardState = aKeyboardState;
-
-            base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            Main.Draw(spriteBatch, spriteFont);
-
-           
             switch (mCurrentScreen)
             {
                 case Screen.Title:
@@ -258,14 +208,11 @@ namespace Sunday_Bloody_Sunday
                         break;
                     }
                 case Screen.Inventory:
-                {
-                    spriteBatch.Draw(mInventoryScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
-                    break;
-                }
-            } 
-
-            spriteBatch.End();
-            base.Draw(gameTime);
+                    {
+                        spriteBatch.Draw(mInventoryScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
+                        break;
+                    }
+            }
         }
     }
 }

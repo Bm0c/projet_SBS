@@ -11,3 +11,5 @@ Content\GamePlayMusic.xnb
 Content\GamePlayMusic.wma
 Content\gameFont.xnb
 Content\zombie_groan.xnb
+Content\tire.xnb
+Content\tire.wma

@@ -18,7 +18,8 @@ namespace Sunday_Bloody_Sunday
         public static SpriteFont HUD;
         //public static Song GamePlayMusic;
         //public static SoundEffect Effect;
-
+        //MENU
+        public static Texture2D mTitleScreen, mMenu, mMenuOptions, mInventoryScreen;
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
@@ -26,7 +27,11 @@ namespace Sunday_Bloody_Sunday
             Player = content.Load<Texture2D>("Chara");
             Projectile = content.Load<Texture2D>("fireball");
             IA = content.Load<Texture2D>("pikachu");
-            HUD = content.Load<SpriteFont>("gameFont");
+            HUD = content.Load<SpriteFont>("gameFont"); mTitleScreen = content.Load<Texture2D>("Title");
+            mMenu = content.Load<Texture2D>("Menu");
+            mMenuOptions = content.Load<Texture2D>("MenuOptions");
+            mInventoryScreen = content.Load<Texture2D>("Inventory");
+
             //ExplosionParticule = content.Load<Texture2D>("explosion");
             //GamePlayMusic = content.Load<Song>("GamePlayMusic");
             //Effect = content.Load<SoundEffect>("zombie_groan");

@@ -112,7 +112,7 @@ namespace Sunday_Bloody_Sunday
             if (actionIA == "left")
                 return (this.IATexture.X - this.speed);
             else
-                return (this.IATexture.X - 1);
+                return (this.IATexture.X );
         }
 
         public int futur_position_X_droite()

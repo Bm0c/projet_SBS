@@ -23,6 +23,7 @@ namespace Sunday_Bloody_Sunday
         PhysicsEngine map_physique;
         int compteur = 0;
         private Rectangle futur_rectangle;
+        private Menu menu = new Menu();
 
 
 
@@ -436,13 +437,15 @@ namespace Sunday_Bloody_Sunday
             action_hero();
             update_ia();
             update_projectiles();
-            compteur++;
-
+            
+                
+            
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             this.joueur.Draw(spriteBatch);
             draw_ia(spriteBatch);

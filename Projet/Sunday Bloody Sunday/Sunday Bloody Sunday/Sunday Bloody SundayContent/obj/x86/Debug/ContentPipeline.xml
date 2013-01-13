@@ -110,6 +110,16 @@
       <Output>C:\Users\Bmoc\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie_groan.xnb</Output>
       <Time>2013-01-13T12:10:10.4221151+01:00</Time>
     </Item>
+    <Item>
+      <Source>tire.MP3</Source>
+      <Name>tire</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tire.xnb</Output>
+      <Extra>C:\Users\Bmoc\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tire.wma</Extra>
+      <Time>2013-01-13T16:07:10.4974811+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
