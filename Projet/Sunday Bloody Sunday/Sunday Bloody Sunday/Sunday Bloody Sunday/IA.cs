@@ -110,34 +110,34 @@ namespace Sunday_Bloody_Sunday
         public int futur_position_X_gauche()
         {
             if (actionIA == "left")
-                return (this.IATexture.X - this.speed + 1);
+                return (this.IATexture.X - this.speed);
             else
-                return (this.IATexture.X + 1);
+                return (this.IATexture.X - 1);
         }
 
         public int futur_position_X_droite()
         {
             if (actionIA == "right")
-                return (this.IATexture.X + this.speed + 16 - 1);
+                return (this.IATexture.X + this.speed + this.IATexture.Width + 1);
             else
-                return (this.IATexture.X + 16 - 1);
+                return (this.IATexture.X + +this.IATexture.Width + 1);
         }
 
         // Renvois la futur position Y de l'IA en cas d'un déplacement, à l'aide de l'action qui lui est attribuée
         public int futur_position_Y_haut()
         {
             if (actionIA == "up")
-                return (this.IATexture.Y - this.speed + 1 + 10);
+                return (this.IATexture.Y - this.speed + 10 );
             else
-                return (this.IATexture.Y + 1 + 10);
+                return (this.IATexture.Y + 10);
         }
 
         public int futur_position_Y_bas()
         {
             if (actionIA == "down")
-                return (this.IATexture.Y + this.speed - 1 + 27);
+                return (this.IATexture.Y + this.speed + this.IATexture.Height - 1);
             else
-                return (this.IATexture.Y - 1 + 27);
+                return (this.IATexture.Y + this.IATexture.Height - 1);
         }
 
         // Met à jour l'IA en fontion de l'action qui lui est donné, pour l'instant, seul le déplacement est géré
@@ -167,6 +167,12 @@ namespace Sunday_Bloody_Sunday
                 this.Direction = DirectionIA.Left;
                 this.Animate();
             }
+        }
+
+        //Renvois le futur rectangle de l'IA
+        public Rectangle rectangle()
+        {
+            return new Rectangle(futur_position_X_gauche(), futur_position_Y_haut(), futur_position_X_droite() - futur_position_X_gauche(), futur_position_Y_bas() - futur_position_Y_haut());
         }
 
 

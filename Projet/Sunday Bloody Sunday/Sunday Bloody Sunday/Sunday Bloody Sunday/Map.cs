@@ -22,6 +22,8 @@ namespace Sunday_Bloody_Sunday
         IA ia;
         PhysicsEngine map_physique;
         int compteur = 0;
+        private Rectangle futur_rectangle;
+
 
 
         // CONSTRUCTOR
@@ -33,7 +35,7 @@ namespace Sunday_Bloody_Sunday
             this.liste_ia = new List<IA>();
             IA ia1 = new IA(120, 48);
             IA ia2 = new IA(160, 48);
-            IA ia3 = new IA(400, 480);
+            IA ia3 = new IA(400, 460);
             this.liste_ia.Add(ia1);
             this.liste_ia.Add(ia2);
             this.liste_ia.Add(ia3);
@@ -62,7 +64,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.joueur.actionjoueur == "up")
                 {
                     if (!(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_haut())))
+                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_haut())) && collision_entite_hero())
                         this.joueur.mise_a_jour(joueur.actionjoueur);
                     this.joueur.actionjoueur = "";
                 }
@@ -70,7 +72,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.joueur.actionjoueur == "down")
                 {
                     if (!(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_bas()))
-                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_bas())))
+                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_bas())) && collision_entite_hero())
                         this.joueur.mise_a_jour(joueur.actionjoueur);
                     this.joueur.actionjoueur = "";
                 }
@@ -78,7 +80,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.joueur.actionjoueur == "left")
                 {
                     if (!(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_bas())))
+                     && !(map_physique.mur(this.joueur.futur_position_X_gauche(), this.joueur.futur_position_Y_bas())) && collision_entite_hero())
                         this.joueur.mise_a_jour(joueur.actionjoueur);
                     this.joueur.actionjoueur = "";
                 }
@@ -86,7 +88,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.joueur.actionjoueur == "right")
                 {
                     if (!(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_bas())))
+                     && !(map_physique.mur(this.joueur.futur_position_X_droite(), this.joueur.futur_position_Y_bas())) && collision_entite_hero())
                         this.joueur.mise_a_jour(joueur.actionjoueur);
                     this.joueur.actionjoueur = "";
                 }
@@ -94,6 +96,20 @@ namespace Sunday_Bloody_Sunday
 
             }
             this.joueur.actionjoueur = ""; // "Remet à zéros" les actions du joueurs
+        }
+
+        public bool collision_entite_hero()
+        {
+            futur_rectangle = this.joueur.rectangle();
+            bool test = true;
+            foreach (IA ia in liste_ia)
+            {
+                if (test)
+                {
+                    test = !futur_rectangle.Intersects(ia.rectangle());
+                }
+            }
+            return test;
         }
 
         //Verifie la possibilite des actions de l'IA
@@ -104,7 +120,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "up")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())) && collision_entite_ia())
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -112,7 +128,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "down")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia())
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -120,7 +136,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "left")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                     && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())) && collision_entite_ia())
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -128,7 +144,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "right")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia())
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -136,6 +152,22 @@ namespace Sunday_Bloody_Sunday
 
             }
             this.joueur.actionjoueur = ""; // "Remet à zéros" les actions du joueurs
+        }
+
+        public bool collision_entite_ia()
+        {
+            futur_rectangle = this.ia.rectangle();
+            bool test = true;
+            foreach (IA ia in liste_ia)
+            {
+                /*
+                if ((test) && (ia != this.ia))
+                {
+                    test = !futur_rectangle.Intersects(ia.rectangle());
+                }*/
+            }
+            return !futur_rectangle.Intersects(joueur.rectangle());
+
         }
 
         //Gere le deplacement de l'ia

@@ -20,13 +20,13 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         public Vector2 ProjectilePosition;
-        public Vector2 ProjectileOrigin;
         public bool isVisible;
         public int Damage;
         public int projectileMoveSpeed;
         public bool update;
         public int init;
         public string direction;
+        
 
 
         // CONSTRUCTOR
@@ -74,11 +74,11 @@ namespace Sunday_Bloody_Sunday
     
             if (this.direction == "right")
             {
-                return (int)ProjectilePosition.X + 1;
+                return (int)ProjectilePosition.X - 1;
             }
             else if (this.direction == "left")
             {
-                return (int)ProjectilePosition.X - 1;
+                return (int)ProjectilePosition.X + 1;
             }
             else
             {
@@ -108,11 +108,11 @@ namespace Sunday_Bloody_Sunday
         {
             if (this.direction == "right")
             {
-                ProjectilePosition.X--;
+                ProjectilePosition.X++;
             }
             else if (this.direction == "left")
             {
-                ProjectilePosition.X++;
+                ProjectilePosition.X--;
             }
             if (this.direction == "up")
             {
@@ -122,6 +122,12 @@ namespace Sunday_Bloody_Sunday
             {
                 ProjectilePosition.Y++;
             }
+        }
+
+        //Renvois le futur rectangle du projectile
+        public Rectangle rectangle()
+        {
+            return new Rectangle(futur_x(), futur_y(), 1, 1);
         }
 
         // UPDATE & DRAW
@@ -134,11 +140,7 @@ namespace Sunday_Bloody_Sunday
             if (this.isVisible)
             {
                 spriteBatch.Draw(Ressources.Projectile, ProjectilePosition/*, null*/, Color.White/*, 0f, ProjectileOrigin, 1f, SpriteEffects.None, 0*/);
-            }/*
-            {
-                spriteBatch.Draw(Ressources.Projectile, ProjectilePosition, null, Color.White, 90.0f, ProjectileOrigin, 1f, SpriteEffects.None, 0);
-            }*/
-
+            }
         }
     }
 }

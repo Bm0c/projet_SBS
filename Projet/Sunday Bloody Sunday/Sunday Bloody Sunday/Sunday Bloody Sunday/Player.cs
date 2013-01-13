@@ -173,6 +173,12 @@ namespace Sunday_Bloody_Sunday
 
         }
 
+        //Renvois le futur rectangle du joueur
+        public Rectangle rectangle()
+        {
+            return new Rectangle(futur_position_X_gauche(), futur_position_Y_haut(), futur_position_X_droite() - futur_position_X_gauche(), futur_position_Y_bas() - futur_position_Y_haut());
+        }
+
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
