@@ -26,7 +26,7 @@ namespace Sunday_Bloody_Sunday
         public bool update;
         public int init;
         public string direction;
-        
+        public bool est_update = false;
 
 
         // CONSTRUCTOR

@@ -34,16 +34,17 @@ namespace Sunday_Bloody_Sunday
         // State of the IA
         static public bool Active;
         // Amount of health
-        static public int Health;
+        public int Health;
         // The amount of damage the IA can inflict to the Player
         static public int Damage;
         Random randomPosition = new Random();
+        public bool est_update = false;
 
 
         // CONSTRUCTOR
         public IA(int x, int y)
         {
-            this.IATexture = new Rectangle(x, y, 23, 27);
+            this.IATexture = new Rectangle(x, y, 16, 19);
             IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
             this.frameLine = 1;
             this.frameColumn = 2;
@@ -52,7 +53,7 @@ namespace Sunday_Bloody_Sunday
             this.Animation = true;
             this.Timer = 0;
             IA.Active = true;
-            IA.Health = 100;
+            this.Health = 100;
             IA.Damage = 10;
             this.action = "";
         }
@@ -175,6 +176,11 @@ namespace Sunday_Bloody_Sunday
             return new Rectangle(futur_position_X_gauche(), futur_position_Y_haut(), futur_position_X_droite() - futur_position_X_gauche(), futur_position_Y_bas() - futur_position_Y_haut());
         }
 
+        public Rectangle rectangle_ia()
+        {
+            return new Rectangle(futur_position_X_gauche() + 3, futur_position_Y_haut()-10, futur_position_X_droite() - futur_position_X_gauche()-3, futur_position_Y_bas() - futur_position_Y_haut());
+        }
+
 
         // UPDATE & DRAW
         public void Update()
@@ -199,7 +205,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.IA, this.IATexture, new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(Ressources.IA, this.IATexture, new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }

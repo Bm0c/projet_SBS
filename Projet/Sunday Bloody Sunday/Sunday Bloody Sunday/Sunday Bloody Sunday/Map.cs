@@ -24,7 +24,8 @@ namespace Sunday_Bloody_Sunday
         int compteur = 0;
         private Rectangle futur_rectangle;
         private Menu menu = new Menu();
-
+        int compteur_2 = 0;
+        Random rand = new Random();
 
 
         // CONSTRUCTOR
@@ -60,6 +61,7 @@ namespace Sunday_Bloody_Sunday
         //Verifie la possibilite des actions du heros
         public void action_hero()
         {
+            this.joueur.maj_direction(joueur.actionjoueur);
             if (joueur.actionjoueur == "up" || joueur.actionjoueur == "down" || joueur.actionjoueur == "left" || joueur.actionjoueur == "right")
             {
                 if (this.joueur.actionjoueur == "up")
@@ -114,14 +116,14 @@ namespace Sunday_Bloody_Sunday
         }
 
         //Verifie la possibilite des actions de l'IA
-        public void action_ia()
+        public void action_ia(IA ia)
         {
             if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
             {
                 if (this.ia.actionIA == "up")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())) && collision_entite_ia())
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())) && collision_entite_ia(ia))
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -129,7 +131,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "down")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia())
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia(ia))
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -137,7 +139,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "left")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())) && collision_entite_ia())
+                     && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())) && collision_entite_ia(ia))
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -145,7 +147,7 @@ namespace Sunday_Bloody_Sunday
                 if (this.ia.actionIA == "right")
                 {
                     if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia())
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia(ia))
                         this.ia.mise_a_jour(ia.actionIA);
                     this.ia.actionIA = "";
                 }
@@ -155,20 +157,23 @@ namespace Sunday_Bloody_Sunday
             this.joueur.actionjoueur = ""; // "Remet à zéros" les actions du joueurs
         }
 
-        public bool collision_entite_ia()
+        public bool collision_entite_ia(IA ia)
         {
             futur_rectangle = this.ia.rectangle();
             bool test = true;
-            foreach (IA ia in liste_ia)
+            foreach (IA ia1 in liste_ia)
             {
-                /*
-                if ((test) && (ia != this.ia))
+                if ((test) && !(ia1.est_update))
                 {
-                    test = !futur_rectangle.Intersects(ia.rectangle());
-                }*/
+                    test = !futur_rectangle.Intersects(ia1.rectangle_ia());
+                }
             }
-            return !futur_rectangle.Intersects(joueur.rectangle());
+            if (test)
+            { 
+                test = !futur_rectangle.Intersects(joueur.rectangle()); 
+            }
 
+            return test;
         }
 
         //Gere le deplacement de l'ia
@@ -375,11 +380,40 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (IA ia in liste_ia)
             {
-                this.ia = ia;
-                pathfing(ref this.ia.action);
-                action_ia();
-                this.ia.Update();
+                if (ia.Health > 0)
+                {
+                    ia.est_update = true;
+                    this.ia = ia;
+                    pathfing(ref this.ia.action);
+                    action_ia(ia);
+                    this.ia.Update();
+                    ia.est_update = false;
+                }
+                else
+                {
+                    ia.IATexture.X = -42;
+                    ia.IATexture.Y = -42;
+                }
             }
+            if (compteur_2 > 60)
+            {
+                int spawn = rand.Next(4);
+                if (spawn == 00)
+                {
+                    liste_ia.Add(new IA(144, 48));
+                }
+                else if (spawn == 1)
+                {
+                    liste_ia.Add(new IA(0, 272));
+                }
+                else
+                {
+                    liste_ia.Add(new IA(400, 470));
+                }
+                
+                compteur_2 = 0;
+            }
+            compteur_2++;
         }
 
         public void collision_balle(Projectile balle)
@@ -394,7 +428,27 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void update_projectiles()
+        public void collision_entite_balle(Projectile balle)
+        {
+            futur_rectangle = balle.rectangle();
+            bool test = true;
+            foreach (IA ia1 in liste_ia)
+            {
+                if ((test))
+                {
+                    if (futur_rectangle.Intersects(ia1.rectangle()))
+                    {
+                        test = false;
+                        ia1.Health = ia1.Health - balle.Damage;
+
+                    }
+                }
+            }
+            /*
+            return test;*/
+        }
+
+        public void update_projectiles(KeyboardState keyboard)
         {
             foreach (Projectile balle in liste_projectile)
             {
@@ -403,20 +457,24 @@ namespace Sunday_Bloody_Sunday
 
             foreach (Projectile balle in liste_projectile)
             {
-                while (balle.init < balle.projectileMoveSpeed)
+                while ((balle.init < balle.projectileMoveSpeed) && balle.isVisible)
                 {
+
+                    collision_entite_balle(balle);
                     collision_balle(balle);
                     balle.init++;
                 }
             }
 
-            if (compteur == 60)
+            if ((keyboard.IsKeyDown(Keys.S)) && compteur >= 30)
             {
-                balle = new Projectile(Ressources.Projectile, this.joueur.PlayerTexture.X, this.joueur.PlayerTexture.Y, 10, this.joueur.Direction, 0);
+                balle = new Projectile(Ressources.Projectile, this.joueur.PlayerTexture.X, this.joueur.PlayerTexture.Y, 10, this.joueur.Direction, 100);
                 liste_projectile.Add(balle);
                 compteur = 0;
                 Player.Ammo--;
+                //Son tire
             }
+            compteur++;
         }
 
         //Gere l'affichage de la liste d'ia
@@ -436,16 +494,16 @@ namespace Sunday_Bloody_Sunday
             this.joueur.Update(mouse, keyboard);
             action_hero();
             update_ia();
-            update_projectiles();
-            
-                
-            
+            update_projectiles(keyboard);
+
+
+
 
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             this.joueur.Draw(spriteBatch);
             draw_ia(spriteBatch);

@@ -143,6 +143,31 @@ namespace Sunday_Bloody_Sunday
                 return (this.PlayerTexture.Y - 1 + 19);
         }
 
+        public void maj_direction(string a)
+        {
+            if (a == "up")
+            {
+                this.Direction = Direction.Up;
+                this.Animate();
+            }
+            else if (a == "down")
+            {
+                this.Direction = Direction.Down;
+                this.Animate();
+            }
+            else if (a == "right")
+            {
+                this.Direction = Direction.Right;
+                this.Animate();
+            }
+            else if (a == "left")
+            {
+                this.Direction = Direction.Left;
+                this.Animate();
+            }
+        }
+
+
         // Met à jour le héros en fontion de l'action qui lui est donné, pour l'instant, seul le déplacement est géré
         public void mise_a_jour(string a)
         {
