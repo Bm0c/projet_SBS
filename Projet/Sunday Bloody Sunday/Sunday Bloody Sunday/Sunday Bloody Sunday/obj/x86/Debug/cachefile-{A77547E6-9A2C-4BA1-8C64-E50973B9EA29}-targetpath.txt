@@ -13,3 +13,5 @@ Content\tire.xnb
 Content\tire.wma
 Content\gameFont.xnb
 Content\zombie_groan.xnb
+Content\Bitmap1.xnb
+Content\pika_2.xnb

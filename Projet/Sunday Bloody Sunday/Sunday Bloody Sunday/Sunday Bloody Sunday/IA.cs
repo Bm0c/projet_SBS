@@ -44,7 +44,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public IA(int x, int y)
         {
-            this.IATexture = new Rectangle(x, y, 16, 19);
+            this.IATexture = new Rectangle(x, y, 16, 17);
             IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
             this.frameLine = 1;
             this.frameColumn = 2;
@@ -205,7 +205,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.IA, this.IATexture, new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(Ressources.IA, this.IATexture, new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23,27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }
