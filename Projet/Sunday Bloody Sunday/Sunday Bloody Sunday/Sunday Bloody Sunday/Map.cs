@@ -23,10 +23,10 @@ namespace Sunday_Bloody_Sunday
         PhysicsEngine map_physique;
         int compteur = 0;
         private Rectangle futur_rectangle;
-        private Menu menu = new Menu();
         int compteur_2 = 0;
         Random rand = new Random();
         Sound moteur_son = new Sound();
+        public bool menu = true;
 
 
         // CONSTRUCTOR

@@ -14,15 +14,15 @@ namespace Sunday_Bloody_Sunday
     class GameMain
     {
         // FIELDS
-        Map MainMap;
+        public Map MainMap;
         //ExplosionParticule MainExplosionParticule;
         HUD MainHUD;
-            // FIELDS Projectile
-            Projectile MainProjectile;
-            List<Projectile> projectiles = new List<Projectile>();
-            public Vector2 spritePosition = new Vector2(Player.PlayerPosition.X, Player.PlayerPosition.Y); // Must attach the fireball to the Player !
-            float rotation;
-            Vector2 spriteVelocity;
+        // FIELDS Projectile
+        Projectile MainProjectile;
+        List<Projectile> projectiles = new List<Projectile>();
+        public Vector2 spritePosition = new Vector2(Player.PlayerPosition.X, Player.PlayerPosition.Y); // Must attach the fireball to the Player !
+        float rotation;
+        Vector2 spriteVelocity;
 
 
         // CONCSTRUCTOR
@@ -42,7 +42,10 @@ namespace Sunday_Bloody_Sunday
 
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
-            MainMap.Update(mouse, keyboard);
+            if (!MainMap.menu)
+            {
+                MainMap.Update(mouse, keyboard);
+            }
             /*
             if(keyboard.IsKeyDown(Keys.S))
             {
@@ -56,25 +59,25 @@ namespace Sunday_Bloody_Sunday
             }/
             UpdateProjectile();*/
         }
-       /* public void UpdateProjectile()
-        {
-            foreach (Projectile projectile in projectiles)
-            {
-                projectile.ProjectilePosition += projectile.Velocity;
-                if(Vector2.Distance(projectile.ProjectilePosition, spritePosition) > 800)
-                {
-                    projectile.isVisible = false;
-                }
-            }
-            for (int i = 0; i < projectiles.Count; i++)
-            {
-                if (!projectiles[i].isVisible)
-                {
-                    projectiles.RemoveAt(i);
-                    i--;
-                }
-            }
-        }*/
+        /* public void UpdateProjectile()
+         {
+             foreach (Projectile projectile in projectiles)
+             {
+                 projectile.ProjectilePosition += projectile.Velocity;
+                 if(Vector2.Distance(projectile.ProjectilePosition, spritePosition) > 800)
+                 {
+                     projectile.isVisible = false;
+                 }
+             }
+             for (int i = 0; i < projectiles.Count; i++)
+             {
+                 if (!projectiles[i].isVisible)
+                 {
+                     projectiles.RemoveAt(i);
+                     i--;
+                 }
+             }
+         }*/
         /*
         public void Shoot()
         {

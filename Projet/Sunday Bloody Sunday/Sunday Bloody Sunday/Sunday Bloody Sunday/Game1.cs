@@ -17,7 +17,6 @@ namespace Sunday_Bloody_Sunday
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
         GameMain Main;
-        public bool menu = true;
 
         // Futur Sound.cs
         Song GamePlayMusic;
@@ -114,7 +113,8 @@ namespace Sunday_Bloody_Sunday
                         {
                             mCurrentScreen = Screen.Main;
                             PlayMusic(GamePlayMusic);
-                            menu = false;
+                            Main.MainMap.menu = false;
+                            
                         }
                         break;
                     }
@@ -124,7 +124,9 @@ namespace Sunday_Bloody_Sunday
                         if (aKeyboardState.IsKeyDown(Keys.Escape) == true)
                         {
                             mCurrentScreen = Screen.Menu;
-                            menu = true;
+                            Main.MainMap.menu = true;
+                            MediaPlayer.Pause();
+
                         }
                         break;
                     }
@@ -204,6 +206,8 @@ namespace Sunday_Bloody_Sunday
                             }
                             // Reset the selected menu option to Resume
                             mCurrentMenuOption = MenuOptions.Resume;
+                            Main.MainMap.menu = false;
+                            MediaPlayer.Resume();
                         }
                         break;
                     }
