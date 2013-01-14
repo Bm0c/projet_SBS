@@ -40,9 +40,17 @@ namespace Sunday_Bloody_Sunday
         // The amount of damage the Player can inflict to the IA
         static public int Damage;
 
+        public Keys Haut;
+        public Keys Bas;
+        public Keys Gauche;
+        public Keys Droite;
+        public Keys Tire;
+
+        public int refroiddissement = 0;
+
 
         // CONSTRUCTOR
-        public Player()
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire)
         {
             this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
@@ -57,6 +65,14 @@ namespace Sunday_Bloody_Sunday
             Player.Ammo = 100;
             Player.Damage = 10;
             this.action = "";
+
+            this.Haut = Haut;
+            this.Bas = Bas;
+            this.Gauche = Gauche;
+            this.Droite = Droite;
+            this.Tire = Tire;
+
+
         }
 
 
@@ -215,26 +231,26 @@ namespace Sunday_Bloody_Sunday
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
             // Détermine les actions du joueur en fonction des retours claviers
-            if (keyboard.IsKeyDown(Keys.Up))
+            if (keyboard.IsKeyDown(Haut))
             {
                 this.action = "up";
             }
-            else if (keyboard.IsKeyDown(Keys.Down))
+            else if (keyboard.IsKeyDown(Bas))
             {
                 this.action = "down";
             }
-            else if (keyboard.IsKeyDown(Keys.Right))
+            else if (keyboard.IsKeyDown(Droite))
             {
 
                 this.action = "right";
             }
-            else if (keyboard.IsKeyDown(Keys.Left))
+            else if (keyboard.IsKeyDown(Gauche))
             {
 
                 this.action = "left";
             }
 
-            if (keyboard.IsKeyUp(Keys.Up) && keyboard.IsKeyUp(Keys.Down) && keyboard.IsKeyUp(Keys.Left) && keyboard.IsKeyUp(Keys.Right))
+            if (keyboard.IsKeyUp(Haut) && keyboard.IsKeyUp(Bas) && keyboard.IsKeyUp(Gauche) && keyboard.IsKeyUp(Droite))
             {
                 this.frameColumn = 2;
                 this.Timer = 0;

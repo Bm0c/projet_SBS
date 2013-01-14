@@ -1,4 +1,7 @@
 Content\GamePlayMusic.xnb
+Content\tire.xnb
+Content\pikachu001.xnb
+Content\pikachu002.xnb
 Content\gameFont.xnb
 Content\explosion.xnb
 Content\Chara.xnb
@@ -11,10 +14,9 @@ Content\Inventory.xnb
 Content\Bitmap1.xnb
 Content\pika_2.xnb
 Content\pikachu.xnb
-Content\zombie_groan.xnb
 Content\pixel_noir.xnb
 Content\balle.xnb
-Content\tire.xnb
-Content\pikachu001.xnb
-Content\pikachu002.xnb
+Content\zombie_groan.xnb
+Content\elevator_music.xnb
 Content\GamePlayMusic.wma
+Content\elevator_music.wma

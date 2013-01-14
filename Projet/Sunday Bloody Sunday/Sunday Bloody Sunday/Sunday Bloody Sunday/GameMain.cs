@@ -28,7 +28,7 @@ namespace Sunday_Bloody_Sunday
         // CONCSTRUCTOR
         public GameMain()
         {
-            this.MainMap = new Map(new Player(), new PhysicsEngine());/*
+            this.MainMap = new Map(new PhysicsEngine());/*
             this.MainProjectile = new Projectile(Ressources.Projectile);*/
             //this.MainExplosionParticule = new ExplosionParticule();
             this.MainHUD = new HUD();

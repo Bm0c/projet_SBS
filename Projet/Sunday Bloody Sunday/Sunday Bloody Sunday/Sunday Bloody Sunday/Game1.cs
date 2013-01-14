@@ -20,9 +20,9 @@ namespace Sunday_Bloody_Sunday
 
         // Futur Sound.cs
         Song GamePlayMusic;
+        Song MenuMusic;
         SoundEffect Effect;
 
-        
         // Futur Menu.cs
         private enum Screen
         {
@@ -45,7 +45,7 @@ namespace Sunday_Bloody_Sunday
         Texture2D mMenuOptions;
         Texture2D mInventoryScreen;
         KeyboardState mPreviousKeyboardState;
-        
+
 
         // Début fichier généré par XNA
         public Game1()
@@ -69,6 +69,7 @@ namespace Sunday_Bloody_Sunday
 
             // Chargement de la musique de fond
             GamePlayMusic = Content.Load<Song>("GamePlayMusic");
+            MenuMusic = Content.Load<Song>("elevator_music");
             // Chargement effet d'intro
             Effect = Content.Load<SoundEffect>("zombie_groan");
             Effect.Play();
@@ -92,6 +93,16 @@ namespace Sunday_Bloody_Sunday
             catch { }
         }
 
+        public void StopMusic(Song song)
+        {
+            try
+            {
+                // Stop la musique
+                MediaPlayer.Stop();
+            }
+            catch { }
+        }
+
         protected override void UnloadContent()
         {
             Content.Unload();
@@ -101,11 +112,11 @@ namespace Sunday_Bloody_Sunday
         {
             Main.Update(Mouse.GetState(), Keyboard.GetState());
 
-            
+
             KeyboardState aKeyboardState = Keyboard.GetState();
             switch (mCurrentScreen)
             {
-                
+
                 case Screen.Title:
                     {
                         // Enter key = launch the game
@@ -114,7 +125,6 @@ namespace Sunday_Bloody_Sunday
                             mCurrentScreen = Screen.Main;
                             PlayMusic(GamePlayMusic);
                             Main.MainMap.menu = false;
-                            
                         }
                         break;
                     }
@@ -125,8 +135,8 @@ namespace Sunday_Bloody_Sunday
                         {
                             mCurrentScreen = Screen.Menu;
                             Main.MainMap.menu = true;
-                            MediaPlayer.Pause();
-
+                            StopMusic(GamePlayMusic);
+                            PlayMusic(MenuMusic);
                         }
                         break;
                     }
@@ -135,7 +145,10 @@ namespace Sunday_Bloody_Sunday
                         // C key in the Inventory = close it
                         if (aKeyboardState.IsKeyDown(Keys.C) == true)
                         {
-                            mCurrentScreen = Screen.Main;
+                            mCurrentScreen = Screen.Menu;
+                            Main.MainMap.menu = true;
+                            //StopMusic(MenuMusic);
+                            //PlayMusic(GamePlayMusic);
                         }
                         break;
                     }
@@ -188,13 +201,16 @@ namespace Sunday_Bloody_Sunday
                                 case MenuOptions.Resume:
                                     {
                                         mCurrentScreen = Screen.Main;
-                                        bool menu = false;
+                                        StopMusic(MenuMusic);
+                                        PlayMusic(GamePlayMusic);
                                         break;
                                     }
                                 // Open the Inventory screen wich doesn't exist...
                                 case MenuOptions.Inventory:
                                     {
                                         mCurrentScreen = Screen.Inventory;
+                                        Main.MainMap.menu = true;
+                                        StopMusic(GamePlayMusic);
                                         break;
                                     }
                                 // Exit the game
@@ -207,7 +223,7 @@ namespace Sunday_Bloody_Sunday
                             // Reset the selected menu option to Resume
                             mCurrentMenuOption = MenuOptions.Resume;
                             Main.MainMap.menu = false;
-                            MediaPlayer.Resume();
+                            //MediaPlayer.Resume();
                         }
                         break;
                     }
@@ -224,7 +240,7 @@ namespace Sunday_Bloody_Sunday
             spriteBatch.Begin();
             Main.Draw(spriteBatch, spriteFont);
 
-           
+
             switch (mCurrentScreen)
             {
                 case Screen.Title:
@@ -266,11 +282,11 @@ namespace Sunday_Bloody_Sunday
                         break;
                     }
                 case Screen.Inventory:
-                {
-                    spriteBatch.Draw(mInventoryScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
-                    break;
-                }
-            } 
+                    {
+                        spriteBatch.Draw(mInventoryScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
+                        break;
+                    }
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
