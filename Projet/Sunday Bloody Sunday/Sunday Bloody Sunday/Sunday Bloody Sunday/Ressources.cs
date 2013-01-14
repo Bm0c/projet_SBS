@@ -14,13 +14,17 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player, Map, Projectile, ExplosionParticule, IA;
+        public static Texture2D Player, Map, Projectile, /*ExplosionParticule,*/ IA;
+        // HUD
         public static SpriteFont HUD;
-        public static SoundEffect mTire,mPika,mPika2;
+        // Sound
+        public static SoundEffect mTire, mPika, mPika2;
+        // Menu
+        public static Texture2D mTitleScreen, mMenu, mMenuOptions, mInventoryScreen;
         //public static Song GamePlayMusic;
         //public static SoundEffect Effect;
-        //MENU
-        public static Texture2D mTitleScreen, mMenu, mMenuOptions, mInventoryScreen;
+
+
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
@@ -36,7 +40,6 @@ namespace Sunday_Bloody_Sunday
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");            
             mPika2 = content.Load<SoundEffect>("pikachu002");
-
             //ExplosionParticule = content.Load<Texture2D>("explosion");
             //GamePlayMusic = content.Load<Song>("GamePlayMusic");
             //Effect = content.Load<SoundEffect>("zombie_groan");

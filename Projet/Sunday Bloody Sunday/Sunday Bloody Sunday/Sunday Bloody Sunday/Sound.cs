@@ -14,16 +14,16 @@ namespace Sunday_Bloody_Sunday
     class Sound
     {
         // FIELDS
-        //Song GamePlayMusic = new Song();
         SoundEffect tire = Ressources.mTire;
         SoundEffect pika= Ressources.mPika;
         SoundEffect pika2 = Ressources.mPika2;
-        // CONSTRUCTOR
-        public Sound()
-        {
-            //this.GamePlayMusic = new Song();
-        }
 
+
+        // CONSTRUCTOR
+        public void SoundEngine()
+        {
+            
+        }
 
 
         // METHODS
@@ -71,6 +71,7 @@ namespace Sunday_Bloody_Sunday
             {
             }
         }
+
 
         // UPDATE
         public void Update()
