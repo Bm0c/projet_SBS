@@ -26,6 +26,7 @@ namespace Sunday_Bloody_Sunday
         private Menu menu = new Menu();
         int compteur_2 = 0;
         Random rand = new Random();
+        Sound moteur_son = new Sound();
 
 
         // CONSTRUCTOR
@@ -395,22 +396,25 @@ namespace Sunday_Bloody_Sunday
                     ia.IATexture.Y = -42;
                 }
             }
-            if (compteur_2 > 60)
+            if (compteur_2 > 30)
             {
                 int spawn = rand.Next(4);
                 if (spawn == 00)
                 {
                     liste_ia.Add(new IA(144, 48));
+                    moteur_son.PlayPika2();
                 }
                 else if (spawn == 1)
                 {
                     liste_ia.Add(new IA(0, 272));
+                    moteur_son.PlayPika();
                 }
                 else
                 {
                     liste_ia.Add(new IA(400, 470));
+                    moteur_son.PlayPika();
                 }
-
+                
                 compteur_2 = 0;
             }
             compteur_2++;
@@ -438,6 +442,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (futur_rectangle.Intersects(ia1.rectangle()))
                     {
+                        balle.isVisible = false;
                         test = false;
                         ia1.Health = ia1.Health - balle.Damage;
 
@@ -466,13 +471,14 @@ namespace Sunday_Bloody_Sunday
                 }
             }
 
-            if ((keyboard.IsKeyDown(Keys.S)) && compteur >= 30)
+            if ((keyboard.IsKeyDown(Keys.S)) && compteur >= 6)
             {
-                balle = new Projectile(Ressources.Projectile, this.joueur.PlayerTexture.X, this.joueur.PlayerTexture.Y, 10, this.joueur.Direction, 100);
+                balle = new Projectile(Ressources.Projectile, (int)this.joueur.centre().X, (int)this.joueur.centre().Y, 10, this.joueur.Direction, 50);
                 liste_projectile.Add(balle);
                 compteur = 0;
                 Player.Ammo--;
-                //Son tire
+                moteur_son.PlayTire();
+                
             }
             compteur++;
         }

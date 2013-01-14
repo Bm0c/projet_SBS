@@ -73,6 +73,13 @@ namespace Sunday_Bloody_Sunday
             get { return PlayerTexture.Height; }
         }
 
+        public Vector2 centre()
+        {
+            Vector2 vector = new Vector2(PlayerTexture.X + Width / 2 - 3, PlayerTexture.Y + Height - 10);
+            return vector;
+        }
+
+
         // Animation of the Player
         public void Animate()
         {

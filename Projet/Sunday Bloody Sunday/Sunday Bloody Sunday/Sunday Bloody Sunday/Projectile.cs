@@ -127,7 +127,7 @@ namespace Sunday_Bloody_Sunday
         //Renvois le futur rectangle du projectile
         public Rectangle rectangle()
         {
-            return new Rectangle(futur_x(), futur_y(), 1, 1);
+            return new Rectangle(futur_x(), futur_y(), 6, 6);
         }
 
         // UPDATE & DRAW

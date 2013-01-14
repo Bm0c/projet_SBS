@@ -15,13 +15,15 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         //Song GamePlayMusic = new Song();
-
-
+        SoundEffect tire = Ressources.mTire;
+        SoundEffect pika= Ressources.mPika;
+        SoundEffect pika2 = Ressources.mPika2;
         // CONSTRUCTOR
         public Sound()
         {
             //this.GamePlayMusic = new Song();
         }
+
 
 
         // METHODS
@@ -35,6 +37,39 @@ namespace Sunday_Bloody_Sunday
                 MediaPlayer.IsRepeating = true;
             }
             catch { }
+        }
+
+        public void PlayTire()
+        {
+            try
+            {
+                tire.Play();
+            }
+            catch
+            {
+            }
+        }
+
+        public void PlayPika()
+        {
+            try
+            {
+                pika.Play();
+            }
+            catch
+            {
+            }
+        }
+
+        public void PlayPika2()
+        {
+            try
+            {
+                pika2.Play();
+            }
+            catch
+            {
+            }
         }
 
         // UPDATE

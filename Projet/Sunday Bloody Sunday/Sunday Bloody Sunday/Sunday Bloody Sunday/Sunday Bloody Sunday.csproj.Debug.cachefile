@@ -1,4 +1,5 @@
-Content\pikachu.xnb
+Content\GamePlayMusic.xnb
+Content\gameFont.xnb
 Content\explosion.xnb
 Content\Chara.xnb
 Content\Title.xnb
@@ -7,11 +8,13 @@ Content\MenuOptions.xnb
 Content\fireball.xnb
 Content\Map.xnb
 Content\Inventory.xnb
-Content\GamePlayMusic.xnb
-Content\tire.xnb
-Content\gameFont.xnb
-Content\zombie_groan.xnb
 Content\Bitmap1.xnb
 Content\pika_2.xnb
+Content\pikachu.xnb
+Content\zombie_groan.xnb
+Content\pixel_noir.xnb
+Content\balle.xnb
+Content\tire.xnb
+Content\pikachu001.xnb
+Content\pikachu002.xnb
 Content\GamePlayMusic.wma
-Content\tire.wma

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
+    
     enum Screen
     {
         Title,
@@ -37,6 +38,7 @@ namespace Sunday_Bloody_Sunday
         static public Texture2D mInventoryScreen;
         KeyboardState mPreviousKeyboardState;
         static public bool Pause;
+        
 
 
         //CONSTRUCTOR
