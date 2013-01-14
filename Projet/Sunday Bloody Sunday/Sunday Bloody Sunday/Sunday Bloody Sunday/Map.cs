@@ -21,7 +21,7 @@ namespace Sunday_Bloody_Sunday
         Projectile balle;
         IA ia;
         PhysicsEngine map_physique;
-        int compteur = 0;
+        //int compteur = 0;
         private Rectangle futur_rectangle;
         int compteur_2 = 0;
         Random rand = new Random();

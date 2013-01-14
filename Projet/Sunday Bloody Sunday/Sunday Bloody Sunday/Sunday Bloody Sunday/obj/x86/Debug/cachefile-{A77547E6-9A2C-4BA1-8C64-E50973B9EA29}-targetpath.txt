@@ -11,12 +11,10 @@ Content\Chara.xnb
 Content\Title.xnb
 Content\Menu.xnb
 Content\MenuOptions.xnb
-Content\fireball.xnb
 Content\Map.xnb
 Content\Inventory.xnb
 Content\Bitmap1.xnb
 Content\pika_2.xnb
 Content\pikachu.xnb
-Content\pixel_noir.xnb
 Content\balle.xnb
 Content\zombie_groan.xnb

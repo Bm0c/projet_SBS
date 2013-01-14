@@ -103,15 +103,6 @@
       <Time>2013-01-14T20:22:23.6701595+01:00</Time>
     </Item>
     <Item>
-      <Source>fireball.png</Source>
-      <Name>fireball</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\fireball.xnb</Output>
-      <Time>2013-01-14T20:22:23.6857595+01:00</Time>
-    </Item>
-    <Item>
       <Source>Map.png</Source>
       <Name>Map</Name>
       <Importer>TextureImporter</Importer>
@@ -154,15 +145,6 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu.xnb</Output>
-      <Time>2013-01-14T20:22:23.7013595+01:00</Time>
-    </Item>
-    <Item>
-      <Source>pixel_noir.png</Source>
-      <Name>pixel_noir</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pixel_noir.xnb</Output>
       <Time>2013-01-14T20:22:23.7013595+01:00</Time>
     </Item>
     <Item>
