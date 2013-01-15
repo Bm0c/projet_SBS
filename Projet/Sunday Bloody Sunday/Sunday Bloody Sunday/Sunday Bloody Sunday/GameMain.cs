@@ -37,6 +37,7 @@ namespace Sunday_Bloody_Sunday
             if (!MainMap.menu)
             {
                 MainMap.Update(mouse, keyboard);
+                MainHUD.Update(keyboard, MainMap.joueurs);
             }
         }
 

@@ -14,7 +14,7 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player, Map, Projectile, /*ExplosionParticule,*/ IA;
+        public static Texture2D Player1, Player2, Player3, Map, Projectile, /*ExplosionParticule,*/ IA1, IA2;
         // HUD
         public static SpriteFont HUD;
         // Sound
@@ -29,9 +29,12 @@ namespace Sunday_Bloody_Sunday
         public static void LoadContent(ContentManager content)
         {
             Map = content.Load<Texture2D>("map");
-            Player = content.Load<Texture2D>("Chara");
+            Player1 = content.Load<Texture2D>("Chara");
+            Player2 = content.Load<Texture2D>("Chara2");
+            Player3 = content.Load<Texture2D>("Chara3");
             Projectile = content.Load<Texture2D>("balle");
-            IA = content.Load<Texture2D>("pikachu");
+            IA1 = content.Load<Texture2D>("pikachu");
+            IA2 = content.Load<Texture2D>("pikachu_2");
             HUD = content.Load<SpriteFont>("gameFont");
             mTitleScreen = content.Load<Texture2D>("Title");
             mMenu = content.Load<Texture2D>("Menu");

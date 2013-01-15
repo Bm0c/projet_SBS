@@ -14,14 +14,14 @@ namespace Sunday_Bloody_Sunday
     class HUD
     {
         // FIELDS
-        int health, munition;
+        int health;
+        int munition = 0;
 
 
         // CONSTRUCTOR
         public HUD()
         {
             this.health = Player.Health;
-            this.munition = Player.Ammo;
         }
 
 
@@ -29,15 +29,24 @@ namespace Sunday_Bloody_Sunday
 
 
         // UPDATE & DRAW
-        public void Update(KeyboardState keyboard)
+        public void Update(KeyboardState keyboard, List<Player> joueurs)
         {
+            this.munition = 0;
 
+            foreach (Player joueur in joueurs)
+            {
+                if (joueur.Ammo <=0)
+                {
+                    joueur.Ammo = 100;
+                }
+                this.munition = this.munition + joueur.Ammo;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
             spriteBatch.DrawString(Ressources.HUD, "Health: " + Player.Health, new Vector2(650, 400), Color.White);
-            spriteBatch.DrawString(Ressources.HUD, "Ammo: " + Player.Ammo, new Vector2(650, 440), Color.White);
+            spriteBatch.DrawString(Ressources.HUD, "Ammo: " + munition, new Vector2(650, 440), Color.White);
         }
     }
 }

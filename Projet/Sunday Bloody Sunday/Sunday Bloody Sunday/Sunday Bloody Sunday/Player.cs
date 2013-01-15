@@ -36,7 +36,7 @@ namespace Sunday_Bloody_Sunday
         // Amount of health
         static public int Health;
         // Amount of munition that player has
-        static public int Ammo;
+        public int Ammo;
         // The amount of damage the Player can inflict to the IA
         static public int Damage;
 
@@ -48,9 +48,13 @@ namespace Sunday_Bloody_Sunday
 
         public int refroiddissement = 0;
 
+        Texture2D texture;
+
+        public bool est_afficher = false;
+
 
         // CONSTRUCTOR
-        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire)
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Texture2D texture)
         {
             this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
@@ -62,7 +66,7 @@ namespace Sunday_Bloody_Sunday
             this.Timer = 0;
             Player.Active = true;
             Player.Health = 100;
-            Player.Ammo = 100;
+            this.Ammo = 100;
             Player.Damage = 10;
             this.action = "";
 
@@ -71,6 +75,8 @@ namespace Sunday_Bloody_Sunday
             this.Gauche = Gauche;
             this.Droite = Droite;
             this.Tire = Tire;
+
+            this.texture = texture;
 
 
         }
@@ -275,7 +281,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.Player, this.PlayerTexture, new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(this.texture, this.PlayerTexture, new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }

@@ -17,7 +17,9 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public List<Player> joueurs = new List<Player>();
         public List<IA> liste_ia;
+        public List<IA> liste_ia2;
         public List<Projectile> liste_projectile = new List<Projectile>();
+        public List<Projectile> liste_projectile2 = new List<Projectile>();
         Projectile balle;
         IA ia;
         PhysicsEngine map_physique;
@@ -28,6 +30,8 @@ namespace Sunday_Bloody_Sunday
         Sound moteur_son = new Sound();
         public bool menu = true;
 
+        bool etape1 = false;
+        bool etape2 = false;
 
         // CONSTRUCTOR
         public Map(PhysicsEngine map_physique)
@@ -35,15 +39,15 @@ namespace Sunday_Bloody_Sunday
             MapTexture = new Rectangle(0, 0, 800, 480);
             this.map_physique = map_physique;
             this.liste_ia = new List<IA>();
-            IA ia1 = new IA(120, 48);
-            IA ia2 = new IA(160, 48);
-            IA ia3 = new IA(400, 460);
+            IA ia1 = new IA(120, 48, Ressources.IA1);
+            IA ia2 = new IA(160, 48, Ressources.IA1);
+            IA ia3 = new IA(400, 460, Ressources.IA2);/*
             this.liste_ia.Add(ia1);
             this.liste_ia.Add(ia2);
-            this.liste_ia.Add(ia3);
-            this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right,Keys.N));
-            this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A));
-            this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7));
+            this.liste_ia.Add(ia3);*/
+            this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right,Keys.N, Ressources.Player1));/*
+            this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
+            this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
         }
 
 
@@ -390,7 +394,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left,Keys.S);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Ressources.Player1);
                     Vector2 vector_joueur = new Vector2();
                     foreach(Player joueur in joueurs)
                     {
@@ -418,32 +422,88 @@ namespace Sunday_Bloody_Sunday
                 }
                 else
                 {
-                    ia.IATexture.X = -42;
-                    ia.IATexture.Y = -42;
+                    ia.en_vie = false;
                 }
             }
-            if (compteur_2 > 30)
+            if (compteur_2 > 180 && etape1)
             {
-                int spawn = rand.Next(4);
+                int spawn = rand.Next(3);
                 if (spawn == 00)
                 {
-                    liste_ia.Add(new IA(144, 48));
-                    moteur_son.PlayPika2();
+                    int texture = rand.Next(2);
+                    if (texture == 0)
+                    {
+                        liste_ia.Add(new IA(144, 48, Ressources.IA1));
+                    }
+                    else
+                    {
+                        liste_ia.Add(new IA(144, 48, Ressources.IA2));
+                    }
+                    int sons = rand.Next(2);
+                    if (sons == 0)
+                    {
+                        moteur_son.PlayPika();
+                    }
+                    else
+                    {
+                        moteur_son.PlayPika2();
+                    }
+                    
                 }
                 else if (spawn == 1)
                 {
-                    liste_ia.Add(new IA(0, 272));
-                    moteur_son.PlayPika();
+                    int texture = rand.Next(2);
+                    if (texture == 0)
+                    {
+                        liste_ia.Add(new IA(0, 272, Ressources.IA1));
+                    }
+                    else
+                    {
+                        liste_ia.Add(new IA(0, 272, Ressources.IA2));
+                    }
+                    int sons = rand.Next(2);
+                    if (sons == 0)
+                    {
+                        moteur_son.PlayPika();
+                    }
+                    else
+                    {
+                        moteur_son.PlayPika2();
+                    }
                 }
                 else
                 {
-                    liste_ia.Add(new IA(400, 470));
-                    moteur_son.PlayPika();
+                    int texture = rand.Next(2);
+                    if (texture == 0)
+                    {
+                        liste_ia.Add(new IA(400, 470, Ressources.IA1));
+                    }
+                    else
+                    {
+                        liste_ia.Add(new IA(400, 470, Ressources.IA2));
+                    }
+                    int sons = rand.Next(2);
+                    if (sons == 0)
+                    {
+                        moteur_son.PlayPika();
+                    }
+                    else
+                    {
+                        moteur_son.PlayPika2();
+                    }
                 }
                 
                 compteur_2 = 0;
             }
             compteur_2++;
+
+            liste_ia2 = new List<IA>();
+            foreach (IA ia in liste_ia)
+            {
+                if (ia.en_vie)
+                    liste_ia2.Add(ia);
+            }
+            liste_ia = liste_ia2;
         }
 
         public void collision_balle(Projectile balle)
@@ -499,17 +559,25 @@ namespace Sunday_Bloody_Sunday
 
             foreach (Player joueur in joueurs)
             {
-                if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroiddissement >= 6)
+                if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroiddissement >= 12 && etape1)
                 {
                     balle = new Projectile(Ressources.Projectile, (int)joueur.centre().X, (int)joueur.centre().Y, 10, joueur.Direction, 50);
                     liste_projectile.Add(balle);
                     joueur.refroiddissement = 0;
-                    Player.Ammo--;
+                    joueur.Ammo = joueur.Ammo - 1;
                     moteur_son.PlayTire();
 
                 }
                 joueur.refroiddissement++;
             }
+
+            liste_projectile2 = new List<Projectile>();
+            foreach (Projectile balle in liste_projectile)
+            {
+                if (balle.isVisible)
+                    liste_projectile2.Add(balle);
+            }
+            liste_projectile = liste_projectile2;
         }
 
         //Gere l'affichage de la liste d'ia
@@ -553,17 +621,33 @@ namespace Sunday_Bloody_Sunday
             liste_ia.CopyTo(tableau_ia);
             tri(ref tableau_ia);
             bool test = true;
+            foreach (Player joueur in joueurs)
+            {
+                joueur.est_afficher = false;
+            }
             foreach (IA ia in tableau_ia)
             {
-
-
-                ia.Draw(spriteBatch);
                 foreach (Player joueur in joueurs)
                 {
-                    if ((ia.IATexture.Y < joueur.PlayerTexture.Y) && test)
+                    if ((ia.IATexture.Y > joueur.PlayerTexture.Y) && !joueur.est_afficher)
                     {
                         joueur.Draw(spriteBatch);
+                        joueur.est_afficher = true;
+                        
                     }
+
+                    ia.Draw(spriteBatch);
+                }
+
+                
+            }
+            foreach (Player joueur in joueurs)
+            {
+                if (!joueur.est_afficher)
+                {
+                    joueur.Draw(spriteBatch);
+                    joueur.est_afficher = true;
+
                 }
             }
         }
@@ -579,7 +663,17 @@ namespace Sunday_Bloody_Sunday
             update_ia();
             update_projectiles(keyboard);
 
+            if (keyboard.IsKeyDown(Keys.D1) && !etape1)
+            {
+                etape1 = true;
+            }
 
+            if (keyboard.IsKeyDown(Keys.D2) && !etape2)
+            {
+                etape2 = true;
+                this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));/*
+                this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
+            }
 
 
         }

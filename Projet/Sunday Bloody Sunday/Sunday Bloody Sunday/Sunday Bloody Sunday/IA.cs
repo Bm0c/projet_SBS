@@ -32,17 +32,19 @@ namespace Sunday_Bloody_Sunday
         int AnimationSpeed = 10;
         public string action;
         // State of the IA
-        static public bool Active;
+        public bool Active;
         // Amount of health
         public int Health;
         // The amount of damage the IA can inflict to the Player
         static public int Damage;
         Random randomPosition = new Random();
         public bool est_update = false;
+        public bool en_vie = true;
+        Texture2D texture;
 
 
         // CONSTRUCTOR
-        public IA(int x, int y)
+        public IA(int x, int y, Texture2D texture)
         {
             this.IATexture = new Rectangle(x, y, 16, 17);
             IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
@@ -52,10 +54,11 @@ namespace Sunday_Bloody_Sunday
             this.Effect = SpriteEffects.None;
             this.Animation = true;
             this.Timer = 0;
-            IA.Active = true;
+            this.Active = true;
             this.Health = 100;
             IA.Damage = 10;
             this.action = "";
+            this.texture = texture;
         }
 
 
@@ -205,7 +208,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.IA, this.IATexture, new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23,27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(texture, this.IATexture, new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23,27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }

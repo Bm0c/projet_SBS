@@ -192,8 +192,8 @@ namespace Sunday_Bloody_Sunday
                             }
                         }
 
-                        // In the menu, X key = validate
-                        if (aKeyboardState.IsKeyDown(Keys.X) == true)
+                        // In the menu, Enter key = validate
+                        if (aKeyboardState.IsKeyDown(Keys.Enter) == true)
                         {
                             switch (mCurrentMenuOption)
                             {
@@ -240,7 +240,6 @@ namespace Sunday_Bloody_Sunday
             spriteBatch.Begin();
             Main.Draw(spriteBatch, spriteFont);
 
-
             switch (mCurrentScreen)
             {
                 case Screen.Title:
@@ -251,7 +250,7 @@ namespace Sunday_Bloody_Sunday
 
                 case Screen.Menu:
                     {
-                        spriteBatch.Draw(mMenu, new Rectangle(this.Window.ClientBounds.Width / 2 - mMenu.Width / 2, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2, mMenu.Width, mMenu.Height), Color.White);
+                        //spriteBatch.Draw(mMenu, new Rectangle(this.Window.ClientBounds.Width / 2 - mMenu.Width / 2, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2, mMenu.Width, mMenu.Height), Color.White);
 
                         switch (mCurrentMenuOption)
                         {
