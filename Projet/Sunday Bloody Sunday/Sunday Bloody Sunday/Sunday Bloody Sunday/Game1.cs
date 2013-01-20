@@ -64,21 +64,22 @@ namespace Sunday_Bloody_Sunday
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Ressources.LoadContent(Content);
+
             // Chargement du jeu principal
             Main = new GameMain();
 
             // Chargement de la musique de fond
-            GamePlayMusic = Content.Load<Song>("GamePlayMusic");
-            MenuMusic = Content.Load<Song>("elevator_music");
+            GamePlayMusic = Ressources.GamePlayMusic;
+            MenuMusic = Ressources.MenuMusic;
             // Chargement effet d'intro
-            Effect = Content.Load<SoundEffect>("zombie_groan");
+            Effect = Ressources.Effect;
             Effect.Play();
-
+            
             // Chargement des images du Menu
-            mTitleScreen = Content.Load<Texture2D>("Title");
-            mMenu = Content.Load<Texture2D>("Menu");
-            mMenuOptions = Content.Load<Texture2D>("MenuOptions");
-            mInventoryScreen = Content.Load<Texture2D>("Inventory");
+            mTitleScreen = Ressources.mTitleScreen;
+            mMenu = Ressources.mMenu;
+            mMenuOptions = Ressources.mMenuOptions;
+            mInventoryScreen = Ressources.mInventoryScreen;
         }
 
         public void PlayMusic(Song song)
@@ -147,8 +148,6 @@ namespace Sunday_Bloody_Sunday
                         {
                             mCurrentScreen = Screen.Menu;
                             Main.MainMap.menu = true;
-                            //StopMusic(MenuMusic);
-                            //PlayMusic(GamePlayMusic);
                         }
                         break;
                     }
@@ -223,7 +222,6 @@ namespace Sunday_Bloody_Sunday
                             // Reset the selected menu option to Resume
                             mCurrentMenuOption = MenuOptions.Resume;
                             Main.MainMap.menu = false;
-                            //MediaPlayer.Resume();
                         }
                         break;
                     }

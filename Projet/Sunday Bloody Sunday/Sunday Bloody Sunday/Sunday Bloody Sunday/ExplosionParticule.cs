@@ -23,6 +23,7 @@ namespace Sunday_Bloody_Sunday
             ExplosionTexture = new Rectangle();
         }
 
+
         // METHODS
         // Get the width of the ExplosionParticule
         public int Width

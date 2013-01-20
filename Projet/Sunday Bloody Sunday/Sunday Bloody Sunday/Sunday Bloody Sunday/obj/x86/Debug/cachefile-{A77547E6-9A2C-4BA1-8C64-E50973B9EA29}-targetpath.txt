@@ -19,5 +19,5 @@ Content\pikachu.xnb
 Content\balle.xnb
 Content\Chara2.xnb
 Content\Chara3.xnb
-Content\zombie_groan.xnb
 Content\pikachu_2.xnb
+Content\zombie_groan.xnb

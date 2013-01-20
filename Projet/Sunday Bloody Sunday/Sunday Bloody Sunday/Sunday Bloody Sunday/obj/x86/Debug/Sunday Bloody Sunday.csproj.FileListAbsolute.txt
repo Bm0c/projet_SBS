@@ -97,3 +97,6 @@ C:\Users\Bmoc\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara2.xnb
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara3.xnb
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu_2.xnb
+C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara2.xnb
+C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara3.xnb
+C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu_2.xnb
