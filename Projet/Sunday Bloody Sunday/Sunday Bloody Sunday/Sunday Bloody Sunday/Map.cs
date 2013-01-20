@@ -620,7 +620,7 @@ namespace Sunday_Bloody_Sunday
             IA[] tableau_ia = new IA[liste_ia.Count];
             liste_ia.CopyTo(tableau_ia);
             tri(ref tableau_ia);
-            bool test = true;
+            //bool test = true;
             foreach (Player joueur in joueurs)
             {
                 joueur.est_afficher = false;
@@ -651,6 +651,8 @@ namespace Sunday_Bloody_Sunday
                 }
             }
         }
+
+
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {

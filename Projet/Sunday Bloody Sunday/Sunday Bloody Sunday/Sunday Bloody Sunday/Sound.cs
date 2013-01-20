@@ -19,26 +19,7 @@ namespace Sunday_Bloody_Sunday
         SoundEffect pika2 = Ressources.mPika2;
 
 
-        // CONSTRUCTOR
-        public void SoundEngine()
-        {
-            
-        }
-
-
         // METHODS
-        public void PlayMusic(Song song)
-        {
-            try
-            {
-                // Joue la musique
-                MediaPlayer.Play(song);
-                // Active la répétition de la musique
-                MediaPlayer.IsRepeating = true;
-            }
-            catch { }
-        }
-
         public void PlayTire()
         {
             try
@@ -70,13 +51,6 @@ namespace Sunday_Bloody_Sunday
             catch
             {
             }
-        }
-
-
-        // UPDATE
-        public void Update()
-        {
-            //PlayMusic(GamePlayMusic);
         }
     }
 }
