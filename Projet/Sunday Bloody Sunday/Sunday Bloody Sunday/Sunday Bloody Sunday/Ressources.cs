@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 namespace Sunday_Bloody_Sunday
 {
@@ -45,7 +46,11 @@ namespace Sunday_Bloody_Sunday
             Effect = content.Load<SoundEffect>("zombie_groan");
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");
-            mPika2 = content.Load<SoundEffect>("pikachu002");
+            mPika2 = content.Load<SoundEffect>("pikachu002");/*
+            StreamReader monStreamReader = content.Load<*/
+            /*
+            StreamReader monStreamReader = new StreamReader("map.txt");
+            */
         }
     }
 }

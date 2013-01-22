@@ -116,7 +116,7 @@ namespace Sunday_Bloody_Sunday
             if (actionIA == "left")
                 return (this.IATexture.X - this.speed);
             else
-                return (this.IATexture.X );
+                return (this.IATexture.X);
         }
 
         public int futur_position_X_droite()
@@ -131,9 +131,9 @@ namespace Sunday_Bloody_Sunday
         public int futur_position_Y_haut()
         {
             if (actionIA == "up")
-                return (this.IATexture.Y - this.speed + 10 );
+                return (this.IATexture.Y - this.speed + 4);
             else
-                return (this.IATexture.Y + 10);
+                return (this.IATexture.Y + 4);
         }
 
         public int futur_position_Y_bas()
@@ -208,7 +208,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, this.IATexture, new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23,27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(texture, this.IATexture, new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Sunday_Bloody_Sunday
 
             {   // Début de travail sur le lecteur de fichier, don't toutch !
 
-                StreamReader monStreamReader = new StreamReader(("C:/Users/David/Documents/GitHub/projet_sbs/Projet/Maps/map.txt"));
+                StreamReader monStreamReader = new StreamReader("Content/maps/map.txt");
                 string ligne = monStreamReader.ReadLine();
 
                 int i = 0;

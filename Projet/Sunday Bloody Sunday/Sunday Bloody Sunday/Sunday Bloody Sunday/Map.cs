@@ -45,7 +45,7 @@ namespace Sunday_Bloody_Sunday
             this.liste_ia.Add(ia1);
             this.liste_ia.Add(ia2);
             this.liste_ia.Add(ia3);*/
-            this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right,Keys.N, Ressources.Player1));/*
+            this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));/*
             this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
             this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
         }
@@ -72,7 +72,7 @@ namespace Sunday_Bloody_Sunday
             {
                 if (joueur.actionjoueur == "up")
                 {
-                    if (!(map_physique.mur(joueur.futur_position_X_gauche(),joueur.futur_position_Y_haut()))
+                    if (!(map_physique.mur(joueur.futur_position_X_gauche(), joueur.futur_position_Y_haut()))
                      && !(map_physique.mur(joueur.futur_position_X_droite(), joueur.futur_position_Y_haut())) && collision_entite_hero(joueur))
                         joueur.mise_a_jour(joueur.actionjoueur);
                     joueur.actionjoueur = "";
@@ -160,7 +160,7 @@ namespace Sunday_Bloody_Sunday
 
 
             }
-            ia.actionIA= ""; // "Remet à zéros" les actions du joueurs
+            ia.actionIA = ""; // "Remet à zéros" les actions du joueurs
         }
 
         public bool collision_entite_ia(IA ia)
@@ -174,12 +174,13 @@ namespace Sunday_Bloody_Sunday
                     test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/());
                 }
             }
-            foreach( Player joueur in joueurs)
+            foreach (Player joueur in joueurs)
             {
-            if (test)
-            {
-                test = !futur_rectangle.Intersects(joueur.rectangle());
-            }}
+                if (test)
+                {
+                    test = !futur_rectangle.Intersects(joueur.rectangle());
+                }
+            }
 
             return test;
         }
@@ -396,25 +397,25 @@ namespace Sunday_Bloody_Sunday
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
                     Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Ressources.Player1);
                     Vector2 vector_joueur = new Vector2();
-                    foreach(Player joueur in joueurs)
+                    foreach (Player joueur in joueurs)
                     {
                         joueur_cible = joueur;
                         vector_joueur = new Vector2(joueur_cible.PlayerTexture.X, joueur_cible.PlayerTexture.Y);
                     }
-                    
+
                     Vector2.Distance(ref vector_ia, ref vector_joueur, out distance);
                     foreach (Player joueur in joueurs)
                     {
                         vector_joueur = new Vector2(joueur.PlayerTexture.X, joueur.PlayerTexture.Y);
                         float distance_2;
-                        Vector2.Distance(ref vector_ia,ref vector_joueur,out distance_2);
+                        Vector2.Distance(ref vector_ia, ref vector_joueur, out distance_2);
                         if (distance_2 < distance)
                         {
                             distance = distance_2;
                             joueur_cible = joueur;
                         }
                     }
-                        
+
                     pathfing(ref this.ia.action, joueur_cible);
                     action_ia(ia);
                     this.ia.Update();
@@ -448,7 +449,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         moteur_son.PlayPika2();
                     }
-                    
+
                 }
                 else if (spawn == 1)
                 {
@@ -492,7 +493,7 @@ namespace Sunday_Bloody_Sunday
                         moteur_son.PlayPika2();
                     }
                 }
-                
+
                 compteur_2 = 0;
             }
             compteur_2++;
@@ -633,13 +634,13 @@ namespace Sunday_Bloody_Sunday
                     {
                         joueur.Draw(spriteBatch);
                         joueur.est_afficher = true;
-                        
+
                     }
 
                     ia.Draw(spriteBatch);
                 }
 
-                
+
             }
             foreach (Player joueur in joueurs)
             {
