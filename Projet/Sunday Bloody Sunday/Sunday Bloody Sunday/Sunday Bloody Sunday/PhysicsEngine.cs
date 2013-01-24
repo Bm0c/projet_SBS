@@ -60,5 +60,10 @@ namespace Sunday_Bloody_Sunday
             else
                 return this.liste[x / 16, y / 16]; 
         }
+
+        public bool[,] map()
+        {
+            return liste;
+        }
     }
 }

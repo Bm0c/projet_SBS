@@ -21,4 +21,3 @@ Content\Chara2.xnb
 Content\Chara3.xnb
 Content\pikachu_2.xnb
 Content\zombie_groan.xnb
-Content\map.txt
