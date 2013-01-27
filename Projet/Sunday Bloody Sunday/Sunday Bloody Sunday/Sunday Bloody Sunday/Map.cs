@@ -15,6 +15,8 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         Rectangle MapTexture;
+        //Test Items
+        public List<Items> liste_HealthBox;
         public List<Player> joueurs = new List<Player>();
         public List<IA> liste_ia;
         public List<IA> liste_ia2;
@@ -48,6 +50,7 @@ namespace Sunday_Bloody_Sunday
             this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));/*
             this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
             this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
+            this.liste_HealthBox = new List<Items>();
         }
 
 
@@ -582,7 +585,6 @@ namespace Sunday_Bloody_Sunday
         }
 
         //Gere l'affichage de la liste d'ia
-
         public void swap(ref IA a, ref IA b)
         {
             IA c = a;
@@ -690,7 +692,6 @@ namespace Sunday_Bloody_Sunday
             {
                 projectile.Draw(spriteBatch);
             }
-
         }
     }
 }

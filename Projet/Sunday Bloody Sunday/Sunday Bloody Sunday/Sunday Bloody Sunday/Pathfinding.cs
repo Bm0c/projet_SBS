@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.IO;
-using System.Math;
+/*using System.Math;
 
 namespace Sunday_Bloody_Sunday
 {
@@ -78,4 +78,4 @@ namespace Sunday_Bloody_Sunday
             this.y = y;
         }
     }
-}
+}*/

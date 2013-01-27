@@ -57,7 +57,7 @@ namespace Sunday_Bloody_Sunday
         }
 
 
-        // METHODS (useful for collision)
+        // METHODS
         // Get the width of the projectile
         public int Width
         {
@@ -135,6 +135,7 @@ namespace Sunday_Bloody_Sunday
         {
 
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (this.isVisible)

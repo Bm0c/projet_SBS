@@ -45,8 +45,16 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont font)
         {
-            spriteBatch.DrawString(Ressources.HUD, "Health: " + Player.Health, new Vector2(650, 400), Color.White);
-            spriteBatch.DrawString(Ressources.HUD, "Ammo: " + munition, new Vector2(650, 440), Color.White);
+            if (MenuButton.langage == "French")
+            {
+                spriteBatch.DrawString(Ressources.HUD, "Vie: " + Player.Health, new Vector2(620, 400), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, "Munition: " + munition, new Vector2(620, 440), Color.White);
+            }
+            else
+            {
+                spriteBatch.DrawString(Ressources.HUD, "Health: " + Player.Health, new Vector2(650, 400), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, "Ammo: " + munition, new Vector2(650, 440), Color.White);
+            }
         }
     }
 }

@@ -18,41 +18,30 @@ namespace Sunday_Bloody_Sunday
         SpriteFont spriteFont;
         GameMain Main;
 
-        // Futur Sound.cs
+        //Menu States
+        public enum Screen
+        {
+            menu_principal, menu_jeu, menu_option, menu_parametre, jeu
+        };
+        public static Screen ecran = Screen.menu_principal;
+        Menu menuMain = new Menu(Menu.MenuType.MainMenu);
+        int button_timer = 0;
+
+        // Prochainement dans Sound.cs
         Song GamePlayMusic;
         Song MenuMusic;
         SoundEffect Effect;
-
-        // Futur Menu.cs
-        private enum Screen
-        {
-            Title,
-            Main,
-            Inventory,
-            Menu
-        }
-        Screen mCurrentScreen = Screen.Title;
-
-        private enum MenuOptions
-        {
-            Resume,
-            Inventory,
-            ExitGame
-        }
-        MenuOptions mCurrentMenuOption = MenuOptions.Resume;
-        Texture2D mTitleScreen;
-        Texture2D mMenu;
-        Texture2D mMenuOptions;
-        Texture2D mInventoryScreen;
-        KeyboardState mPreviousKeyboardState;
-
 
         // Début fichier généré par XNA
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            // Préférences
             this.IsMouseVisible = true;
+            //this.graphics.IsFullScreen = true;
+            this.graphics.PreferredBackBufferWidth = Divers.WidthScreen;
+            this.graphics.PreferredBackBufferHeight = Divers.HeightScreen;
         }
 
         protected override void Initialize()
@@ -65,23 +54,15 @@ namespace Sunday_Bloody_Sunday
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Ressources.LoadContent(Content);
 
-            // Chargement du jeu principal
-            Main = new GameMain();
-
-            // Chargement de la musique de fond
+            // Chargement musique
             GamePlayMusic = Ressources.GamePlayMusic;
             MenuMusic = Ressources.MenuMusic;
-            // Chargement effet d'intro
-            Effect = Ressources.Effect;
+            // Chargement effet
+            Effect = Ressources.mEffect;
             Effect.Play();
-            
-            // Chargement des images du Menu
-            mTitleScreen = Ressources.mTitleScreen;
-            mMenu = Ressources.mMenu;
-            mMenuOptions = Ressources.mMenuOptions;
-            mInventoryScreen = Ressources.mInventoryScreen;
         }
 
+        // Prochainement dans Sound.cs
         public void PlayMusic(Song song)
         {
             try
@@ -111,181 +92,203 @@ namespace Sunday_Bloody_Sunday
 
         protected override void Update(GameTime gameTime)
         {
-            Main.Update(Mouse.GetState(), Keyboard.GetState());
-
-
-            KeyboardState aKeyboardState = Keyboard.GetState();
-            switch (mCurrentScreen)
+            if (button_timer < 20)
             {
-
-                case Screen.Title:
-                    {
-                        // Enter key = launch the game
-                        if (aKeyboardState.IsKeyDown(Keys.Enter) == true)
-                        {
-                            mCurrentScreen = Screen.Main;
-                            PlayMusic(GamePlayMusic);
-                            Main.MainMap.menu = false;
-                        }
-                        break;
-                    }
-                case Screen.Main:
-                    {
-                        // Escape key = pause the game
-                        if (aKeyboardState.IsKeyDown(Keys.Escape) == true)
-                        {
-                            mCurrentScreen = Screen.Menu;
-                            Main.MainMap.menu = true;
-                            StopMusic(GamePlayMusic);
-                            PlayMusic(MenuMusic);
-                        }
-                        break;
-                    }
-                case Screen.Inventory:
-                    {
-                        // C key in the Inventory = close it
-                        if (aKeyboardState.IsKeyDown(Keys.C) == true)
-                        {
-                            mCurrentScreen = Screen.Menu;
-                            Main.MainMap.menu = true;
-                        }
-                        break;
-                    }
-                case Screen.Menu:
-                    {
-                        // Move the currently highlighted menu option
-                        if (aKeyboardState.IsKeyDown(Keys.Down) == true && mPreviousKeyboardState.IsKeyDown(Keys.Down) == false)
-                        {
-                            // Move selection down
-                            switch (mCurrentMenuOption)
-                            {
-                                case MenuOptions.Resume:
-                                    {
-                                        mCurrentMenuOption = MenuOptions.Inventory;
-                                        break;
-                                    }
-                                case MenuOptions.Inventory:
-                                    {
-                                        mCurrentMenuOption = MenuOptions.ExitGame;
-                                        break;
-                                    }
-                            }
-
-                        }
-
-                        if (aKeyboardState.IsKeyDown(Keys.Up) == true && mPreviousKeyboardState.IsKeyDown(Keys.Up) == false)
-                        {
-                            // Move selection up
-                            switch (mCurrentMenuOption)
-                            {
-                                case MenuOptions.Inventory:
-                                    {
-                                        mCurrentMenuOption = MenuOptions.Resume;
-                                        break;
-                                    }
-                                case MenuOptions.ExitGame:
-                                    {
-                                        mCurrentMenuOption = MenuOptions.Inventory;
-                                        break;
-                                    }
-                            }
-                        }
-
-                        // In the menu, Enter key = validate
-                        if (aKeyboardState.IsKeyDown(Keys.Enter) == true)
-                        {
-                            switch (mCurrentMenuOption)
-                            {
-                                // Return to the Main game screen and close the menu
-                                case MenuOptions.Resume:
-                                    {
-                                        mCurrentScreen = Screen.Main;
-                                        StopMusic(MenuMusic);
-                                        PlayMusic(GamePlayMusic);
-                                        break;
-                                    }
-                                // Open the Inventory screen wich doesn't exist...
-                                case MenuOptions.Inventory:
-                                    {
-                                        mCurrentScreen = Screen.Inventory;
-                                        Main.MainMap.menu = true;
-                                        StopMusic(GamePlayMusic);
-                                        break;
-                                    }
-                                // Exit the game
-                                case MenuOptions.ExitGame:
-                                    {
-                                        this.Exit();
-                                        break;
-                                    }
-                            }
-                            // Reset the selected menu option to Resume
-                            mCurrentMenuOption = MenuOptions.Resume;
-                            Main.MainMap.menu = false;
-                        }
-                        break;
-                    }
+                button_timer++;
             }
-            // Store the Keyboard state
-            mPreviousKeyboardState = aKeyboardState;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                if (ecran == Screen.jeu)
+                {
+                    ecran = Screen.menu_jeu;
+                    menuMain = new Menu(Menu.MenuType.InGameMenu);
+                    PlayMusic(MenuMusic);
+                }
+            }
+
+            if (ecran == Screen.menu_principal)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
+                    Main = new GameMain();
+                    ecran = Screen.jeu;
+                    PlayMusic(GamePlayMusic);
+                    button_timer = 0;
+                }
+                if (action == 2)
+                {
+                    ecran = Screen.menu_parametre;
+                    menuMain = new Menu(Menu.MenuType.MenuSettings);
+                    button_timer = 0;
+                }
+                if (action == 3)
+                {
+                    Exit();
+                }
+            }
+
+            else if (ecran == Screen.menu_jeu)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
+                    ecran = Screen.jeu;
+                    button_timer = 0;
+                    PlayMusic(GamePlayMusic);
+                }
+                if (action == 2)
+                {
+                    ecran = Screen.menu_option;
+                    menuMain = new Menu(Menu.MenuType.MenuOptions);
+                    button_timer = 0;
+                }
+                if (action == 3)
+                {
+                    ecran = Screen.menu_principal;
+                    menuMain = new Menu(Menu.MenuType.MainMenu);
+                    button_timer = 0;
+                    StopMusic(MenuMusic);
+                    Effect.Play();
+                }
+            }
+
+            else if (ecran == Screen.menu_option)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
+                    MenuButton.langage = "French";
+                    menuMain = new Menu(Menu.MenuType.MenuOptions);
+                    button_timer = 0;
+                }
+                if (action == 2)
+                {
+                    MenuButton.langage = "English";
+                    menuMain = new Menu(Menu.MenuType.MenuOptions);
+                    button_timer = 0;
+                }
+                if (action == 3)
+                {
+                    MediaPlayer.Volume -= 0.1f;
+                    button_timer = 0;
+                }
+                if (action == 4)
+                {
+                    MediaPlayer.Volume += 0.1f;
+                    button_timer = 0;
+                }
+                if (action == 5)
+                {
+                    MediaPlayer.Volume = 0;
+                    button_timer = 0;
+                }
+                if (action == 6)
+                {
+                    ecran = Screen.menu_jeu;
+                    menuMain = new Menu(Menu.MenuType.InGameMenu);
+                    button_timer = 0;
+                }
+            }
+
+            else if (ecran == Screen.menu_parametre)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
+                    MenuButton.langage = "French";
+                    menuMain = new Menu(Menu.MenuType.MenuSettings);
+                    button_timer = 0;
+                }
+                if (action == 2)
+                {
+                    MenuButton.langage = "English";
+                    menuMain = new Menu(Menu.MenuType.MenuSettings);
+                    button_timer = 0;
+                }
+                if (action == 3)
+                {
+                    MediaPlayer.Volume -= 0.1f;
+                    button_timer = 0;
+                }
+                if (action == 4)
+                {
+                    MediaPlayer.Volume += 0.1f;
+                    button_timer = 0;
+                }
+                if (action == 5)
+                {
+                    MediaPlayer.Volume = 0;
+                    button_timer = 0;
+                }
+                if (action == 6)
+                {
+                    ecran = Screen.menu_principal;
+                    menuMain = new Menu(Menu.MenuType.MainMenu);
+                    Effect.Play();
+                    button_timer = 0;
+                }
+            }
+            else if (ecran == Screen.jeu)
+            {
+                Main.Update(Mouse.GetState(), Keyboard.GetState());
+            }
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+
             spriteBatch.Begin();
-            Main.Draw(spriteBatch, spriteFont);
 
-            switch (mCurrentScreen)
-            {
-                case Screen.Title:
-                    {
-                        spriteBatch.Draw(mTitleScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
-                        break;
-                    }
-
-                case Screen.Menu:
-                    {
-                        //spriteBatch.Draw(mMenu, new Rectangle(this.Window.ClientBounds.Width / 2 - mMenu.Width / 2, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2, mMenu.Width, mMenu.Height), Color.White);
-
-                        switch (mCurrentMenuOption)
-                        {
-                            case MenuOptions.Resume:
-                                {
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 50, 250, 50), new Rectangle(0, 0, 250, 50), Color.Gold);
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 100, 250, 50), new Rectangle(0, 50, 250, 50), Color.White);
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 150, 250, 50), new Rectangle(0, 100, 250, 50), Color.White);
-                                    break;
-                                }
-
-                            case MenuOptions.Inventory:
-                                {
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 50, 250, 50), new Rectangle(0, 0, 250, 50), Color.White);
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 100, 250, 50), new Rectangle(0, 50, 250, 50), Color.Gold);
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 150, 250, 50), new Rectangle(0, 100, 250, 50), Color.White);
-                                    break;
-                                }
-
-                            case MenuOptions.ExitGame:
-                                {
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 50, 250, 50), new Rectangle(0, 0, 250, 50), Color.White);
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 100, 250, 50), new Rectangle(0, 50, 250, 50), Color.White);
-                                    spriteBatch.Draw(mMenuOptions, new Rectangle(this.Window.ClientBounds.Width / 2 - 100, this.Window.ClientBounds.Height / 2 - mMenu.Height / 2 + 150, 250, 50), new Rectangle(0, 100, 250, 50), Color.Gold);
-                                    break;
-                                }
-                        }
-                        break;
-                    }
-                case Screen.Inventory:
-                    {
-                        spriteBatch.Draw(mInventoryScreen, new Rectangle(0, 0, this.Window.ClientBounds.Width, this.Window.ClientBounds.Height), Color.White);
-                        break;
-                    }
-            }
+                if (ecran == Screen.menu_principal)
+                {
+                    spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                if (ecran == Screen.menu_jeu)
+                {
+                    Main.Draw(spriteBatch, spriteFont);
+                    menuMain.Draw(spriteBatch);
+                }
+                if (ecran == Screen.menu_option)
+                {
+                    Main.Draw(spriteBatch, spriteFont);
+                    menuMain.Draw(spriteBatch);
+                }
+                if (ecran == Screen.menu_parametre)
+                {
+                    GraphicsDevice.Clear(Color.Black);
+                    menuMain.Draw(spriteBatch);
+                }
+                if (ecran == Screen.jeu)
+                    Main.Draw(spriteBatch, spriteFont);
 
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }
