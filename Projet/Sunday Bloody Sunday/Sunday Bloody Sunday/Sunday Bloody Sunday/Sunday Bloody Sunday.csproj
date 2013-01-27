@@ -114,6 +114,8 @@
     <Compile Include="Manual.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="ExplosionParticule.cs" />
+    <Compile Include="MenuButton.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Pathfinding.cs" />
     <Compile Include="PhysicsEngine.cs" />
     <Compile Include="Player.cs" />

@@ -34,11 +34,8 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
-            if (!MainMap.menu)
-            {
                 MainMap.Update(mouse, keyboard);
                 MainHUD.Update(keyboard, MainMap.joueurs);
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)

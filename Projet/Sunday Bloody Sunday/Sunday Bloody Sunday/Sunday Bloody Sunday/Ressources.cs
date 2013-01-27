@@ -21,8 +21,8 @@ namespace Sunday_Bloody_Sunday
         // Sound
         public static Song GamePlayMusic, MenuMusic;
         public static SoundEffect mTire, mPika, mPika2, Effect;
-        // Menu
-        public static Texture2D mTitleScreen, mMenu, mMenuOptions, mInventoryScreen;
+        // GameTitle
+        public static Texture2D mTitleScreen;
 
 
         // LOAD CONTENTS
@@ -37,20 +37,13 @@ namespace Sunday_Bloody_Sunday
             IA2 = content.Load<Texture2D>("pikachu_2");
             HUD = content.Load<SpriteFont>("gameFont");
             mTitleScreen = content.Load<Texture2D>("Title");
-            mMenu = content.Load<Texture2D>("Menu");
-            mMenuOptions = content.Load<Texture2D>("MenuOptions");
-            mInventoryScreen = content.Load<Texture2D>("Inventory");
             //ExplosionParticule = content.Load<Texture2D>("explosion");
             GamePlayMusic = content.Load<Song>("GamePlayMusic");
             MenuMusic = content.Load<Song>("elevator_music");
             Effect = content.Load<SoundEffect>("zombie_groan");
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");
-            mPika2 = content.Load<SoundEffect>("pikachu002");/*
-            StreamReader monStreamReader = content.Load<*/
-            /*
-            StreamReader monStreamReader = new StreamReader("map.txt");
-            */
+            mPika2 = content.Load<SoundEffect>("pikachu002");
         }
     }
 }
