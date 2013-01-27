@@ -140,7 +140,6 @@ namespace Sunday_Bloody_Sunday
 
             if (rectangle_mouseCursor.Intersects(rectangle))
             {
-                // Because of blood
                 spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.Yellow);
             }
         }

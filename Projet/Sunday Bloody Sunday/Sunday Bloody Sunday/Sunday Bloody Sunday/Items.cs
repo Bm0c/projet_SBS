@@ -26,7 +26,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public Items(int x, int y, Texture2D texture)
         {
-            this.HealBoxTexture = Ressources.HealthBox;
+            this.HealBoxTexture = Ressources.mHealthBox;
             this.HealthBoxContainer = new Rectangle(100, 100, 16, 16);
             this.HealthBoxPosition = new Vector2(HealthBoxContainer.X, HealthBoxContainer.Y);
             this.HealthOrigin = new Vector2(HealthBoxContainer.X / 2, HealthBoxContainer.Y / 2);

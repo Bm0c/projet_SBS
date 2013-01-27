@@ -58,7 +58,7 @@ namespace Sunday_Bloody_Sunday
             GamePlayMusic = Ressources.GamePlayMusic;
             MenuMusic = Ressources.MenuMusic;
             // Chargement effet
-            Effect = Ressources.Effect;
+            Effect = Ressources.mEffect;
             Effect.Play();
         }
 
@@ -266,7 +266,7 @@ namespace Sunday_Bloody_Sunday
 
                 if (ecran == Screen.menu_principal)
                 {
-                    spriteBatch.Draw(Ressources.TitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                    spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
                 if (ecran == Screen.menu_jeu)
