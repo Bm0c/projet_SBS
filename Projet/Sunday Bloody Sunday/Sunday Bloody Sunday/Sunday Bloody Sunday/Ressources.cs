@@ -8,21 +8,20 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System.IO;
 
 namespace Sunday_Bloody_Sunday
 {
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Projectile, /*ExplosionParticule,*/ IA1, IA2;
+        public static Texture2D Player1, Player2, Player3, Map, Projectile, /*ExplosionParticule,*/ IA1, IA2, HealthBox;
         // HUD
         public static SpriteFont HUD;
         // Sound
         public static Song GamePlayMusic, MenuMusic;
         public static SoundEffect mTire, mPika, mPika2, Effect;
         // GameTitle
-        public static Texture2D mTitleScreen;
+        public static Texture2D TitleScreen;
 
 
         // LOAD CONTENTS
@@ -36,7 +35,7 @@ namespace Sunday_Bloody_Sunday
             IA1 = content.Load<Texture2D>("pikachu");
             IA2 = content.Load<Texture2D>("pikachu_2");
             HUD = content.Load<SpriteFont>("gameFont");
-            mTitleScreen = content.Load<Texture2D>("Title");
+            TitleScreen = content.Load<Texture2D>("Title");
             //ExplosionParticule = content.Load<Texture2D>("explosion");
             GamePlayMusic = content.Load<Song>("GamePlayMusic");
             MenuMusic = content.Load<Song>("elevator_music");
@@ -44,6 +43,7 @@ namespace Sunday_Bloody_Sunday
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");
             mPika2 = content.Load<SoundEffect>("pikachu002");
+            HealthBox = content.Load<Texture2D>("HealthBox");
         }
     }
 }

@@ -18,7 +18,6 @@ namespace Sunday_Bloody_Sunday
         //ExplosionParticule MainExplosionParticule;
         HUD MainHUD;
 
-
         // CONCSTRUCTOR
         public GameMain()
         {

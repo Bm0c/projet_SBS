@@ -39,9 +39,9 @@ namespace Sunday_Bloody_Sunday
             Content.RootDirectory = "Content";
             // Préférences
             this.IsMouseVisible = true;
-            /*this.graphics.IsFullScreen = true;
+            //this.graphics.IsFullScreen = true;
             this.graphics.PreferredBackBufferWidth = Divers.WidthScreen;
-            this.graphics.PreferredBackBufferHeight = Divers.HeightScreen;*/
+            this.graphics.PreferredBackBufferHeight = Divers.HeightScreen;
         }
 
         protected override void Initialize()
@@ -62,6 +62,7 @@ namespace Sunday_Bloody_Sunday
             Effect.Play();
         }
 
+        // Prochainement dans Sound.cs
         public void PlayMusic(Song song)
         {
             try
@@ -245,6 +246,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     ecran = Screen.menu_principal;
                     menuMain = new Menu(Menu.MenuType.MainMenu);
+                    Effect.Play();
                     button_timer = 0;
                 }
             }
@@ -264,7 +266,7 @@ namespace Sunday_Bloody_Sunday
 
                 if (ecran == Screen.menu_principal)
                 {
-                    spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                    spriteBatch.Draw(Ressources.TitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
                 if (ecran == Screen.menu_jeu)

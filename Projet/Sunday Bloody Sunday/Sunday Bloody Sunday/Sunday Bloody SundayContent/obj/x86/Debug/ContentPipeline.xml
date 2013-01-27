@@ -82,7 +82,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Title.xnb</Output>
-      <Time>2013-01-27T01:14:21.2299244+01:00</Time>
+      <Time>2013-01-27T21:04:06.2371645+01:00</Time>
     </Item>
     <Item>
       <Source>Map.png</Source>
@@ -164,6 +164,15 @@
       <Options>None</Options>
       <Output>C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie_groan.xnb</Output>
       <Time>2013-01-25T22:06:51.0675873+01:00</Time>
+    </Item>
+    <Item>
+      <Source>HealthBox.png</Source>
+      <Name>HealthBox</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\HealthBox.xnb</Output>
+      <Time>2013-01-27T17:02:03.9112139+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
@@ -21,7 +24,7 @@ namespace Sunday_Bloody_Sunday
         string buttonMessage;
         Rectangle rectangle;
         Rectangle rectangle_mouseCursor;
-        static public string langage = "French";
+        static public string langage = "English";
         int timer = 0;
 
 
@@ -123,7 +126,6 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public bool Update(MouseState mouse)
         {
-
             rectangle_mouseCursor = new Rectangle(mouse.X, mouse.Y, 0, 0);
 
             if (rectangle_mouseCursor.Intersects(rectangle) && mouse.LeftButton == ButtonState.Pressed)
@@ -139,7 +141,7 @@ namespace Sunday_Bloody_Sunday
             if (rectangle_mouseCursor.Intersects(rectangle))
             {
                 // Because of blood
-                spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.Red);
+                spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.Yellow);
             }
         }
     }
