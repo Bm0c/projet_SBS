@@ -18,15 +18,15 @@ namespace Sunday_Bloody_Sunday
         //Test Items
         public List<Items> liste_HealthBox;
         public List<Player> joueurs = new List<Player>();
-        public List<IA> liste_ia;
-        public List<IA> liste_ia2;
-        public List<Projectile> liste_projectile = new List<Projectile>();
-        public List<Projectile> liste_projectile2 = new List<Projectile>();
+        public List<IA> liste_ia; //Liste des IA
+        public List<IA> liste_ia2; //Liste secondaire, utilisé pour nettoyer la mémoire
+        public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
+        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste secondaire, utilisé pour nettoyer la mémoire
         Projectile balle;
         IA ia;
         PhysicsEngine map_physique;
         //int compteur = 0;
-        private Rectangle futur_rectangle;
+        private Rectangle futur_rectangle;//Rectangle utilisé por stocké des donnés
         int compteur_2 = 0;
         Random rand = new Random();
         Sound moteur_son = new Sound();
@@ -109,6 +109,7 @@ namespace Sunday_Bloody_Sunday
             }
             joueur.actionjoueur = ""; // "Remet à zéros" les actions du joueurs
         }
+        //En fonction ds actions du héros, les vérifie et les appliquent aux différents moteurs.
 
         public bool collision_entite_hero(Player joueur)
         {
@@ -118,11 +119,12 @@ namespace Sunday_Bloody_Sunday
             {
                 if (test)
                 {
-                    test = !futur_rectangle.Intersects(ia.rectangle());
+                    test = !futur_rectangle.Intersects(ia.rectangle());//Teste l'intersection entre un héros (parametre) et les IA(foreach)a l'aide de réctangle
                 }
             }
             return test;
         }
+        //Gère la collision entre le héros et les Ia lors de son déplacement
 
         //Verifie la possibilite des actions de l'IA
         public void action_ia(IA ia)
@@ -174,19 +176,20 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((test) && !(ia1.est_update))
                 {
-                    test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/());
+                    test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/());//Teste l'intersection entre une IA (parametre) et les autres (foreach)a l'aide de réctangle
                 }
             }
             foreach (Player joueur in joueurs)
             {
                 if (test)
                 {
-                    test = !futur_rectangle.Intersects(joueur.rectangle());
+                    test = !futur_rectangle.Intersects(joueur.rectangle());//Teste l'intersection entre une IA (parametre) et les héros (foreach)a l'aide de réctangle
                 }
             }
 
             return test;
         }
+        //Ces deux actions sont similaires à celles du héro
 
         //Gere le deplacement de l'ia
         public void pathfing(ref string action, Player joueur)
@@ -386,20 +389,21 @@ namespace Sunday_Bloody_Sunday
             }
 
         }
+        //Pathfinding, a modifier
 
         //Gere le raffraichissement de la liste d'ia
         public void update_ia()
         {
-            foreach (IA ia in liste_ia)
+            foreach (IA ia in liste_ia)//Pour chaque IA de la liste
             {
                 if (ia.Health > 0)
                 {
-                    ia.est_update = true;
+                    ia.est_update = true;//Précise que l'on travaille sur la liste
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
                     Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Ressources.Player1);
-                    Vector2 vector_joueur = new Vector2();
+                    Vector2 vector_joueur = new Vector2();                    
                     foreach (Player joueur in joueurs)
                     {
                         joueur_cible = joueur;
@@ -418,18 +422,19 @@ namespace Sunday_Bloody_Sunday
                             joueur_cible = joueur;
                         }
                     }
+                    //L'ensemble des commandes précédentes défini quelle héros est la cible, ici le plus proche
 
-                    pathfing(ref this.ia.action, joueur_cible);
-                    action_ia(ia);
-                    this.ia.Update();
-                    ia.est_update = false;
+                    pathfing(ref this.ia.action, joueur_cible);//Trouve quelle acrtion va faire l'ia
+                    action_ia(ia);//Verifie la possibilité de réalisation des actions
+                    this.ia.Update();//Met à jour l'ia
+                    ia.est_update = false;//Désactive l'update de l'ia
                 }
                 else
                 {
-                    ia.en_vie = false;
+                    ia.en_vie = false; // Tu l'ia
                 }
             }
-            if (compteur_2 > 180 && etape1)
+            if (compteur_2 > 180 && etape1) //Ajout de nouvelles IA a la map
             {
                 int spawn = rand.Next(3);
                 if (spawn == 00)
@@ -501,13 +506,13 @@ namespace Sunday_Bloody_Sunday
             }
             compteur_2++;
 
-            liste_ia2 = new List<IA>();
+            liste_ia2 = new List<IA>();//Recopie la liste d'ia encore en vie dans une nouvelle liste
             foreach (IA ia in liste_ia)
             {
                 if (ia.en_vie)
                     liste_ia2.Add(ia);
             }
-            liste_ia = liste_ia2;
+            liste_ia = liste_ia2;//Vide la liste secondaire dans la premiere
         }
 
         public void collision_balle(Projectile balle)
@@ -520,21 +525,21 @@ namespace Sunday_Bloody_Sunday
             {
                 balle.isVisible = false;
             }
-        }
+        }//S'occupe de la collision des balles avec les murs
 
-        public void collision_entite_balle(Projectile balle)
+        public void collision_entite_balle(Projectile balle)//S'occupe de la collision des balles avec les IA
         {
             futur_rectangle = balle.rectangle();
             bool test = true;
-            foreach (IA ia1 in liste_ia)
+            foreach (IA ia1 in liste_ia)//Vérifie pour chaque IA
             {
-                if ((test))
+                if ((test))//Permet de casser la boucle dès qu'une IA est touché
                 {
-                    if (futur_rectangle.Intersects(ia1.rectangle()))
+                    if (futur_rectangle.Intersects(ia1.rectangle()))//Si la HitBox du projectile est en contacte avec celle de l'ia, alors (...)
                     {
-                        balle.isVisible = false;
-                        test = false;
-                        ia1.Health = ia1.Health - balle.Damage;
+                        balle.isVisible = false;//La balle n'existe plus
+                        test = false;//On casse le si
+                        ia1.Health = ia1.Health - balle.Damage;//On applique les dégats à l'ia
 
                     }
                 }
@@ -555,13 +560,13 @@ namespace Sunday_Bloody_Sunday
                 while ((balle.init < balle.projectileMoveSpeed) && balle.isVisible)
                 {
 
-                    collision_entite_balle(balle);
-                    collision_balle(balle);
-                    balle.init++;
+                    collision_entite_balle(balle);//Collision entres balles et entité
+                    collision_balle(balle);//Collision entre balle et mur
+                    balle.init++;//On bouge la balle d'une case
                 }
             }
 
-            foreach (Player joueur in joueurs)
+            foreach (Player joueur in joueurs)//On ajoute des Balles en fonction des touches et du reffroidissement
             {
                 if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroiddissement >= 12 && etape1)
                 {
@@ -575,7 +580,7 @@ namespace Sunday_Bloody_Sunday
                 joueur.refroiddissement++;
             }
 
-            liste_projectile2 = new List<Projectile>();
+            liste_projectile2 = new List<Projectile>();//On nettoie la liste, comme avec les IA
             foreach (Projectile balle in liste_projectile)
             {
                 if (balle.isVisible)
