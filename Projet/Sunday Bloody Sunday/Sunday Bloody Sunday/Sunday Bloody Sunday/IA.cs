@@ -37,7 +37,6 @@ namespace Sunday_Bloody_Sunday
         public int Health;
         // The amount of damage the IA can inflict to the Player
         static public int Damage;
-        Random randomPosition = new Random();
         public bool est_update = false;
         public bool en_vie = true;
         Texture2D texture;
@@ -124,7 +123,7 @@ namespace Sunday_Bloody_Sunday
             if (actionIA == "right")
                 return (this.IATexture.X + this.speed + this.IATexture.Width + 1);
             else
-                return (this.IATexture.X + +this.IATexture.Width + 1);
+                return (this.IATexture.X + this.IATexture.Width + 1);
         }
 
         // Renvois la futur position Y de l'IA en cas d'un déplacement, à l'aide de l'action qui lui est attribuée
@@ -178,12 +177,7 @@ namespace Sunday_Bloody_Sunday
         {
             return new Rectangle(futur_position_X_gauche(), futur_position_Y_haut(), futur_position_X_droite() - futur_position_X_gauche(), futur_position_Y_bas() - futur_position_Y_haut());
         }
-        /*
-        public Rectangle rectangle_ia()
-        {
-            return new Rectangle(futur_position_X_gauche() + 3, futur_position_Y_haut()-10, futur_position_X_droite() - futur_position_X_gauche()-3, futur_position_Y_bas() - futur_position_Y_haut());
-        }
-        */
+
 
         // UPDATE & DRAW
         public void Update()
@@ -203,7 +197,6 @@ namespace Sunday_Bloody_Sunday
                     this.Effect = SpriteEffects.FlipHorizontally;
                     break;
             }
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

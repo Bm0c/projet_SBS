@@ -15,25 +15,24 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         Rectangle MapTexture;
-        //Test Items
         public List<Items> liste_HealthBox;
         public List<Player> joueurs = new List<Player>();
         public List<IA> liste_ia; //Liste des IA
-        public List<IA> liste_ia2; //Liste secondaire, utilisé pour nettoyer la mémoire
+        public List<IA> liste_ia2; //Liste secondaire, utilisée pour nettoyer la mémoire
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
-        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste secondaire, utilisé pour nettoyer la mémoire
+        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste secondaire, utilisée pour nettoyer la mémoire
         Projectile balle;
         IA ia;
         PhysicsEngine map_physique;
         //int compteur = 0;
-        private Rectangle futur_rectangle;//Rectangle utilisé por stocké des donnés
+        private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
         int compteur_2 = 0;
         Random rand = new Random();
         Sound moteur_son = new Sound();
-        public bool menu = true;
-
+        //public bool menu = true;
         bool etape1 = false;
         bool etape2 = false;
+
 
         // CONSTRUCTOR
         public Map(PhysicsEngine map_physique)
@@ -60,14 +59,13 @@ namespace Sunday_Bloody_Sunday
         {
             get { return MapTexture.Width; }
         }
-
         // Get the height of the map
         public int Height
         {
             get { return MapTexture.Height; }
         }
 
-        //Verifie la possibilite des actions du heros
+        //Verifie la possibilité des actions du héros
         public void action_hero(Player joueur)
         {
             joueur.maj_direction(joueur.actionjoueur);
@@ -107,9 +105,9 @@ namespace Sunday_Bloody_Sunday
 
 
             }
-            joueur.actionjoueur = ""; // "Remet à zéros" les actions du joueurs
+            joueur.actionjoueur = ""; //"Remet à zéros" les actions du joueurs
         }
-        //En fonction ds actions du héros, les vérifie et les appliquent aux différents moteurs.
+        //En fonction des actions du héros, les vérifie et les appliquent aux différents moteurs.
 
         public bool collision_entite_hero(Player joueur)
         {
@@ -119,14 +117,14 @@ namespace Sunday_Bloody_Sunday
             {
                 if (test)
                 {
-                    test = !futur_rectangle.Intersects(ia.rectangle());//Teste l'intersection entre un héros (parametre) et les IA(foreach)a l'aide de réctangle
+                    test = !futur_rectangle.Intersects(ia.rectangle()); //Teste l'intersection entre un héros (parametre) et les IA(foreach) à l'aide de rectangle
                 }
             }
             return test;
         }
-        //Gère la collision entre le héros et les Ia lors de son déplacement
+        //Gère la collision entre le héros et les IA lors de son déplacement
 
-        //Verifie la possibilite des actions de l'IA
+        //Verifie la possibilité des actions de l'IA
         public void action_ia(IA ia)
         {
             if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
@@ -165,7 +163,7 @@ namespace Sunday_Bloody_Sunday
 
 
             }
-            ia.actionIA = ""; // "Remet à zéros" les actions du joueurs
+            ia.actionIA = ""; //"Remet à zéros" les actions de l'IA
         }
 
         public bool collision_entite_ia(IA ia)
@@ -176,22 +174,22 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((test) && !(ia1.est_update))
                 {
-                    test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/());//Teste l'intersection entre une IA (parametre) et les autres (foreach)a l'aide de réctangle
+                    test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/()); //Teste l'intersection entre une IA (parametre) et les autres (foreach) à l'aide de rectangle
                 }
             }
             foreach (Player joueur in joueurs)
             {
                 if (test)
                 {
-                    test = !futur_rectangle.Intersects(joueur.rectangle());//Teste l'intersection entre une IA (parametre) et les héros (foreach)a l'aide de réctangle
+                    test = !futur_rectangle.Intersects(joueur.rectangle()); //Teste l'intersection entre une IA (parametre) et les héros (foreach) à l'aide de rectangle
                 }
             }
 
             return test;
         }
-        //Ces deux actions sont similaires à celles du héro
+        //Ces deux actions sont similaires à celles du héros
 
-        //Gere le deplacement de l'ia
+        //Gère le deplacement de l'ia
         public void pathfing(ref string action, Player joueur)
         {
             if (joueur.PlayerTexture.X < this.ia.IATexture.X)
@@ -221,7 +219,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -236,7 +233,6 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                      && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                 {
-
                 }
                 else
                 {
@@ -247,7 +243,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                         {
-
                         }
                         else
                         {
@@ -260,7 +255,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -276,7 +270,6 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                  && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                 {
-
                 }
                 else
                 {
@@ -286,7 +279,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -299,7 +291,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -314,7 +305,6 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                  && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                 {
-
                 }
                 else
                 {
@@ -325,7 +315,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                         {
-
                         }
                         else
                         {
@@ -338,7 +327,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -354,7 +342,6 @@ namespace Sunday_Bloody_Sunday
                 if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                  && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                 {
-
                 }
                 else
                 {
@@ -364,7 +351,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -377,7 +363,6 @@ namespace Sunday_Bloody_Sunday
                         if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                              && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                         {
-
                         }
                         else
                         {
@@ -387,18 +372,17 @@ namespace Sunday_Bloody_Sunday
 
                 }
             }
-
         }
-        //Pathfinding, a modifier
+        //Pathfinding, à modifier
 
-        //Gere le raffraichissement de la liste d'ia
+        //Gère le raffraichissement de la liste d'IA
         public void update_ia()
         {
-            foreach (IA ia in liste_ia)//Pour chaque IA de la liste
+            foreach (IA ia in liste_ia) //Pour chaque IA de la liste
             {
                 if (ia.Health > 0)
                 {
-                    ia.est_update = true;//Précise que l'on travaille sur la liste
+                    ia.est_update = true; //Précise que l'on travaille sur la liste
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
@@ -422,22 +406,22 @@ namespace Sunday_Bloody_Sunday
                             joueur_cible = joueur;
                         }
                     }
-                    //L'ensemble des commandes précédentes défini quelle héros est la cible, ici le plus proche
+                    //L'ensemble des commandes précédentes définissent quel héros est la cible, ici le plus proche
 
-                    pathfing(ref this.ia.action, joueur_cible);//Trouve quelle acrtion va faire l'ia
-                    action_ia(ia);//Verifie la possibilité de réalisation des actions
-                    this.ia.Update();//Met à jour l'ia
-                    ia.est_update = false;//Désactive l'update de l'ia
+                    pathfing(ref this.ia.action, joueur_cible); //Trouve quelle action va faire l'IA
+                    action_ia(ia); //Verifie la possibilité de réalisation des actions
+                    this.ia.Update(); //Met à jour l'IA
+                    ia.est_update = false; //Désactive l'update de l'IA
                 }
                 else
                 {
-                    ia.en_vie = false; // Tu l'ia
+                    ia.en_vie = false; //Tue l'IA
                 }
             }
             if (compteur_2 > 180 && etape1) //Ajout de nouvelles IA a la map
             {
                 int spawn = rand.Next(3);
-                if (spawn == 00)
+                if (spawn == 0)
                 {
                     int texture = rand.Next(2);
                     if (texture == 0)
@@ -448,7 +432,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste_ia.Add(new IA(144, 48, Ressources.IA2));
                     }
-                    int sons = rand.Next(2);
+                    int sons = rand.Next(1);
                     if (sons == 0)
                     {
                         moteur_son.PlayPika();
@@ -470,7 +454,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste_ia.Add(new IA(0, 272, Ressources.IA2));
                     }
-                    int sons = rand.Next(2);
+                    int sons = rand.Next(1);
                     if (sons == 0)
                     {
                         moteur_son.PlayPika();
@@ -491,7 +475,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste_ia.Add(new IA(400, 470, Ressources.IA2));
                     }
-                    int sons = rand.Next(2);
+                    int sons = rand.Next(1);
                     if (sons == 0)
                     {
                         moteur_son.PlayPika();
@@ -506,13 +490,13 @@ namespace Sunday_Bloody_Sunday
             }
             compteur_2++;
 
-            liste_ia2 = new List<IA>();//Recopie la liste d'ia encore en vie dans une nouvelle liste
+            liste_ia2 = new List<IA>(); //Recopie la liste d'IA encore en vie dans une nouvelle liste
             foreach (IA ia in liste_ia)
             {
                 if (ia.en_vie)
                     liste_ia2.Add(ia);
             }
-            liste_ia = liste_ia2;//Vide la liste secondaire dans la premiere
+            liste_ia = liste_ia2; //Vide la liste secondaire dans la premiere
         }
 
         public void collision_balle(Projectile balle)
@@ -525,21 +509,21 @@ namespace Sunday_Bloody_Sunday
             {
                 balle.isVisible = false;
             }
-        }//S'occupe de la collision des balles avec les murs
+        } //S'occupe de la collision des balles avec les murs
 
-        public void collision_entite_balle(Projectile balle)//S'occupe de la collision des balles avec les IA
+        public void collision_entite_balle(Projectile balle) //S'occupe de la collision des balles avec les IA
         {
             futur_rectangle = balle.rectangle();
             bool test = true;
-            foreach (IA ia1 in liste_ia)//Vérifie pour chaque IA
+            foreach (IA ia1 in liste_ia) //Vérifie pour chaque IA
             {
-                if ((test))//Permet de casser la boucle dès qu'une IA est touché
+                if ((test)) //Permet de casser la boucle dès qu'une IA est touché
                 {
-                    if (futur_rectangle.Intersects(ia1.rectangle()))//Si la HitBox du projectile est en contacte avec celle de l'ia, alors (...)
+                    if (futur_rectangle.Intersects(ia1.rectangle())) //Si la HitBox du projectile est en contact avec celle de l'IA, alors (...)
                     {
-                        balle.isVisible = false;//La balle n'existe plus
-                        test = false;//On casse le si
-                        ia1.Health = ia1.Health - balle.Damage;//On applique les dégats à l'ia
+                        balle.isVisible = false; //La balle n'existe plus
+                        test = false; //On casse le si
+                        ia1.Health = ia1.Health - balle.Damage; //On applique les dégats à l'IA
 
                     }
                 }
@@ -560,27 +544,27 @@ namespace Sunday_Bloody_Sunday
                 while ((balle.init < balle.projectileMoveSpeed) && balle.isVisible)
                 {
 
-                    collision_entite_balle(balle);//Collision entres balles et entité
-                    collision_balle(balle);//Collision entre balle et mur
-                    balle.init++;//On bouge la balle d'une case
+                    collision_entite_balle(balle); //Collision entres balles et entité
+                    collision_balle(balle); //Collision entre balle et mur
+                    balle.init++; //On bouge la balle d'une case
                 }
             }
 
-            foreach (Player joueur in joueurs)//On ajoute des Balles en fonction des touches et du reffroidissement
+            foreach (Player joueur in joueurs) //On ajoute des balles en fonction des touches et du reffroidissement
             {
-                if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroiddissement >= 12 && etape1)
+                if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroidissement >= 12 && etape1)
                 {
                     balle = new Projectile(Ressources.Projectile, (int)joueur.centre().X, (int)joueur.centre().Y, 10, joueur.Direction, 50);
                     liste_projectile.Add(balle);
-                    joueur.refroiddissement = 0;
+                    joueur.refroidissement = 0;
                     joueur.Ammo = joueur.Ammo - 1;
                     moteur_son.PlayTire();
 
                 }
-                joueur.refroiddissement++;
+                joueur.refroidissement++;
             }
 
-            liste_projectile2 = new List<Projectile>();//On nettoie la liste, comme avec les IA
+            liste_projectile2 = new List<Projectile>(); //On nettoie la liste, comme avec les IA
             foreach (Projectile balle in liste_projectile)
             {
                 if (balle.isVisible)
@@ -589,7 +573,7 @@ namespace Sunday_Bloody_Sunday
             liste_projectile = liste_projectile2;
         }
 
-        //Gere l'affichage de la liste d'ia
+        //Gère l'affichage de la liste d'IA
         public void swap(ref IA a, ref IA b)
         {
             IA c = a;

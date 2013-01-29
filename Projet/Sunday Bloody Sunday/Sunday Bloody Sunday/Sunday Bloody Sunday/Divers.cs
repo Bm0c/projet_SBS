@@ -17,6 +17,7 @@ namespace Sunday_Bloody_Sunday
         static private int widthScreen = 800;
         static private int heightScreen = 480;
 
+        //METHODS
         static public int WidthScreen
         { get { return widthScreen; } }
 

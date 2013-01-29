@@ -14,7 +14,7 @@ namespace Sunday_Bloody_Sunday
 {
     public class PhysicsEngine
     {
-        // Tableau des booléens, le 100*100 est purement arbitraire, il devrait correspondre à la longueure/largeure de la map
+        // Tableau des booléens, le 100*100 est purement arbitraire, il devrait correspondre à la longueur/largeur de la map
         private bool[,] liste = new bool[100, 100];
 
         public PhysicsEngine()
@@ -31,7 +31,7 @@ namespace Sunday_Bloody_Sunday
                 while (ligne != null)
                 { // Début de travaille sur le lecteur de fichier, don't toutch !
                     int i1 = 0;
-                    foreach ( char bool_ in ligne)                                          
+                    foreach (char bool_ in ligne)                                          
                     {
                         if (ligne[i1] == '0') // la zone est franchissable
                         {
@@ -55,7 +55,7 @@ namespace Sunday_Bloody_Sunday
         // Teste si la zone est franchissable (false) ou infranchissable (true) à l'aide du tableau de bool, si x <= 0 ou y <= 0, on est hors de la map
         public bool mur(int x, int y)
         {
-            if ((x <= 0) || (y <= 0)||(x >= 800) ||(y >=480))
+            if ((x <= 0) || (y <= 0) || (x >= 800) ||(y >=480))
                 return true;
             else
                 return this.liste[x / 16, y / 16]; 
