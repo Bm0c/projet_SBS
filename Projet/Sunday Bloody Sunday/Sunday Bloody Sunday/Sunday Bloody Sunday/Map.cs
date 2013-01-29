@@ -17,6 +17,7 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public List<Items> liste_HealthBox;
         public List<Player> joueurs = new List<Player>();
+        public List<Player> joueurs_2 = new List<Player>();
         public List<IA> liste_ia; //Liste des IA
         public List<IA> liste_ia2; //Liste secondaire, utilisée pour nettoyer la mémoire
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
@@ -32,6 +33,7 @@ namespace Sunday_Bloody_Sunday
         //public bool menu = true;
         bool etape1 = false;
         bool etape2 = false;
+        public bool game_over = false;
 
 
         // CONSTRUCTOR
@@ -375,6 +377,22 @@ namespace Sunday_Bloody_Sunday
         }
         //Pathfinding, à modifier
 
+        public void attaque_ia(IA ia)
+        {
+            foreach (Player joueur in joueurs)
+            {
+                if (ia.couldown >= 60)
+                {
+                    if (ia.Aire_attaque.Intersects(joueur.PlayerTexture))
+                    {
+                        joueur.Health = joueur.Health - 10;
+                        ia.couldown = 0;
+                    }
+                }
+            }
+            ia.couldown++;
+        }
+
         //Gère le raffraichissement de la liste d'IA
         public void update_ia()
         {
@@ -412,6 +430,7 @@ namespace Sunday_Bloody_Sunday
                     action_ia(ia); //Verifie la possibilité de réalisation des actions
                     this.ia.Update(); //Met à jour l'IA
                     ia.est_update = false; //Désactive l'update de l'IA
+                    attaque_ia(ia);
                 }
                 else
                 {
@@ -649,11 +668,18 @@ namespace Sunday_Bloody_Sunday
         public void Update(MouseState mouse, KeyboardState keyboard)
         {
             // Update l'objet joueur contenu par la map
+            
             foreach (Player joueur in joueurs)
             {
                 joueur.Update(mouse, keyboard);
                 action_hero(joueur);
+                if (joueur.Health > 0)
+                {
+                    joueurs_2.Add(joueur);
+                }
             }
+            joueurs = joueurs_2;
+            joueurs_2 = new List<Player>();
             update_ia();
             update_projectiles(keyboard);
 
@@ -668,8 +694,10 @@ namespace Sunday_Bloody_Sunday
                 this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));/*
                 this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
-
-
+            if (joueurs.Count == 0) //Si il n'y a plus de joueurs
+            {
+                game_over = true;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

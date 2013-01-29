@@ -257,7 +257,7 @@ namespace Sunday_Bloody_Sunday
             {
                 Main.Update(Mouse.GetState(), Keyboard.GetState());
 
-                if (Player.Health == 0)
+                if (Main.MainMap.game_over)
                 {
                     ecran = Screen.game_over;
                     menuMain = new Menu(Menu.MenuType.GameOver);

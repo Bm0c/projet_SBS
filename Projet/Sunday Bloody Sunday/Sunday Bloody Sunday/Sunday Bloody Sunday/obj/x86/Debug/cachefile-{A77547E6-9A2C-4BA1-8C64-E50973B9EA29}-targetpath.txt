@@ -1,8 +1,3 @@
-Content\tire.xnb
-Content\pikachu001.xnb
-Content\pikachu002.xnb
-Content\elevator_music.xnb
-Content\elevator_music.wma
 Content\gameFont.xnb
 Content\explosion.xnb
 Content\Chara.xnb
@@ -15,9 +10,14 @@ Content\balle.xnb
 Content\Chara2.xnb
 Content\Chara3.xnb
 Content\pikachu_2.xnb
-Content\zombie_groan.xnb
-Content\lose_effect.xnb
 Content\GameOver.xnb
+Content\health_box.xnb
+Content\zombie_groan.xnb
+Content\tire.xnb
+Content\pikachu001.xnb
+Content\pikachu002.xnb
+Content\elevator_music.xnb
+Content\elevator_music.wma
+Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
-Content\health_box.xnb

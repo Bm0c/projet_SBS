@@ -20,6 +20,7 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         public Rectangle IATexture;
+        public Rectangle Aire_attaque;
         DirectionIA Direction;
         SpriteEffects Effect;
         // Relative Position
@@ -40,6 +41,7 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
         Texture2D texture;
+        public int couldown = 60;//Temps d'attente entre chaque attaque.
 
 
         // CONSTRUCTOR
@@ -58,6 +60,7 @@ namespace Sunday_Bloody_Sunday
             IA.Damage = 10;
             this.action = "";
             this.texture = texture;
+            this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 2, IATexture.Height + 2);
         }
 
 
@@ -170,6 +173,7 @@ namespace Sunday_Bloody_Sunday
                 this.Direction = DirectionIA.Left;
                 this.Animate();
             }
+            this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 2, IATexture.Height + 2);
         }
 
         //Renvois le futur rectangle de l'IA
