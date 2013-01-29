@@ -14,14 +14,12 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Projectile, /*ExplosionParticule,*/ IA1, IA2, mHealthBox;
+        public static Texture2D Player1, Player2, Player3, Map, Projectile, /*ExplosionParticule,*/ IA1, IA2, mHealthBox, mTitleScreen, mGameOverScreen;
         // HUD
         public static SpriteFont HUD;
-        // Sound
+        // Sounds
         public static Song GamePlayMusic, MenuMusic;
-        public static SoundEffect mTire, mPika, mPika2, mEffect;
-        // GameTitle
-        public static Texture2D mTitleScreen;
+        public static SoundEffect mTire, mPika, mPika2, mIntroEffect, mLoseEffect;
 
 
         // LOAD CONTENTS
@@ -36,14 +34,16 @@ namespace Sunday_Bloody_Sunday
             IA1 = content.Load<Texture2D>("pikachu");
             IA2 = content.Load<Texture2D>("pikachu_2");
             HUD = content.Load<SpriteFont>("gameFont");
-            GamePlayMusic = content.Load<Song>("GamePlayMusic");
+            GamePlayMusic = content.Load<Song>("gameplay_music");
             MenuMusic = content.Load<Song>("elevator_music");
-            mEffect = content.Load<SoundEffect>("zombie_groan");
+            mIntroEffect = content.Load<SoundEffect>("zombie_groan");
+            mLoseEffect = content.Load<SoundEffect>("lose_effect");
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");
             mPika2 = content.Load<SoundEffect>("pikachu002");
-            mHealthBox = content.Load<Texture2D>("HealthBox");
+            mHealthBox = content.Load<Texture2D>("health_box");
             mTitleScreen = content.Load<Texture2D>("Title");
+            mGameOverScreen = content.Load<Texture2D>("GameOver");
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum MenuType
         {
-            MainMenu, InGameMenu, MenuOptions, MenuSettings
+            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver
         };
 
 
@@ -42,13 +42,13 @@ namespace Sunday_Bloody_Sunday
                     button_3 = new MenuButton(MenuButton.ButtonType.Quit, new Rectangle(50, 350, 100, 50));
                     break;
 
-                case MenuType.InGameMenu:
+                case MenuType.PauseMenu:
                     button_1 = new MenuButton(MenuButton.ButtonType.Resume, new Rectangle(Divers.WidthScreen / 2 - 50, 100, 100, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.Option, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 100, 50));
                     button_3 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
                     break;
 
-                case MenuType.MenuOptions:
+                case MenuType.MenuPreferences:
                     button_1 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 100, 50, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 100, 50, 50));
                     button_3 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 50, 50));
@@ -57,13 +57,20 @@ namespace Sunday_Bloody_Sunday
                     button_6 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
                     break;
 
-                case MenuType.MenuSettings:
+                case MenuType.MenuGeneralSettings:
                     button_1 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 100, 50, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 100, 50, 50));
                     button_3 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 50, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 200, 50, 50));
                     button_5 = new MenuButton(MenuButton.ButtonType.Mute, new Rectangle(Divers.WidthScreen / 2 + 200, 200, 100, 50));
                     button_6 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
+                    break;
+
+                case MenuType.GameOver:
+                    if (MenuButton.langage == "French")
+                        button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(Divers.WidthScreen / 2 - 100, 20, 100, 50));
+                    else
+                        button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(Divers.WidthScreen / 2 - 50, 20, 100, 50));
                     break;
 
                 default:
@@ -76,12 +83,18 @@ namespace Sunday_Bloody_Sunday
         public int Update(MouseState mouse, KeyboardState keyboard)
         {
             bool b1 = button_1.Update(mouse);
-            bool b2 = button_2.Update(mouse);
-            bool b3 = button_3.Update(mouse);
+            /*bool b2 = button_2.Update(mouse);
+            bool b3 = button_3.Update(mouse);*/
+            bool b2 = false;
+            bool b3 = false;
             bool b4 = false;
             bool b5 = false;
             bool b6 = false;
 
+            if (button_2 != null)
+                b2 = button_2.Update(mouse);
+            if (button_3 != null)
+                b3 = button_3.Update(mouse);
             if (button_4 != null)
                 b4 = button_4.Update(mouse);
             if (button_5 != null)
@@ -108,9 +121,11 @@ namespace Sunday_Bloody_Sunday
         public void Draw(SpriteBatch spriteBatch)
         {
             button_1.DrawButton(spriteBatch);
-            button_2.DrawButton(spriteBatch);
-            button_3.DrawButton(spriteBatch);
 
+            if (button_2 != null)
+            button_2.DrawButton(spriteBatch);
+            if (button_3 != null)
+            button_3.DrawButton(spriteBatch);
             if (button_4 != null)
                 button_4.DrawButton(spriteBatch);
             if (button_5 != null)
@@ -118,7 +133,7 @@ namespace Sunday_Bloody_Sunday
             if (button_6 != null)
                 button_6.DrawButton(spriteBatch);
 
-            if (type == MenuType.MenuSettings)
+            if (type == MenuType.MenuGeneralSettings)
             {
                 string langue;
                 string son;
@@ -136,7 +151,7 @@ namespace Sunday_Bloody_Sunday
                 spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen / 2 - 350, 180), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 - 20, 180), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
             }
-            if (type == MenuType.MenuOptions)
+            if (type == MenuType.MenuPreferences)
             {
                 string langue;
                 string son;

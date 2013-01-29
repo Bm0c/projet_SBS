@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum ButtonType
         {
-            Play, Option, Quit, Resume, Back, More, Less, French, English, Mute/*, NormalScreen, FullScreen*/
+            Play, Option, Quit, Resume, Back, More, Less, French, English, Mute/*, NormalScreen, FullScreen*/, Restart
         };
 
 
@@ -25,7 +25,6 @@ namespace Sunday_Bloody_Sunday
         Rectangle rectangle;
         Rectangle rectangle_mouseCursor;
         static public string langage = "English";
-        int timer = 0;
 
 
         //CONSTRUCTOR
@@ -113,6 +112,14 @@ namespace Sunday_Bloody_Sunday
                     else
                         buttonMessage = "Full";
                     break;*/
+
+                case ButtonType.Restart:
+                    this.myButton = ButtonType.Restart;
+                    if (langage == "French")
+                        buttonMessage = "Recommencer";
+                    else
+                        buttonMessage = "Restart";
+                    break;
 
                 default:
                     this.myButton = ButtonType.Play;

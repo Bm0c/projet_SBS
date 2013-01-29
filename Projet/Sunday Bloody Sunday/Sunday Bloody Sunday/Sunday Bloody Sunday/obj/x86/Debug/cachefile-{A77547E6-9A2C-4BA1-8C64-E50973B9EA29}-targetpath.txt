@@ -1,5 +1,3 @@
-Content\GamePlayMusic.xnb
-Content\GamePlayMusic.wma
 Content\tire.xnb
 Content\pikachu001.xnb
 Content\pikachu002.xnb
@@ -17,5 +15,9 @@ Content\balle.xnb
 Content\Chara2.xnb
 Content\Chara3.xnb
 Content\pikachu_2.xnb
-Content\HealthBox.xnb
 Content\zombie_groan.xnb
+Content\lose_effect.xnb
+Content\GameOver.xnb
+Content\gameplay_music.xnb
+Content\gameplay_music.wma
+Content\health_box.xnb

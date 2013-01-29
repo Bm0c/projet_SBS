@@ -17,6 +17,7 @@ namespace Sunday_Bloody_Sunday
         SoundEffect tire = Ressources.mTire;
         SoundEffect pika= Ressources.mPika;
         SoundEffect pika2 = Ressources.mPika2;
+        SoundEffect introEffect = Ressources.mIntroEffect;
 
 
         // METHODS

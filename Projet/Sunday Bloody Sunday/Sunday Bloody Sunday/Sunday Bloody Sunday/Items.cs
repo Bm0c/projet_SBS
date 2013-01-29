@@ -18,7 +18,7 @@ namespace Sunday_Bloody_Sunday
         Rectangle HealthBoxContainer;
         Vector2 HealthBoxPosition;
         Vector2 HealthOrigin;
-        float rotation;
+        //float rotation;
         public bool isVisible;
         public bool Used;
 
@@ -30,7 +30,7 @@ namespace Sunday_Bloody_Sunday
             this.HealthBoxContainer = new Rectangle(100, 100, 16, 16);
             this.HealthBoxPosition = new Vector2(HealthBoxContainer.X, HealthBoxContainer.Y);
             this.HealthOrigin = new Vector2(HealthBoxContainer.X / 2, HealthBoxContainer.Y / 2);
-            this.rotation = 42f;
+            //this.rotation = 42f;
             this.isVisible = true;                
             this.Used = false;
         }

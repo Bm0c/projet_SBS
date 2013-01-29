@@ -46,7 +46,7 @@ namespace Sunday_Bloody_Sunday
         public Keys Droite;
         public Keys Tire;
 
-        public int refroiddissement = 0;
+        public int refroidissement = 0;
 
         Texture2D texture;
 
@@ -135,7 +135,6 @@ namespace Sunday_Bloody_Sunday
         {
             get { return this.action; }
             set { this.action = value; }
-
         }
 
         // Renvois la futur position X du joueur en cas d'un déplacement, à l'aide de l'action qui lui est attribuée
@@ -232,6 +231,7 @@ namespace Sunday_Bloody_Sunday
         {
             return new Rectangle(futur_position_X_gauche(), futur_position_Y_haut(), futur_position_X_droite() - futur_position_X_gauche(), futur_position_Y_bas() - futur_position_Y_haut());
         }
+
 
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard)
