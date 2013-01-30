@@ -21,6 +21,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public HUD()
         {
+
         }
 
 
