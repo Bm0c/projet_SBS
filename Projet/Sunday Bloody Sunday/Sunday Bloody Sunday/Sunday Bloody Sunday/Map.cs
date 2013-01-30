@@ -15,22 +15,22 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         Rectangle MapTexture;
-        public List<Items> liste_HealthBox;
+        public List<Items> liste_box; //Liste Items
+        public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
         public List<Player> joueurs = new List<Player>();
         public List<Player> joueurs_2 = new List<Player>();
         public List<IA> liste_ia; //Liste des IA
-        public List<IA> liste_ia2; //Liste secondaire, utilisée pour nettoyer la mémoire
+        public List<IA> liste_ia2; //Liste IA secondaire, utilisée pour nettoyer la mémoire
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
-        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste secondaire, utilisée pour nettoyer la mémoire
+        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire, utilisée pour nettoyer la mémoire
         Projectile balle;
         IA ia;
+        Items healthBox, ammoBox;
         PhysicsEngine map_physique;
-        //int compteur = 0;
         private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
         int compteur_2 = 0;
         Random rand = new Random();
         Sound moteur_son = new Sound();
-        //public bool menu = true;
         bool etape1 = false;
         bool etape2 = false;
         public bool game_over = false;
@@ -51,7 +51,12 @@ namespace Sunday_Bloody_Sunday
             this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));/*
             this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
             this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
-            this.liste_HealthBox = new List<Items>();
+            this.liste_box = new List<Items>();
+            this.healthBox = new Items(100, 100);
+            this.ammoBox = new Items(150, 100);
+            this.liste_box.Add(this.healthBox);
+            this.liste_box.Add(this.ammoBox);
+            this.liste_box2 = new List<Items>();
         }
 
 
@@ -451,7 +456,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste_ia.Add(new IA(144, 48, Ressources.IA2));
                     }
-                    int sons = rand.Next(1);
+                    int sons = rand.Next(2);
                     if (sons == 0)
                     {
                         moteur_son.PlayPika();
@@ -473,7 +478,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste_ia.Add(new IA(0, 272, Ressources.IA2));
                     }
-                    int sons = rand.Next(1);
+                    int sons = rand.Next(2);
                     if (sons == 0)
                     {
                         moteur_son.PlayPika();
@@ -494,7 +499,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste_ia.Add(new IA(400, 470, Ressources.IA2));
                     }
-                    int sons = rand.Next(1);
+                    int sons = rand.Next(2);
                     if (sons == 0)
                     {
                         moteur_son.PlayPika();
@@ -569,7 +574,7 @@ namespace Sunday_Bloody_Sunday
                 }
             }
 
-            foreach (Player joueur in joueurs) //On ajoute des balles en fonction des touches et du reffroidissement
+            foreach (Player joueur in joueurs) //On ajoute des balles en fonction des touches et du refroidissement
             {
                 if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroidissement >= 12 && etape1)
                 {
@@ -590,6 +595,27 @@ namespace Sunday_Bloody_Sunday
                     liste_projectile2.Add(balle);
             }
             liste_projectile = liste_projectile2;
+        }
+
+        public void update_healthBox()
+        {
+            foreach (Player joueur in joueurs)
+            {
+                if (joueur.Health + 10 <= 100 && healthBox.Aire_heal.Intersects(joueur.PlayerTexture))
+                {
+                    joueur.Health = joueur.Health + healthBox.healPoints;
+                    healthBox.Used = true;
+                }
+                if (joueur.Ammo + 10 <= 100 && ammoBox.Aire_ammo.Intersects(joueur.PlayerTexture))
+                {
+                    joueur.Ammo = joueur.Ammo + ammoBox.ammoNumber;
+                    healthBox.Used = true;
+                }
+                if (healthBox.Used)
+                    healthBox.isVisible = false;
+                if (ammoBox.Used)
+                    ammoBox.isVisible = false;
+            }
         }
 
         //Gère l'affichage de la liste d'IA
@@ -681,6 +707,7 @@ namespace Sunday_Bloody_Sunday
             joueurs = joueurs_2;
             joueurs_2 = new List<Player>();
             update_ia();
+            update_healthBox();
             update_projectiles(keyboard);
 
             if (keyboard.IsKeyDown(Keys.D1) && !etape1)
@@ -708,6 +735,10 @@ namespace Sunday_Bloody_Sunday
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch);
+            }
+            foreach (Items box in liste_box)
+            {
+                box.Draw(spriteBatch);
             }
         }
     }

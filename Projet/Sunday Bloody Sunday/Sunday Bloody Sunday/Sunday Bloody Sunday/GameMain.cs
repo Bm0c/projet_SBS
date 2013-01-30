@@ -15,14 +15,13 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         public Map MainMap;
-        //ExplosionParticule MainExplosionParticule;
         HUD MainHUD;
+
 
         // CONCSTRUCTOR
         public GameMain()
         {
             this.MainMap = new Map(new PhysicsEngine());
-            //this.MainExplosionParticule = new ExplosionParticule();
             this.MainHUD = new HUD();
         }
 
@@ -40,7 +39,6 @@ namespace Sunday_Bloody_Sunday
         public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
             MainMap.Draw(spriteBatch);
-            //MainExplosionParticule.Draw(spriteBatch);
             MainHUD.Draw(spriteBatch, spriteFont);
         }
     }
