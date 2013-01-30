@@ -12,6 +12,7 @@ Content\Chara3.xnb
 Content\pikachu_2.xnb
 Content\GameOver.xnb
 Content\health_box.xnb
+Content\ammo_box.xnb
 Content\zombie_groan.xnb
 Content\tire.xnb
 Content\pikachu001.xnb
@@ -21,4 +22,3 @@ Content\elevator_music.wma
 Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
-Content\ammo_box.xnb

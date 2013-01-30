@@ -24,10 +24,10 @@ namespace Sunday_Bloody_Sunday
             public Rectangle AmmoBoxTexture;
             public int ammoNumber;
             public Rectangle Aire_ammo;
-
+            private string type;
 
         // CONSTRUCTOR
-        public Items(int x, int y)
+        public Items(int x, int y, string type)
         {
             this.HealthBoxTexture = new Rectangle(x, y, 16, 16);
             this.isVisible = true;
@@ -37,15 +37,39 @@ namespace Sunday_Bloody_Sunday
             this.ammoNumber = 10;
             this.Aire_heal = new Rectangle(HealthBoxTexture.X, HealthBoxTexture.Y, HealthBoxTexture.Width, HealthBoxTexture.Height);
             this.Aire_ammo = new Rectangle(AmmoBoxTexture.X, AmmoBoxTexture.Y, AmmoBoxTexture.Width, AmmoBoxTexture.Height);
+            this.type = type;
+
         }
 
 
         // METHODS
 
+        private void utilisation(Player joueur)
+        {
+            if (type == "health")
+            {
+                joueur.Health = joueur.Health + this.healPoints;
+            }
+            else if (type == "ammo")
+            {
+                joueur.Ammo = joueur.Ammo + this.ammoNumber;
+            }
+            else
+            {
+            }
+        }
 
         // UPDATE & DRAW
-        public void Update(KeyboardState keyboard)
+        public void Update(List<Player> joueurs)
         {
+            foreach (Player joueur in joueurs)
+            {
+                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible)
+                {
+                    utilisation(joueur);
+                    isVisible = false;
+                }
+            }
 
         }
 

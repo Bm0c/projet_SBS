@@ -52,8 +52,8 @@ namespace Sunday_Bloody_Sunday
             this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
             this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             this.liste_box = new List<Items>();
-            this.healthBox = new Items(100, 100);
-            this.ammoBox = new Items(150, 100);
+            this.healthBox = new Items(100, 100, "health");
+            this.ammoBox = new Items(150, 100, "ammo");
             this.liste_box.Add(this.healthBox);
             this.liste_box.Add(this.ammoBox);
             this.liste_box2 = new List<Items>();
@@ -599,23 +599,19 @@ namespace Sunday_Bloody_Sunday
 
         public void update_healthBox()
         {
-            foreach (Player joueur in joueurs)
+            foreach (Items box in liste_box)
             {
-                if (joueur.Health + 10 <= 100 && healthBox.Aire_heal.Intersects(joueur.PlayerTexture))
-                {
-                    joueur.Health = joueur.Health + healthBox.healPoints;
-                    healthBox.Used = true;
-                }
-                if (joueur.Ammo + 10 <= 100 && ammoBox.Aire_ammo.Intersects(joueur.PlayerTexture))
-                {
-                    joueur.Ammo = joueur.Ammo + ammoBox.ammoNumber;
-                    healthBox.Used = true;
-                }
-                if (healthBox.Used)
-                    healthBox.isVisible = false;
-                if (ammoBox.Used)
-                    ammoBox.isVisible = false;
+                box.Update(joueurs);
             }
+            liste_box2 = new List<Items>();
+            foreach (Items box in liste_box)
+            {
+                if (box.isVisible)
+                {
+                    liste_box2.Add(box);
+                }
+            }
+            liste_box = liste_box2;
         }
 
         //Gère l'affichage de la liste d'IA
@@ -731,14 +727,14 @@ namespace Sunday_Bloody_Sunday
         {
 
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
+            foreach (Items box in liste_box)
+            {
+                box.Draw(spriteBatch);
+            }
             draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch);
-            }
-            foreach (Items box in liste_box)
-            {
-                box.Draw(spriteBatch);
             }
         }
     }
