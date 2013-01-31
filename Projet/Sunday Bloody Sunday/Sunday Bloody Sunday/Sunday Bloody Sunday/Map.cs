@@ -17,6 +17,10 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
+        public List<Items> liste_barrel; //Liste barrel
+        public List<ExplosionParticule> explosions; //Liste particules d'explosion
+        public List<ExplosionParticule> explosions2; //Liste particules d'explosion secondaire, utilisée pour nettoyer la mémoire
+        public List<Items> liste_barrel2; //Liste barrel secondaire, utilisée pour nettoyer la mémoire
         public List<Player> joueurs = new List<Player>();
         public List<Player> joueurs_2 = new List<Player>();
         public List<IA> liste_ia; //Liste des IA
@@ -25,7 +29,7 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire, utilisée pour nettoyer la mémoire
         Projectile balle;
         IA ia;
-        Items healthBox, ammoBox;
+        Items healthBox, ammoBox, explosiveBox;
         PhysicsEngine map_physique;
         private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
         int compteur_2 = 0;
@@ -34,7 +38,7 @@ namespace Sunday_Bloody_Sunday
         bool etape1 = false;
         bool etape2 = false;
         public bool game_over = false;
-
+        GameTime gameTime = new GameTime();
 
         // CONSTRUCTOR
         public Map(PhysicsEngine map_physique)
@@ -51,12 +55,22 @@ namespace Sunday_Bloody_Sunday
             this.joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));/*
             this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
             this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
+
             this.liste_box = new List<Items>();
             this.healthBox = new Items(100, 100, "health");
             this.ammoBox = new Items(150, 100, "ammo");
+            //this.explosiveBox = new Items(200, 200, "explosion");
             this.liste_box.Add(this.healthBox);
             this.liste_box.Add(this.ammoBox);
+            //this.liste_box.Add(this.explosiveBox);
             this.liste_box2 = new List<Items>();
+
+            this.liste_barrel = new List<Items>();
+            this.explosiveBox = new Items(200, 100, "explosion");
+            this.liste_barrel.Add(this.explosiveBox);
+            this.liste_barrel2 = new List<Items>();
+
+            this.explosions = new List<ExplosionParticule>();
         }
 
 
@@ -454,7 +468,44 @@ namespace Sunday_Bloody_Sunday
             }
             liste_ia = liste_ia2; //Vide la liste secondaire dans la premiere
         }
+<<<<<<< HEAD
         
+=======
+
+        public void collision_balle(Projectile balle)
+        {
+            if (!(map_physique.mur(balle.futur_x(), balle.futur_y())))
+            {
+                balle.update_coordonne();
+            }
+            else
+            {
+                balle.isVisible = false;
+            }
+        } //S'occupe de la collision des balles avec les murs
+
+        public void collision_entite_balle(Projectile balle) //S'occupe de la collision des balles avec les IA
+        {
+            futur_rectangle = balle.rectangle();
+            bool test = true;
+            foreach (IA ia1 in liste_ia) //Vérifie pour chaque IA
+            {
+                if ((test)) //Permet de casser la boucle dès qu'une IA est touchée
+                {
+                    if (futur_rectangle.Intersects(ia1.rectangle())) //Si la HitBox du projectile est en contact avec celle de l'IA, alors (...)
+                    {
+                        balle.isVisible = false; //La balle n'existe plus
+                        test = false; //On casse le si
+                        ia1.Health = ia1.Health - balle.Damage; //On applique les dégats à l'IA
+
+                    }
+                }
+            }
+            /*
+            return test;*/
+        }
+
+>>>>>>> cface259d1581de5c63ed83e83fb76f6cce74b09
         public void update_projectiles(KeyboardState keyboard)
         {
             foreach (Projectile balle in liste_projectile)
@@ -467,8 +518,14 @@ namespace Sunday_Bloody_Sunday
                 while ((balle.init < balle.projectileMoveSpeed) && balle.isVisible)
                 {
 
+<<<<<<< HEAD
                     balle.collision_entite_balle(liste_ia); //Collision entres balles et entité
                     balle.collision_balle(map_physique); //Collision entre balle et mur
+=======
+                    collision_entite_balle(balle); //Collision entres balles et entité
+                    collision_barrel_balle(balle);
+                    collision_balle(balle); //Collision entre balle et mur
+>>>>>>> cface259d1581de5c63ed83e83fb76f6cce74b09
                     balle.init++; //On bouge la balle d'une case
                 }
             }
@@ -496,7 +553,7 @@ namespace Sunday_Bloody_Sunday
             liste_projectile = liste_projectile2;
         }
 
-        public void update_healthBox()
+        public void update_Box()
         {
             foreach (Items box in liste_box)
             {
@@ -511,6 +568,60 @@ namespace Sunday_Bloody_Sunday
                 }
             }
             liste_box = liste_box2;
+        }
+
+        public void collision_barrel_balle(Projectile balle) //S'occupe de la collision des balles avec les "barrels"
+        {
+            futur_rectangle = balle.rectangle();
+            bool test = true;
+            foreach (Items barrel in liste_barrel) //Vérifie pour chaque "barrels"
+            {
+                if ((test)) //Permet de casser la boucle dès qu'un "barrel" est touché
+                {
+                    if (futur_rectangle.Intersects(barrel.Aire_explosiveBox)) //Si la HitBox du projectile est en contact avec celle du "barrel", alors (...)
+                    {
+                        balle.isVisible = false; //La balle n'existe plus
+                        barrel.isVisible = false;
+                        test = false; //On casse le si
+                    }
+                }
+            }
+        }
+
+        public void update_Barrel()
+        {
+            foreach (Items barrel in liste_barrel)
+            {
+                barrel.Update(joueurs);
+            }
+            liste_barrel2 = new List<Items>();
+            foreach (Items barrel in liste_barrel)
+            {
+                if (barrel.isVisible)
+                {
+                    liste_barrel2.Add(barrel);
+                }
+            }
+            liste_barrel = liste_barrel2;
+        }
+
+        private void AddExplosion(Vector2 position)
+        {
+            ExplosionParticule explosion = new ExplosionParticule();
+            explosion.Initialize(Ressources.ExplosionParticule, position, 134, 134, 12, 45, Color.White, 1f, false);
+            explosions.Add(explosion);
+        }
+
+        private void update_explosions(GameTime gameTime)
+        {
+            for (int i = explosions.Count - 1; i >= 0; i--)
+            {
+                explosions[i].Update(gameTime);
+                if (explosions[i].Active == false)
+                {
+                    explosions.RemoveAt(i);
+                }
+            }
         }
 
         //Gère l'affichage de la liste d'IA
@@ -602,7 +713,9 @@ namespace Sunday_Bloody_Sunday
             joueurs = joueurs_2;
             joueurs_2 = new List<Player>();
             update_ia();
-            update_healthBox();
+            update_Box();
+            update_Barrel();
+            update_explosions(gameTime);
             update_projectiles(keyboard);
 
             if (keyboard.IsKeyDown(Keys.D1) && !etape1)
@@ -629,6 +742,14 @@ namespace Sunday_Bloody_Sunday
             foreach (Items box in liste_box)
             {
                 box.Draw(spriteBatch);
+            }
+            foreach (Items barrel in liste_barrel)
+            {
+                barrel.Draw(spriteBatch);
+            }
+            for (int i = 0; i < explosions.Count; i++)
+            {
+                explosions[i].Draw(spriteBatch);
             }
             draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)

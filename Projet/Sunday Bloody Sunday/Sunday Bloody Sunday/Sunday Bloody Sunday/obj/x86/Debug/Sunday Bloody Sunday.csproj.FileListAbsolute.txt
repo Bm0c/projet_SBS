@@ -77,7 +77,6 @@ C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bl
 C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu002.xnb
 C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.xnb
 C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Bitmap1.xnb
-C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pika_2.xnb
 C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\balle.xnb
 C:\Users\David\Documents\GitHub\projet_SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.wma
 C:\Users\Bmoc\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.xnb
@@ -102,3 +101,5 @@ C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloo
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.wma
 C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\ammo_box.xnb
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\ammo_box.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion_effect.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosive_box.xnb

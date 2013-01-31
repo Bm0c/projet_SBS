@@ -4,7 +4,6 @@ Content\Chara.xnb
 Content\Title.xnb
 Content\Map.xnb
 Content\Bitmap1.xnb
-Content\pika_2.xnb
 Content\pikachu.xnb
 Content\balle.xnb
 Content\Chara2.xnb
@@ -14,6 +13,7 @@ Content\GameOver.xnb
 Content\health_box.xnb
 Content\ammo_box.xnb
 Content\zombie_groan.xnb
+Content\explosion_effect.xnb
 Content\tire.xnb
 Content\pikachu001.xnb
 Content\pikachu002.xnb
@@ -22,3 +22,4 @@ Content\elevator_music.wma
 Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
+Content\explosive_box.xnb

@@ -23,6 +23,6 @@ namespace Sunday_Bloody_Sunday
         { get { return widthScreen; } }
 
         static public int HeightScreen
-        { get { return heightScreen; } }   
+        { get { return heightScreen; } }
     }
 }

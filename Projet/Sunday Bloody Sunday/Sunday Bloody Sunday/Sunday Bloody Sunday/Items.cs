@@ -19,12 +19,17 @@ namespace Sunday_Bloody_Sunday
             public bool isVisible;
             public bool Used;
             public int healPoints;
-            public Rectangle Aire_heal;
+            public Rectangle Aire_healthBox;
             //AMMOBOX
             public Rectangle AmmoBoxTexture;
             public int ammoNumber;
-            public Rectangle Aire_ammo;
+            public Rectangle Aire_ammoBox;
+            //EXPLOSIVEBOX
+            public Rectangle ExplosiveBoxTexture;
+            public int explosionDamage;
+            public Rectangle Aire_explosiveBox;
             private string type;
+
 
         // CONSTRUCTOR
         public Items(int x, int y, string type)
@@ -35,15 +40,17 @@ namespace Sunday_Bloody_Sunday
             this.healPoints = 10;
             this.AmmoBoxTexture = new Rectangle(x, y, 16, 16);
             this.ammoNumber = 10;
-            this.Aire_heal = new Rectangle(HealthBoxTexture.X, HealthBoxTexture.Y, HealthBoxTexture.Width, HealthBoxTexture.Height);
-            this.Aire_ammo = new Rectangle(AmmoBoxTexture.X, AmmoBoxTexture.Y, AmmoBoxTexture.Width, AmmoBoxTexture.Height);
+            this.ExplosiveBoxTexture = new Rectangle(x, y, 16, 16);
+            this.explosionDamage = 100;
+            this.Aire_healthBox = new Rectangle(HealthBoxTexture.X, HealthBoxTexture.Y, HealthBoxTexture.Width, HealthBoxTexture.Height);
+            this.Aire_ammoBox = new Rectangle(AmmoBoxTexture.X, AmmoBoxTexture.Y, AmmoBoxTexture.Width, AmmoBoxTexture.Height);
+            this.Aire_explosiveBox = new Rectangle(ExplosiveBoxTexture.X - 5, ExplosiveBoxTexture.Y - 5, ExplosiveBoxTexture.Width + 5, ExplosiveBoxTexture.Height + 5); 
             this.type = type;
 
         }
 
 
         // METHODS
-
         private void utilisation(Player joueur)
         {
             if (type == "health")
@@ -54,10 +61,15 @@ namespace Sunday_Bloody_Sunday
             {
                 joueur.Ammo = joueur.Ammo + this.ammoNumber;
             }
+            else if (type == "explosion")
+            {
+
+            }
             else
             {
             }
         }
+
 
         // UPDATE & DRAW
         public void Update(List<Player> joueurs)
@@ -82,6 +94,7 @@ namespace Sunday_Bloody_Sunday
                     break;
                 case ("ammo"):
                     spriteBatch.Draw(Ressources.mAmmoBox, AmmoBoxTexture, Color.White);
+<<<<<<< HEAD
                     break;/*
                 case ("explosion"):
                     spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
@@ -90,6 +103,15 @@ namespace Sunday_Bloody_Sunday
                     break;
             }
 
+=======
+                    break;
+                case ("explosion"):
+                    spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
+                    break;
+                default:
+                    break;
+            }
+>>>>>>> cface259d1581de5c63ed83e83fb76f6cce74b09
         }
     }
 }
