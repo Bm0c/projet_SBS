@@ -468,44 +468,7 @@ namespace Sunday_Bloody_Sunday
             }
             liste_ia = liste_ia2; //Vide la liste secondaire dans la premiere
         }
-<<<<<<< HEAD
-        
-=======
 
-        public void collision_balle(Projectile balle)
-        {
-            if (!(map_physique.mur(balle.futur_x(), balle.futur_y())))
-            {
-                balle.update_coordonne();
-            }
-            else
-            {
-                balle.isVisible = false;
-            }
-        } //S'occupe de la collision des balles avec les murs
-
-        public void collision_entite_balle(Projectile balle) //S'occupe de la collision des balles avec les IA
-        {
-            futur_rectangle = balle.rectangle();
-            bool test = true;
-            foreach (IA ia1 in liste_ia) //Vérifie pour chaque IA
-            {
-                if ((test)) //Permet de casser la boucle dès qu'une IA est touchée
-                {
-                    if (futur_rectangle.Intersects(ia1.rectangle())) //Si la HitBox du projectile est en contact avec celle de l'IA, alors (...)
-                    {
-                        balle.isVisible = false; //La balle n'existe plus
-                        test = false; //On casse le si
-                        ia1.Health = ia1.Health - balle.Damage; //On applique les dégats à l'IA
-
-                    }
-                }
-            }
-            /*
-            return test;*/
-        }
-
->>>>>>> cface259d1581de5c63ed83e83fb76f6cce74b09
         public void update_projectiles(KeyboardState keyboard)
         {
             foreach (Projectile balle in liste_projectile)
@@ -517,15 +480,9 @@ namespace Sunday_Bloody_Sunday
             {
                 while ((balle.init < balle.projectileMoveSpeed) && balle.isVisible)
                 {
-
-<<<<<<< HEAD
                     balle.collision_entite_balle(liste_ia); //Collision entres balles et entité
                     balle.collision_balle(map_physique); //Collision entre balle et mur
-=======
-                    collision_entite_balle(balle); //Collision entres balles et entité
                     collision_barrel_balle(balle);
-                    collision_balle(balle); //Collision entre balle et mur
->>>>>>> cface259d1581de5c63ed83e83fb76f6cce74b09
                     balle.init++; //On bouge la balle d'une case
                 }
             }

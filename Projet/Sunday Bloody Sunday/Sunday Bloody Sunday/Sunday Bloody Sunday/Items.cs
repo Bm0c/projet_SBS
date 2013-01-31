@@ -94,16 +94,6 @@ namespace Sunday_Bloody_Sunday
                     break;
                 case ("ammo"):
                     spriteBatch.Draw(Ressources.mAmmoBox, AmmoBoxTexture, Color.White);
-<<<<<<< HEAD
-                    break;/*
-                case ("explosion"):
-                    spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
-                    break;*/
-                default:
-                    break;
-            }
-
-=======
                     break;
                 case ("explosion"):
                     spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
@@ -111,7 +101,6 @@ namespace Sunday_Bloody_Sunday
                 default:
                     break;
             }
->>>>>>> cface259d1581de5c63ed83e83fb76f6cce74b09
         }
     }
 }
