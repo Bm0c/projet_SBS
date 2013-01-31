@@ -104,6 +104,37 @@ namespace Sunday_Bloody_Sunday
 
         }
 
+        public void collision_entite_balle(List<IA> liste_ia) //S'occupe de la collision des balles avec les IA
+        {
+            Rectangle rectangle_ = this.rectangle();
+            bool test = true;
+            foreach (IA ia1 in liste_ia) //Vérifie pour chaque IA
+            {
+                if ((test)) //Permet de casser la boucle dès qu'une IA est touché
+                {
+                    if (rectangle_.Intersects(ia1.rectangle())) //Si la HitBox du projectile est en contact avec celle de l'IA, alors (...)
+                    {
+                        this.isVisible = false; //La balle n'existe plus
+                        test = false; //On casse le si
+                        ia1.Health = ia1.Health - this.Damage; //On applique les dégats à l'IA
+
+                    }
+                }
+            }
+        }
+
+        public void collision_balle(PhysicsEngine map_physique)
+        {
+            if (!(map_physique.mur(this.futur_x(), this.futur_y())))
+            {
+                this.update_coordonne();
+            }
+            else
+            {
+                this.isVisible = false;
+            }
+        } //S'occupe de la collision des balles avec les murs
+
         public void update_coordonne()
         {
             if (this.direction == "right")

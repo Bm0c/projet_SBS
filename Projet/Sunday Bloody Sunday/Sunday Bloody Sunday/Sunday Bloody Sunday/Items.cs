@@ -75,8 +75,21 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.mHealthBox, HealthBoxTexture, Color.White);
-            spriteBatch.Draw(Ressources.mAmmoBox, AmmoBoxTexture, Color.White);
+            switch (type)
+            {
+                case ("health"):
+                    spriteBatch.Draw(Ressources.mHealthBox, HealthBoxTexture, Color.White);
+                    break;
+                case ("ammo"):
+                    spriteBatch.Draw(Ressources.mAmmoBox, AmmoBoxTexture, Color.White);
+                    break;/*
+                case ("explosion"):
+                    spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
+                    break;*/
+                default:
+                    break;
+            }
+
         }
     }
 }

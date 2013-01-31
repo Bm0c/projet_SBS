@@ -105,6 +105,22 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
+        public void attaque_ia(List<Player> joueurs)
+        {
+            foreach (Player joueur in joueurs)
+            {
+                if (this.couldown >= 60)
+                {
+                    if (this.Aire_attaque.Intersects(joueur.PlayerTexture))
+                    {
+                        joueur.Health = joueur.Health - 10;
+                        this.couldown = 0;
+                    }
+                }
+            }
+            this.couldown++;
+        }
+
         // Concerne l'action en cours de l'IA
         public string actionIA
         {

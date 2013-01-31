@@ -130,6 +130,62 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
+        public void action_hero(PhysicsEngine map_physique, List<IA>liste_ia)
+        {
+            this.maj_direction(this.actionjoueur);
+            if (this.actionjoueur == "up" || this.actionjoueur == "down" || this.actionjoueur == "left" || this.actionjoueur == "right")
+            {
+                if (this.actionjoueur == "up")
+                {
+                    if (!(map_physique.mur(this.futur_position_X_gauche(), this.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.futur_position_X_droite(), this.futur_position_Y_haut())) && this.collision_entite_hero(liste_ia))
+                        this.mise_a_jour(this.actionjoueur);
+                    this.actionjoueur = "";
+                }
+
+                if (this.actionjoueur == "down")
+                {
+                    if (!(map_physique.mur(this.futur_position_X_gauche(), this.futur_position_Y_bas()))
+                     && !(map_physique.mur(this.futur_position_X_droite(), this.futur_position_Y_bas())) && this.collision_entite_hero(liste_ia))
+                        this.mise_a_jour(this.actionjoueur);
+                    this.actionjoueur = "";
+                }
+
+                if (this.actionjoueur == "left")
+                {
+                    if (!(map_physique.mur(this.futur_position_X_gauche(), this.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.futur_position_X_gauche(), this.futur_position_Y_bas())) && this.collision_entite_hero(liste_ia))
+                        this.mise_a_jour(this.actionjoueur);
+                    this.actionjoueur = "";
+                }
+
+                if (this.actionjoueur == "right")
+                {
+                    if (!(map_physique.mur(this.futur_position_X_droite(), this.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.futur_position_X_droite(), this.futur_position_Y_bas())) && this.collision_entite_hero(liste_ia))
+                        this.mise_a_jour(this.actionjoueur);
+                    this.actionjoueur = "";
+                }
+
+
+            }
+            this.actionjoueur = ""; //"Remet à zéros" les actions du joueurs
+        }
+
+        public bool collision_entite_hero(List<IA> liste_ia)
+        {
+            Rectangle rectangle_ = rectangle();
+            bool test = true;
+            foreach (IA ia in liste_ia)
+            {
+                if (test)
+                {
+                    test = !rectangle_.Intersects(ia.rectangle()); //Teste l'intersection entre un héros (parametre) et les IA(foreach) à l'aide de rectangle
+                }
+            }
+            return test;
+        }
+
         // Concerne l'action en cours du joueurs, permet d'y accéder et de la modifier
         public string actionjoueur
         {
