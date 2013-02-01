@@ -73,13 +73,17 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Player joueur in joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible && (joueur.Health < 100 || joueur.Ammo < 100))
+                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible && joueur.Health < 100)
+                {
+                    utilisation(joueur);
+                    isVisible = false;
+                }
+                if ((joueur.PlayerTexture.Intersects(this.AmmoBoxTexture)) && isVisible && joueur.Ammo < 100)
                 {
                     utilisation(joueur);
                     isVisible = false;
                 }
             }
-
         }
 
         public void Draw(SpriteBatch spriteBatch)

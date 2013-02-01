@@ -30,10 +30,10 @@ namespace Sunday_Bloody_Sunday
 
 
         // UPDATE & DRAW
-        public void Update(MouseState mouse, KeyboardState keyboard)
+        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
         {
-            MainMap.Update(mouse, keyboard);
-            MainHUD.Update(keyboard, MainMap.joueurs);
+            MainMap.Update(mouse, keyboard, gameTime);
+            MainHUD.Update(keyboard, MainMap.liste_joueurs);
         }
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)

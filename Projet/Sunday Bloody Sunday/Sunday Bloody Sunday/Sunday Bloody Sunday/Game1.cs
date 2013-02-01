@@ -255,7 +255,7 @@ namespace Sunday_Bloody_Sunday
             }
             else if (ecran == Screen.jeu)
             {
-                Main.Update(Mouse.GetState(), Keyboard.GetState());
+                Main.Update(Mouse.GetState(), Keyboard.GetState(), gameTime);
 
                 if (Main.MainMap.game_over)
                 {

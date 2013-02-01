@@ -43,6 +43,10 @@ namespace Sunday_Bloody_Sunday
         // Width of a given frame
         public Vector2 Position;
 
+        public Rectangle Aire_explosion1;
+        public Rectangle Aire_explosion2;
+        public Rectangle Aire_explosion3;
+
 
         //CONSTRUCTOR
         public void Initialize(Texture2D texture, Vector2 position,
@@ -61,11 +65,16 @@ namespace Sunday_Bloody_Sunday
             this.elapsedTime = 0;
             this.currentFrame = 0;
             this.Active = true;
+
+            // MUST ADJUST THE EXPLOSION AREA !
+            this.Aire_explosion1 = new Rectangle(225 - 20, 175 - 20, 40, 40);
+            this.Aire_explosion2 = new Rectangle(475 - 20, 380 - 20, 40, 40);
+            this.Aire_explosion3 = new Rectangle(115 - 20, 305 - 20, 40, 40);
         }
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia)
         {
             // Do not update the game if we are not active
             if (Active == false)
@@ -104,6 +113,40 @@ namespace Sunday_Bloody_Sunday
             (int)Position.Y - (int)(FrameHeight * scale) / 2,
             (int)(FrameWidth * scale),
             (int)(FrameHeight * scale));
+
+
+            // Player ou IA dans la zone d'explosion = DEAD
+            foreach (Player joueur in liste_joueurs)
+            {
+                if ((joueur.PlayerTexture.Intersects(this.Aire_explosion1)))
+                {
+                    joueur.Health = 0;
+                }
+                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosion2)))
+                {
+                    joueur.Health = 0;
+                }
+                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosion3)))
+                {
+                    joueur.Health = 0;
+                }
+            }
+
+            foreach (IA ia in liste_ia)
+            {
+                if ((ia.IATexture.Intersects(this.Aire_explosion1)))
+                {
+                    ia.Health = 0;
+                }
+                else if ((ia.IATexture.Intersects(this.Aire_explosion2)))
+                {
+                    ia.Health = 0;
+                }
+                else if ((ia.IATexture.Intersects(this.Aire_explosion3)))
+                {
+                    ia.Health = 0;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -113,6 +156,6 @@ namespace Sunday_Bloody_Sunday
                 spriteBatch.Draw(Ressources.ExplosionParticule, destinationRect, sourceRect, color);
             }
         }
-
     }
 }
+
