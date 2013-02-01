@@ -5,3 +5,4 @@ C:\Users\Bmoc\Documents\Git\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Alexis\Downloads\projet_SBS-master\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Bmoc\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache

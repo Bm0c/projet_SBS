@@ -104,3 +104,35 @@ C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bl
 C:\Users\David\Documents\GitHub\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosive_box.xnb
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosive_box.xnb
 C:\Users\Alexis\SBS\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion_effect.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameFont.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Title.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Bitmap1.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\balle.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara2.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara3.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu_2.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GameOver.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\health_box.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\ammo_box.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosive_box.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie_groan.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion_effect.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tire.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu001.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu002.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\lose_effect.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.xnb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.wma
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.wma
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Sunday Bloody Sunday.exe
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Sunday Bloody Sunday.pdb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.exe
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.pdb
+E:\GitHub\projet-sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pop.xnb

@@ -24,10 +24,6 @@ namespace Sunday_Bloody_Sunday
             public Rectangle AmmoBoxTexture;
             public int ammoNumber;
             public Rectangle Aire_ammoBox;
-            //EXPLOSIVEBOX
-            public Rectangle ExplosiveBoxTexture;
-            public int explosionDamage;
-            public Rectangle Aire_explosiveBox;
             private string type;
 
 
@@ -40,11 +36,8 @@ namespace Sunday_Bloody_Sunday
             this.healPoints = 10;
             this.AmmoBoxTexture = new Rectangle(x, y, 16, 16);
             this.ammoNumber = 10;
-            this.ExplosiveBoxTexture = new Rectangle(x, y, 16, 16);
-            this.explosionDamage = 100;
             this.Aire_healthBox = new Rectangle(HealthBoxTexture.X, HealthBoxTexture.Y, HealthBoxTexture.Width, HealthBoxTexture.Height);
             this.Aire_ammoBox = new Rectangle(AmmoBoxTexture.X, AmmoBoxTexture.Y, AmmoBoxTexture.Width, AmmoBoxTexture.Height);
-            this.Aire_explosiveBox = new Rectangle(ExplosiveBoxTexture.X - 5, ExplosiveBoxTexture.Y - 5, ExplosiveBoxTexture.Width + 5, ExplosiveBoxTexture.Height + 5); 
             this.type = type;
 
         }
@@ -53,17 +46,21 @@ namespace Sunday_Bloody_Sunday
         // METHODS
         private void utilisation(Player joueur)
         {
-            if (type == "health")
+            if (type == "health" && joueur.Health < 100)
             {
                 joueur.Health = joueur.Health + this.healPoints;
+                if (joueur.Health > 100)
+                {
+                    joueur.Health = 100;
+                }
             }
-            else if (type == "ammo")
+            else if (type == "ammo" && joueur.Ammo < 100)
             {
                 joueur.Ammo = joueur.Ammo + this.ammoNumber;
-            }
-            else if (type == "explosion")
-            {
-
+                if (joueur.Ammo > 100)
+                {
+                    joueur.Ammo = 100;
+                }
             }
             else
             {
@@ -76,7 +73,7 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Player joueur in joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible)
+                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible && (joueur.Health < 100 || joueur.Ammo < 100))
                 {
                     utilisation(joueur);
                     isVisible = false;
@@ -94,9 +91,6 @@ namespace Sunday_Bloody_Sunday
                     break;
                 case ("ammo"):
                     spriteBatch.Draw(Ressources.mAmmoBox, AmmoBoxTexture, Color.White);
-                    break;
-                case ("explosion"):
-                    spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
                     break;
                 default:
                     break;
