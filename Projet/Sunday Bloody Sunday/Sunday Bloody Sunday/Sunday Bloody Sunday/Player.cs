@@ -77,8 +77,6 @@ namespace Sunday_Bloody_Sunday
             this.Tire = Tire;
 
             this.texture = texture;
-
-
         }
 
 
@@ -130,8 +128,17 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void action_hero(PhysicsEngine map_physique, List<IA>liste_ia)
+        public void action_hero(PhysicsEngine map_physique, List<IA>liste_ia, List<DesctrutibleItems> liste_barrel)
         {
+            Rectangle rectangle_ = rectangle();
+            foreach (DesctrutibleItems barrel in liste_barrel)
+            {
+                if (barrel.Aire_explosiveBox.Intersects(rectangle_))
+                {
+                    this.actionjoueur = "";
+                }
+            }
+
             this.maj_direction(this.actionjoueur);
             if (this.actionjoueur == "up" || this.actionjoueur == "down" || this.actionjoueur == "left" || this.actionjoueur == "right")
             {
@@ -166,8 +173,6 @@ namespace Sunday_Bloody_Sunday
                         this.mise_a_jour(this.actionjoueur);
                     this.actionjoueur = "";
                 }
-
-
             }
             this.actionjoueur = ""; //"Remet à zéros" les actions du joueurs
         }

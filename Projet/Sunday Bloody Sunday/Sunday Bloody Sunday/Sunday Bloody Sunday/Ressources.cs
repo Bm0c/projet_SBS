@@ -19,7 +19,7 @@ namespace Sunday_Bloody_Sunday
         public static SpriteFont HUD;
         // Sounds
         public static Song GamePlayMusic, MenuMusic;
-        public static SoundEffect mTire, mPika, mPika2, mIntroEffect, mLoseEffect, mExplosionEffect;
+        public static SoundEffect mTire, mPika, mPika2, mIntroEffect, mLoseEffect, mExplosionEffect, mPop;
 
 
         // LOAD CONTENTS
@@ -39,6 +39,7 @@ namespace Sunday_Bloody_Sunday
             mIntroEffect = content.Load<SoundEffect>("zombie_groan");
             mLoseEffect = content.Load<SoundEffect>("lose_effect");
             mExplosionEffect = content.Load<SoundEffect>("explosion_effect");
+            mPop = content.Load<SoundEffect>("pop");
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");
             mPika2 = content.Load<SoundEffect>("pikachu002");

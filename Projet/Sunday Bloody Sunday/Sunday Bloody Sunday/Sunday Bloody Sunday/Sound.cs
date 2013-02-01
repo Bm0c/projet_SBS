@@ -19,6 +19,7 @@ namespace Sunday_Bloody_Sunday
         SoundEffect pika2 = Ressources.mPika2;
         SoundEffect introEffect = Ressources.mIntroEffect;
         SoundEffect explosionEffect = Ressources.mExplosionEffect;
+        SoundEffect pop = Ressources.mPop;
 
 
         // METHODS
@@ -71,6 +72,17 @@ namespace Sunday_Bloody_Sunday
             try
             {
                 explosionEffect.Play();
+            }
+            catch
+            {
+            }
+        }
+
+        public void PlayPop()
+        {
+            try
+            {
+                pop.Play();
             }
             catch
             {

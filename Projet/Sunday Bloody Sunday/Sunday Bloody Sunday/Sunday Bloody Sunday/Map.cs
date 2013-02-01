@@ -17,10 +17,10 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
-        public List<Items> liste_barrel; //Liste barrel
+        public List<DesctrutibleItems> liste_barrel; //Liste barrel
+        public List<DesctrutibleItems> liste_barrel2; //Liste barrel secondaire, utilisée pour nettoyer la mémoire
         public List<ExplosionParticule> explosions; //Liste particules d'explosion
         public List<ExplosionParticule> explosions2; //Liste particules d'explosion secondaire, utilisée pour nettoyer la mémoire
-        public List<Items> liste_barrel2; //Liste barrel secondaire, utilisée pour nettoyer la mémoire
         public List<Player> joueurs = new List<Player>();
         public List<Player> joueurs_2 = new List<Player>();
         public List<IA> liste_ia; //Liste des IA
@@ -29,16 +29,17 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire, utilisée pour nettoyer la mémoire
         Projectile balle;
         IA ia;
-        Items healthBox, ammoBox, explosiveBox;
+        DesctrutibleItems explosiveBox;
         PhysicsEngine map_physique;
         private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
-        int compteur_2 = 0;
+        int compteur = 0;
         Random rand = new Random();
         Sound moteur_son = new Sound();
         bool etape1 = false;
         bool etape2 = false;
         public bool game_over = false;
         GameTime gameTime = new GameTime();
+
 
         // CONSTRUCTOR
         public Map(PhysicsEngine map_physique)
@@ -57,20 +58,15 @@ namespace Sunday_Bloody_Sunday
             this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
 
             this.liste_box = new List<Items>();
-            this.healthBox = new Items(100, 100, "health");
-            this.ammoBox = new Items(150, 100, "ammo");
-            //this.explosiveBox = new Items(200, 200, "explosion");
-            this.liste_box.Add(this.healthBox);
-            this.liste_box.Add(this.ammoBox);
-            //this.liste_box.Add(this.explosiveBox);
             this.liste_box2 = new List<Items>();
 
-            this.liste_barrel = new List<Items>();
-            this.explosiveBox = new Items(200, 100, "explosion");
+            this.liste_barrel = new List<DesctrutibleItems>();
+            this.explosiveBox = new DesctrutibleItems(100, 100, "explosion");
             this.liste_barrel.Add(this.explosiveBox);
-            this.liste_barrel2 = new List<Items>();
+            this.liste_barrel2 = new List<DesctrutibleItems>();
 
             this.explosions = new List<ExplosionParticule>();
+            this.explosions2 = new List<ExplosionParticule>();
         }
 
 
@@ -95,6 +91,14 @@ namespace Sunday_Bloody_Sunday
         //Verifie la possibilité des actions de l'IA
         public void action_ia(IA ia)
         {
+            foreach (DesctrutibleItems barrel in liste_barrel)
+            {
+                if (barrel.Aire_explosiveBox.Intersects(ia.rectangle()))
+                {
+                    ia.actionIA = "";
+                }
+            }
+
             if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
             {
                 if (this.ia.actionIA == "up")
@@ -388,7 +392,7 @@ namespace Sunday_Bloody_Sunday
                     ia.en_vie = false; //Tue l'IA
                 }
             }
-            if (compteur_2 > 180 && etape1) //Ajout de nouvelles IA a la map
+            if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
             {
                 int spawn = rand.Next(3);
                 if (spawn == 0)
@@ -456,9 +460,9 @@ namespace Sunday_Bloody_Sunday
                     }
                 }
 
-                compteur_2 = 0;
+                compteur = 0;
             }
-            compteur_2++;
+            compteur++;
 
             liste_ia2 = new List<IA>(); //Recopie la liste d'IA encore en vie dans une nouvelle liste
             foreach (IA ia in liste_ia)
@@ -527,11 +531,75 @@ namespace Sunday_Bloody_Sunday
             liste_box = liste_box2;
         }
 
+        public void update_Barrel()
+        {
+            foreach (DesctrutibleItems barrel in liste_barrel)
+            {
+                barrel.Update(joueurs);
+            }
+            liste_barrel2 = new List<DesctrutibleItems>();
+            foreach (DesctrutibleItems barrel in liste_barrel)
+            {
+                if (barrel.isVisible)
+                {
+                    liste_barrel2.Add(barrel);
+                }
+            }
+            liste_barrel = liste_barrel2;
+
+            if (compteur > 180) //Ajout de nouveaux barrels a la map
+            {
+                int spawn = rand.Next(3);
+                if (spawn == 0)
+                {
+                    int texture = rand.Next(2);
+                    if (texture == 0)
+                    {
+                        liste_box.Add(new Items(510, 245, "health"));
+                    }
+                    else
+                    {
+                        liste_box.Add(new Items(510, 245, "ammo"));
+                    }
+                    moteur_son.PlayPop();
+                }
+                else if (spawn == 1)
+                {
+                    int texture = rand.Next(2);
+                    if (texture == 0)
+                    {
+                        liste_box.Add(new Items(575, 200, "health"));
+                    }
+                    else
+                    {
+                        liste_box.Add(new Items(575, 200, "ammo"));
+                    }
+                    moteur_son.PlayPop();
+                }
+                else
+                {
+                    int texture = rand.Next(2);
+                    if (texture == 0)
+                    {
+                        liste_box.Add(new Items(250, 30, "health"));
+                    }
+                    else
+                    {
+                        liste_box.Add(new Items(250, 30, "ammo"));
+                    }
+                    moteur_son.PlayPop();
+                }
+
+                compteur = 0;
+            }
+            compteur++;
+        }
+
         public void collision_barrel_balle(Projectile balle) //S'occupe de la collision des balles avec les "barrels"
         {
             futur_rectangle = balle.rectangle();
             bool test = true;
-            foreach (Items barrel in liste_barrel) //Vérifie pour chaque "barrels"
+            foreach (DesctrutibleItems barrel in liste_barrel) //Vérifie pour chaque "barrels"
             {
                 if ((test)) //Permet de casser la boucle dès qu'un "barrel" est touché
                 {
@@ -543,23 +611,6 @@ namespace Sunday_Bloody_Sunday
                     }
                 }
             }
-        }
-
-        public void update_Barrel()
-        {
-            foreach (Items barrel in liste_barrel)
-            {
-                barrel.Update(joueurs);
-            }
-            liste_barrel2 = new List<Items>();
-            foreach (Items barrel in liste_barrel)
-            {
-                if (barrel.isVisible)
-                {
-                    liste_barrel2.Add(barrel);
-                }
-            }
-            liste_barrel = liste_barrel2;
         }
 
         private void AddExplosion(Vector2 position)
@@ -661,7 +712,7 @@ namespace Sunday_Bloody_Sunday
             foreach (Player joueur in joueurs)
             {
                 joueur.Update(mouse, keyboard);
-                joueur.action_hero(map_physique,liste_ia);
+                joueur.action_hero(map_physique,liste_ia, liste_barrel);
                 if (joueur.Health > 0)
                 {
                     joueurs_2.Add(joueur);
@@ -673,6 +724,7 @@ namespace Sunday_Bloody_Sunday
             update_Box();
             update_Barrel();
             update_explosions(gameTime);
+            
             update_projectiles(keyboard);
 
             if (keyboard.IsKeyDown(Keys.D1) && !etape1)
@@ -700,7 +752,7 @@ namespace Sunday_Bloody_Sunday
             {
                 box.Draw(spriteBatch);
             }
-            foreach (Items barrel in liste_barrel)
+            foreach (DesctrutibleItems barrel in liste_barrel)
             {
                 barrel.Draw(spriteBatch);
             }
