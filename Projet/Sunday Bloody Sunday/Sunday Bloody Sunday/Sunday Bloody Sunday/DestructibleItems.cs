@@ -11,12 +11,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
-    class DesctrutibleItems
+    class DestructibleItems
     {
         //FIELDS
         //EXPLOSIVEBOX
         public Rectangle ExplosiveBoxTexture;
-        public int explosionDamage;
         public Rectangle Aire_explosiveBox;
         public bool isVisible;
         public bool Used;
@@ -24,13 +23,12 @@ namespace Sunday_Bloody_Sunday
 
 
         //CONSTRUCTOR
-        public DesctrutibleItems(int x, int y, string type)
+        public DestructibleItems(int x, int y, string type)
         {
             this.isVisible = true;
             this.Used = false;
             this.ExplosiveBoxTexture = new Rectangle(x, y, 16, 16);
-            this.explosionDamage = 100;
-            this.Aire_explosiveBox = new Rectangle(ExplosiveBoxTexture.X, ExplosiveBoxTexture.Y, ExplosiveBoxTexture.Width, ExplosiveBoxTexture.Height); 
+            this.Aire_explosiveBox = new Rectangle(ExplosiveBoxTexture.X, ExplosiveBoxTexture.Y, ExplosiveBoxTexture.Width, ExplosiveBoxTexture.Height);
             this.type = type;
         }
 

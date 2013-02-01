@@ -128,10 +128,10 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void action_hero(PhysicsEngine map_physique, List<IA>liste_ia, List<DesctrutibleItems> liste_barrel)
+        public void action_hero(PhysicsEngine map_physique, List<IA>liste_ia, List<DestructibleItems> liste_barrel)
         {
             Rectangle rectangle_ = rectangle();
-            foreach (DesctrutibleItems barrel in liste_barrel)
+            foreach (DestructibleItems barrel in liste_barrel)
             {
                 if (barrel.Aire_explosiveBox.Intersects(rectangle_))
                 {
