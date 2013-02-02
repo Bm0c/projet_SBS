@@ -67,9 +67,9 @@ namespace Sunday_Bloody_Sunday
             this.Active = true;
 
             // MUST ADJUST THE EXPLOSION AREA !
-            this.Aire_explosion1 = new Rectangle(225 - 20, 175 - 20, 40, 40);
-            this.Aire_explosion2 = new Rectangle(475 - 20, 380 - 20, 40, 40);
-            this.Aire_explosion3 = new Rectangle(115 - 20, 305 - 20, 40, 40);
+            this.Aire_explosion1 = new Rectangle(225 - 20, 173 - 20, 40, 40);
+            this.Aire_explosion2 = new Rectangle(475 - 20, 383 - 20, 40, 40);
+            this.Aire_explosion3 = new Rectangle(115 - 20, 303 - 20, 40, 40);
         }
 
 

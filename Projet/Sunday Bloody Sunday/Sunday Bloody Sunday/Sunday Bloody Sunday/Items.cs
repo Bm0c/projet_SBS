@@ -17,13 +17,13 @@ namespace Sunday_Bloody_Sunday
             //HEALTHBOX
             public Rectangle HealthBoxTexture;
             public bool isVisible;
-            public bool Used;
             public int healPoints;
             public Rectangle Aire_healthBox;
             //AMMOBOX
             public Rectangle AmmoBoxTexture;
             public int ammoNumber;
             public Rectangle Aire_ammoBox;
+
             private string type;
 
 
@@ -32,7 +32,6 @@ namespace Sunday_Bloody_Sunday
         {
             this.HealthBoxTexture = new Rectangle(x, y, 16, 16);
             this.isVisible = true;
-            this.Used = false;
             this.healPoints = 10;
             this.AmmoBoxTexture = new Rectangle(x, y, 16, 16);
             this.ammoNumber = 10;
@@ -49,6 +48,7 @@ namespace Sunday_Bloody_Sunday
             if (type == "health" && joueur.Health < 100)
             {
                 joueur.Health = joueur.Health + this.healPoints;
+                isVisible = false;
                 if (joueur.Health > 100)
                 {
                     joueur.Health = 100;
@@ -57,6 +57,7 @@ namespace Sunday_Bloody_Sunday
             else if (type == "ammo" && joueur.Ammo < 100)
             {
                 joueur.Ammo = joueur.Ammo + this.ammoNumber;
+                isVisible = false;
                 if (joueur.Ammo > 100)
                 {
                     joueur.Ammo = 100;
@@ -73,15 +74,13 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Player joueur in joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible && joueur.Health < 100)
+                if ((joueur.PlayerTexture.Intersects(this.HealthBoxTexture)) && isVisible)
                 {
                     utilisation(joueur);
-                    isVisible = false;
                 }
-                if ((joueur.PlayerTexture.Intersects(this.AmmoBoxTexture)) && isVisible && joueur.Ammo < 100)
+                if ((joueur.PlayerTexture.Intersects(this.AmmoBoxTexture)) && isVisible)
                 {
                     utilisation(joueur);
-                    isVisible = false;
                 }
             }
         }

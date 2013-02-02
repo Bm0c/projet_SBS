@@ -58,17 +58,6 @@ namespace Sunday_Bloody_Sunday
 
 
         // METHODS
-        // Get the width of the projectile
-        public int Width
-        {
-            get { return Ressources.Projectile.Width; }
-        }
-        // Get the height of the projectile
-        public int Height
-        {
-            get { return Ressources.Projectile.Height; }
-        }
-
         public int futur_x()
         {
     
@@ -171,7 +160,7 @@ namespace Sunday_Bloody_Sunday
         {
             if (this.isVisible)
             {
-                spriteBatch.Draw(Ressources.Projectile, ProjectilePosition/*, null*/, Color.White/*, 0f, ProjectileOrigin, 1f, SpriteEffects.None, 0*/);
+                spriteBatch.Draw(Ressources.Projectile, ProjectilePosition, Color.White);
             }
         }
     }
