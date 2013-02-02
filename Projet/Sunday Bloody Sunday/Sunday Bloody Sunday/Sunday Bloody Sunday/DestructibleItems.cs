@@ -18,7 +18,7 @@ namespace Sunday_Bloody_Sunday
         public Rectangle ExplosiveBoxTexture;
         public Rectangle Aire_explosiveBox;
         public bool isVisible;
-        public bool Used;
+
         private string type;
 
 
@@ -26,7 +26,6 @@ namespace Sunday_Bloody_Sunday
         public DestructibleItems(int x, int y, string type)
         {
             this.isVisible = true;
-            this.Used = false;
             this.ExplosiveBoxTexture = new Rectangle(x, y, 16, 16);
             this.Aire_explosiveBox = new Rectangle(ExplosiveBoxTexture.X, ExplosiveBoxTexture.Y, ExplosiveBoxTexture.Width, ExplosiveBoxTexture.Height);
             this.type = type;

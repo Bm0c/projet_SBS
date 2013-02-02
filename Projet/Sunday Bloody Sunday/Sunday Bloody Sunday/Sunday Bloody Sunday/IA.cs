@@ -41,7 +41,7 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
         Texture2D texture;
-        public int couldown = 60;//Temps d'attente entre chaque attaque.
+        public int couldown = 60; //Temps d'attente entre chaque attaque
 
 
         // CONSTRUCTOR
@@ -70,7 +70,6 @@ namespace Sunday_Bloody_Sunday
         {
             get { return IATexture.Width; }
         }
-
         // Get the height of the IA
         public int Height
         {

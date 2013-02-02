@@ -18,15 +18,15 @@ namespace Sunday_Bloody_Sunday
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
         public List<DestructibleItems> liste_barrel; //Liste barrel
-        public List<DestructibleItems> liste_barrel2; //Liste barrel secondaire, utilisée pour nettoyer la mémoire
+        public List<DestructibleItems> liste_barrel2; //Liste barrel secondaire
         public List<ExplosionParticule> liste_explosions; //Liste particules d'explosion
-        public List<ExplosionParticule> liste_explosions2; //Liste particules d'explosion secondaire, utilisée pour nettoyer la mémoire
-        public List<Player> liste_joueurs = new List<Player>();
-        public List<Player> liste_joueurs2 = new List<Player>();
+        public List<ExplosionParticule> liste_explosions2; //Liste particules d'explosion secondaire
+        public List<Player> liste_joueurs = new List<Player>(); //Liste joueur
+        public List<Player> liste_joueurs2 = new List<Player>(); //Liste joueurs secondaire
         public List<IA> liste_ia; //Liste des IA
-        public List<IA> liste_ia2; //Liste IA secondaire, utilisée pour nettoyer la mémoire
+        public List<IA> liste_ia2; //Liste IA secondaire
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
-        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire, utilisée pour nettoyer la mémoire
+        public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
         Projectile balle;
         IA ia;
         DestructibleItems explosiveBox, explosiveBox2, explosiveBox3;
@@ -49,13 +49,8 @@ namespace Sunday_Bloody_Sunday
             this.liste_ia = new List<IA>();
             IA ia1 = new IA(120, 48, Ressources.IA1);
             IA ia2 = new IA(160, 48, Ressources.IA1);
-            IA ia3 = new IA(400, 460, Ressources.IA2);/*
-            this.liste_ia.Add(ia1);
-            this.liste_ia.Add(ia2);
-            this.liste_ia.Add(ia3);*/
-            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));/*
-            this.joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
-            this.joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
+            IA ia3 = new IA(400, 460, Ressources.IA2);
+            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));
 
             //HEALTH + AMMO BOXES
             this.liste_box = new List<Items>();
@@ -79,13 +74,6 @@ namespace Sunday_Bloody_Sunday
 
 
         // METHODS
-
-        //Verifie la possibilité des actions du héros
-        
-        //En fonction des actions du héros, les vérifie et les appliquent aux différents moteurs.
-                
-        //Gère la collision entre le héros et les IA lors de son déplacement
-
         //Verifie la possibilité des actions de l'IA
         public void action_ia(IA ia)
         {
@@ -144,7 +132,7 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((test) && !(ia1.est_update))
                 {
-                    test = !futur_rectangle.Intersects(ia1.rectangle/*_ia*/()); //Teste l'intersection entre une IA (parametre) et les autres (foreach) à l'aide de rectangle
+                    test = !futur_rectangle.Intersects(ia1.rectangle()); //Teste l'intersection entre une IA (parametre) et les autres (foreach) à l'aide de rectangle
                 }
             }
             foreach (Player joueur in liste_joueurs)
@@ -545,7 +533,7 @@ namespace Sunday_Bloody_Sunday
             }
             liste_barrel = liste_barrel2;
 
-            if (compteur > 180) //Ajout de nouveaux barrels a la map
+            if (compteur > 180) //Ajout de nouveaux "barrels" a la map
             {
                 int spawn = rand.Next(3);
                 if (spawn == 0)
@@ -604,7 +592,7 @@ namespace Sunday_Bloody_Sunday
                     if (futur_rectangle.Intersects(barrel.Aire_explosiveBox)) //Si la HitBox du projectile est en contact avec celle du "barrel", alors (...)
                     {
                         balle.isVisible = false; //La balle n'existe plus
-                        barrel.isVisible = false;
+                        barrel.isVisible = false; //Le "barrel" n'existe plus
                         AddExplosion(new Vector2(barrel.Aire_explosiveBox.X + 8, barrel.Aire_explosiveBox.Y + 8));
                         moteur_son.PlayExplosionEffect();
                         test = false; //On casse le si
@@ -671,7 +659,6 @@ namespace Sunday_Bloody_Sunday
             IA[] tableau_ia = new IA[liste_ia.Count];
             liste_ia.CopyTo(tableau_ia);
             tri(ref tableau_ia);
-            //bool test = true;
             foreach (Player joueur in liste_joueurs)
             {
                 joueur.est_afficher = false;
@@ -708,7 +695,6 @@ namespace Sunday_Bloody_Sunday
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
         {
             // Update l'objet joueur contenu par la map
-
             foreach (Player joueur in liste_joueurs)
             {
                 joueur.Update(mouse, keyboard);
@@ -754,9 +740,9 @@ namespace Sunday_Bloody_Sunday
             {
                 barrel.Draw(spriteBatch);
             }
-            for (int i = 0; i < liste_explosions.Count; i++)
+            foreach (ExplosionParticule explosion in liste_explosions)
             {
-                liste_explosions[i].Draw(spriteBatch);
+                explosion.Draw(spriteBatch);
             }
             draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)
