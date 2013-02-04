@@ -9,73 +9,85 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.IO;
-/*using System.Math;
 
 namespace Sunday_Bloody_Sunday
 {
     class Pathfinding
     {
-        private List<Node> liste_ouverte; //Liste des éléments potentiellement utiles
-        private List<Node> liste_fermée;  //Liste des éléments traités
-        private bool[,] map;
-        private int x1, y1, x2, y2;
+        private static List<Node> liste_ouverte;
+        private static List<Node> liste_fermée;
 
-        public Pathfinding(bool[,] map, int x_départ, int y_départ, int x_arrivée, int y_arrivée)
+        public static string pathfind(bool[,] map, Node départ, Node arrivee)
         {
             liste_ouverte = new List<Node>();
-            liste_fermée = new List<Node>();
-            this.map = map;
-            x1 = x_départ;
-            y1 = y_départ;
-            x2 = x_arrivée;
-            y2 = y_arrivée;
+            liste_fermée  = new List<Node>();
+
+            //TO FIX
+
+            return "";
         }
 
-        public string direction()
+        private static void suppr_liste_fermée(Node node)
         {
-            List<Node>liste_ouverte_copie;
-            Node Current;
-            //Ajout de la première Node, le point de départ
-            liste_ouverte.Add(new Node(0, (int)Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)), (int)Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)), x1, x2));
-            while (true)
+            liste_fermée.Remove(node);
+        }
+
+        private static void suppr_liste_ouverte(Node node)
+        {
+            liste_ouverte.Remove(node);
+        }
+
+        private static void passage_liste_fermée(Node node)
+        {
+            suppr_liste_ouverte(node);
+            liste_fermée.Add(node);
+        }
+
+        private static void passage_liste_ouverte(Node node)
+        {
+            suppr_liste_fermée(node);
+            liste_ouverte.Add(node);
+        }
+
+        private static Node getCurrent()
+        {
+            Node current = liste_ouverte.First();
+            foreach (Node node in liste_ouverte)
             {
-                Current = liste_ouverte.First();
-                foreach (Node point in liste_ouverte) //Récupération du plus grand "poids"
+                if (current.F > node.F)
                 {
-                    if (point.F < Current.F)
-                    {
-                        Current = point;
-                    }
+                    current = node;
                 }
-
-                liste_ouverte_copie = new List<Node>();
-                foreach (Node point in liste_ouverte) //On vire la Current de la liste ouverte
-                {
-                    if (!(point == Current))
-                    {
-                        liste_ouverte_copie.Add(point);
-                    }
-                }
-                liste_ouverte = liste_ouverte_copie;
-
-                liste_fermée.Add(Current);
-
             }
-            return "";
+
+            return current;
+        }
+
+        //TO FIX
+        private static List<Node> getVoisins(Node current, bool[,] map)
+        {
+            List<Node> voisin = new List<Node>();
+            int x_sup = current.x + 1;
+            int x_inf = current.x - 1;
+            int y_sup = current.y + 1;
+            int y_inf = current.y - 1;
+            return voisin;
         }
     }
 
     class Node
     {
-        public int G, H, F, x, y; //Distance liée au point de départ, Distance du point d'arrivée, Somme des distances, coordonnées du parent
+        public int G, H, F, x, y; //Distance liée au point de départ, Distance du point d'arrivée, Somme des distances, coordonnées de la node
+        public bool traversable;
+        public Node parent;
 
-        public Node(int g, int h, int f, int x, int y)
+        public Node()
         {
-            G = g;
-            H = h;
-            F = f;
-            this.x = x;
-            this.y = y;
+            traversable = true;
+            parent = this;
+            G = 0;
+            H = 0;
+            F = 0;
         }
     }
-}*/
+}
