@@ -17,14 +17,75 @@ namespace Sunday_Bloody_Sunday
         private static List<Node> liste_ouverte;
         private static List<Node> liste_fermée;
 
-        public static string pathfind(bool[,] map, Node départ, Node arrivee)
+        public static bool pathfind(bool[,] map, Node départ, Node arrivee)
         {
             liste_ouverte = new List<Node>();
-            liste_fermée  = new List<Node>();
+            liste_fermée = new List<Node>();
 
-            //TO FIX
+            ajout_liste_ouverte(départ);
 
-            return "";
+            Node current = null;
+
+            while (liste_ouverte.Count > 0)
+            {
+                current = getCurrent();
+                if (egalité(current, arrivee))
+                {
+                    break;
+                }
+
+                ajout_liste_fermée(current);
+
+                List<Node> Voisin = getVoisins(current, map);
+
+                foreach (Node node in Voisin)
+                {
+                    if (est_dans_fermée(node) || map[node.x, node.y])
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        int new_g = node.parent.G + 1;
+
+                        int new_h = 0;
+
+                        if (départ.x - node.x < 0)
+                            new_h = new_h - (départ.x - node.x);
+                        else
+                            new_h = new_h + (départ.x - node.x);
+
+                        if (départ.y - node.y < 0)
+                            new_h = new_h - (départ.y - node.y);
+                        else
+                            new_h = new_h + (départ.y - node.y);
+
+                        int new_f = new_g + new_h;
+
+                        if (est_dans_ouverte(node))
+                        {
+                            if (new_g < node.G)
+                            {
+                                node.parent = current;
+                                node.G = new_g;
+                                node.H = new_h;
+                                node.F = new_f;
+                            }
+                        }
+                        else
+                        {
+                            node.parent = current;
+                            node.G = new_g;
+                            node.H = new_h;
+                            node.F = new_f;
+                            ajout_liste_ouverte(node);
+                        }
+                    }
+
+                }
+            }
+
+            return (liste_ouverte.Count != 0);
         }
 
         private static void suppr_liste_fermée(Node node)
@@ -37,16 +98,16 @@ namespace Sunday_Bloody_Sunday
             liste_ouverte.Remove(node);
         }
 
-        private static void passage_liste_fermée(Node node)
+        private static void ajout_liste_fermée(Node node)
         {
             suppr_liste_ouverte(node);
             liste_fermée.Add(node);
         }
 
-        private static void passage_liste_ouverte(Node node)
+        private static void ajout_liste_ouverte(Node node)
         {
-            suppr_liste_fermée(node);
             liste_ouverte.Add(node);
+            suppr_liste_fermée(node);
         }
 
         private static Node getCurrent()
@@ -63,7 +124,6 @@ namespace Sunday_Bloody_Sunday
             return current;
         }
 
-        //TO FIX
         private static List<Node> getVoisins(Node current, bool[,] map)
         {
             List<Node> voisin = new List<Node>();
@@ -71,7 +131,76 @@ namespace Sunday_Bloody_Sunday
             int x_inf = current.x - 1;
             int y_sup = current.y + 1;
             int y_inf = current.y - 1;
+            Node node = new Node();
+
+            if (x_sup < map.GetLength(0))
+            {
+                node = new Node();
+                node.parent = current;
+                node.x = x_sup;
+                node.y = current.y;
+                node.traversable = !map[node.x, node.y];
+                voisin.Add(node);
+            }
+            if (x_inf >= 0)
+            {
+                node = new Node();
+                node.parent = current;
+                node.x = x_inf;
+                node.y = current.y;
+                node.traversable = !map[node.x, node.y];
+                voisin.Add(node);
+            }
+            if (y_sup < map.GetLength(1))
+            {
+                node = new Node();
+                node.parent = current;
+                node.x = current.x;
+                node.y = y_sup;
+                node.traversable = !map[node.x, node.y];
+                voisin.Add(node);
+            }
+            if (y_inf >= 0)
+            {
+                node = new Node();
+                node.parent = current;
+                node.x = current.x;
+                node.y = y_inf;
+                node.traversable = !map[node.x, node.y];
+                voisin.Add(node);
+            }
             return voisin;
+        }
+
+        private static bool est_dans_ouverte(Node node)
+        {
+            bool test = false;
+            foreach (Node node_ in liste_ouverte)
+            {
+                if (!test)
+                {
+                    test = egalité(node, node_);
+                }
+            }
+            return test;
+        }
+
+        private static bool est_dans_fermée(Node node)
+        {
+            bool test = false;
+            foreach (Node node_ in liste_fermée)
+            {
+                if (!test)
+                {
+                    test = egalité(node, node_);
+                }
+            }
+            return test;
+        }
+
+        private static bool egalité(Node node1, Node node2)
+        {
+            return ((node1.x == node2.x) && (node1.y == node2.y));
         }
     }
 
