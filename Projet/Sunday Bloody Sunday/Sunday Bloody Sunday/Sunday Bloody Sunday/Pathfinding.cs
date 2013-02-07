@@ -17,7 +17,7 @@ namespace Sunday_Bloody_Sunday
         private static List<Node> liste_ouverte;
         private static List<Node> liste_fermée;
 
-        public static bool pathfind(bool[,] map, Node départ, Node arrivee)
+        public static string pathfind(bool[,] map, Node départ, Node arrivee)
         {
             liste_ouverte = new List<Node>();
             liste_fermée = new List<Node>();
@@ -84,8 +84,39 @@ namespace Sunday_Bloody_Sunday
 
                 }
             }
+            if (liste_ouverte.Count == 0)
+            {
+                return "";
+            }
+            else
+            {
+                while (current.parent.x != départ.x || current.parent.y != départ.y)
+                {
+                    current = current.parent;
+                }
 
-            return (liste_ouverte.Count != 0);
+                if (départ.x - current.x < 0)
+                {
+                    return "right";
+                }
+                else if (départ.x - current.x > 0)
+                {
+                    return "left";
+                }
+                else if (départ.y - current.y < 0)
+                {
+                    return "down" ;
+                }
+                else if (départ.y - current.y > 0)
+                {
+                    return "up";
+                }
+                else
+                {
+                    return "";
+                }
+            }
+
         }
 
         private static void suppr_liste_fermée(Node node)

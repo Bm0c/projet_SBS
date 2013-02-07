@@ -57,14 +57,15 @@ namespace Sunday_Bloody_Sunday
             this.liste_box2 = new List<Items>();
 
             //EXPLOSIVE BOXES
-            this.liste_barrel = new List<DestructibleItems>();
+            
+            this.liste_barrel = new List<DestructibleItems>();/*
             this.explosiveBox = new DestructibleItems(225, 175, "explosion");
             this.explosiveBox2 = new DestructibleItems(475, 380, "explosion");
             this.explosiveBox3 = new DestructibleItems(115, 305, "explosion");
             this.liste_barrel.Add(this.explosiveBox);
             this.liste_barrel.Add(this.explosiveBox2);
             this.liste_barrel.Add(this.explosiveBox3);
-            this.liste_barrel2 = new List<DestructibleItems>();
+            this.liste_barrel2 = new List<DestructibleItems>();*/
 
             //EXPLOSION PARTICULE
             this.liste_explosions = new List<ExplosionParticule>();
@@ -75,7 +76,7 @@ namespace Sunday_Bloody_Sunday
 
         // METHODS
         //Verifie la possibilité des actions de l'IA
-        public void action_ia(IA ia)
+        public void action_ia(IA ia, Player joueur)
         {
             foreach (DestructibleItems barrel in liste_barrel)
             {
@@ -89,38 +90,93 @@ namespace Sunday_Bloody_Sunday
             {
                 if (this.ia.actionIA == "up")
                 {
-                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())) && collision_entite_ia(ia))
-                        this.ia.mise_a_jour(ia.actionIA);
-                    this.ia.actionIA = "";
+                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
                 }
 
                 if (this.ia.actionIA == "down")
                 {
-                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                        this.ia.mise_a_jour(ia.actionIA);
-                    this.ia.actionIA = "";
+                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
+                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
                 }
                 //
                 if (this.ia.actionIA == "left")
                 {
-                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                        this.ia.mise_a_jour(ia.actionIA);
-                    this.ia.actionIA = "";
+                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
+
                 }
                 //
                 if (this.ia.actionIA == "right")
                 {
-                    if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                        this.ia.mise_a_jour(ia.actionIA);
-                    this.ia.actionIA = "";
+                    if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
+
                 }
 
 
             }
+            if (ia.actionIA == "")
+            {
+                pathfing(ref ia.action, joueur);
+
+                foreach (DestructibleItems barrel in liste_barrel)
+                {
+                    if (barrel.Aire_explosiveBox.Intersects(ia.rectangle()))
+                    {
+                        ia.actionIA = "";
+                    }
+                }
+
+                if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
+                {
+                    if (this.ia.actionIA == "up")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia))
+                            ia.mise_a_jour(ia.actionIA);
+                        ia.actionIA = "";
+                    }
+
+                    if (this.ia.actionIA == "down")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
+                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
+                            ia.mise_a_jour(ia.actionIA);
+                        ia.actionIA = "";
+                    }
+                    //
+                    if (this.ia.actionIA == "left")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
+                            ia.mise_a_jour(ia.actionIA);
+                        ia.actionIA = "";
+                    }
+                    //
+                    if (this.ia.actionIA == "right")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
+                            ia.mise_a_jour(ia.actionIA);
+                        ia.actionIA = "";
+                    }
+                }
+
+            }
+
             ia.actionIA = ""; //"Remet à zéros" les actions de l'IA
         }
 
@@ -333,7 +389,7 @@ namespace Sunday_Bloody_Sunday
         }
         //Pathfinding, à modifier
 
-        
+
         //Gère le raffraichissement de la liste d'IA
         public void update_ia()
         {
@@ -366,9 +422,20 @@ namespace Sunday_Bloody_Sunday
                         }
                     }
                     //L'ensemble des commandes précédentes définissent quel héros est la cible, ici le plus proche
+                    Node départ = new Node();
+                    départ.x = (this.ia.IATexture.X + 8 )/ 16;
+                    départ.y = (this.ia.IATexture.Y + 8 )/ 16;
+                    Node arrivée = new Node();
+                    arrivée.x = (joueur_cible.PlayerTexture.X + 8)/ 16;
+                    arrivée.y = (joueur_cible.PlayerTexture.Y + 8)/ 16;
 
-                    pathfing(ref this.ia.action, joueur_cible); //Trouve quelle action va faire l'IA
-                    action_ia(ia); //Verifie la possibilité de réalisation des actions
+                    bool[,] map = map_physique.map();
+                    /*
+                    this.ia.action = Pathfinding.pathfind(map, départ, arrivée);*/
+                    /*
+                    pathfing(ref this.ia.action, joueur_cible);*/
+                    //Trouve quelle action va faire l'IA
+                    action_ia(ia, joueur_cible); //Verifie la possibilité de réalisation des actions
                     this.ia.Update(); //Met à jour l'IA
                     ia.attaque_ia(liste_joueurs);
                     ia.est_update = false; //Désactive l'update de l'IA
@@ -698,7 +765,7 @@ namespace Sunday_Bloody_Sunday
             foreach (Player joueur in liste_joueurs)
             {
                 joueur.Update(mouse, keyboard);
-                joueur.action_hero(map_physique,liste_ia, liste_barrel);
+                joueur.action_hero(map_physique, liste_ia, liste_barrel);
                 if (joueur.Health > 0)
                 {
                     liste_joueurs2.Add(joueur);
