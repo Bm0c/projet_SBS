@@ -133,7 +133,7 @@ namespace Sunday_Bloody_Sunday
             Rectangle rectangle_ = rectangle();
             foreach (DestructibleItems barrel in liste_barrel)
             {
-                if (barrel.Aire_explosiveBox.Intersects(rectangle_))
+                if (barrel.Aire_barrel.Intersects(rectangle_) && barrel.type == "barrel")
                 {
                     this.actionjoueur = "";
                 }

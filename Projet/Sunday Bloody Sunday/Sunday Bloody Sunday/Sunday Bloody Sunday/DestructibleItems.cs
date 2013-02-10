@@ -15,19 +15,22 @@ namespace Sunday_Bloody_Sunday
     {
         //FIELDS
         //EXPLOSIVEBOX
-        public Rectangle ExplosiveBoxTexture;
-        public Rectangle Aire_explosiveBox;
+        public Rectangle BarrelTexture;
+        public Rectangle Aire_barrel;
+        public Rectangle BombTexture;
+        public Rectangle Aire_bomb;
         public bool isVisible;
-
-        private string type;
+        public string type;
 
 
         //CONSTRUCTOR
         public DestructibleItems(int x, int y, string type)
         {
             this.isVisible = true;
-            this.ExplosiveBoxTexture = new Rectangle(x, y, 16, 16);
-            this.Aire_explosiveBox = new Rectangle(ExplosiveBoxTexture.X, ExplosiveBoxTexture.Y, ExplosiveBoxTexture.Width, ExplosiveBoxTexture.Height);
+            this.BarrelTexture = new Rectangle(x, y, 16, 16);
+            this.Aire_barrel = new Rectangle(BarrelTexture.X, BarrelTexture.Y, BarrelTexture.Width, BarrelTexture.Height);
+            this.BombTexture = new Rectangle(x, y, 16, 16);
+            this.Aire_bomb = new Rectangle(BombTexture.X, BombTexture.Y, BombTexture.Width, BombTexture.Height);
             this.type = type;
         }
 
@@ -36,17 +39,27 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(List<Player> joueurs)
+        public void Update(List<Player> liste_joueurs, KeyboardState keyboard)
         {
-
+            foreach (Player joueur in liste_joueurs)
+            {
+                if (keyboard.IsKeyDown(Keys.P))
+                {
+                    BombTexture.X = joueur.PlayerTexture.X;
+                    BombTexture.Y = joueur.PlayerTexture.Y;
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             switch (type)
             {
-                case ("explosion"):
-                    spriteBatch.Draw(Ressources.mExplosiveBox, ExplosiveBoxTexture, Color.White);
+                case ("barrel"):
+                    spriteBatch.Draw(Ressources.mExplosiveBox, BarrelTexture, Color.White);
+                    break;
+                case ("bomb"):
+                    spriteBatch.Draw(Ressources.mBomb, BombTexture, Color.White);
                     break;
                 default:
                     break;

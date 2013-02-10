@@ -29,7 +29,7 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
         Projectile balle;
         IA ia;
-        DestructibleItems explosiveBox, explosiveBox2, explosiveBox3;
+        DestructibleItems barrel, barrel2, barrel3;
         Texture2D explosionTexture;
         PhysicsEngine map_physique;
         private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
@@ -57,15 +57,14 @@ namespace Sunday_Bloody_Sunday
             this.liste_box2 = new List<Items>();
 
             //EXPLOSIVE BOXES
-            
-            this.liste_barrel = new List<DestructibleItems>();/*
-            this.explosiveBox = new DestructibleItems(225, 175, "explosion");
-            this.explosiveBox2 = new DestructibleItems(475, 380, "explosion");
-            this.explosiveBox3 = new DestructibleItems(115, 305, "explosion");
-            this.liste_barrel.Add(this.explosiveBox);
-            this.liste_barrel.Add(this.explosiveBox2);
-            this.liste_barrel.Add(this.explosiveBox3);
-            this.liste_barrel2 = new List<DestructibleItems>();*/
+            this.liste_barrel = new List<DestructibleItems>();
+            this.barrel = new DestructibleItems(225, 175, "barrel");
+            this.barrel2 = new DestructibleItems(475, 380, "barrel");
+            this.barrel3 = new DestructibleItems(115, 305, "barrel");
+            this.liste_barrel.Add(this.barrel);
+            this.liste_barrel.Add(this.barrel2);
+            this.liste_barrel.Add(this.barrel3);
+            this.liste_barrel2 = new List<DestructibleItems>();
 
             //EXPLOSION PARTICULE
             this.liste_explosions = new List<ExplosionParticule>();
@@ -80,7 +79,7 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (DestructibleItems barrel in liste_barrel)
             {
-                if (barrel.Aire_explosiveBox.Intersects(ia.rectangle()))
+                if (barrel.Aire_barrel.Intersects(ia.rectangle()))
                 {
                     ia.actionIA = "";
                 }
@@ -105,7 +104,7 @@ namespace Sunday_Bloody_Sunday
                     else
                         ia.actionIA = "";
                 }
-                //
+                
                 if (this.ia.actionIA == "left")
                 {
                     if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
@@ -115,7 +114,7 @@ namespace Sunday_Bloody_Sunday
                         ia.actionIA = "";
 
                 }
-                //
+                
                 if (this.ia.actionIA == "right")
                 {
                     if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
@@ -134,7 +133,7 @@ namespace Sunday_Bloody_Sunday
 
                 foreach (DestructibleItems barrel in liste_barrel)
                 {
-                    if (barrel.Aire_explosiveBox.Intersects(ia.rectangle()))
+                    if (barrel.Aire_barrel.Intersects(ia.rectangle()))
                     {
                         ia.actionIA = "";
                     }
@@ -157,7 +156,7 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         ia.actionIA = "";
                     }
-                    //
+                    
                     if (this.ia.actionIA == "left")
                     {
                         if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
@@ -165,7 +164,7 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         ia.actionIA = "";
                     }
-                    //
+                    
                     if (this.ia.actionIA == "right")
                     {
                         if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
@@ -582,23 +581,6 @@ namespace Sunday_Bloody_Sunday
                 }
             }
             liste_box = liste_box2;
-        }
-
-        public void update_Barrel()
-        {
-            foreach (DestructibleItems barrel in liste_barrel)
-            {
-                barrel.Update(liste_joueurs);
-            }
-            liste_barrel2 = new List<DestructibleItems>();
-            foreach (DestructibleItems barrel in liste_barrel)
-            {
-                if (barrel.isVisible)
-                {
-                    liste_barrel2.Add(barrel);
-                }
-            }
-            liste_barrel = liste_barrel2;
 
             if (compteur > 180) //Ajout de nouveaux "barrels" a la map
             {
@@ -648,6 +630,23 @@ namespace Sunday_Bloody_Sunday
             compteur++;
         }
 
+        public void update_Barrel(KeyboardState keyboard)
+        {
+            foreach (DestructibleItems barrel in liste_barrel)
+            {
+                barrel.Update(liste_joueurs, keyboard);
+            }
+            liste_barrel2 = new List<DestructibleItems>();
+            foreach (DestructibleItems barrel in liste_barrel)
+            {
+                if (barrel.isVisible)
+                {
+                    liste_barrel2.Add(barrel);
+                }
+            }
+            liste_barrel = liste_barrel2;
+        }
+
         public void collision_barrel_balle(Projectile balle) //S'occupe de la collision des balles avec les "barrels"
         {
             futur_rectangle = balle.rectangle();
@@ -656,11 +655,11 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((test)) //Permet de casser la boucle dès qu'un "barrel" est touché
                 {
-                    if (futur_rectangle.Intersects(barrel.Aire_explosiveBox)) //Si la HitBox du projectile est en contact avec celle du "barrel", alors (...)
+                    if (futur_rectangle.Intersects(barrel.Aire_barrel)) //Si la HitBox du projectile est en contact avec celle du "barrel", alors (...)
                     {
                         balle.isVisible = false; //La balle n'existe plus
                         barrel.isVisible = false; //Le "barrel" n'existe plus
-                        AddExplosion(new Vector2(barrel.Aire_explosiveBox.X + 8, barrel.Aire_explosiveBox.Y + 8));
+                        AddExplosion(new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8));
                         moteur_son.PlayExplosionEffect();
                         test = false; //On casse le si
                     }
@@ -684,6 +683,15 @@ namespace Sunday_Bloody_Sunday
                 {
                     liste_explosions.RemoveAt(i);
                 }
+            }
+        }
+
+        public void AddBomb(List<Player> liste_joueurs)
+        {
+            foreach (Player joueur in liste_joueurs)
+            {
+                DestructibleItems bomb = new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb");
+                liste_barrel.Add(bomb);
             }
         }
 
@@ -775,10 +783,14 @@ namespace Sunday_Bloody_Sunday
             liste_joueurs2 = new List<Player>();
             update_ia();
             update_Box();
-            update_Barrel();
+            update_Barrel(keyboard);
             update_explosions(gameTime);
             update_projectiles(keyboard);
 
+            if (keyboard.IsKeyDown(Keys.P))
+            {
+                AddBomb(liste_joueurs);
+            }
             if (keyboard.IsKeyDown(Keys.D1) && !etape1)
             {
                 etape1 = true;

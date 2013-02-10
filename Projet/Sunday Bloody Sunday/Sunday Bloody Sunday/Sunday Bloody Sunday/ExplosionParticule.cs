@@ -43,9 +43,10 @@ namespace Sunday_Bloody_Sunday
         // Width of a given frame
         public Vector2 Position;
 
-        public Rectangle Aire_explosion1;
-        public Rectangle Aire_explosion2;
-        public Rectangle Aire_explosion3;
+        public Rectangle Aire_explosionBarrel1;
+        public Rectangle Aire_explosionBarrel2;
+        public Rectangle Aire_explosionBarrel3;
+        public Rectangle Aire_explosionBomb;
 
 
         //CONSTRUCTOR
@@ -66,10 +67,13 @@ namespace Sunday_Bloody_Sunday
             this.currentFrame = 0;
             this.Active = true;
 
-            // MUST ADJUST THE EXPLOSION AREA !
-            this.Aire_explosion1 = new Rectangle(225 - 20, 173 - 20, 40, 40);
-            this.Aire_explosion2 = new Rectangle(475 - 20, 383 - 20, 40, 40);
-            this.Aire_explosion3 = new Rectangle(115 - 20, 303 - 20, 40, 40);
+            // EXPLOSION AREAS FOR BARRELS
+            this.Aire_explosionBarrel1 = new Rectangle(225 - 20, 173 - 20, 40, 40);
+            this.Aire_explosionBarrel2 = new Rectangle(475 - 20, 383 - 20, 40, 40);
+            this.Aire_explosionBarrel3 = new Rectangle(115 - 20, 303 - 20, 40, 40);
+
+            // EXPLOSION AREAS FOR BOMBS
+            this.Aire_explosionBomb = new Rectangle();
         }
 
 
@@ -118,15 +122,15 @@ namespace Sunday_Bloody_Sunday
             // Player ou IA dans la zone d'explosion = DEAD
             foreach (Player joueur in liste_joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.Aire_explosion1)))
+                if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBarrel1)))
                 {
                     joueur.Health = 0;
                 }
-                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosion2)))
+                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBarrel2)))
                 {
                     joueur.Health = 0;
                 }
-                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosion3)))
+                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBarrel3)))
                 {
                     joueur.Health = 0;
                 }
@@ -134,15 +138,15 @@ namespace Sunday_Bloody_Sunday
 
             foreach (IA ia in liste_ia)
             {
-                if ((ia.IATexture.Intersects(this.Aire_explosion1)))
+                if ((ia.IATexture.Intersects(this.Aire_explosionBarrel1)))
                 {
                     ia.Health = 0;
                 }
-                else if ((ia.IATexture.Intersects(this.Aire_explosion2)))
+                else if ((ia.IATexture.Intersects(this.Aire_explosionBarrel2)))
                 {
                     ia.Health = 0;
                 }
-                else if ((ia.IATexture.Intersects(this.Aire_explosion3)))
+                else if ((ia.IATexture.Intersects(this.Aire_explosionBarrel3)))
                 {
                     ia.Health = 0;
                 }

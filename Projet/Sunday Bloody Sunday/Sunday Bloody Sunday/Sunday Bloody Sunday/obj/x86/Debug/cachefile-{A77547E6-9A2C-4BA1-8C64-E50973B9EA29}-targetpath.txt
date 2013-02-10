@@ -24,3 +24,4 @@ Content\elevator_music.wma
 Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
+Content\bomb.xnb
