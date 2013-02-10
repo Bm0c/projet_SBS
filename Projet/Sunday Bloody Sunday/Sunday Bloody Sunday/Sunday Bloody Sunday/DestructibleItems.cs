@@ -17,6 +17,7 @@ namespace Sunday_Bloody_Sunday
         //EXPLOSIVEBOX
         public Rectangle BarrelTexture;
         public Rectangle Aire_barrel;
+        //BOMB
         public Rectangle BombTexture;
         public Rectangle Aire_bomb;
         public bool isVisible;

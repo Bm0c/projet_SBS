@@ -17,14 +17,19 @@ namespace Sunday_Bloody_Sunday
         Rectangle MapTexture;
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
+
         public List<DestructibleItems> liste_barrel; //Liste barrel
         public List<DestructibleItems> liste_barrel2; //Liste barrel secondaire
+
         public List<ExplosionParticule> liste_explosions; //Liste particules d'explosion
         public List<ExplosionParticule> liste_explosions2; //Liste particules d'explosion secondaire
+
         public List<Player> liste_joueurs = new List<Player>(); //Liste joueur
         public List<Player> liste_joueurs2 = new List<Player>(); //Liste joueurs secondaire
+
         public List<IA> liste_ia; //Liste des IA
         public List<IA> liste_ia2; //Liste IA secondaire
+
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
         Projectile balle;
@@ -47,9 +52,6 @@ namespace Sunday_Bloody_Sunday
             MapTexture = new Rectangle(0, 0, 800, 480);
             this.map_physique = map_physique;
             this.liste_ia = new List<IA>();
-            IA ia1 = new IA(120, 48, Ressources.IA1);
-            IA ia2 = new IA(160, 48, Ressources.IA1);
-            IA ia3 = new IA(400, 460, Ressources.IA2);
             this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));
 
             //HEALTH + AMMO BOXES
@@ -58,12 +60,9 @@ namespace Sunday_Bloody_Sunday
 
             //EXPLOSIVE BOXES
             this.liste_barrel = new List<DestructibleItems>();
-            this.barrel = new DestructibleItems(225, 175, "barrel");
-            this.barrel2 = new DestructibleItems(475, 380, "barrel");
-            this.barrel3 = new DestructibleItems(115, 305, "barrel");
-            this.liste_barrel.Add(this.barrel);
-            this.liste_barrel.Add(this.barrel2);
-            this.liste_barrel.Add(this.barrel3);
+            this.liste_barrel.Add(new DestructibleItems(225, 175, "barrel"));
+            this.liste_barrel.Add(new DestructibleItems(475, 380, "barrel"));
+            this.liste_barrel.Add(new DestructibleItems(115, 305, "barrel"));
             this.liste_barrel2 = new List<DestructibleItems>();
 
             //EXPLOSION PARTICULE
@@ -104,7 +103,7 @@ namespace Sunday_Bloody_Sunday
                     else
                         ia.actionIA = "";
                 }
-                
+
                 if (this.ia.actionIA == "left")
                 {
                     if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
@@ -114,7 +113,7 @@ namespace Sunday_Bloody_Sunday
                         ia.actionIA = "";
 
                 }
-                
+
                 if (this.ia.actionIA == "right")
                 {
                     if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
@@ -156,7 +155,7 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         ia.actionIA = "";
                     }
-                    
+
                     if (this.ia.actionIA == "left")
                     {
                         if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
@@ -164,7 +163,7 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         ia.actionIA = "";
                     }
-                    
+
                     if (this.ia.actionIA == "right")
                     {
                         if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
@@ -422,11 +421,11 @@ namespace Sunday_Bloody_Sunday
                     }
                     //L'ensemble des commandes précédentes définissent quel héros est la cible, ici le plus proche
                     Node départ = new Node();
-                    départ.x = (this.ia.IATexture.X + 8 )/ 16;
-                    départ.y = (this.ia.IATexture.Y + 8 )/ 16;
+                    départ.x = (this.ia.IATexture.X + 8) / 16;
+                    départ.y = (this.ia.IATexture.Y + 8) / 16;
                     Node arrivée = new Node();
-                    arrivée.x = (joueur_cible.PlayerTexture.X + 8)/ 16;
-                    arrivée.y = (joueur_cible.PlayerTexture.Y + 8)/ 16;
+                    arrivée.x = (joueur_cible.PlayerTexture.X + 8) / 16;
+                    arrivée.y = (joueur_cible.PlayerTexture.Y + 8) / 16;
 
                     bool[,] map = map_physique.map();
                     /*
@@ -584,51 +583,134 @@ namespace Sunday_Bloody_Sunday
 
             if (compteur > 180) //Ajout de nouveaux "barrels" a la map
             {
+                Items box;
                 int spawn = rand.Next(3);
+                bool test = true;
                 if (spawn == 0)
                 {
                     int texture = rand.Next(2);
                     if (texture == 0)
                     {
-                        liste_box.Add(new Items(510, 245, "health"));
+                        box = new Items(510, 245, "health");
+                        foreach (Items box_ in liste_box)
+                        {
+                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
+                            {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            liste_box.Add(box);
                     }
                     else
                     {
-                        liste_box.Add(new Items(510, 245, "ammo"));
+
+                        box = new Items(510, 245, "ammo");
+                        foreach (Items box_ in liste_box)
+                        {
+                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
+                            {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            liste_box.Add(box);
                     }
-                    moteur_son.PlayPop();
+                    if (test)
+                        moteur_son.PlayPop();
                 }
                 else if (spawn == 1)
                 {
                     int texture = rand.Next(2);
                     if (texture == 0)
                     {
-                        liste_box.Add(new Items(575, 200, "health"));
+                        box = new Items(575, 200, "health");
+                        foreach (Items box_ in liste_box)
+                        {
+                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
+                            {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            liste_box.Add(box);
                     }
                     else
                     {
-                        liste_box.Add(new Items(575, 200, "ammo"));
+                        box = new Items(575, 200, "ammo");
+                        foreach (Items box_ in liste_box)
+                        {
+                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
+                            {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            liste_box.Add(box);
                     }
-                    moteur_son.PlayPop();
+                    if (test)
+                        moteur_son.PlayPop();
                 }
                 else
                 {
                     int texture = rand.Next(2);
                     if (texture == 0)
                     {
-                        liste_box.Add(new Items(250, 30, "health"));
+
+                        box = new Items(250, 30, "health");
+                        foreach (Items box_ in liste_box)
+                        {
+                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
+                            {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            liste_box.Add(box);
                     }
                     else
                     {
-                        liste_box.Add(new Items(250, 30, "ammo"));
-                    }
-                    moteur_son.PlayPop();
-                }
 
-                compteur = 0;
+                        box = new Items(250, 30, "ammo");
+                        foreach (Items box_ in liste_box)
+                        {
+                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
+                            {
+                                test = false;
+                            }
+                        }
+                        if (test)
+                            liste_box.Add(box);
+                    }
+                    if (test)
+                        moteur_son.PlayPop();
+                }
+                if (test)
+                    compteur = 0;
             }
             compteur++;
         }
+
+        public void update_Bomb(List<Player> liste_joueurs, KeyboardState keyboard)
+        {
+            if (keyboard.IsKeyDown(Keys.P))
+            {
+                foreach (Player joueur in liste_joueurs)
+                {
+                    DestructibleItems bomb = new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb");
+                    liste_barrel.Add(bomb);
+                }
+            }
+            if (keyboard.IsKeyDown(Keys.Enter))
+            {
+                foreach (DestructibleItems bomb in liste_barrel)
+                {
+                    AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8));
+                    moteur_son.PlayExplosionEffect();
+                }
+            }
+        }
+
 
         public void update_Barrel(KeyboardState keyboard)
         {
@@ -806,6 +888,8 @@ namespace Sunday_Bloody_Sunday
             {
                 game_over = true;
             }
+            update_Bomb(liste_joueurs, keyboard);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

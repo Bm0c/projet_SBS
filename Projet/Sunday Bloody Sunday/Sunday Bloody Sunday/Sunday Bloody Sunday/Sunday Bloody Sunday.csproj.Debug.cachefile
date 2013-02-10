@@ -13,6 +13,7 @@ Content\GameOver.xnb
 Content\health_box.xnb
 Content\ammo_box.xnb
 Content\explosive_box.xnb
+Content\bomb.xnb
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
@@ -22,6 +23,5 @@ Content\pikachu002.xnb
 Content\elevator_music.xnb
 Content\lose_effect.xnb
 Content\gameplay_music.xnb
-Content\bomb.xnb
 Content\elevator_music.wma
 Content\gameplay_music.wma

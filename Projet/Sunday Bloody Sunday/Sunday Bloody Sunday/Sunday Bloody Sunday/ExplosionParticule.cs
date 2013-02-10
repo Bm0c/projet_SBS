@@ -50,9 +50,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //CONSTRUCTOR
-        public void Initialize(Texture2D texture, Vector2 position,
-        int frameWidth, int frameHeight, int frameCount,
-        int frametime, Color color, float scale, bool looping)
+        public void Initialize(Texture2D texture, Vector2 position,int frameWidth, int frameHeight, int frameCount, int frametime, Color color, float scale, bool looping)
         {
             this.color = color;
             this.FrameWidth = frameWidth;
@@ -66,12 +64,6 @@ namespace Sunday_Bloody_Sunday
             this.elapsedTime = 0;
             this.currentFrame = 0;
             this.Active = true;
-
-            // EXPLOSION AREAS FOR BARRELS
-            this.Aire_explosionBarrel1 = new Rectangle(225 - 20, 173 - 20, 40, 40);
-            this.Aire_explosionBarrel2 = new Rectangle(475 - 20, 383 - 20, 40, 40);
-            this.Aire_explosionBarrel3 = new Rectangle(115 - 20, 303 - 20, 40, 40);
-
             // EXPLOSION AREAS FOR BOMBS
             this.Aire_explosionBomb = new Rectangle();
         }
