@@ -297,6 +297,7 @@ namespace Sunday_Bloody_Sunday
                         }
                     }
                     //L'ensemble des commandes précédentes définissent quel héros est la cible, ici le plus proche
+                    /*
                     Node départ = new Node();
                     départ.x = (this.ia.IATexture.X + 8) / 16;
                     départ.y = (this.ia.IATexture.Y + 8) / 16;
@@ -304,7 +305,7 @@ namespace Sunday_Bloody_Sunday
                     arrivée.x = (joueur_cible.PlayerTexture.X + 8) / 16;
                     arrivée.y = (joueur_cible.PlayerTexture.Y + 8) / 16;
 
-                    bool[,] map = map_physique.map();
+                    bool[,] map = map_physique.map();*/
                     /*
                     this.ia.action = Pathfinding.pathfind(map, départ, arrivée);
                     */
