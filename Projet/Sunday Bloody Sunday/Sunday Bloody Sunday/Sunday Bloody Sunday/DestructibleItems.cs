@@ -40,16 +40,9 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(List<Player> liste_joueurs, KeyboardState keyboard)
+        public void Update(List<Player> liste_joueurs, KeyboardState keyboard, List<DestructibleItems> liste_barril)
         {
-            foreach (Player joueur in liste_joueurs)
-            {
-                if (keyboard.IsKeyDown(Keys.P))
-                {
-                    BombTexture.X = joueur.PlayerTexture.X;
-                    BombTexture.Y = joueur.PlayerTexture.Y;
-                }
-            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

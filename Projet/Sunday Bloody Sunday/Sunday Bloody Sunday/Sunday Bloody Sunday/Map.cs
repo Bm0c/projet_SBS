@@ -132,7 +132,7 @@ namespace Sunday_Bloody_Sunday
 
                 foreach (DestructibleItems barrel in liste_barrel)
                 {
-                    if (barrel.Aire_barrel.Intersects(ia.rectangle()))
+                    if (barrel.Aire_barrel.Intersects(ia.rectangle()) && barrel.type == "barrel")
                     {
                         ia.actionIA = "";
                     }
@@ -428,10 +428,10 @@ namespace Sunday_Bloody_Sunday
                     arrivée.y = (joueur_cible.PlayerTexture.Y + 8) / 16;
 
                     bool[,] map = map_physique.map();
-                    /*
-                    this.ia.action = Pathfinding.pathfind(map, départ, arrivée);*/
-                    /*
-                    pathfing(ref this.ia.action, joueur_cible);*/
+                    
+                    this.ia.action = Pathfinding.pathfind(map, départ, arrivée);
+                    
+                    pathfing(ref this.ia.action, joueur_cible);
                     //Trouve quelle action va faire l'IA
                     action_ia(ia, joueur_cible); //Verifie la possibilité de réalisation des actions
                     this.ia.Update(); //Met à jour l'IA
@@ -697,26 +697,28 @@ namespace Sunday_Bloody_Sunday
             {
                 foreach (Player joueur in liste_joueurs)
                 {
-                    DestructibleItems bomb = new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb");
-                    liste_barrel.Add(bomb);
+                    liste_barrel.Add(new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb"));
                 }
             }
             if (keyboard.IsKeyDown(Keys.Enter))
             {
                 foreach (DestructibleItems bomb in liste_barrel)
                 {
-                    AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8));
-                    moteur_son.PlayExplosionEffect();
+                    if (bomb.type == "bomb")
+                    {
+                        AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8));
+                        moteur_son.PlayExplosionEffect();
+                        bomb.isVisible = false;
+                    }
                 }
             }
         }
-
 
         public void update_Barrel(KeyboardState keyboard)
         {
             foreach (DestructibleItems barrel in liste_barrel)
             {
-                barrel.Update(liste_joueurs, keyboard);
+                barrel.Update(liste_joueurs, keyboard, liste_barrel);
             }
             liste_barrel2 = new List<DestructibleItems>();
             foreach (DestructibleItems barrel in liste_barrel)
@@ -737,7 +739,7 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((test)) //Permet de casser la boucle dès qu'un "barrel" est touché
                 {
-                    if (futur_rectangle.Intersects(barrel.Aire_barrel)) //Si la HitBox du projectile est en contact avec celle du "barrel", alors (...)
+                    if (futur_rectangle.Intersects(barrel.Aire_barrel) && barrel.type == "barrel") //Si la HitBox du projectile est en contact avec celle du "barrel", alors (...)
                     {
                         balle.isVisible = false; //La balle n'existe plus
                         barrel.isVisible = false; //Le "barrel" n'existe plus
@@ -903,14 +905,15 @@ namespace Sunday_Bloody_Sunday
             {
                 barrel.Draw(spriteBatch);
             }
-            foreach (ExplosionParticule explosion in liste_explosions)
-            {
-                explosion.Draw(spriteBatch);
-            }
             draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch);
+            }
+
+            foreach (ExplosionParticule explosion in liste_explosions)
+            {
+                explosion.Draw(spriteBatch);
             }
         }
     }

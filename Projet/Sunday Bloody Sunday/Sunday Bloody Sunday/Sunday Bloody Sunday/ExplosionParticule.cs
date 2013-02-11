@@ -42,10 +42,6 @@ namespace Sunday_Bloody_Sunday
         public bool Looping;
         // Width of a given frame
         public Vector2 Position;
-
-        public Rectangle Aire_explosionBarrel1;
-        public Rectangle Aire_explosionBarrel2;
-        public Rectangle Aire_explosionBarrel3;
         public Rectangle Aire_explosionBomb;
 
 
@@ -114,15 +110,15 @@ namespace Sunday_Bloody_Sunday
             // Player ou IA dans la zone d'explosion = DEAD
             foreach (Player joueur in liste_joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBarrel1)))
+                if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
                 {
                     joueur.Health = 0;
                 }
-                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBarrel2)))
+                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
                 {
                     joueur.Health = 0;
                 }
-                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBarrel3)))
+                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
                 {
                     joueur.Health = 0;
                 }
@@ -130,15 +126,15 @@ namespace Sunday_Bloody_Sunday
 
             foreach (IA ia in liste_ia)
             {
-                if ((ia.IATexture.Intersects(this.Aire_explosionBarrel1)))
+                if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
                 {
                     ia.Health = 0;
                 }
-                else if ((ia.IATexture.Intersects(this.Aire_explosionBarrel2)))
+                else if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
                 {
                     ia.Health = 0;
                 }
-                else if ((ia.IATexture.Intersects(this.Aire_explosionBarrel3)))
+                else if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
                 {
                     ia.Health = 0;
                 }
