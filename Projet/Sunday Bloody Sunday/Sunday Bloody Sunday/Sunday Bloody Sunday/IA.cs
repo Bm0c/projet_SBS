@@ -127,6 +127,85 @@ namespace Sunday_Bloody_Sunday
             set { this.action = value; }
         }
 
+        public bool collision_entite_ia(IA ia, List<IA> liste_ia, List<Player> liste_joueurs)
+        {
+            Rectangle futur_rectangle = ia.rectangle();
+            bool test = true;
+            foreach (IA ia1 in liste_ia)
+            {
+                if ((test) && !(ia1.est_update))
+                {
+                    test = !futur_rectangle.Intersects(ia1.rectangle()); //Teste l'intersection entre une IA (parametre) et les autres (foreach) à l'aide de rectangle
+                }
+            }
+            foreach (Player joueur in liste_joueurs)
+            {
+                if (test)
+                {
+                    test = !futur_rectangle.Intersects(joueur.rectangle()); //Teste l'intersection entre une IA (parametre) et les héros (foreach) à l'aide de rectangle
+                }
+            }
+
+            return test;
+        }
+
+        public void action_ia(IA ia, Player joueur, List<DestructibleItems> liste_barrel, PhysicsEngine map_physique,
+                              List<IA> liste_ia, List<Player> liste_joueur)
+        {
+            foreach (DestructibleItems barrel in liste_barrel)
+            {
+                if (barrel.Aire_barrel.Intersects(ia.rectangle()) && barrel.type == "barrel")
+                {
+                    ia.actionIA = "";
+                }
+            }
+
+            if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
+            {
+                if (ia.actionIA == "up")
+                {
+                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
+                }
+
+                if (ia.actionIA == "down")
+                {
+                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
+                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
+                }
+
+                if (ia.actionIA == "left")
+                {
+                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
+
+                }
+
+                if (ia.actionIA == "right")
+                {
+                    if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                        ia.mise_a_jour(ia.actionIA);
+                    else
+                        ia.actionIA = "";
+
+                }
+
+
+            }
+
+            ia.actionIA = ""; //"Remet à zéros" les actions de l'IA
+        }
+
         // Renvois la futur position X de l'IA en cas d'un déplacement, à l'aide de l'action qui lui est attribuée
         public int futur_position_X_gauche()
         {

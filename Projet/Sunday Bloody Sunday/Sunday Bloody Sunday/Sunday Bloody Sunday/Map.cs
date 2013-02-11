@@ -34,7 +34,6 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
         Projectile balle;
         IA ia;
-        DestructibleItems barrel, barrel2, barrel3;
         Texture2D explosionTexture;
         PhysicsEngine map_physique;
         private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
@@ -74,131 +73,9 @@ namespace Sunday_Bloody_Sunday
 
         // METHODS
         //Verifie la possibilité des actions de l'IA
-        public void action_ia(IA ia, Player joueur)
-        {
-            foreach (DestructibleItems barrel in liste_barrel)
-            {
-                if (barrel.Aire_barrel.Intersects(ia.rectangle()))
-                {
-                    ia.actionIA = "";
-                }
-            }
+       
 
-            if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
-            {
-                if (this.ia.actionIA == "up")
-                {
-                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
-                }
-
-                if (this.ia.actionIA == "down")
-                {
-                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
-                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
-                }
-
-                if (this.ia.actionIA == "left")
-                {
-                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
-
-                }
-
-                if (this.ia.actionIA == "right")
-                {
-                    if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
-
-                }
-
-
-            }
-            if (ia.actionIA == "")
-            {
-                pathfing(ref ia.action, joueur);
-
-                foreach (DestructibleItems barrel in liste_barrel)
-                {
-                    if (barrel.Aire_barrel.Intersects(ia.rectangle()) && barrel.type == "barrel")
-                    {
-                        ia.actionIA = "";
-                    }
-                }
-
-                if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
-                {
-                    if (this.ia.actionIA == "up")
-                    {
-                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
-                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia))
-                            ia.mise_a_jour(ia.actionIA);
-                        ia.actionIA = "";
-                    }
-
-                    if (this.ia.actionIA == "down")
-                    {
-                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
-                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                            ia.mise_a_jour(ia.actionIA);
-                        ia.actionIA = "";
-                    }
-
-                    if (this.ia.actionIA == "left")
-                    {
-                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
-                         && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                            ia.mise_a_jour(ia.actionIA);
-                        ia.actionIA = "";
-                    }
-
-                    if (this.ia.actionIA == "right")
-                    {
-                        if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
-                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia))
-                            ia.mise_a_jour(ia.actionIA);
-                        ia.actionIA = "";
-                    }
-                }
-
-            }
-
-            ia.actionIA = ""; //"Remet à zéros" les actions de l'IA
-        }
-
-        public bool collision_entite_ia(IA ia)
-        {
-            futur_rectangle = this.ia.rectangle();
-            bool test = true;
-            foreach (IA ia1 in liste_ia)
-            {
-                if ((test) && !(ia1.est_update))
-                {
-                    test = !futur_rectangle.Intersects(ia1.rectangle()); //Teste l'intersection entre une IA (parametre) et les autres (foreach) à l'aide de rectangle
-                }
-            }
-            foreach (Player joueur in liste_joueurs)
-            {
-                if (test)
-                {
-                    test = !futur_rectangle.Intersects(joueur.rectangle()); //Teste l'intersection entre une IA (parametre) et les héros (foreach) à l'aide de rectangle
-                }
-            }
-
-            return test;
-        }
+        
         //Ces deux actions sont similaires à celles du héros
 
         //Gère le deplacement de l'ia
@@ -385,7 +262,7 @@ namespace Sunday_Bloody_Sunday
                 }
             }
         }
-        //Pathfinding, à modifier
+        
 
 
         //Gère le raffraichissement de la liste d'IA
@@ -428,12 +305,12 @@ namespace Sunday_Bloody_Sunday
                     arrivée.y = (joueur_cible.PlayerTexture.Y + 8) / 16;
 
                     bool[,] map = map_physique.map();
-                    
+                    /*
                     this.ia.action = Pathfinding.pathfind(map, départ, arrivée);
-                    
+                    */
                     pathfing(ref this.ia.action, joueur_cible);
                     //Trouve quelle action va faire l'IA
-                    action_ia(ia, joueur_cible); //Verifie la possibilité de réalisation des actions
+                    ia.action_ia(ia, joueur_cible, liste_barrel, map_physique, liste_ia, liste_joueurs); //Verifie la possibilité de réalisation des actions
                     this.ia.Update(); //Met à jour l'IA
                     ia.attaque_ia(liste_joueurs);
                     ia.est_update = false; //Désactive l'update de l'IA
@@ -852,10 +729,9 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-
-        // UPDATE & DRAW
-        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
+        public void update_player(KeyboardState keyboard, MouseState mouse)
         {
+
             // Update l'objet joueur contenu par la map
             foreach (Player joueur in liste_joueurs)
             {
@@ -868,11 +744,6 @@ namespace Sunday_Bloody_Sunday
             }
             liste_joueurs = liste_joueurs2;
             liste_joueurs2 = new List<Player>();
-            update_ia();
-            update_Box();
-            update_Barrel(keyboard);
-            update_explosions(gameTime);
-            update_projectiles(keyboard);
 
             if (keyboard.IsKeyDown(Keys.P))
             {
@@ -893,6 +764,17 @@ namespace Sunday_Bloody_Sunday
             {
                 game_over = true;
             }
+        }
+
+        // UPDATE & DRAW
+        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
+        {
+            update_ia();
+            update_Box();
+            update_Barrel(keyboard);
+            update_explosions(gameTime);
+            update_projectiles(keyboard);
+            update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
 
         }

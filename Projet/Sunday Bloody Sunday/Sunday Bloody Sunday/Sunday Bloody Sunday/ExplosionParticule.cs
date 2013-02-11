@@ -110,15 +110,15 @@ namespace Sunday_Bloody_Sunday
             // Player ou IA dans la zone d'explosion = DEAD
             foreach (Player joueur in liste_joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
+                if ((joueur.PlayerTexture.Intersects(this.destinationRect)))
                 {
                     joueur.Health = 0;
                 }
-                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
+                else if ((joueur.PlayerTexture.Intersects(this.destinationRect)))
                 {
                     joueur.Health = 0;
                 }
-                else if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
+                else if ((joueur.PlayerTexture.Intersects(this.destinationRect)))
                 {
                     joueur.Health = 0;
                 }
@@ -126,15 +126,15 @@ namespace Sunday_Bloody_Sunday
 
             foreach (IA ia in liste_ia)
             {
-                if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
+                if ((ia.IATexture.Intersects(this.destinationRect)))
                 {
                     ia.Health = 0;
                 }
-                else if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
+                else if ((ia.IATexture.Intersects(this.destinationRect)))
                 {
                     ia.Health = 0;
                 }
-                else if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
+                else if ((ia.IATexture.Intersects(this.destinationRect)))
                 {
                     ia.Health = 0;
                 }
