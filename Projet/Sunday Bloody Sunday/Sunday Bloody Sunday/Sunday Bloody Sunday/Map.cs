@@ -34,7 +34,6 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
         Projectile balle;
         IA ia;
-        DestructibleItems barrel, barrel2, barrel3;
         Texture2D explosionTexture;
         PhysicsEngine map_physique;
         private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données

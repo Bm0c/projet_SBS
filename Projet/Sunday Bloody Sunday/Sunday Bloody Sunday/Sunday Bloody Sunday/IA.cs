@@ -154,7 +154,7 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (DestructibleItems barrel in liste_barrel)
             {
-                if (barrel.Aire_barrel.Intersects(ia.rectangle()))
+                if (barrel.Aire_barrel.Intersects(ia.rectangle()) && barrel.type == "barrel")
                 {
                     ia.actionIA = "";
                 }
