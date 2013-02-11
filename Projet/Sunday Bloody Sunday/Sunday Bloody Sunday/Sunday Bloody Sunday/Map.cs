@@ -760,14 +760,17 @@ namespace Sunday_Bloody_Sunday
 
         public void update_explosions(GameTime gameTime)
         {
-            for (int i = liste_explosions.Count - 1; i >= 0; i--)
+            liste_explosions2 = new List<ExplosionParticule>();
+            foreach ( ExplosionParticule explosion in liste_explosions)
             {
-                liste_explosions[i].Update(gameTime, liste_joueurs, liste_ia);
-                if (liste_explosions[i].Active == false)
+                explosion.Update(gameTime, liste_joueurs, liste_ia);
+                if (explosion.Active == true)
                 {
-                    liste_explosions.RemoveAt(i);
+                    liste_explosions2.Add(explosion);
                 }
             }
+
+            liste_explosions = liste_explosions2;
         }
 
         public void AddBomb(List<Player> liste_joueurs)
