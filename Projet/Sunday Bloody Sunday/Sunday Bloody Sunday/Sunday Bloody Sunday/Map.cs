@@ -73,11 +73,7 @@ namespace Sunday_Bloody_Sunday
 
         // METHODS
         //Verifie la possibilité des actions de l'IA
-
-
-
         //Ces deux actions sont similaires à celles du héros
-
         //Gère le deplacement de l'ia
         public void pathfing(ref string action, Player joueur)
         {
@@ -577,7 +573,6 @@ namespace Sunday_Bloody_Sunday
                 {
                     AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.activer);
                 }
-
             }
 
             foreach (DestructibleItems bomb in liste_barrel)
@@ -641,7 +636,7 @@ namespace Sunday_Bloody_Sunday
             liste_explosions2 = new List<ExplosionParticule>();
             foreach (ExplosionParticule explosion in liste_explosions)
             {
-                explosion.Update(gameTime, liste_joueurs, liste_ia);
+                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel);
                 if (explosion.Active == true)
                 {
                     liste_explosions2.Add(explosion);
@@ -770,7 +765,6 @@ namespace Sunday_Bloody_Sunday
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -789,7 +783,6 @@ namespace Sunday_Bloody_Sunday
             {
                 projectile.Draw(spriteBatch);
             }
-
             foreach (ExplosionParticule explosion in liste_explosions)
             {
                 explosion.Draw(spriteBatch);
