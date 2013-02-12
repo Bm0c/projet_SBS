@@ -51,7 +51,7 @@ namespace Sunday_Bloody_Sunday
             MapTexture = new Rectangle(0, 0, 800, 480);
             this.map_physique = map_physique;
             this.liste_ia = new List<IA>();
-            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));
+            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1));
 
             //HEALTH + AMMO BOXES
             this.liste_box = new List<Items>();
@@ -73,9 +73,9 @@ namespace Sunday_Bloody_Sunday
 
         // METHODS
         //Verifie la possibilité des actions de l'IA
-       
 
-        
+
+
         //Ces deux actions sont similaires à celles du héros
 
         //Gère le deplacement de l'ia
@@ -262,7 +262,7 @@ namespace Sunday_Bloody_Sunday
                 }
             }
         }
-        
+
 
 
         //Gère le raffraichissement de la liste d'IA
@@ -276,7 +276,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Ressources.Player1);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1);
                     Vector2 vector_joueur = new Vector2();
                     foreach (Player joueur in liste_joueurs)
                     {
@@ -571,25 +571,25 @@ namespace Sunday_Bloody_Sunday
 
         public void update_Bomb(List<Player> liste_joueurs, KeyboardState keyboard)
         {
-            if (keyboard.IsKeyDown(Keys.P))
+            foreach (Player joueur in liste_joueurs)
             {
-                foreach (Player joueur in liste_joueurs)
+                if (keyboard.IsKeyDown(joueur.poser))
                 {
-                    liste_barrel.Add(new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb"));
+                    AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.activer);
+                }
+
+            }
+
+            foreach (DestructibleItems bomb in liste_barrel)
+            {
+                if (bomb.type == "bomb" && keyboard.IsKeyDown(bomb.boum))
+                {
+                    AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
+                    moteur_son.PlayExplosionEffect();
+                    bomb.isVisible = false;
                 }
             }
-            if (keyboard.IsKeyDown(Keys.Enter))
-            {
-                foreach (DestructibleItems bomb in liste_barrel)
-                {
-                    if (bomb.type == "bomb")
-                    {
-                        AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8));
-                        moteur_son.PlayExplosionEffect();
-                        bomb.isVisible = false;
-                    }
-                }
-            }
+
         }
 
         public void update_Barrel(KeyboardState keyboard)
@@ -621,7 +621,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         balle.isVisible = false; //La balle n'existe plus
                         barrel.isVisible = false; //Le "barrel" n'existe plus
-                        AddExplosion(new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8));
+                        AddExplosion(new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8), barrel.Aire_barrel.X - 16, barrel.Aire_barrel.Y - 16, 48);
                         moteur_son.PlayExplosionEffect();
                         test = false; //On casse le si
                     }
@@ -629,17 +629,17 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void AddExplosion(Vector2 position)
+        public void AddExplosion(Vector2 position, int x, int y, int largeur)
         {
             ExplosionParticule explosion = new ExplosionParticule();
-            explosion.Initialize(Ressources.ExplosionParticule, position, 134, 134, 12, 45, Color.White, 1f, false);
+            explosion.Initialize(Ressources.ExplosionParticule, position, 134, 134, 12, 45, Color.White, 1f, false, x, y, largeur);
             liste_explosions.Add(explosion);
         }
 
         public void update_explosions(GameTime gameTime)
         {
             liste_explosions2 = new List<ExplosionParticule>();
-            foreach ( ExplosionParticule explosion in liste_explosions)
+            foreach (ExplosionParticule explosion in liste_explosions)
             {
                 explosion.Update(gameTime, liste_joueurs, liste_ia);
                 if (explosion.Active == true)
@@ -651,13 +651,10 @@ namespace Sunday_Bloody_Sunday
             liste_explosions = liste_explosions2;
         }
 
-        public void AddBomb(List<Player> liste_joueurs)
+        public void AddBomb(int x, int y, Keys activer)
         {
-            foreach (Player joueur in liste_joueurs)
-            {
-                DestructibleItems bomb = new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb");
-                liste_barrel.Add(bomb);
-            }
+            DestructibleItems bomb = new DestructibleItems(x, y, "bomb", activer);
+            liste_barrel.Add(bomb);
         }
 
         //Gère l'affichage de la liste d'IA
@@ -746,10 +743,6 @@ namespace Sunday_Bloody_Sunday
             liste_joueurs = liste_joueurs2;
             liste_joueurs2 = new List<Player>();
 
-            if (keyboard.IsKeyDown(Keys.P))
-            {
-                AddBomb(liste_joueurs);
-            }
             if (keyboard.IsKeyDown(Keys.D1) && !etape1)
             {
                 etape1 = true;
@@ -758,8 +751,8 @@ namespace Sunday_Bloody_Sunday
             if (keyboard.IsKeyDown(Keys.D2) && !etape2)
             {
                 etape2 = true;
-                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
-                this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));
+                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2));/*
+                this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
             if (liste_joueurs.Count == 0) //Si il n'y a plus de joueurs
             {

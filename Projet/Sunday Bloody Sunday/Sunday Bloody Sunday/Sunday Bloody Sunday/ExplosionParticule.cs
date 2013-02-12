@@ -46,7 +46,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //CONSTRUCTOR
-        public void Initialize(Texture2D texture, Vector2 position,int frameWidth, int frameHeight, int frameCount, int frametime, Color color, float scale, bool looping)
+        public void Initialize(Texture2D texture, Vector2 position,int frameWidth, int frameHeight, int frameCount, int frametime, Color color, float scale, bool looping, int x, int y, int largeur)
         {
             this.color = color;
             this.FrameWidth = frameWidth;
@@ -61,7 +61,7 @@ namespace Sunday_Bloody_Sunday
             this.currentFrame = 0;
             this.Active = true;
             // EXPLOSION AREAS FOR BOMBS
-            this.Aire_explosionBomb = new Rectangle();
+            this.Aire_explosionBomb = new Rectangle(x,y,largeur,largeur);
         }
 
 
@@ -110,15 +110,7 @@ namespace Sunday_Bloody_Sunday
             // Player ou IA dans la zone d'explosion = DEAD
             foreach (Player joueur in liste_joueurs)
             {
-                if ((joueur.PlayerTexture.Intersects(this.destinationRect)))
-                {
-                    joueur.Health = 0;
-                }
-                else if ((joueur.PlayerTexture.Intersects(this.destinationRect)))
-                {
-                    joueur.Health = 0;
-                }
-                else if ((joueur.PlayerTexture.Intersects(this.destinationRect)))
+                if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)))
                 {
                     joueur.Health = 0;
                 }
@@ -126,15 +118,7 @@ namespace Sunday_Bloody_Sunday
 
             foreach (IA ia in liste_ia)
             {
-                if ((ia.IATexture.Intersects(this.destinationRect)))
-                {
-                    ia.Health = 0;
-                }
-                else if ((ia.IATexture.Intersects(this.destinationRect)))
-                {
-                    ia.Health = 0;
-                }
-                else if ((ia.IATexture.Intersects(this.destinationRect)))
+                if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
                 {
                     ia.Health = 0;
                 }

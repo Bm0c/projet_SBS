@@ -22,6 +22,7 @@ namespace Sunday_Bloody_Sunday
         public Rectangle Aire_bomb;
         public bool isVisible;
         public string type;
+        public Keys boum;
 
 
         //CONSTRUCTOR
@@ -33,6 +34,18 @@ namespace Sunday_Bloody_Sunday
             this.BombTexture = new Rectangle(x, y, 16, 16);
             this.Aire_bomb = new Rectangle(BombTexture.X, BombTexture.Y, BombTexture.Width, BombTexture.Height);
             this.type = type;
+        }
+
+
+        public DestructibleItems(int x, int y, string type, Keys boum)
+        {
+            this.isVisible = true;
+            this.BarrelTexture = new Rectangle(x, y, 16, 16);
+            this.Aire_barrel = new Rectangle(BarrelTexture.X, BarrelTexture.Y, BarrelTexture.Width, BarrelTexture.Height);
+            this.BombTexture = new Rectangle(x, y, 16, 16);
+            this.Aire_bomb = new Rectangle(BombTexture.X, BombTexture.Y, BombTexture.Width, BombTexture.Height);
+            this.type = type;
+            this.boum = boum;
         }
 
 
