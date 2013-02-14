@@ -66,7 +66,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia)
+        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel)
         {
             // Do not update the game if we are not active
             if (Active == false)
@@ -121,6 +121,14 @@ namespace Sunday_Bloody_Sunday
                 if ((ia.IATexture.Intersects(this.Aire_explosionBomb)))
                 {
                     ia.Health = 0;
+                }
+            }
+
+            foreach (DestructibleItems barrel in liste_barrel)
+            {
+                if ((barrel.BarrelTexture.Intersects(this.Aire_explosionBomb)))
+                {
+                    barrel.isVisible = false;
                 }
             }
         }
