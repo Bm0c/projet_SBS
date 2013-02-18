@@ -54,13 +54,17 @@ namespace Sunday_Bloody_Sunday
                     joueur.Health = 100;
                 }
             }
-            else if (type == "ammo" && joueur.Ammo < 100)
+            else if (type == "ammo" && (joueur.Ammo < 100 || joueur.bomb <= 0))
             {
                 joueur.Ammo = joueur.Ammo + this.ammoNumber;
                 isVisible = false;
                 if (joueur.Ammo > 100)
                 {
                     joueur.Ammo = 100;
+                }
+                if (joueur.bomb <= 0)
+                {
+                    joueur.bomb++;
                 }
             }
             else
@@ -85,15 +89,15 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle Maptexture)
         {
             switch (type)
             {
                 case ("health"):
-                    spriteBatch.Draw(Ressources.mHealthBox, HealthBoxTexture, Color.White);
+                    spriteBatch.Draw(Ressources.mHealthBox, new Rectangle(Maptexture.X + HealthBoxTexture.X,Maptexture.Y + HealthBoxTexture.Y, HealthBoxTexture.Width,HealthBoxTexture.Width), Color.White);
                     break;
                 case ("ammo"):
-                    spriteBatch.Draw(Ressources.mAmmoBox, AmmoBoxTexture, Color.White);
+                    spriteBatch.Draw(Ressources.mAmmoBox, new Rectangle(Maptexture.X + AmmoBoxTexture.X, Maptexture.Y + AmmoBoxTexture.Y, AmmoBoxTexture.Width, AmmoBoxTexture.Width), Color.White);
                     break;
                 default:
                     break;

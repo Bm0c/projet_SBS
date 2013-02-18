@@ -133,11 +133,11 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle Maptexture)
         {
             if (Active)
             {
-                spriteBatch.Draw(Ressources.ExplosionParticule, destinationRect, sourceRect, color);
+                spriteBatch.Draw(Ressources.ExplosionParticule, new Rectangle(Maptexture.X + destinationRect.X, Maptexture.Y + destinationRect.Y, destinationRect.Width, destinationRect.Width), sourceRect, color);
             }
         }
     }

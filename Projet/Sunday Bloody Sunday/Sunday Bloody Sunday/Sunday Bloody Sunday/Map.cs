@@ -58,10 +58,12 @@ namespace Sunday_Bloody_Sunday
             this.liste_box2 = new List<Items>();
 
             //EXPLOSIVE BOXES
-            this.liste_barrel = new List<DestructibleItems>();
-            this.liste_barrel.Add(new DestructibleItems(225, 175, "barrel"));
-            this.liste_barrel.Add(new DestructibleItems(475, 380, "barrel"));
-            this.liste_barrel.Add(new DestructibleItems(115, 305, "barrel"));
+            this.liste_barrel = new List<DestructibleItems>(); 
+            this.liste_barrel.Add(new DestructibleItems(225, 173, "barrel"));
+            this.liste_barrel.Add(new DestructibleItems(475, 383, "barrel"));
+            this.liste_barrel.Add(new DestructibleItems(115, 303, "barrel"));
+
+
             this.liste_barrel2 = new List<DestructibleItems>();
 
             //EXPLOSION PARTICULE
@@ -569,9 +571,10 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Player joueur in liste_joueurs)
             {
-                if (keyboard.IsKeyDown(joueur.poser))
+                if (keyboard.IsKeyDown(joueur.poser) && joueur.bomb > 0)
                 {
                     AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.activer);
+                    joueur.bomb--;
                 }
             }
 
@@ -706,7 +709,7 @@ namespace Sunday_Bloody_Sunday
 
                     }
 
-                    ia.Draw(spriteBatch);
+                    ia.Draw(spriteBatch, MapTexture);
                 }
 
 
@@ -769,23 +772,33 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            int x = 0;
+            int y = 0;
+            foreach (Player joueur in liste_joueurs)
+            {
+                x = joueur.PlayerTexture.X;
+                y = joueur.PlayerTexture.Y;
+            }
+            MapTexture.X = 400 - x;
+            MapTexture.Y = 240 - y;
+
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             foreach (Items box in liste_box)
             {
-                box.Draw(spriteBatch);
+                box.Draw(spriteBatch, MapTexture);
             }
             foreach (DestructibleItems barrel in liste_barrel)
             {
-                barrel.Draw(spriteBatch);
+                barrel.Draw(spriteBatch, MapTexture);
             }
             draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)
             {
-                projectile.Draw(spriteBatch);
+                projectile.Draw(spriteBatch, MapTexture);
             }
             foreach (ExplosionParticule explosion in liste_explosions)
             {
-                explosion.Draw(spriteBatch);
+                explosion.Draw(spriteBatch, MapTexture);
             }
         }
     }

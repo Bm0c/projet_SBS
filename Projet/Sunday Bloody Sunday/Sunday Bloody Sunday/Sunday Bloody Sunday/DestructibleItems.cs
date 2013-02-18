@@ -58,15 +58,15 @@ namespace Sunday_Bloody_Sunday
             
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle Maptexture)
         {
             switch (type)
             {
                 case ("barrel"):
-                    spriteBatch.Draw(Ressources.mExplosiveBox, BarrelTexture, Color.White);
+                    spriteBatch.Draw(Ressources.mExplosiveBox, new Rectangle(Maptexture.X + BarrelTexture.X, Maptexture.Y + BarrelTexture.Y, BarrelTexture.Width, BarrelTexture.Width), Color.White);
                     break;
                 case ("bomb"):
-                    spriteBatch.Draw(Ressources.mBomb, BombTexture, Color.White);
+                    spriteBatch.Draw(Ressources.mBomb, new Rectangle(Maptexture.X + BombTexture.X, Maptexture.Y + BombTexture.Y, BombTexture.Width, BombTexture.Width), Color.White);
                     break;
                 default:
                     break;
