@@ -144,12 +144,27 @@ namespace Sunday_Bloody_Sunday
                 {
                     action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
                 }
+                if (action == 1)
+                {
+
+                }
+                if (action == 2)
+                {
+
+                }
                 if (action == 3)
                 {
                     Main = new GameMain();
                     ecran = Screen.jeu;
                     PlayMusic(GamePlayMusic);
                     button_timer = 0;
+                }
+                if (action == 4)
+                {
+                    ecran = Screen.menu_principal;
+                    menuMain = new Menu(Menu.MenuType.MainMenu);
+                    button_timer = 0;
+                    //introEffect.Play();
                 }
             }
 
@@ -179,7 +194,7 @@ namespace Sunday_Bloody_Sunday
                     menuMain = new Menu(Menu.MenuType.MainMenu);
                     button_timer = 0;
                     StopMusic(MenuMusic);
-                    introEffect.Play();
+                    //introEffect.Play();
                 }
             }
 
@@ -265,7 +280,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     ecran = Screen.menu_principal;
                     menuMain = new Menu(Menu.MenuType.MainMenu);
-                    introEffect.Play();
+                    //introEffect.Play();
                     button_timer = 0;
                 }
             }
