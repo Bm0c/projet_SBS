@@ -1,6 +1,0 @@
-c:\users\bmoc\SBS\Editeur\Editeur\Editeur\bin\x86\Debug\Editeur.exe
-c:\users\bmoc\SBS\Editeur\Editeur\Editeur\bin\x86\Debug\Editeur.pdb
-c:\users\bmoc\SBS\Editeur\Editeur\Editeur\obj\x86\Debug\ResolveAssemblyReference.cache
-c:\users\bmoc\SBS\Editeur\Editeur\Editeur\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-c:\users\bmoc\SBS\Editeur\Editeur\Editeur\obj\x86\Debug\Editeur.exe
-c:\users\bmoc\SBS\Editeur\Editeur\Editeur\obj\x86\Debug\Editeur.pdb
