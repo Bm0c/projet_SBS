@@ -51,17 +51,19 @@ namespace Sunday_Bloody_Sunday
             MapTexture = new Rectangle(0, 0, 800, 480);
             this.map_physique = map_physique;
             this.liste_ia = new List<IA>();
-            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Ressources.Player1));
+            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1));
 
             //HEALTH + AMMO BOXES
             this.liste_box = new List<Items>();
             this.liste_box2 = new List<Items>();
 
             //EXPLOSIVE BOXES
-            this.liste_barrel = new List<DestructibleItems>();
-            this.liste_barrel.Add(new DestructibleItems(225, 175, "barrel"));
-            this.liste_barrel.Add(new DestructibleItems(475, 380, "barrel"));
-            this.liste_barrel.Add(new DestructibleItems(115, 305, "barrel"));
+            this.liste_barrel = new List<DestructibleItems>(); 
+            this.liste_barrel.Add(new DestructibleItems(225, 173, "barrel"));
+            this.liste_barrel.Add(new DestructibleItems(475, 383, "barrel"));
+            this.liste_barrel.Add(new DestructibleItems(115, 303, "barrel"));
+
+
             this.liste_barrel2 = new List<DestructibleItems>();
 
             //EXPLOSION PARTICULE
@@ -73,11 +75,7 @@ namespace Sunday_Bloody_Sunday
 
         // METHODS
         //Verifie la possibilité des actions de l'IA
-       
-
-        
         //Ces deux actions sont similaires à celles du héros
-
         //Gère le deplacement de l'ia
         public void pathfing(ref string action, Player joueur)
         {
@@ -262,7 +260,7 @@ namespace Sunday_Bloody_Sunday
                 }
             }
         }
-        
+
 
 
         //Gère le raffraichissement de la liste d'IA
@@ -276,7 +274,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Ressources.Player1);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1);
                     Vector2 vector_joueur = new Vector2();
                     foreach (Player joueur in liste_joueurs)
                     {
@@ -297,6 +295,7 @@ namespace Sunday_Bloody_Sunday
                         }
                     }
                     //L'ensemble des commandes précédentes définissent quel héros est la cible, ici le plus proche
+                    /*
                     Node départ = new Node();
                     départ.x = (this.ia.IATexture.X + 8) / 16;
                     départ.y = (this.ia.IATexture.Y + 8) / 16;
@@ -304,7 +303,7 @@ namespace Sunday_Bloody_Sunday
                     arrivée.x = (joueur_cible.PlayerTexture.X + 8) / 16;
                     arrivée.y = (joueur_cible.PlayerTexture.Y + 8) / 16;
 
-                    bool[,] map = map_physique.map();
+                    bool[,] map = map_physique.map();*/
                     /*
                     this.ia.action = Pathfinding.pathfind(map, départ, arrivée);
                     */
@@ -570,25 +569,25 @@ namespace Sunday_Bloody_Sunday
 
         public void update_Bomb(List<Player> liste_joueurs, KeyboardState keyboard)
         {
-            if (keyboard.IsKeyDown(Keys.P))
+            foreach (Player joueur in liste_joueurs)
             {
-                foreach (Player joueur in liste_joueurs)
+                if (keyboard.IsKeyDown(joueur.poser) && joueur.bomb > 0)
                 {
-                    liste_barrel.Add(new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb"));
+                    AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.activer);
+                    joueur.bomb--;
                 }
             }
-            if (keyboard.IsKeyDown(Keys.Enter))
+
+            foreach (DestructibleItems bomb in liste_barrel)
             {
-                foreach (DestructibleItems bomb in liste_barrel)
+                if (bomb.type == "bomb" && keyboard.IsKeyDown(bomb.boum))
                 {
-                    if (bomb.type == "bomb")
-                    {
-                        AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8));
-                        moteur_son.PlayExplosionEffect();
-                        bomb.isVisible = false;
-                    }
+                    AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
+                    moteur_son.PlayExplosionEffect();
+                    bomb.isVisible = false;
                 }
             }
+
         }
 
         public void update_Barrel(KeyboardState keyboard)
@@ -620,7 +619,7 @@ namespace Sunday_Bloody_Sunday
                     {
                         balle.isVisible = false; //La balle n'existe plus
                         barrel.isVisible = false; //Le "barrel" n'existe plus
-                        AddExplosion(new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8));
+                        AddExplosion(new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8), barrel.Aire_barrel.X - 16, barrel.Aire_barrel.Y - 16, 48);
                         moteur_son.PlayExplosionEffect();
                         test = false; //On casse le si
                     }
@@ -628,32 +627,32 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void AddExplosion(Vector2 position)
+        public void AddExplosion(Vector2 position, int x, int y, int largeur)
         {
             ExplosionParticule explosion = new ExplosionParticule();
-            explosion.Initialize(Ressources.ExplosionParticule, position, 134, 134, 12, 45, Color.White, 1f, false);
+            explosion.Initialize(Ressources.ExplosionParticule, position, 134, 134, 12, 45, Color.White, 1f, false, x, y, largeur);
             liste_explosions.Add(explosion);
         }
 
         public void update_explosions(GameTime gameTime)
         {
-            for (int i = liste_explosions.Count - 1; i >= 0; i--)
+            liste_explosions2 = new List<ExplosionParticule>();
+            foreach (ExplosionParticule explosion in liste_explosions)
             {
-                liste_explosions[i].Update(gameTime, liste_joueurs, liste_ia);
-                if (liste_explosions[i].Active == false)
+                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel);
+                if (explosion.Active == true)
                 {
-                    liste_explosions.RemoveAt(i);
+                    liste_explosions2.Add(explosion);
                 }
             }
+
+            liste_explosions = liste_explosions2;
         }
 
-        public void AddBomb(List<Player> liste_joueurs)
+        public void AddBomb(int x, int y, Keys activer)
         {
-            foreach (Player joueur in liste_joueurs)
-            {
-                DestructibleItems bomb = new DestructibleItems(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, "bomb");
-                liste_barrel.Add(bomb);
-            }
+            DestructibleItems bomb = new DestructibleItems(x, y, "bomb", activer);
+            liste_barrel.Add(bomb);
         }
 
         //Gère l'affichage de la liste d'IA
@@ -710,7 +709,7 @@ namespace Sunday_Bloody_Sunday
 
                     }
 
-                    ia.Draw(spriteBatch);
+                    ia.Draw(spriteBatch, MapTexture);
                 }
 
 
@@ -742,10 +741,6 @@ namespace Sunday_Bloody_Sunday
             liste_joueurs = liste_joueurs2;
             liste_joueurs2 = new List<Player>();
 
-            if (keyboard.IsKeyDown(Keys.P))
-            {
-                AddBomb(liste_joueurs);
-            }
             if (keyboard.IsKeyDown(Keys.D1) && !etape1)
             {
                 etape1 = true;
@@ -754,8 +749,8 @@ namespace Sunday_Bloody_Sunday
             if (keyboard.IsKeyDown(Keys.D2) && !etape2)
             {
                 etape2 = true;
-                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Ressources.Player2));
-                this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));
+                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2));/*
+                this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
             if (liste_joueurs.Count == 0) //Si il n'y a plus de joueurs
             {
@@ -773,29 +768,37 @@ namespace Sunday_Bloody_Sunday
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            int x = 0;
+            int y = 0;
+            foreach (Player joueur in liste_joueurs)
+            {
+                x = joueur.PlayerTexture.X;
+                y = joueur.PlayerTexture.Y;
+            }
+            MapTexture.X = 400 - x;
+            MapTexture.Y = 240 - y;
+
             spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             foreach (Items box in liste_box)
             {
-                box.Draw(spriteBatch);
+                box.Draw(spriteBatch, MapTexture);
             }
             foreach (DestructibleItems barrel in liste_barrel)
             {
-                barrel.Draw(spriteBatch);
+                barrel.Draw(spriteBatch, MapTexture);
             }
             draw_ordre(spriteBatch);
             foreach (Projectile projectile in liste_projectile)
             {
-                projectile.Draw(spriteBatch);
+                projectile.Draw(spriteBatch, MapTexture);
             }
-
             foreach (ExplosionParticule explosion in liste_explosions)
             {
-                explosion.Draw(spriteBatch);
+                explosion.Draw(spriteBatch, MapTexture);
             }
         }
     }

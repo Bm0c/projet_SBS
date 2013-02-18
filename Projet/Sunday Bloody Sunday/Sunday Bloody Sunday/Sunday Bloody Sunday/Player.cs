@@ -45,8 +45,11 @@ namespace Sunday_Bloody_Sunday
         public Keys Gauche;
         public Keys Droite;
         public Keys Tire;
+        public Keys poser;
+        public Keys activer;
 
         public int refroidissement = 0;
+        public int bomb;
 
         Texture2D texture;
 
@@ -54,7 +57,7 @@ namespace Sunday_Bloody_Sunday
 
 
         // CONSTRUCTOR
-        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Texture2D texture)
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poser, Keys activer, Texture2D texture)
         {
             this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
@@ -75,8 +78,11 @@ namespace Sunday_Bloody_Sunday
             this.Gauche = Gauche;
             this.Droite = Droite;
             this.Tire = Tire;
+            this.poser = poser;
+            this.activer = activer;
 
             this.texture = texture;
+            bomb = 1;
         }
 
 
@@ -128,7 +134,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void action_hero(PhysicsEngine map_physique, List<IA>liste_ia, List<DestructibleItems> liste_barrel)
+        public void action_hero(PhysicsEngine map_physique, List<IA> liste_ia, List<DestructibleItems> liste_barrel)
         {
             Rectangle rectangle_ = rectangle();
             foreach (DestructibleItems barrel in liste_barrel)
@@ -342,7 +348,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.texture, this.PlayerTexture, new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(this.texture, new Rectangle(400,240,this.PlayerTexture.Width,PlayerTexture.Height), new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }
