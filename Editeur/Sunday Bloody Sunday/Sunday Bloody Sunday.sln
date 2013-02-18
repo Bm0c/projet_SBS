@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunday Bloody Sunday", "Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday.csproj", "{E0B6A19E-B1ED-492B-AA03-0AEFC8F26C52}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Sunday Bloody SundayContent", "Sunday Bloody Sunday\Sunday Bloody SundayContent\Sunday Bloody SundayContent.contentproj", "{A77547E6-9A2C-4BA1-8C64-E50973B9EA29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunday Bloody SundayContent", "Sunday Bloody Sunday\Sunday Bloody SundayContent\Sunday Bloody SundayContent.contentproj", "{A77547E6-9A2C-4BA1-8C64-E50973B9EA29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

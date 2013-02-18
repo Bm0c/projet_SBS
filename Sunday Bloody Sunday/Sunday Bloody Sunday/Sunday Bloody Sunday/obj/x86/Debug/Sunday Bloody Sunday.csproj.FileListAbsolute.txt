@@ -178,3 +178,4 @@ C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Su
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.exe
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.pdb
+C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_01.xnb

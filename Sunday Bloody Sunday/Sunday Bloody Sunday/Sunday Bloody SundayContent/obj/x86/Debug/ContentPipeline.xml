@@ -228,6 +228,15 @@
       <Extra>C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.wma</Extra>
       <Time>2013-02-18T20:58:09.7120913+01:00</Time>
     </Item>
+    <Item>
+      <Source>thumbnails_map_01.png</Source>
+      <Name>thumbnails_map_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_01.xnb</Output>
+      <Time>2013-02-18T22:21:17.4349822+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

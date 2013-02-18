@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum ButtonType
         {
-            Play, Option, Quit, Resume, Back, More, Less, French, English, Mute/*, NormalScreen, FullScreen*/, Restart
+            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, French, English, Mute, Restart
         };
 
 
@@ -23,7 +23,7 @@ namespace Sunday_Bloody_Sunday
         ButtonType myButton;
         string buttonMessage;
         Rectangle rectangle;
-        Rectangle rectangle_mouseCursor;
+        Rectangle mouseCursor_container;
         static public string langage = "English";
 
 
@@ -32,6 +32,14 @@ namespace Sunday_Bloody_Sunday
         {
             switch (myButtonType)
             {
+                case ButtonType.SelectLevel:
+                    this.myButton = ButtonType.SelectLevel;
+                    if (langage == "French")
+                        buttonMessage = "Choisir ce niveau";
+                    else
+                        buttonMessage = "Choose this level";
+                    break;
+
                 case ButtonType.Play:
                     this.myButton = ButtonType.Play;
                     if (langage == "French")
@@ -97,22 +105,6 @@ namespace Sunday_Bloody_Sunday
                         buttonMessage = "Resume";
                     break;
 
-                /*case ButtonType.NormalScreen:
-                    this.myButton = ButtonType.NormalScreen;
-                    if (langage == "French")
-                        buttonMessage = "Normale";
-                    else
-                        buttonMessage = "Normal";
-                    break;
-
-                case ButtonType.FullScreen:
-                    this.myButton = ButtonType.FullScreen;
-                    if (langage == "French")
-                        buttonMessage = "Grande";
-                    else
-                        buttonMessage = "Full";
-                    break;*/
-
                 case ButtonType.Restart:
                     this.myButton = ButtonType.Restart;
                     if (langage == "French")
@@ -133,9 +125,9 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public bool Update(MouseState mouse)
         {
-            rectangle_mouseCursor = new Rectangle(mouse.X, mouse.Y, 0, 0);
+            mouseCursor_container = new Rectangle(mouse.X, mouse.Y, 0, 0);
 
-            if (rectangle_mouseCursor.Intersects(rectangle) && mouse.LeftButton == ButtonState.Pressed)
+            if (mouseCursor_container.Intersects(rectangle) && mouse.LeftButton == ButtonState.Pressed)
                 return true;
             else
                 return false;
@@ -145,7 +137,7 @@ namespace Sunday_Bloody_Sunday
         {
             spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.White);
 
-            if (rectangle_mouseCursor.Intersects(rectangle))
+            if (mouseCursor_container.Intersects(rectangle))
             {
                 spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.Yellow);
             }
