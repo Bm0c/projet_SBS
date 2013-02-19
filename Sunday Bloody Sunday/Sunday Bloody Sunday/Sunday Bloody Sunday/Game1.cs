@@ -13,25 +13,27 @@ namespace Sunday_Bloody_Sunday
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        //FIELDS
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
         GameMain Main;
-
         //Enum of the Screen States
         public enum Screen
         {
-            menu_principal, menu_jeu, menu_option, menu_parametre, jeu, game_over, selecteur_map
+            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map
         };
         //Init Screen State + Menu
         public static Screen ecran = Screen.menu_principal;
         Menu menuMain = new Menu(Menu.MenuType.MainMenu);
         int button_timer = 0;
-
         // Prochainement dans Sound.cs
         Song GamePlayMusic;
         Song MenuMusic;
         SoundEffect introEffect, loseEffect;
+        // Compteur Sélection Map
+        int compteur_thumbnails = 1;
+
 
         // Début fichier généré par XNA
         public Game1()
@@ -100,7 +102,7 @@ namespace Sunday_Bloody_Sunday
             {
                 if (ecran == Screen.jeu)
                 {
-                    ecran = Screen.menu_jeu;
+                    ecran = Screen.menu_pause;
                     menuMain = new Menu(Menu.MenuType.PauseMenu);
                     PlayMusic(MenuMusic);
                 }
@@ -126,7 +128,7 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 2)
                 {
-                    ecran = Screen.menu_parametre;
+                    ecran = Screen.menu_parametres;
                     menuMain = new Menu(Menu.MenuType.MenuGeneralSettings);
                     button_timer = 0;
                 }
@@ -144,13 +146,13 @@ namespace Sunday_Bloody_Sunday
                 {
                     action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
                 }
-                if (action == 1)
+                if (action == 1 && compteur_thumbnails == 1)
                 {
-
+                    compteur_thumbnails -= compteur_thumbnails;
                 }
-                if (action == 2)
+                if (action == 2 && compteur_thumbnails == 0)
                 {
-
+                    compteur_thumbnails += compteur_thumbnails;
                 }
                 if (action == 3)
                 {
@@ -164,11 +166,10 @@ namespace Sunday_Bloody_Sunday
                     ecran = Screen.menu_principal;
                     menuMain = new Menu(Menu.MenuType.MainMenu);
                     button_timer = 0;
-                    //introEffect.Play();
                 }
             }
 
-            else if (ecran == Screen.menu_jeu)
+            else if (ecran == Screen.menu_pause)
             {
                 int action = 0;
 
@@ -184,7 +185,7 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 2)
                 {
-                    ecran = Screen.menu_option;
+                    ecran = Screen.menu_preferences;
                     menuMain = new Menu(Menu.MenuType.MenuPreferences);
                     button_timer = 0;
                 }
@@ -194,11 +195,10 @@ namespace Sunday_Bloody_Sunday
                     menuMain = new Menu(Menu.MenuType.MainMenu);
                     button_timer = 0;
                     StopMusic(MenuMusic);
-                    //introEffect.Play();
                 }
             }
 
-            else if (ecran == Screen.menu_option)
+            else if (ecran == Screen.menu_preferences)
             {
                 int action = 0;
 
@@ -235,13 +235,13 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 6)
                 {
-                    ecran = Screen.menu_jeu;
+                    ecran = Screen.menu_pause;
                     menuMain = new Menu(Menu.MenuType.PauseMenu);
                     button_timer = 0;
                 }
             }
 
-            else if (ecran == Screen.menu_parametre)
+            else if (ecran == Screen.menu_parametres)
             {
                 int action = 0;
 
@@ -280,10 +280,20 @@ namespace Sunday_Bloody_Sunday
                 {
                     ecran = Screen.menu_principal;
                     menuMain = new Menu(Menu.MenuType.MainMenu);
-                    //introEffect.Play();
+                    button_timer = 0;
+                }
+                if (action == 7)
+                {
+                    graphics.ToggleFullScreen();
+                    button_timer = 0;
+                }
+                if (action == 8)
+                {
+                    graphics.ToggleFullScreen();
                     button_timer = 0;
                 }
             }
+
             else if (ecran == Screen.jeu)
             {
                 Main.Update(Mouse.GetState(), Keyboard.GetState(), gameTime);
@@ -330,20 +340,28 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (ecran == Screen.selecteur_map)
                 {
-                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
-                    menuMain.Draw(spriteBatch);
+                    if (compteur_thumbnails == 0)
+                    {
+                        spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                        menuMain.Draw(spriteBatch);
+                    }
+                    else if (compteur_thumbnails == 1)
+                    {
+                        spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
+                        menuMain.Draw(spriteBatch);
+                    }
                 }
-                if (ecran == Screen.menu_jeu)
+                if (ecran == Screen.menu_pause)
                 {
                     Main.Draw(spriteBatch, spriteFont);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.menu_option)
+                if (ecran == Screen.menu_preferences)
                 {
                     Main.Draw(spriteBatch, spriteFont);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.menu_parametre)
+                if (ecran == Screen.menu_parametres)
                 {
                     GraphicsDevice.Clear(Color.Black);
                     menuMain.Draw(spriteBatch);
