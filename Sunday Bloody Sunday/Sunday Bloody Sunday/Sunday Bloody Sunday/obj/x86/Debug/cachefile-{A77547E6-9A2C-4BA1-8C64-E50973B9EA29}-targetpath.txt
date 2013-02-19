@@ -14,6 +14,7 @@ Content\health_box.xnb
 Content\ammo_box.xnb
 Content\explosive_box.xnb
 Content\bomb.xnb
+Content\thumbnails_map_01.xnb
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
@@ -25,4 +26,3 @@ Content\elevator_music.wma
 Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
-Content\thumbnails_map_01.xnb
