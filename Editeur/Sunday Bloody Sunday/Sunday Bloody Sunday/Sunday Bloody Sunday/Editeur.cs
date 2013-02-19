@@ -41,7 +41,7 @@ namespace Sunday_Bloody_Sunday
             this.invalide = invalide;
         }
 
-        public void Update(MouseState souris)
+        public void Update(MouseState souris,KeyboardState clavier)
         {
             if (souris.LeftButton == ButtonState.Pressed)
             {
@@ -63,6 +63,11 @@ namespace Sunday_Bloody_Sunday
                 {
                 }
             }
+            if (clavier.IsKeyDown(Keys.Enter))
+            {
+                Lecture.ecrire(tableau, largeur, longueur);
+            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -74,7 +74,7 @@ namespace Sunday_Bloody_Sunday
 
         protected override void Update(GameTime gameTime)
         {
-            editeur.Update(Mouse.GetState());
+            editeur.Update(Mouse.GetState(),Keyboard.GetState());
         }
 
         protected override void Draw(GameTime gameTime)
