@@ -17,11 +17,6 @@ namespace Sunday_Bloody_Sunday
         SpriteBatch spriteBatch;
         MouseState mouse;
         Editeur editeur;
-        
-        //Enum of the Screen States
-        //Init Screen State + Menu
-
-        // Prochainement dans Sound.cs
 
         // Début fichier généré par XNA
         public Game1()
@@ -40,6 +35,7 @@ namespace Sunday_Bloody_Sunday
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+<<<<<<< HEAD
             Ressources.LoadContent(Content);
             int largeur = 0;
             int hauteur = 0;
@@ -59,15 +55,11 @@ namespace Sunday_Bloody_Sunday
             }
             catch { }
         }
+=======
+>>>>>>> af1a1497bc483111849d24c0d8fa1fd2d228b971
 
-        public void StopMusic(Song song)
-        {
-            try
-            {
-                // Stop la musique
-                MediaPlayer.Stop();
-            }
-            catch { }
+            Ressources.LoadContent(Content);
+            editeur = new Editeur(Ressources.Map, Ressources.valide, Ressources.invalide, 30, 50);
         }
 
         protected override void UnloadContent()
@@ -84,9 +76,9 @@ namespace Sunday_Bloody_Sunday
         {
 
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin();
 
-            editeur.Draw(spriteBatch);
+            spriteBatch.Begin();
+                editeur.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

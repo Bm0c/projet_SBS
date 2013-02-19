@@ -62,8 +62,6 @@ namespace Sunday_Bloody_Sunday
             this.liste_barrel.Add(new DestructibleItems(225, 173, "barrel"));
             this.liste_barrel.Add(new DestructibleItems(475, 383, "barrel"));
             this.liste_barrel.Add(new DestructibleItems(115, 303, "barrel"));
-
-
             this.liste_barrel2 = new List<DestructibleItems>();
 
             //EXPLOSION PARTICULE

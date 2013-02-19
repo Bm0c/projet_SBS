@@ -19,8 +19,9 @@ namespace Sunday_Bloody_Sunday
         Char[,] tableau;
         int largeur;
         int longueur;
+
         //On suppose les tiles en 16*16
-        public  Editeur(Texture2D map, Texture2D valide, Texture2D invalide, int largeur, int longueur)
+        public Editeur(Texture2D map, Texture2D valide, Texture2D invalide, int largeur, int longueur)
         {
             this.map = map;
             this.tableau = new char[longueur, largeur];

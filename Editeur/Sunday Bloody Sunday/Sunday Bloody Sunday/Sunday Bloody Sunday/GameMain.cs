@@ -19,6 +19,7 @@ namespace Sunday_Bloody_Sunday
         // CONCSTRUCTOR
         public GameMain()
         {
+
         }
 
 
@@ -28,6 +29,7 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
         {
+
         }
 
         public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)

@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum MenuType
         {
-            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver
+            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector
         };
 
 
@@ -71,6 +71,13 @@ namespace Sunday_Bloody_Sunday
                         button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(Divers.WidthScreen / 2 - 100, 20, 100, 50));
                     else
                         button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(Divers.WidthScreen / 2 - 50, 20, 100, 50));
+                    break;
+
+                case MenuType.MapSelector:
+                    button_1 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 300, Divers.HeightScreen / 2, 50, 50));
+                    button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 300, Divers.HeightScreen / 2, 50, 50));
+                    button_3 = new MenuButton(MenuButton.ButtonType.SelectLevel, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2 - 200, 100, 50));
+                    button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 15, Divers.HeightScreen / 2 + 175, 100, 50));
                     break;
 
                 default:
