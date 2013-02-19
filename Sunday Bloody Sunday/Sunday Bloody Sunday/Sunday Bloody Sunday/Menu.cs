@@ -27,6 +27,8 @@ namespace Sunday_Bloody_Sunday
         MenuButton button_4;
         MenuButton button_5;
         MenuButton button_6;
+        MenuButton button_7;
+        MenuButton button_8;
 
 
         //CONSTRUCTOR
@@ -63,7 +65,9 @@ namespace Sunday_Bloody_Sunday
                     button_3 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 50, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 200, 50, 50));
                     button_5 = new MenuButton(MenuButton.ButtonType.Mute, new Rectangle(Divers.WidthScreen / 2 + 200, 200, 100, 50));
-                    button_6 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
+                    button_6 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, Divers.HeightScreen / 2 + 175, 100, 50));
+                    button_7 = new MenuButton(MenuButton.ButtonType.On, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 100));
+                    button_8 = new MenuButton(MenuButton.ButtonType.Off, new Rectangle(Divers.WidthScreen / 2 + 100, 300, 100, 50));
                     break;
 
                 case MenuType.GameOver:
@@ -76,8 +80,8 @@ namespace Sunday_Bloody_Sunday
                 case MenuType.MapSelector:
                     button_1 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 300, Divers.HeightScreen / 2, 50, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 300, Divers.HeightScreen / 2, 50, 50));
-                    button_3 = new MenuButton(MenuButton.ButtonType.SelectLevel, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2 - 200, 100, 50));
-                    button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 15, Divers.HeightScreen / 2 + 175, 100, 50));
+                    button_3 = new MenuButton(MenuButton.ButtonType.SelectLevel, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2 - 200, 200, 50));
+                    button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 15, Divers.HeightScreen / 2 + 175, 50, 50));
                     break;
 
                 default:
@@ -90,13 +94,13 @@ namespace Sunday_Bloody_Sunday
         public int Update(MouseState mouse, KeyboardState keyboard)
         {
             bool b1 = button_1.Update(mouse);
-            /*bool b2 = button_2.Update(mouse);
-            bool b3 = button_3.Update(mouse);*/
             bool b2 = false;
             bool b3 = false;
             bool b4 = false;
             bool b5 = false;
             bool b6 = false;
+            bool b7 = false;
+            bool b8 = false;
 
             if (button_2 != null)
                 b2 = button_2.Update(mouse);
@@ -108,6 +112,10 @@ namespace Sunday_Bloody_Sunday
                 b5 = button_5.Update(mouse);
             if (button_6 != null)
                 b6 = button_6.Update(mouse);
+            if (button_7 != null)
+                b7 = button_7.Update(mouse);
+            if (button_8 != null)
+                b8 = button_8.Update(mouse);
 
             if (b1)
                 return 1;
@@ -121,6 +129,10 @@ namespace Sunday_Bloody_Sunday
                 return 5;
             if (b6)
                 return 6;
+            if (b7)
+                return 7;
+            if (b8)
+                return 8;
             else
                 return 0;
         }
@@ -139,29 +151,34 @@ namespace Sunday_Bloody_Sunday
                 button_5.DrawButton(spriteBatch);
             if (button_6 != null)
                 button_6.DrawButton(spriteBatch);
+            if (button_7 != null)
+                button_7.DrawButton(spriteBatch);
+            if (button_8 != null)
+                button_8.DrawButton(spriteBatch);
 
             if (type == MenuType.MenuGeneralSettings)
             {
-                string langue;
-                string son;
+                string langue, son, resolution;
                 if (MenuButton.langage == "French")
                 {
                     langue = "Langue";
                     son = "Musique";
+                    resolution = "Resolution";
                 }
                 else
                 {
                     langue = "Language";
                     son = "Music";
+                    resolution = "Resolution";
                 }
-                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 350, 80), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen / 2 - 350, 180), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 - 20, 180), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen / 2 - 250, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, resolution, new Vector2(Divers.WidthScreen / 2 - 250, 300), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
             }
             if (type == MenuType.MenuPreferences)
             {
-                string langue;
-                string son;
+                string langue, son;
                 if (MenuButton.langage == "French")
                 {
                     langue = "Langue";
@@ -172,9 +189,9 @@ namespace Sunday_Bloody_Sunday
                     langue = "Language";
                     son = "Music";
                 }
-                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 350, 80), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen/2 - 350, 180), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 - 20, 180), Color.White, 0, new Vector2(0, 0), 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen/2 - 250, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
             }
         }
     }
