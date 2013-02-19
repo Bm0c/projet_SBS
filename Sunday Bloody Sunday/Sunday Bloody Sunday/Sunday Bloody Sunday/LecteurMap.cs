@@ -12,6 +12,22 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
+    class Param_Map
+    {
+        public bool[,] liste;
+        public List<Spawn> liste_spawn;
+        public List<DestructibleItems> liste_barrel;
+        public Spawn_Items liste_caisses;
+
+        public Param_Map(bool[,] liste, List<Spawn> liste_spawn, List<DestructibleItems> liste_barrel, Spawn_Items liste_caisses)
+        {
+            this.liste = liste;
+            this.liste_spawn = liste_spawn;
+            this.liste_barrel = liste_barrel;
+            this.liste_caisses = liste_caisses;
+        }
+    }
+
     class LecteurMap
     {
         static bool[,] liste;
@@ -19,8 +35,9 @@ namespace Sunday_Bloody_Sunday
         static List<DestructibleItems> liste_barrel;
         static Spawn_Items liste_caisses;
 
-        public static void lecture()
+        public static Param_Map lecture()
         {
+
             StreamReader lecture = new StreamReader("Content/maps/map.txt");
             string ligne = lecture.ReadLine();
             while (ligne != null)
@@ -44,19 +61,22 @@ namespace Sunday_Bloody_Sunday
                 ligne = lecture.ReadLine();
             }
             lecture.Close();
+
+            return new Param_Map(liste, liste_spawn, liste_barrel, liste_caisses);
         }
 
         public static void lecture_physique(StreamReader lecture)
         {
+            string ligne = "";
+            ligne = lecture.ReadLine();
+            int hauteur = 100;
+            ligne = lecture.ReadLine();
+            int largeur = 100;
+            liste = new bool[hauteur, largeur];
+            ligne = lecture.ReadLine();
 
-            string ligne = lecture.ReadLine();
-            int largeur = System.Convert.ToInt32(ligne);
-            ligne = lecture.ReadLine();
-            int hauteur = System.Convert.ToInt32(ligne);
-            liste = new bool[largeur, hauteur];
-            ligne = lecture.ReadLine();
             int i = 0;
-            while (ligne != null || ligne != "//")
+            while (/*ligne != null ||*/ ligne != "//")
             { // Début de travaille sur le lecteur de fichier, don't toutch !
                 int i1 = 0;
                 foreach (char bool_ in ligne)
@@ -71,6 +91,7 @@ namespace Sunday_Bloody_Sunday
                     }
 
                     i1++;
+
                 }
                 ligne = lecture.ReadLine();
                 i++;
@@ -80,10 +101,9 @@ namespace Sunday_Bloody_Sunday
         public static void lecture_spawn(StreamReader lecture)
         {
             liste_spawn = new List<Spawn>();
-            string ligne = lecture.ReadLine();
-            while (ligne != null || ligne != "//")
+            string ligne = "";
+            while (/*ligne != null || */ligne != "//")
             {
-
                 List<IA> liste_ia = new List<IA>();
                 while (ligne != "new")
                 {
@@ -100,6 +120,7 @@ namespace Sunday_Bloody_Sunday
                     int id_son = System.Convert.ToInt32(ligne);
 
                     ligne = lecture.ReadLine();
+
                     int pv_max = System.Convert.ToInt32(ligne);
 
                     ligne = lecture.ReadLine();
@@ -122,7 +143,7 @@ namespace Sunday_Bloody_Sunday
         {
             List<Vector2> liste_caisses_ = new List<Vector2>();
             string ligne = lecture.ReadLine();
-            while (ligne != null || ligne != "//")
+            while (ligne != "//")
             {
                 ligne = lecture.ReadLine();
                 int x = System.Convert.ToInt32(ligne);
@@ -133,7 +154,7 @@ namespace Sunday_Bloody_Sunday
                 liste_caisses_.Add(new Vector2(x, y));
 
                 ligne = lecture.ReadLine();
-             }
+            }
             liste_caisses = new Spawn_Items(liste_caisses_);
         }
 
@@ -141,7 +162,7 @@ namespace Sunday_Bloody_Sunday
         {
             liste_barrel = new List<DestructibleItems>();
             string ligne = lecture.ReadLine();
-            while (ligne != null || ligne != "//")
+            while (ligne != "//")
             {
                 ligne = lecture.ReadLine();
                 int x = System.Convert.ToInt32(ligne);
@@ -152,7 +173,7 @@ namespace Sunday_Bloody_Sunday
                 ligne = lecture.ReadLine();
                 string type = ligne;
 
-                liste_barrel.Add(new DestructibleItems(x,y,type));
+                liste_barrel.Add(new DestructibleItems(x, y, type));
 
                 ligne = lecture.ReadLine();
 

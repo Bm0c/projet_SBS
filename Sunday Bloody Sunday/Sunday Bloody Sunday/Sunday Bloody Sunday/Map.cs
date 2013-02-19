@@ -49,10 +49,10 @@ namespace Sunday_Bloody_Sunday
 
 
         // CONSTRUCTOR
-        public Map(PhysicsEngine map_physique)
+        public Map(Param_Map parametre)
         {
             MapTexture = new Rectangle(0, 0, 800, 480);
-            this.map_physique = map_physique;
+            this.map_physique = new PhysicsEngine(parametre.liste);
             this.liste_ia = new List<IA>();
             this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1));
 
@@ -62,18 +62,15 @@ namespace Sunday_Bloody_Sunday
 
             //EXPLOSIVE BOXES
             this.liste_barrel = new List<DestructibleItems>();
-            this.liste_barrel.Add(new DestructibleItems(225, 173, "barrel"));
-            this.liste_barrel.Add(new DestructibleItems(475, 383, "barrel"));
-            this.liste_barrel.Add(new DestructibleItems(115, 303, "barrel"));
-            this.liste_barrel2 = new List<DestructibleItems>();
+            this.liste_barrel = parametre.liste_barrel;
 
             //EXPLOSION PARTICULE
             this.liste_explosions = new List<ExplosionParticule>();
             this.liste_explosions2 = new List<ExplosionParticule>();
             this.explosionTexture = Ressources.ExplosionParticule;
 
-            this.spawns = new List<Spawn>();
-
+            this.spawns = parametre.liste_spawn;
+            this.spawn_items = parametre.liste_caisses;
 
         }
 

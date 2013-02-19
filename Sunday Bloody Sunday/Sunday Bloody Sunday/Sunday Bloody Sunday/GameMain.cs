@@ -21,7 +21,6 @@ namespace Sunday_Bloody_Sunday
         // CONCSTRUCTOR
         public GameMain()
         {
-            this.MainMap = new Map(new PhysicsEngine());
             this.MainHUD = new HUD();
         }
 

@@ -156,7 +156,9 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 3)
                 {
+                    
                     Main = new GameMain();
+                    Main.MainMap = new Map(LecteurMap.lecture());
                     ecran = Screen.jeu;
                     PlayMusic(GamePlayMusic);
                     button_timer = 0;

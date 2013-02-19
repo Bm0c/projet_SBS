@@ -17,9 +17,9 @@ namespace Sunday_Bloody_Sunday
         // Tableau des booléens, le 100*100 est purement arbitraire, il devrait correspondre à la longueur/largeur de la map
         private bool[,] liste;
 
-        public PhysicsEngine(/*bool[,] liste*/)
-        {/*
-            this.liste = liste;*/
+        public PhysicsEngine(bool[,] liste)
+        {
+            this.liste = liste;
            
         }
 
