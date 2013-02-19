@@ -113,6 +113,7 @@
     <Compile Include="HUD.cs" />
     <Compile Include="IA.cs" />
     <Compile Include="Items.cs" />
+    <Compile Include="LecteurMap.cs" />
     <Compile Include="Manual.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="ExplosionParticule.cs" />

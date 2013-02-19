@@ -11,6 +11,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
+    class Spawn_Items
+    {
+        public List<Vector2> emplacement;
+
+        public Spawn_Items(List<Vector2> liste)
+        {
+            this.emplacement = liste;
+        }
+    }
+
     class Items
     {
         // FIELDS

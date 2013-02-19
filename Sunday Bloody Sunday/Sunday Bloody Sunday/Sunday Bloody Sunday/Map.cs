@@ -15,6 +15,9 @@ namespace Sunday_Bloody_Sunday
     {
         // FIELDS
         Rectangle MapTexture;
+        public List<Spawn> spawns;
+        public Spawn_Items spawn_items;
+
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
 
@@ -58,7 +61,7 @@ namespace Sunday_Bloody_Sunday
             this.liste_box2 = new List<Items>();
 
             //EXPLOSIVE BOXES
-            this.liste_barrel = new List<DestructibleItems>(); 
+            this.liste_barrel = new List<DestructibleItems>();
             this.liste_barrel.Add(new DestructibleItems(225, 173, "barrel"));
             this.liste_barrel.Add(new DestructibleItems(475, 383, "barrel"));
             this.liste_barrel.Add(new DestructibleItems(115, 303, "barrel"));
@@ -68,6 +71,10 @@ namespace Sunday_Bloody_Sunday
             this.liste_explosions = new List<ExplosionParticule>();
             this.liste_explosions2 = new List<ExplosionParticule>();
             this.explosionTexture = Ressources.ExplosionParticule;
+
+            this.spawns = new List<Spawn>();
+
+
         }
 
 
@@ -319,72 +326,10 @@ namespace Sunday_Bloody_Sunday
             }
             if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
             {
-                int spawn = rand.Next(3);
-                if (spawn == 0)
-                {
-                    int texture = rand.Next(2);
-                    if (texture == 0)
-                    {
-                        liste_ia.Add(new IA(144, 48, Ressources.IA1));
-                    }
-                    else
-                    {
-                        liste_ia.Add(new IA(144, 48, Ressources.IA2));
-                    }
-                    int sons = rand.Next(2);
-                    if (sons == 0)
-                    {
-                        moteur_son.PlayPika();
-                    }
-                    else
-                    {
-                        moteur_son.PlayPika2();
-                    }
-
-                }
-                else if (spawn == 1)
-                {
-                    int texture = rand.Next(2);
-                    if (texture == 0)
-                    {
-                        liste_ia.Add(new IA(0, 272, Ressources.IA1));
-                    }
-                    else
-                    {
-                        liste_ia.Add(new IA(0, 272, Ressources.IA2));
-                    }
-                    int sons = rand.Next(2);
-                    if (sons == 0)
-                    {
-                        moteur_son.PlayPika();
-                    }
-                    else
-                    {
-                        moteur_son.PlayPika2();
-                    }
-                }
-                else
-                {
-                    int texture = rand.Next(2);
-                    if (texture == 0)
-                    {
-                        liste_ia.Add(new IA(400, 470, Ressources.IA1));
-                    }
-                    else
-                    {
-                        liste_ia.Add(new IA(400, 470, Ressources.IA2));
-                    }
-                    int sons = rand.Next(2);
-                    if (sons == 0)
-                    {
-                        moteur_son.PlayPika();
-                    }
-                    else
-                    {
-                        moteur_son.PlayPika2();
-                    }
-                }
-
+                int choix = rand.Next(spawns.Count);
+                Spawn spawn = spawns.ElementAt(choix);
+                choix = rand.Next(spawn.créatures.Count);
+                liste_ia.Add(spawn.créatures.ElementAt(choix));
                 compteur = 0;
             }
             compteur++;
@@ -458,112 +403,49 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180) //Ajout de nouveaux "barrels" a la map
             {
                 Items box;
-                int spawn = rand.Next(3);
+                int spawn = rand.Next(spawn_items.emplacement.Count);
+                int texture = rand.Next(2);
+                Vector2 emplacement = spawn_items.emplacement.ElementAt(spawn);
                 bool test = true;
-                if (spawn == 0)
+                if (texture == 0)
                 {
-                    int texture = rand.Next(2);
-                    if (texture == 0)
+                    box = new Items((int)emplacement.X, (int)emplacement.Y, "health");
+                    foreach (Items box_ in liste_box)
                     {
-                        box = new Items(510, 245, "health");
-                        foreach (Items box_ in liste_box)
+                        if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
                         {
-                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
-                            {
-                                test = false;
-                            }
+                            test = false;
                         }
-                        if (test)
-                            liste_box.Add(box);
-                    }
-                    else
-                    {
-
-                        box = new Items(510, 245, "ammo");
-                        foreach (Items box_ in liste_box)
-                        {
-                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
-                            {
-                                test = false;
-                            }
-                        }
-                        if (test)
-                            liste_box.Add(box);
                     }
                     if (test)
-                        moteur_son.PlayPop();
-                }
-                else if (spawn == 1)
-                {
-                    int texture = rand.Next(2);
-                    if (texture == 0)
-                    {
-                        box = new Items(575, 200, "health");
-                        foreach (Items box_ in liste_box)
-                        {
-                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
-                            {
-                                test = false;
-                            }
-                        }
-                        if (test)
-                            liste_box.Add(box);
-                    }
-                    else
-                    {
-                        box = new Items(575, 200, "ammo");
-                        foreach (Items box_ in liste_box)
-                        {
-                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
-                            {
-                                test = false;
-                            }
-                        }
-                        if (test)
-                            liste_box.Add(box);
-                    }
-                    if (test)
-                        moteur_son.PlayPop();
+                        liste_box.Add(box);
                 }
                 else
                 {
-                    int texture = rand.Next(2);
-                    if (texture == 0)
-                    {
 
-                        box = new Items(250, 30, "health");
-                        foreach (Items box_ in liste_box)
-                        {
-                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
-                            {
-                                test = false;
-                            }
-                        }
-                        if (test)
-                            liste_box.Add(box);
-                    }
-                    else
+                    box = new Items((int)emplacement.X, (int)emplacement.Y, "ammo");
+                    foreach (Items box_ in liste_box)
                     {
-
-                        box = new Items(250, 30, "ammo");
-                        foreach (Items box_ in liste_box)
+                        if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
                         {
-                            if ((box_.HealthBoxTexture.Intersects(box.HealthBoxTexture)) && test)
-                            {
-                                test = false;
-                            }
+                            test = false;
                         }
-                        if (test)
-                            liste_box.Add(box);
                     }
                     if (test)
-                        moteur_son.PlayPop();
+                        liste_box.Add(box);
                 }
                 if (test)
+                {
+                    moteur_son.PlayPop();
+
                     compteur = 0;
+                }
             }
+
             compteur++;
         }
+
+
 
         public void update_Bomb(List<Player> liste_joueurs, KeyboardState keyboard)
         {

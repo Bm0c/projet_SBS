@@ -16,6 +16,16 @@ namespace Sunday_Bloody_Sunday
         Up, Down, Left, Right
     };
 
+    class Spawn
+    {
+        public List<IA> créatures;
+
+        public Spawn(List<IA> créatures)
+        {
+            this.créatures = créatures;
+        }
+    }
+
     class IA
     {
         // FIELDS
@@ -37,15 +47,19 @@ namespace Sunday_Bloody_Sunday
         // Amount of health
         public int Health;
         // The amount of damage the IA can inflict to the Player
-        static public int Damage;
+        public int Damage;
         public bool est_update = false;
         public bool en_vie = true;
-        Texture2D texture;
+
+        int id_texture;
+        int id_son;
+
+
         public int couldown = 60; //Temps d'attente entre chaque attaque
 
 
         // CONSTRUCTOR
-        public IA(int x, int y, Texture2D texture)
+        public IA(int x, int y, int id_texture, int id_son, int pv_max, int dégats)//ID texture, son joué, PV max, Vitesse
         {
             this.IATexture = new Rectangle(x, y, 16, 17);
             IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
@@ -56,10 +70,10 @@ namespace Sunday_Bloody_Sunday
             this.Animation = true;
             this.Timer = 0;
             this.Active = true;
-            this.Health = 100;
-            IA.Damage = 10;
+            this.Health = pv_max;
+            this.Damage = dégats;
             this.action = "";
-            this.texture = texture;
+            this.id_texture = id_texture;
             this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 2, IATexture.Height + 2);
         }
 
@@ -299,7 +313,14 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch, Rectangle Maptexture)
         {
-            spriteBatch.Draw(texture, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            if (id_texture == 0)
+            {
+                spriteBatch.Draw(Ressources.IA1, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (id_texture == 1)
+            {
+                spriteBatch.Draw(Ressources.IA2, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
         }
     }
 }
