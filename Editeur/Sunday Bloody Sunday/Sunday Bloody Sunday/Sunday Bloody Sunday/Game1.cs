@@ -41,7 +41,10 @@ namespace Sunday_Bloody_Sunday
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Ressources.LoadContent(Content);
-            editeur = new Editeur(Ressources.Map, Ressources.valide,Ressources.invalide,30,50);
+            int largeur = 0;
+            int hauteur = 0;
+            Lecture.lire(ref largeur, ref hauteur);
+            editeur = new Editeur(Ressources.Map, Ressources.valide,Ressources.invalide,hauteur,largeur);
         }
 
         // Prochainement dans Sound.cs

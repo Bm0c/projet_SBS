@@ -32,7 +32,7 @@ namespace Sunday_Bloody_Sunday
                 int y = 0;
                 while (y < largeur)
                 {
-                    tableau[x, y] = '2';
+                    tableau[x, y] = '0';
                     y++;
                 }
                 x++;
@@ -80,11 +80,11 @@ namespace Sunday_Bloody_Sunday
                 int y = 0;
                 while (y < largeur)
                 {
-                    if (tableau[x, y] == '0')
+                    /*if (tableau[x, y] == '0')
                     {
                         spriteBatch.Draw(valide, new Vector2(x*16, y*16), Color.White);
                     }
-                    else if (tableau[x, y] == '1')
+                    else*/ if (tableau[x, y] == '1')
                     {
                         spriteBatch.Draw(invalide, new Vector2(x * 16, y * 16), Color.White);
                     }

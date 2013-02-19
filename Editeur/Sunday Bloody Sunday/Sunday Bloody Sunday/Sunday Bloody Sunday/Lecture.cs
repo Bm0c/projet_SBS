@@ -33,5 +33,29 @@ namespace Sunday_Bloody_Sunday
             }
             ecriture.Close();
         }
+
+        public static void lire(ref int largeur, ref int hauteur)
+        {
+            StreamReader lecture = new StreamReader("data.txt");
+            string largeur_ = lecture.ReadLine();
+            try
+            {
+                largeur = System.Convert.ToInt32(largeur_);
+            }
+            catch
+            {
+                largeur = 0;
+            }
+            string hauteur_ = lecture.ReadLine();
+            try
+            {
+                hauteur = System.Convert.ToInt32(hauteur_);
+            }
+            catch
+            {
+                hauteur = 0;
+            }
+            lecture.Close();
+        }
     }
 }
