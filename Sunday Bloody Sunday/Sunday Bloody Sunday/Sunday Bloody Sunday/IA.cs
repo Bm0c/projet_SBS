@@ -51,8 +51,8 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
 
-        int id_texture;
-        int id_son;
+       public int id_texture;
+       public int id_son;
 
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
@@ -180,7 +180,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
                      && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia, liste_ia, liste_joueur))
-                        ia.mise_a_jour(ia.actionIA);
+                        ia.mise_a_jour(ia.actionIA); 
                     else
                         ia.actionIA = "";
                 }

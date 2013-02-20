@@ -312,7 +312,7 @@ namespace Sunday_Bloody_Sunday
                     pathfing(ref this.ia.action, joueur_cible);
                     //Trouve quelle action va faire l'IA
                     ia.action_ia(ia, joueur_cible, liste_barrel, map_physique, liste_ia, liste_joueurs); //Verifie la possibilité de réalisation des actions
-                    this.ia.Update(); //Met à jour l'IA
+                    ia.Update(); //Met à jour l'IA
                     ia.attaque_ia(liste_joueurs);
                     ia.est_update = false; //Désactive l'update de l'IA
                 }
@@ -321,15 +321,19 @@ namespace Sunday_Bloody_Sunday
                     ia.en_vie = false; //Tue l'IA
                 }
             }
-            if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
+            if (compteur > 180 && etape1 ) //Ajout de nouvelles IA a la map
             {
                 int choix = rand.Next(spawns.Count);
                 Spawn spawn = spawns.ElementAt(choix);
+                ;
                 choix = rand.Next(spawn.créatures.Count);
-                liste_ia.Add(spawn.créatures.ElementAt(choix));
+                IA ia = spawn.créatures.ElementAt(choix);
+                IA ia_ = new IA(ia.IATexture.X, ia.IATexture.Y, ia.id_son, ia.id_texture, ia.Health, ia.Damage);
+                liste_ia.Add(ia_);
+                moteur_son.PlayPika();
                 compteur = 0;
             }
-            compteur++;
+            compteur = compteur + 1;
 
             liste_ia2 = new List<IA>(); //Recopie la liste d'IA encore en vie dans une nouvelle liste
             foreach (IA ia in liste_ia)
@@ -441,9 +445,7 @@ namespace Sunday_Bloody_Sunday
 
             compteur++;
         }
-
-
-
+        
         public void update_Bomb(List<Player> liste_joueurs, KeyboardState keyboard)
         {
             foreach (Player joueur in liste_joueurs)

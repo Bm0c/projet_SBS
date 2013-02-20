@@ -67,10 +67,17 @@ caisses
 
 1
 1
+
+2
+42
 //
 barrels
 
 1
 1
+barrel
+
+42
+42
 barrel
 //
