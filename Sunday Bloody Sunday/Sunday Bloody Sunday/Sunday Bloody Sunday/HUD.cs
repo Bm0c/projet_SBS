@@ -29,12 +29,12 @@ namespace Sunday_Bloody_Sunday
 
 
         // UPDATE & DRAW
-        public void Update(KeyboardState keyboard, List<Player> joueurs)
+        public void Update(KeyboardState keyboard, List<Player> liste_joueurs)
         {
             this.munition = 0;
             this.health = 0;
 
-            foreach (Player joueur in joueurs)
+            foreach (Player joueur in liste_joueurs)
             {
                 if (joueur.Ammo <=0)
                 {
@@ -45,7 +45,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, SpriteFont font)
+        public void Draw(SpriteBatch spriteBatch)
         {
             if (MenuButton.langage == "French")
             {

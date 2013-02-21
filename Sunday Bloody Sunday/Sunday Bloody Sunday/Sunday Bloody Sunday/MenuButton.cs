@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum ButtonType
         {
-            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, French, English, Mute, Restart, On, Off
+            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, Mute, Restart, On, Off
         };
 
 
@@ -59,16 +59,6 @@ namespace Sunday_Bloody_Sunday
                         buttonMessage = "Quitter";
                     else
                         buttonMessage = "Quit";
-                    break;
-
-                case ButtonType.English:
-                    this.myButton = ButtonType.Quit;
-                    buttonMessage = "English";
-                    break;
-
-                case ButtonType.French:
-                    this.myButton = ButtonType.Quit;
-                    buttonMessage = "Français";
                     break;
 
                 case ButtonType.Back:

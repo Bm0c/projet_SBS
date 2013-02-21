@@ -21,6 +21,7 @@ namespace Sunday_Bloody_Sunday
         // CONCSTRUCTOR
         public GameMain()
         {
+            this.MainMap = new Map(LecteurMap.lecture());
             this.MainHUD = new HUD();
         }
 
@@ -35,10 +36,10 @@ namespace Sunday_Bloody_Sunday
             MainHUD.Update(keyboard, MainMap.liste_joueurs);
         }
 
-        public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)
+        public void Draw(SpriteBatch spriteBatch)
         {
             MainMap.Draw(spriteBatch);
-            MainHUD.Draw(spriteBatch, spriteFont);
+            MainHUD.Draw(spriteBatch);
         }
     }
 }

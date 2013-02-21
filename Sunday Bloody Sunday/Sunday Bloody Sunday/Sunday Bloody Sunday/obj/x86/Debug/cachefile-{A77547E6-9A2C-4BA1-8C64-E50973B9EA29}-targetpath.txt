@@ -15,6 +15,7 @@ Content\ammo_box.xnb
 Content\explosive_box.xnb
 Content\bomb.xnb
 Content\thumbnails_map_01.xnb
+Content\Map02.xnb
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
