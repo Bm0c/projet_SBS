@@ -163,18 +163,18 @@ namespace Sunday_Bloody_Sunday
                 {
                     langue = "Langue";
                     son = "Musique";
-                    resolution = "Resolution";
+                    resolution = "Plein Ecran";
                 }
                 else
                 {
                     langue = "Language";
                     son = "Music";
-                    resolution = "Resolution";
+                    resolution = "Full Screen";
                 }
-                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen / 2 - 250, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, resolution, new Vector2(Divers.WidthScreen / 2 - 250, 300), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen / 2 - 250, 200), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, resolution, new Vector2(Divers.WidthScreen / 2 - 250, 300), Color.White);
             }
             if (type == MenuType.MenuPreferences)
             {
@@ -189,9 +189,9 @@ namespace Sunday_Bloody_Sunday
                     langue = "Language";
                     son = "Music";
                 }
-                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen/2 - 250, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+                spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen/2 - 250, 200), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White);
             }
         }
     }

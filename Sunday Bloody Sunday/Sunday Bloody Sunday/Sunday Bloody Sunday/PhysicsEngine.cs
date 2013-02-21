@@ -20,7 +20,6 @@ namespace Sunday_Bloody_Sunday
         public PhysicsEngine(bool[,] liste)
         {
             this.liste = liste;
-           
         }
 
         // Teste si la zone est franchissable (false) ou infranchissable (true) à l'aide du tableau de bool, si x <= 0 ou y <= 0, on est hors de la map

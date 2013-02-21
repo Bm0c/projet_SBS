@@ -38,7 +38,7 @@ namespace Sunday_Bloody_Sunday
         public static Param_Map lecture()
         {
 
-            StreamReader lecture = new StreamReader("Content/maps/map.txt");
+            StreamReader lecture = new StreamReader("Content/maps/map01.txt");
             string ligne = lecture.ReadLine();
             while (ligne != null)
             {

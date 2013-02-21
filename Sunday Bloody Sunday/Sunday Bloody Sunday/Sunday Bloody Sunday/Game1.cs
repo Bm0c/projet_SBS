@@ -16,21 +16,24 @@ namespace Sunday_Bloody_Sunday
         //FIELDS
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        SpriteFont spriteFont;
         GameMain Main;
+
         //Enum of the Screen States
         public enum Screen
         {
             menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map
         };
+
         //Init Screen State + Menu
         public static Screen ecran = Screen.menu_principal;
         Menu menuMain = new Menu(Menu.MenuType.MainMenu);
         int button_timer = 0;
+
         // Prochainement dans Sound.cs
         Song GamePlayMusic;
         Song MenuMusic;
         SoundEffect introEffect, loseEffect;
+
         // Compteur Sélection Map
         int compteur_thumbnails = 1;
 
@@ -284,12 +287,12 @@ namespace Sunday_Bloody_Sunday
                     menuMain = new Menu(Menu.MenuType.MainMenu);
                     button_timer = 0;
                 }
-                if (action == 7)
+                if (action == 7 && graphics.IsFullScreen == false)
                 {
                     graphics.ToggleFullScreen();
                     button_timer = 0;
                 }
-                if (action == 8)
+                if (action == 8 && graphics.IsFullScreen == true)
                 {
                     graphics.ToggleFullScreen();
                     button_timer = 0;
@@ -342,12 +345,13 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (ecran == Screen.selecteur_map)
                 {
+                    // Test
                     if (compteur_thumbnails == 0)
                     {
                         spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                         menuMain.Draw(spriteBatch);
                     }
-                    else if (compteur_thumbnails == 1)
+                    if (compteur_thumbnails == 1)
                     {
                         spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
                         menuMain.Draw(spriteBatch);
@@ -355,12 +359,12 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (ecran == Screen.menu_pause)
                 {
-                    Main.Draw(spriteBatch, spriteFont);
+                    Main.Draw(spriteBatch);
                     menuMain.Draw(spriteBatch);
                 }
                 if (ecran == Screen.menu_preferences)
                 {
-                    Main.Draw(spriteBatch, spriteFont);
+                    Main.Draw(spriteBatch);
                     menuMain.Draw(spriteBatch);
                 }
                 if (ecran == Screen.menu_parametres)
@@ -370,7 +374,7 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (ecran == Screen.jeu)
                 {
-                    Main.Draw(spriteBatch, spriteFont);
+                    Main.Draw(spriteBatch);
                 }
                 if (ecran == Screen.game_over)
                 {

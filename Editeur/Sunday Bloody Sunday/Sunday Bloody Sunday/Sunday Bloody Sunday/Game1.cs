@@ -35,31 +35,12 @@ namespace Sunday_Bloody_Sunday
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-<<<<<<< HEAD
+
             Ressources.LoadContent(Content);
             int largeur = 0;
             int hauteur = 0;
             Lecture.lire(ref largeur, ref hauteur);
             editeur = new Editeur(Ressources.Map, Ressources.valide,Ressources.invalide,hauteur,largeur);
-        }
-
-        // Prochainement dans Sound.cs
-        public void PlayMusic(Song song)
-        {
-            try
-            {
-                // Joue la musique
-                MediaPlayer.Play(song);
-                // Active la répétition de la musique
-                MediaPlayer.IsRepeating = true;
-            }
-            catch { }
-        }
-=======
->>>>>>> af1a1497bc483111849d24c0d8fa1fd2d228b971
-
-            Ressources.LoadContent(Content);
-            editeur = new Editeur(Ressources.Map, Ressources.valide, Ressources.invalide, 30, 50);
         }
 
         protected override void UnloadContent()
