@@ -51,7 +51,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public Map(Param_Map parametre)
         {
-            MapTexture = new Rectangle(0, 0, 800, 480);
+            MapTexture = new Rectangle(0, 0, 800, 1600);
             this.map_physique = new PhysicsEngine(parametre.liste);
             this.liste_ia = new List<IA>();
             this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1));
@@ -321,7 +321,7 @@ namespace Sunday_Bloody_Sunday
                     ia.en_vie = false; //Tue l'IA
                 }
             }
-            if (compteur > 180 && etape1 ) //Ajout de nouvelles IA a la map
+            if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
             {
                 int choix = rand.Next(spawns.Count);
                 Spawn spawn = spawns.ElementAt(choix);
@@ -445,7 +445,7 @@ namespace Sunday_Bloody_Sunday
 
             compteur++;
         }
-        
+
         public void update_Bomb(List<Player> liste_joueurs, KeyboardState keyboard)
         {
             foreach (Player joueur in liste_joueurs)
@@ -661,7 +661,7 @@ namespace Sunday_Bloody_Sunday
             MapTexture.X = 400 - x;
             MapTexture.Y = 240 - y;
 
-            spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
+            spriteBatch.Draw(Ressources.Map02, this.MapTexture, Color.CadetBlue);
             foreach (Items box in liste_box)
             {
                 box.Draw(spriteBatch, MapTexture);

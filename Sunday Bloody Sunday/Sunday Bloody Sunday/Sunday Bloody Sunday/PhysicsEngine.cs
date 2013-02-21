@@ -25,10 +25,20 @@ namespace Sunday_Bloody_Sunday
         // Teste si la zone est franchissable (false) ou infranchissable (true) à l'aide du tableau de bool, si x <= 0 ou y <= 0, on est hors de la map
         public bool mur(int x, int y)
         {
-            if ((x <= 0) || (y <= 0) || (x >= 800) ||(y >=480))
+
+            try
+            {
+                return this.liste[x / 16, y / 16];
+            }
+            catch
+            {
+                return true;
+            }
+            /*
+            if ((x <= 0) || (y <= 0) || (x >= 800) ||(y >=1600))
                 return true;
             else
-                return this.liste[x / 16, y / 16]; 
+                return this.liste[x / 16, y / 16]; */
         }
 
         public bool[,] map()
