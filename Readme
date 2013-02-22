@@ -1,5 +1,5 @@
-project_SBS is the "Sunday Bloody Sunday" project made by Alexis Guiho, David Baron & Adrien Alexandre.
-It's a Zombie Shooter developed in C# with XNA library.
+project_SBS is the "Sunday Bloody Sunday" project made by Alexis Guiho, David Baron, André Milon & Andry Razafindrazaka.
+It's a zombie-shooter game in the Pokemon world developed in C# with the XNA library.
 More information on : www.projet-sbs.fr/game.html
 
 To run the game, you must have :
@@ -7,21 +7,22 @@ Microsoft .NET Framework 4
 Microsoft XNA Framework Redistributable 4.0
 
 To launch the game, go in :
-\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug
-and open Sunday Bloody Sunday.exe
+\projet_sbs\Projet\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug and open Sunday Bloody Sunday.exe
 
-Current manual of the game
-
+~ Current manual of the game ~
 GameTitle :
     Click on "Play" to start the game
     Click on "Options" to set parameters
     Click on "Quit" to close the game
 In Game :
-    Use arrows to control the first player & press "N" to shoot
+    Use arrows to control the first player
+	Press "N" to shoot, "P" to place a bomb & "Enter" to explode it
     Press "Escape" to pause the game and access to options
 	Press "1" to activate the IA generation
 	Press "2" to activate the COOP mode :
-	Use "Z","Q","S","D" & "A" to control the second player & shoot
+		Use "Z","Q","S","D" & "A" to control the second player & shoot
+		Press "E" to place a bomb and "R" to explode it
 Options :
     You can choose the language of the game : French/English
     You can set the volume of the music
+    You can activate the full screen

@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>gameFont.spritefont</Source>
+      <Name>gameFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameFont.xnb</Output>
+      <Time>2013-02-09T15:56:43.0952777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>explosion.png</Source>
+      <Name>explosion</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion.xnb</Output>
+      <Time>2013-02-09T15:56:43.0952777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Chara.png</Source>
+      <Name>Chara</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara.xnb</Output>
+      <Time>2013-02-09T15:56:43.0640777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Title.png</Source>
+      <Name>Title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Title.xnb</Output>
+      <Time>2013-02-09T15:56:43.0796777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Map.png</Source>
+      <Name>Map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
+      <Time>2013-02-09T15:56:43.0640777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Bitmap1.bmp</Source>
+      <Name>Bitmap1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Bitmap1.xnb</Output>
+      <Time>2013-02-09T15:56:43.0640777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>pikachu.png</Source>
+      <Name>pikachu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>balle.png</Source>
+      <Name>balle</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\balle.xnb</Output>
+      <Time>2013-02-09T15:56:43.0796777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Chara2.png</Source>
+      <Name>Chara2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara2.xnb</Output>
+      <Time>2013-02-09T15:56:43.0640777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Chara3.png</Source>
+      <Name>Chara3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara3.xnb</Output>
+      <Time>2013-02-09T15:56:43.0640777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>pikachu_2.png</Source>
+      <Name>pikachu_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu_2.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>GameOver.png</Source>
+      <Name>GameOver</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GameOver.xnb</Output>
+      <Time>2013-02-09T15:56:43.0640777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>health_box.png</Source>
+      <Name>health_box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\health_box.xnb</Output>
+      <Time>2013-02-09T15:56:43.1264778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>ammo_box.jpg</Source>
+      <Name>ammo_box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\ammo_box.xnb</Output>
+      <Time>2013-02-09T15:56:43.0796777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>explosive_box.png</Source>
+      <Name>explosive_box</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosive_box.xnb</Output>
+      <Time>2013-02-09T15:56:43.0952777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>bomb.png</Source>
+      <Name>bomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\bomb.xnb</Output>
+      <Time>2013-02-18T19:29:28.6525366+01:00</Time>
+    </Item>
+    <Item>
+      <Source>thumbnails_map_01.png</Source>
+      <Name>thumbnails_map_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_01.xnb</Output>
+      <Time>2013-02-19T19:43:21.3196289+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Map02.png</Source>
+      <Name>Map02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb</Output>
+      <Time>2013-02-21T22:28:05.3224218+01:00</Time>
+    </Item>
+    <Item>
+      <Source>zombie_groan.wav</Source>
+      <Name>zombie_groan</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie_groan.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>explosion_effect.wav</Source>
+      <Name>explosion_effect</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion_effect.xnb</Output>
+      <Time>2013-02-09T15:56:43.0952777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>pop.wav</Source>
+      <Name>pop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pop.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>tire.MP3</Source>
+      <Name>tire</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tire.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>pikachu001.mp3</Source>
+      <Name>pikachu001</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu001.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>pikachu002.mp3</Source>
+      <Name>pikachu002</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu002.xnb</Output>
+      <Time>2013-02-09T15:56:43.1576778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>elevator_music.mp3</Source>
+      <Name>elevator_music</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.xnb</Output>
+      <Extra>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.wma</Extra>
+      <Time>2013-02-09T15:56:43.0796777+01:00</Time>
+    </Item>
+    <Item>
+      <Source>lose_effect.mp3</Source>
+      <Name>lose_effect</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\lose_effect.xnb</Output>
+      <Time>2013-02-09T15:56:43.1264778+01:00</Time>
+    </Item>
+    <Item>
+      <Source>gameplay_music.mp3</Source>
+      <Name>gameplay_music</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.xnb</Output>
+      <Extra>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.wma</Extra>
+      <Time>2013-02-09T15:56:43.1264778+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-11-14T21:33:30.4520978+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
