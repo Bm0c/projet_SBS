@@ -17,7 +17,7 @@ namespace Editeur
 
         public static void LoadContent(ContentManager Content)
         {
-            map = Content.Load<Texture2D>("map");
+            map = Content.Load<Texture2D>("Map");
         }
     }
 }

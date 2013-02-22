@@ -34,7 +34,7 @@ namespace Editeur
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Content.RootDirectory = "Content";
-            Ressources.LoadContent(Content);
+            Texture2D map = Content.Load<Texture2D>("Map");
         }
         protected override void UnloadContent()
         {
