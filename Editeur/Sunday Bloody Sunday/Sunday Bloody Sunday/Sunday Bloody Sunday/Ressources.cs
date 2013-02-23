@@ -20,13 +20,9 @@ namespace Sunday_Bloody_Sunday
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
-<<<<<<< HEAD:Editeur/Editeur/Editeur/Ressources.cs
-            map = Content.Load<Texture2D>("Map");
-=======
             Map = content.Load<Texture2D>("Map");
             valide = content.Load<Texture2D>("Valide");
             invalide = content.Load<Texture2D>("Invalide");
->>>>>>> c620117bbfdb0add1bcdb96468ae299095878939:Editeur/Sunday Bloody Sunday/Sunday Bloody Sunday/Sunday Bloody Sunday/Ressources.cs
         }
     }
 }

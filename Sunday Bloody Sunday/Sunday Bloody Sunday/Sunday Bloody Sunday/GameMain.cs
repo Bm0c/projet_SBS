@@ -20,8 +20,8 @@ namespace Sunday_Bloody_Sunday
 
         // CONCSTRUCTOR
         public GameMain()
-        {
-            this.MainMap = new Map(LecteurMap.lecture());
+        {/*
+            this.MainMap = new Map(LecteurMap.lecture(chemin_map));*/
             this.MainHUD = new HUD();
         }
 

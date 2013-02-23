@@ -36,10 +36,6 @@ namespace Sunday_Bloody_Sunday
 
             foreach (Player joueur in liste_joueurs)
             {
-                if (joueur.Ammo <=0)
-                {
-                    joueur.Ammo = 100;
-                }
                 this.munition = this.munition + joueur.Ammo;
                 this.health = this.health + joueur.Health;
             }

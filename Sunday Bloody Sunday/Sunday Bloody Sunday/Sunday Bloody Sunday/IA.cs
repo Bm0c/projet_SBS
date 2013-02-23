@@ -54,6 +54,9 @@ namespace Sunday_Bloody_Sunday
        public int id_texture;
        public int id_son;
 
+       public int compteur_path;
+       public int ia_dir;
+
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
 
@@ -61,8 +64,28 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public IA(int x, int y, int id_texture, int id_son, int pv_max, int dégats)//ID texture, son joué, PV max, Vitesse
         {
-            this.IATexture = new Rectangle(x, y, 16, 17);
-            IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+            compteur_path = 0;
+            ia_dir = 0;
+            if (id_texture == 0)
+            {
+                this.IATexture = new Rectangle(x, y, 16, 17);
+                IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+            }
+            else if (id_texture == 1)
+            {
+                this.IATexture = new Rectangle(x, y, 16, 17);
+                IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+            }
+            else if (id_texture == 2)
+            {
+                this.IATexture = new Rectangle(x, y, 20, 20);
+                IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+            }
+            else if (id_texture == 3)
+            {
+                this.IATexture = new Rectangle(x, y, 20, 20);
+                IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+            }
             this.frameLine = 1;
             this.frameColumn = 2;
             this.Direction = DirectionIA.Down;
@@ -72,6 +95,7 @@ namespace Sunday_Bloody_Sunday
             this.Active = true;
             this.Health = pv_max;
             this.Damage = dégats;
+            this.id_son = id_son;
             this.action = "";
             this.id_texture = id_texture;
             this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 2, IATexture.Height + 2);
@@ -126,7 +150,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (this.Aire_attaque.Intersects(joueur.PlayerTexture))
                     {
-                        joueur.Health = joueur.Health - 10;
+                        joueur.Health = joueur.Health - this.Damage;
                         this.couldown = 0;
                     }
                 }
@@ -213,8 +237,6 @@ namespace Sunday_Bloody_Sunday
                         ia.actionIA = "";
 
                 }
-
-
             }
 
             ia.actionIA = ""; //"Remet à zéros" les actions de l'IA
@@ -320,6 +342,14 @@ namespace Sunday_Bloody_Sunday
             else if (id_texture == 1)
             {
                 spriteBatch.Draw(Ressources.IA2, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 23, (this.frameLine - 1) * 27, 23, 27), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (id_texture == 2)
+            {
+                spriteBatch.Draw(Ressources.IA3, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 24, (this.frameLine - 1) * 24, 24, 24), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (id_texture == 3)
+            {
+                spriteBatch.Draw(Ressources.IA4, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 26, (this.frameLine - 1) * 30, 26, 30), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
         }
     }

@@ -17,6 +17,7 @@ namespace Sunday_Bloody_Sunday
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameMain Main;
+        string path_map;
 
         //Enum of the Screen States
         public enum Screen
@@ -125,6 +126,7 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 1)
                 {
+                    
                     ecran = Screen.selecteur_map;
                     menuMain = new Menu(Menu.MenuType.MapSelector);
                     button_timer = 0;
@@ -149,19 +151,36 @@ namespace Sunday_Bloody_Sunday
                 {
                     action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
                 }
-                if (action == 1 && compteur_thumbnails == 1)
+                if (action == 1 /*&& compteur_thumbnails == 1*/)
                 {
-                    compteur_thumbnails -= compteur_thumbnails;
+                    compteur_thumbnails -= 1;
+                    if (compteur_thumbnails < 0)
+                    {
+                        compteur_thumbnails = 0;
+                    }
                 }
-                if (action == 2 && compteur_thumbnails == 0)
+                if (action == 2 /*&& compteur_thumbnails == 0*/)
                 {
-                    compteur_thumbnails += compteur_thumbnails;
+                    compteur_thumbnails += 1;
+                    if (compteur_thumbnails > 1)
+                    {
+                        compteur_thumbnails = 1;
+                    }
                 }
                 if (action == 3)
                 {
-                    
-                    Main = new GameMain();
-                    Main.MainMap = new Map(LecteurMap.lecture());
+                    if (compteur_thumbnails == 0)
+                    {
+                        Main = new GameMain();
+                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"));
+                        path_map = "map01.txt";
+                    }
+                    else
+                    {
+                        Main = new GameMain();
+                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"));
+                        path_map = "map02.txt";
+                    }
                     ecran = Screen.jeu;
                     PlayMusic(GamePlayMusic);
                     button_timer = 0;
@@ -305,6 +324,7 @@ namespace Sunday_Bloody_Sunday
 
                 if (Main.MainMap.game_over)
                 {
+
                     ecran = Screen.game_over;
                     menuMain = new Menu(Menu.MenuType.GameOver);
                     StopMusic(GamePlayMusic);
@@ -322,9 +342,9 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 1)
                 {
-                    Main = new GameMain();
-                    ecran = Screen.jeu;
-                    PlayMusic(GamePlayMusic);
+                    
+                    ecran = Screen.selecteur_map;
+                    menuMain = new Menu(Menu.MenuType.MapSelector);
                     button_timer = 0;
                 }
             }
@@ -338,49 +358,49 @@ namespace Sunday_Bloody_Sunday
 
             spriteBatch.Begin();
 
-                if (ecran == Screen.menu_principal)
+            if (ecran == Screen.menu_principal)
+            {
+                spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.selecteur_map)
+            {
+                // Test
+                if (compteur_thumbnails == 0)
                 {
-                    spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.selecteur_map)
+                if (compteur_thumbnails == 1)
                 {
-                    // Test
-                    if (compteur_thumbnails == 0)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    if (compteur_thumbnails == 1)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
-                        menuMain.Draw(spriteBatch);
-                    }
-                }
-                if (ecran == Screen.menu_pause)
-                {
-                    Main.Draw(spriteBatch);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.menu_preferences)
-                {
-                    Main.Draw(spriteBatch);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.menu_parametres)
-                {
-                    GraphicsDevice.Clear(Color.Black);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.jeu)
-                {
-                    Main.Draw(spriteBatch);
-                }
-                if (ecran == Screen.game_over)
-                {
-                    spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
-                    menuMain.Draw(spriteBatch);
-                }
+            }
+            if (ecran == Screen.menu_pause)
+            {
+                Main.Draw(spriteBatch);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.menu_preferences)
+            {
+                Main.Draw(spriteBatch);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.menu_parametres)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.jeu)
+            {
+                Main.Draw(spriteBatch);
+            }
+            if (ecran == Screen.game_over)
+            {
+                spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
 

@@ -20,7 +20,7 @@ namespace Sunday_Bloody_Sunday
         SoundEffect introEffect = Ressources.mIntroEffect;
         SoundEffect explosionEffect = Ressources.mExplosionEffect;
         SoundEffect pop = Ressources.mPop;
-
+        bool TempoSon = true;
 
         // METHODS
         public void PlayTire()
@@ -36,23 +36,27 @@ namespace Sunday_Bloody_Sunday
 
         public void PlayPika()
         {
-            try
+            if (TempoSon)
             {
-                pika.Play();
+                try
+                {
+                    pika.Play();
+                    TempoSon = false;
+                }
+                catch
+                {
+                }
             }
-            catch
+            else
             {
-            }
-        }
-
-        public void PlayPika2()
-        {
-            try
-            {
-                pika2.Play();
-            }
-            catch
-            {
+                try
+                {
+                    pika2.Play();
+                    TempoSon = true;
+                }
+                catch
+                {
+                }
             }
         }
 

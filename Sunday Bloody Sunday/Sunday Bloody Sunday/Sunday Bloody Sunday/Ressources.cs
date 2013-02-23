@@ -14,7 +14,7 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Map02, ThumbnailsMap01, Projectile, ExplosionParticule, IA1, IA2, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen;
+        public static Texture2D Player1, Player2, Player3, Map, Map02, ThumbnailsMap01, Projectile, ExplosionParticule, IA1, IA2, IA3, IA4, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen;
         // HUD
         public static SpriteFont HUD;
         // Sounds
@@ -35,6 +35,8 @@ namespace Sunday_Bloody_Sunday
             ExplosionParticule = content.Load<Texture2D>("explosion");
             IA1 = content.Load<Texture2D>("pikachu");
             IA2 = content.Load<Texture2D>("pikachu_2");
+            IA3 = content.Load<Texture2D>("Carabaffe_");
+            IA4 = content.Load<Texture2D>("Spectrum");
             HUD = content.Load<SpriteFont>("gameFont");
             GamePlayMusic = content.Load<Song>("gameplay_music");
             MenuMusic = content.Load<Song>("elevator_music");

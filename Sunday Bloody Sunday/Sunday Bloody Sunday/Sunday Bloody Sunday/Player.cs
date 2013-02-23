@@ -57,9 +57,9 @@ namespace Sunday_Bloody_Sunday
 
 
         // CONSTRUCTOR
-        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poser, Keys activer, Texture2D texture)
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poser, Keys activer, Texture2D texture, int x, int y)
         {
-            this.PlayerTexture = new Rectangle(Divers.WidthScreen / 2, Divers.HeightScreen / 2, 16, 19);
+            this.PlayerTexture = new Rectangle(x, y, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
             this.frameLine = 1;
             this.frameColumn = 2;
@@ -346,9 +346,9 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Rectangle Maptexture)
         {
-            spriteBatch.Draw(this.texture, new Rectangle(400,240,this.PlayerTexture.Width,PlayerTexture.Height), new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            spriteBatch.Draw(this.texture, new Rectangle(Maptexture.X + PlayerTexture.X, Maptexture.Y + PlayerTexture.Y, PlayerTexture.Width, PlayerTexture.Height), new Rectangle((this.frameColumn - 1) * 16, (this.frameLine - 1) * 19, 16, 19), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
         }
     }
 }

@@ -46,15 +46,18 @@ namespace Sunday_Bloody_Sunday
         bool etape1 = false;
         bool etape2 = false;
         public bool game_over = false;
+        Param_Map parametre;
 
 
         // CONSTRUCTOR
         public Map(Param_Map parametre)
         {
-            MapTexture = new Rectangle(0, 0, 800, 1600);
-            this.map_physique = new PhysicsEngine(parametre.liste);
+            this.parametre = parametre;
+
+            MapTexture = new Rectangle(0, 0, parametre.hauteur * 16, (parametre.largeur - 1) * 16);
+            this.map_physique = new PhysicsEngine(parametre.liste,parametre.liste_projectile);
             this.liste_ia = new List<IA>();
-            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1));
+            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x,parametre.y));
 
             //HEALTH + AMMO BOXES
             this.liste_box = new List<Items>();
@@ -81,186 +84,310 @@ namespace Sunday_Bloody_Sunday
         //Gère le deplacement de l'ia
         public void pathfing(ref string action, Player joueur)
         {
-            if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+
+            if (ia.compteur_path % 30 == 0)
             {
-                action = "left";
-                if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                ia.compteur_path = 0;
+                Random rand = new Random();
+                ia.ia_dir = rand.Next(0, 2);
+            }
+
+            ia.compteur_path++;
+
+            if (ia.ia_dir == 0)
+            {
+                if (joueur.PlayerTexture.X < this.ia.IATexture.X)
                 {
+                    action = "left";
+                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
+                            action = "up";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                        {
+                            action = "down";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                             && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
                 }
-                else
+                else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
                 {
-                    if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                    action = "right";
+                    if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
                     {
                         action = "up";
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                         && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
                         {
+
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
-                        else
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
                         {
-                            action = "";
-                        }
-                    }
-                    else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
-                    {
-                        action = "down";
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
-                         && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
+                            action = "down";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                             && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
                     }
                 }
-            }
-            else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
-            {
-                action = "right";
-                if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                else if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                {
+                    action = "up";
+
+                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+                else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                {
+                    action = "down";
+                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                      && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
-                {
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+
+                    }
                 }
-                else
+            }
+            else
+            {
+
+                if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
                 {
                     action = "up";
-                    if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
-                    {
 
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                         && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
-                        }
-                    }
-                    else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
                     {
-                        action = "down";
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
-                         && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
                         {
+                            action = "left";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
-                        else
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
                         {
-                            action = "";
+                            action = "right";
+                            if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
                     }
                 }
-            }
-            else if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
-            {
-                action = "up";
-
-                if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
                 {
-                }
-                else
-                {
-                    if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                    action = "down";
+                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                     && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
                     {
-                        action = "left";
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                             && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
-                        }
                     }
-                    else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                    else
                     {
-                        action = "right";
-                        if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+
+                    }
+                }
+                else if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                {
+                    action = "left";
+                    if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
+                            action = "up";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                        {
+                            action = "down";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                              && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
                     }
                 }
-            }
-            else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
-            {
-                action = "down";
-                if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
-                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
                 {
-                }
-                else
-                {
-                    action = "up";
-                    if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
-                    {
-
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                         && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
-                        }
-                    }
-                    else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
-                    {
-                        action = "down";
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                    action = "right";
+                    if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
                          && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
-                        }
+                    {
                     }
-                }
-            }
-            else if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
-            {
-                action = "up";
+                    else
+                    {
+                        action = "up";
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
 
-                if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                 && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
-                {
-                }
-                else
-                {
-                    if (joueur.PlayerTexture.X < this.ia.IATexture.X)
-                    {
-                        action = "left";
-                        if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
-                             && !(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
-                        {
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
-                        else
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
                         {
-                            action = "";
-                        }
-                    }
-                    else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
-                    {
-                        action = "right";
-                        if (!(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                            action = "down";
+                            if (!(map_physique.mur(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
                              && !(map_physique.mur(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
-                        {
-                        }
-                        else
-                        {
-                            action = "";
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
                         }
                     }
-
                 }
             }
+
         }
 
 
@@ -276,7 +403,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1,parametre.x,parametre.y);
                     Vector2 vector_joueur = new Vector2();
                     foreach (Player joueur in liste_joueurs)
                     {
@@ -323,15 +450,53 @@ namespace Sunday_Bloody_Sunday
             }
             if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
             {
+
                 int choix = rand.Next(spawns.Count);
                 Spawn spawn = spawns.ElementAt(choix);
-                ;
                 choix = rand.Next(spawn.créatures.Count);
+
                 IA ia = spawn.créatures.ElementAt(choix);
                 IA ia_ = new IA(ia.IATexture.X, ia.IATexture.Y, ia.id_son, ia.id_texture, ia.Health, ia.Damage);
-                liste_ia.Add(ia_);
-                moteur_son.PlayPika();
-                compteur = 0;
+
+
+                float distance = 10000;
+                Vector2 vector_ia = new Vector2(ia_.IATexture.X, ia_.IATexture.Y);
+                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1,parametre.x,parametre.y);
+                Vector2 vector_joueur = new Vector2();
+                foreach (Player joueur in liste_joueurs)
+                {
+                    joueur_cible = joueur;
+                    vector_joueur = new Vector2(joueur_cible.PlayerTexture.X, joueur_cible.PlayerTexture.Y);
+                }
+
+                Vector2.Distance(ref vector_ia, ref vector_joueur, out distance);
+                foreach (Player joueur in liste_joueurs)
+                {
+                    vector_joueur = new Vector2(joueur.PlayerTexture.X, joueur.PlayerTexture.Y);
+                    float distance_2;
+                    Vector2.Distance(ref vector_ia, ref vector_joueur, out distance_2);
+                    if (distance_2 < distance)
+                    {
+                        distance = distance_2;
+                    }
+                }
+                if (distance < 400)
+                {
+                    bool test = true;
+                    foreach (IA ia__ in liste_ia)
+                    {
+                        if (ia__.IATexture.Intersects(ia_.IATexture))
+                        {
+                            test = false;
+                        }
+                    }
+                    if (test)
+                    {
+                        liste_ia.Add(ia_);
+                        moteur_son.PlayPika();
+                        compteur = 0;
+                    }
+                }
             }
             compteur = compteur + 1;
 
@@ -364,7 +529,7 @@ namespace Sunday_Bloody_Sunday
 
             foreach (Player joueur in liste_joueurs) //On ajoute des balles en fonction des touches et du refroidissement
             {
-                if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroidissement >= 12 && etape1)
+                if ((keyboard.IsKeyDown(joueur.Tire)) && joueur.refroidissement >= 12 && etape1 && joueur.Ammo > 0)
                 {
                     balle = new Projectile(Ressources.Projectile, (int)joueur.centre().X, (int)joueur.centre().Y, 10, joueur.Direction, 50);
                     liste_projectile.Add(balle);
@@ -583,7 +748,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if ((ia.IATexture.Y > joueur.PlayerTexture.Y) && !joueur.est_afficher)
                     {
-                        joueur.Draw(spriteBatch);
+                        joueur.Draw(spriteBatch, MapTexture);
                         joueur.est_afficher = true;
 
                     }
@@ -597,7 +762,7 @@ namespace Sunday_Bloody_Sunday
             {
                 if (!joueur.est_afficher)
                 {
-                    joueur.Draw(spriteBatch);
+                    joueur.Draw(spriteBatch, MapTexture);
                     joueur.est_afficher = true;
 
                 }
@@ -628,7 +793,7 @@ namespace Sunday_Bloody_Sunday
             if (keyboard.IsKeyDown(Keys.D2) && !etape2)
             {
                 etape2 = true;
-                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2));/*
+                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2,parametre.x,parametre.y));/*
                 this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
             if (liste_joueurs.Count == 0) //Si il n'y a plus de joueurs
@@ -658,10 +823,16 @@ namespace Sunday_Bloody_Sunday
                 x = joueur.PlayerTexture.X;
                 y = joueur.PlayerTexture.Y;
             }
-            MapTexture.X = 400 - x;
+            MapTexture.X  = 400 - x;
             MapTexture.Y = 240 - y;
-
-            spriteBatch.Draw(Ressources.Map02, this.MapTexture, Color.CadetBlue);
+            if (parametre.texture_map == 0)
+            {
+                spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
+            }
+            else
+            {
+                spriteBatch.Draw(Ressources.Map02, this.MapTexture, Color.CadetBlue);
+            }
             foreach (Items box in liste_box)
             {
                 box.Draw(spriteBatch, MapTexture);

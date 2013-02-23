@@ -114,7 +114,7 @@ namespace Sunday_Bloody_Sunday
 
         public void collision_balle(PhysicsEngine map_physique)
         {
-            if (!(map_physique.mur(this.futur_x(), this.futur_y())))
+            if (!(map_physique.mur_projectile(this.futur_x(), this.futur_y())))
             {
                 this.update_coordonne();
             }

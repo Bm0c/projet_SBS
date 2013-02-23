@@ -35,17 +35,14 @@ namespace Sunday_Bloody_Sunday
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-<<<<<<< HEAD:Editeur/Editeur/Editeur/Game1.cs
             Content.RootDirectory = "Content";
             Texture2D map = Content.Load<Texture2D>("Map");
-=======
 
             Ressources.LoadContent(Content);
             int largeur = 0;
             int hauteur = 0;
             Lecture.lire(ref largeur, ref hauteur);
             editeur = new Editeur(Ressources.Map, Ressources.valide,Ressources.invalide,hauteur,largeur);
->>>>>>> c620117bbfdb0add1bcdb96468ae299095878939:Editeur/Sunday Bloody Sunday/Sunday Bloody Sunday/Sunday Bloody Sunday/Game1.cs
         }
 
         protected override void UnloadContent()
