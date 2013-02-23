@@ -252,3 +252,9 @@ C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday
 C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.pdb
 C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Carabaffe_.xnb
 C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Spectrum.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_02.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_03.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\cross.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\WinScreen.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Raichu.xnb

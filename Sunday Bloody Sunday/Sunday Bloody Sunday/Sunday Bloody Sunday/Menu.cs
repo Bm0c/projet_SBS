@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum MenuType
         {
-            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector
+            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen
         };
 
 
@@ -84,6 +84,13 @@ namespace Sunday_Bloody_Sunday
                     button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 15, Divers.HeightScreen / 2 + 175, 50, 50));
                     break;
 
+                case MenuType.WinScreen:
+                    if (MenuButton.langage == "French")
+                        button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(100, 20, 100, 50));
+                    else
+                        button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(100, 20, 100, 50));
+                    break;
+
                 default:
                     break;
             }
@@ -142,9 +149,9 @@ namespace Sunday_Bloody_Sunday
             button_1.DrawButton(spriteBatch);
 
             if (button_2 != null)
-            button_2.DrawButton(spriteBatch);
+                button_2.DrawButton(spriteBatch);
             if (button_3 != null)
-            button_3.DrawButton(spriteBatch);
+                button_3.DrawButton(spriteBatch);
             if (button_4 != null)
                 button_4.DrawButton(spriteBatch);
             if (button_5 != null)
@@ -190,7 +197,7 @@ namespace Sunday_Bloody_Sunday
                     son = "Music";
                 }
                 spriteBatch.DrawString(Ressources.HUD, langue, new Vector2(Divers.WidthScreen / 2 - 250, 100), Color.White);
-                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen/2 - 250, 200), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, son, new Vector2(Divers.WidthScreen / 2 - 250, 200), Color.White);
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString((int)(MediaPlayer.Volume * 10) * 10), new Vector2(Divers.WidthScreen / 2 + 10, 200), Color.White);
             }
         }

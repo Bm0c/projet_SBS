@@ -66,7 +66,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel)
+        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel, List<ExplosionParticule> liste_explosion)
         {
             // Do not update the game if we are not active
             if (Active == false)
@@ -129,6 +129,9 @@ namespace Sunday_Bloody_Sunday
                 if ((barrel.BarrelTexture.Intersects(this.Aire_explosionBomb)))
                 {
                     barrel.isVisible = false;
+                    ExplosionParticule explosion = new ExplosionParticule();
+                    explosion.Initialize(Ressources.ExplosionParticule, new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8), 134, 134, 12, 45, Color.White, 1f, false, barrel.Aire_barrel.X - 16,  barrel.Aire_barrel.Y - 16, 48);
+                    liste_explosion.Add(explosion);
                 }
             }
         }

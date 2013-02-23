@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arrivee.cs" />
     <Compile Include="Divers.cs" />
     <Compile Include="DestructibleItems.cs" />
     <Compile Include="GameMain.cs" />

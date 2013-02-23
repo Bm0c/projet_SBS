@@ -24,8 +24,10 @@ namespace Sunday_Bloody_Sunday
         public int texture_map;
         public int largeur;
         public int hauteur;
+        public Arrivee fin;
+        public bool scrolling;
 
-        public Param_Map(bool[,] liste, bool[,] liste_projectile, List<Spawn> liste_spawn, List<DestructibleItems> liste_barrel, Spawn_Items liste_caisses, int x, int y, int texture_map,int hauteur, int largeur)
+        public Param_Map(bool[,] liste, bool[,] liste_projectile, List<Spawn> liste_spawn, List<DestructibleItems> liste_barrel, Spawn_Items liste_caisses, int x, int y, int texture_map, int hauteur, int largeur, Arrivee fin, bool scrolling)
         {
             this.liste = liste;
             this.liste_projectile = liste_projectile;
@@ -37,12 +39,14 @@ namespace Sunday_Bloody_Sunday
             this.texture_map = texture_map;
             this.hauteur = hauteur;
             this.largeur = largeur;
+            this.fin = fin;
+            this.scrolling = scrolling;
         }
     }
 
     class LecteurMap
     {
-        static bool[,] liste; 
+        static bool[,] liste;
         static bool[,] liste_projectile;
         static List<Spawn> liste_spawn;
         static List<DestructibleItems> liste_barrel;
@@ -52,12 +56,18 @@ namespace Sunday_Bloody_Sunday
         static int texture_map;
         static int largeur;
         static int hauteur;
+        static Arrivee fin;
+        static bool scrolling;
 
         public static Param_Map lecture(string path)
         {
 
             StreamReader lecture = new StreamReader("Content/maps/" + path);
             string ligne = lecture.ReadLine();
+
+            scrolling = ligne == ("scrolling");
+
+            ligne = lecture.ReadLine();
             texture_map = Convert.ToInt32(ligne);
             ligne = lecture.ReadLine();
             x = Convert.ToInt32(ligne);
@@ -82,11 +92,15 @@ namespace Sunday_Bloody_Sunday
                 {
                     lecture_barrel(lecture);
                 }
+                else if (ligne == "arrivee")
+                {
+                    lecture_arrivee(lecture);
+                }
                 ligne = lecture.ReadLine();
             }
             lecture.Close();
 
-            return new Param_Map(liste,liste_projectile, liste_spawn, liste_barrel, liste_caisses,x,y,texture_map,hauteur,largeur);
+            return new Param_Map(liste, liste_projectile, liste_spawn, liste_barrel, liste_caisses, x, y, texture_map, hauteur, largeur, fin, scrolling);
         }
 
         public static void lecture_physique(StreamReader lecture)
@@ -225,6 +239,19 @@ namespace Sunday_Bloody_Sunday
                 ligne = lecture.ReadLine();
 
             }
+        }
+
+        public static void lecture_arrivee(StreamReader lecture)
+        {
+            string ligne = lecture.ReadLine();
+            int x = System.Convert.ToInt32(ligne);
+
+            ligne = lecture.ReadLine();
+            int y = System.Convert.ToInt32(ligne);
+
+            fin = new Arrivee(x, y);
+            ligne = lecture.ReadLine();
+
         }
     }
 }

@@ -264,6 +264,60 @@
       <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Spectrum.xnb</Output>
       <Time>2013-02-23T11:59:51.7071397+01:00</Time>
     </Item>
+    <Item>
+      <Source>thumbnails_map_02.png</Source>
+      <Name>thumbnails_map_02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_02.xnb</Output>
+      <Time>2013-02-23T12:40:00.3607326+01:00</Time>
+    </Item>
+    <Item>
+      <Source>map03.png</Source>
+      <Name>map03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb</Output>
+      <Time>2013-02-23T16:10:18.9514002+01:00</Time>
+    </Item>
+    <Item>
+      <Source>thumbnails_map_03.png</Source>
+      <Name>thumbnails_map_03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_03.xnb</Output>
+      <Time>2013-02-23T12:47:52.6497915+01:00</Time>
+    </Item>
+    <Item>
+      <Source>cross.png</Source>
+      <Name>cross</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\cross.xnb</Output>
+      <Time>2013-02-23T15:23:59.0093966+01:00</Time>
+    </Item>
+    <Item>
+      <Source>WinScreen.png</Source>
+      <Name>WinScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\WinScreen.xnb</Output>
+      <Time>2013-02-23T13:22:43.407097+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Raichu.png</Source>
+      <Name>Raichu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Raichu.xnb</Output>
+      <Time>2013-02-23T14:55:27.4314999+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

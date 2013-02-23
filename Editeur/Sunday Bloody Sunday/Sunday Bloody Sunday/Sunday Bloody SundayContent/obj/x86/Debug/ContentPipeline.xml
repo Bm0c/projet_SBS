@@ -28,6 +28,24 @@
       <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
       <Time>2013-02-22T10:01:27.5537109+01:00</Time>
     </Item>
+    <Item>
+      <Source>Map02.png</Source>
+      <Name>Map02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb</Output>
+      <Time>2013-02-23T13:00:13.5832691+01:00</Time>
+    </Item>
+    <Item>
+      <Source>map03.png</Source>
+      <Name>map03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb</Output>
+      <Time>2013-02-23T13:00:13.5842691+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

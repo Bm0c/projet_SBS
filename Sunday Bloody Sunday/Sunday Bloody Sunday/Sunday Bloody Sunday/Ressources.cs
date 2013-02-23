@@ -14,7 +14,7 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Map02, ThumbnailsMap01, Projectile, ExplosionParticule, IA1, IA2, IA3, IA4, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen;
+        public static Texture2D Player1, Player2, Player3, Map, Map02, Map03, ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, Projectile, ExplosionParticule, IA1, IA2, IA3, IA4, IA5, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen, mWinSreen, mCross;
         // HUD
         public static SpriteFont HUD;
         // Sounds
@@ -27,7 +27,10 @@ namespace Sunday_Bloody_Sunday
         {
             Map = content.Load<Texture2D>("Map");
             Map02 = content.Load<Texture2D>("Map02");
+            Map03 = content.Load<Texture2D>("Map03");
             ThumbnailsMap01 = content.Load<Texture2D>("thumbnails_map_01");
+            ThumbnailsMap02 = content.Load<Texture2D>("thumbnails_map_02");
+            ThumbnailsMap03 = content.Load<Texture2D>("thumbnails_map_03");
             Player1 = content.Load<Texture2D>("Chara");
             Player2 = content.Load<Texture2D>("Chara2");
             Player3 = content.Load<Texture2D>("Chara3");
@@ -37,6 +40,7 @@ namespace Sunday_Bloody_Sunday
             IA2 = content.Load<Texture2D>("pikachu_2");
             IA3 = content.Load<Texture2D>("Carabaffe_");
             IA4 = content.Load<Texture2D>("Spectrum");
+            IA5 = content.Load<Texture2D>("Raichu");
             HUD = content.Load<SpriteFont>("gameFont");
             GamePlayMusic = content.Load<Song>("gameplay_music");
             MenuMusic = content.Load<Song>("elevator_music");
@@ -53,6 +57,8 @@ namespace Sunday_Bloody_Sunday
             mBomb = content.Load<Texture2D>("bomb");
             mTitleScreen = content.Load<Texture2D>("Title");
             mGameOverScreen = content.Load<Texture2D>("GameOver");
+            mWinSreen = content.Load<Texture2D>("WinScreen");
+            mCross = content.Load<Texture2D>("cross");
         }
     }
 }

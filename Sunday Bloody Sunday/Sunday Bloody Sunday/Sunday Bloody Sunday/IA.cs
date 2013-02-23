@@ -57,6 +57,8 @@ namespace Sunday_Bloody_Sunday
        public int compteur_path;
        public int ia_dir;
 
+       public bool ia_vol;
+
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
 
@@ -66,6 +68,7 @@ namespace Sunday_Bloody_Sunday
         {
             compteur_path = 0;
             ia_dir = 0;
+            ia_vol = false;
             if (id_texture == 0)
             {
                 this.IATexture = new Rectangle(x, y, 16, 17);
@@ -82,6 +85,12 @@ namespace Sunday_Bloody_Sunday
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
             }
             else if (id_texture == 3)
+            {
+                ia_vol = true;
+                this.IATexture = new Rectangle(x, y, 20, 20);
+                IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+            }
+            else if (id_texture == 4)
             {
                 this.IATexture = new Rectangle(x, y, 20, 20);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
@@ -200,42 +209,85 @@ namespace Sunday_Bloody_Sunday
 
             if (ia.actionIA == "up" || ia.actionIA == "down" || ia.actionIA == "left" || ia.actionIA == "right")
             {
-                if (ia.actionIA == "up")
+                if (!ia.ia_vol)
                 {
-                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia, liste_ia, liste_joueur))
-                        ia.mise_a_jour(ia.actionIA); 
-                    else
-                        ia.actionIA = "";
+                    if (ia.actionIA == "up")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+                    }
+
+                    if (ia.actionIA == "down")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
+                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+                    }
+
+                    if (ia.actionIA == "left")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+
+                    }
+
+                    if (ia.actionIA == "right")
+                    {
+                        if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+
+                    }
                 }
-
-                if (ia.actionIA == "down")
+                else
                 {
-                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
-                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
-                }
+                    if (ia.actionIA == "up")
+                    {
+                        if (!(map_physique.mur_projectile(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(ia.futur_position_X_droite(), ia.futur_position_Y_haut())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+                    }
 
-                if (ia.actionIA == "left")
-                {
-                    if (!(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
+                    if (ia.actionIA == "down")
+                    {
+                        if (!(map_physique.mur_projectile(ia.futur_position_X_gauche(), ia.futur_position_Y_bas()))
+                         && !(map_physique.mur_projectile(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+                    }
 
-                }
+                    if (ia.actionIA == "left")
+                    {
+                        if (!(map_physique.mur_projectile(ia.futur_position_X_gauche(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(ia.futur_position_X_gauche(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
 
-                if (ia.actionIA == "right")
-                {
-                    if (!(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
-                     && !(map_physique.mur(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
-                        ia.mise_a_jour(ia.actionIA);
-                    else
-                        ia.actionIA = "";
+                    }
 
+                    if (ia.actionIA == "right")
+                    {
+                        if (!(map_physique.mur_projectile(ia.futur_position_X_droite(), ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(ia.futur_position_X_droite(), ia.futur_position_Y_bas())) && collision_entite_ia(ia, liste_ia, liste_joueur))
+                            ia.mise_a_jour(ia.actionIA);
+                        else
+                            ia.actionIA = "";
+
+                    }
                 }
             }
 
@@ -350,6 +402,10 @@ namespace Sunday_Bloody_Sunday
             else if (id_texture == 3)
             {
                 spriteBatch.Draw(Ressources.IA4, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 26, (this.frameLine - 1) * 30, 26, 30), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (id_texture == 4)
+            {
+                spriteBatch.Draw(Ressources.IA5, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 30, (this.frameLine - 1) * 29, 30, 29), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
         }
     }

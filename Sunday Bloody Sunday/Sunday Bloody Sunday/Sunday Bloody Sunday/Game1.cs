@@ -19,10 +19,11 @@ namespace Sunday_Bloody_Sunday
         GameMain Main;
         string path_map;
 
+
         //Enum of the Screen States
         public enum Screen
         {
-            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map
+            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map,win
         };
 
         //Init Screen State + Menu
@@ -37,6 +38,7 @@ namespace Sunday_Bloody_Sunday
 
         // Compteur Sélection Map
         int compteur_thumbnails = 1;
+        int compteur_delai = 30;
 
 
         // Début fichier généré par XNA
@@ -146,25 +148,31 @@ namespace Sunday_Bloody_Sunday
             else if (ecran == Screen.selecteur_map)
             {
                 int action = 0;
-
+                compteur_delai++;
+                if (compteur_delai > 20)
+                {
+                    compteur_delai = 20;
+                }
                 if (button_timer == 20)
                 {
                     action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
                 }
-                if (action == 1 /*&& compteur_thumbnails == 1*/)
+                if (action == 1 && compteur_delai >= 20)
                 {
+                    compteur_delai = 0;
                     compteur_thumbnails -= 1;
                     if (compteur_thumbnails < 0)
                     {
                         compteur_thumbnails = 0;
                     }
                 }
-                if (action == 2 /*&& compteur_thumbnails == 0*/)
+                if (action == 2 && compteur_delai >= 20)
                 {
+                    compteur_delai = 0;
                     compteur_thumbnails += 1;
-                    if (compteur_thumbnails > 1)
+                    if (compteur_thumbnails > 2)
                     {
-                        compteur_thumbnails = 1;
+                        compteur_thumbnails = 2;
                     }
                 }
                 if (action == 3)
@@ -175,11 +183,17 @@ namespace Sunday_Bloody_Sunday
                         Main.MainMap = new Map(LecteurMap.lecture("map01.txt"));
                         path_map = "map01.txt";
                     }
-                    else
+                    else if (compteur_thumbnails == 1)
                     {
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map02.txt"));
                         path_map = "map02.txt";
+                    }
+                    else if (compteur_thumbnails == 2)
+                    {
+                        Main = new GameMain();
+                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"));
+                        path_map = "map03.txt";
                     }
                     ecran = Screen.jeu;
                     PlayMusic(GamePlayMusic);
@@ -330,6 +344,13 @@ namespace Sunday_Bloody_Sunday
                     StopMusic(GamePlayMusic);
                     loseEffect.Play();
                 }
+                if (Main.MainMap.fin.gagne)
+                {
+                    ecran = Screen.win;
+                    menuMain = new Menu(Menu.MenuType.WinScreen);
+                    StopMusic(GamePlayMusic);
+                    loseEffect.Play();
+                }
             }
 
             else if (ecran == Screen.game_over)
@@ -343,6 +364,22 @@ namespace Sunday_Bloody_Sunday
                 if (action == 1)
                 {
                     
+                    ecran = Screen.selecteur_map;
+                    menuMain = new Menu(Menu.MenuType.MapSelector);
+                    button_timer = 0;
+                }
+            }
+
+            else if (ecran == Screen.win)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
                     ecran = Screen.selecteur_map;
                     menuMain = new Menu(Menu.MenuType.MapSelector);
                     button_timer = 0;
@@ -368,12 +405,17 @@ namespace Sunday_Bloody_Sunday
                 // Test
                 if (compteur_thumbnails == 0)
                 {
-                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
                     menuMain.Draw(spriteBatch);
                 }
-                if (compteur_thumbnails == 1)
+                else if (compteur_thumbnails == 1)
                 {
-                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap02, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 2)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
             }
@@ -399,6 +441,11 @@ namespace Sunday_Bloody_Sunday
             if (ecran == Screen.game_over)
             {
                 spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.win)
+            {
+                spriteBatch.Draw(Ressources.mWinSreen, new Rectangle(0, 0, 800, 480), Color.White);
                 menuMain.Draw(spriteBatch);
             }
 

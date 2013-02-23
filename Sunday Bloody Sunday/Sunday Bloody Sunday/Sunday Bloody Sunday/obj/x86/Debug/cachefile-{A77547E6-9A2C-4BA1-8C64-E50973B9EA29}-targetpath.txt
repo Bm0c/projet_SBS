@@ -29,3 +29,9 @@ Content\gameplay_music.xnb
 Content\gameplay_music.wma
 Content\Carabaffe_.xnb
 Content\Spectrum.xnb
+Content\thumbnails_map_02.xnb
+Content\map03.xnb
+Content\thumbnails_map_03.xnb
+Content\cross.xnb
+Content\WinScreen.xnb
+Content\Raichu.xnb

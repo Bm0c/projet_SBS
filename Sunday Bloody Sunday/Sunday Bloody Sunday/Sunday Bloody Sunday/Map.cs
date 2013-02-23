@@ -25,7 +25,8 @@ namespace Sunday_Bloody_Sunday
         public List<DestructibleItems> liste_barrel2; //Liste barrel secondaire
 
         public List<ExplosionParticule> liste_explosions; //Liste particules d'explosion
-        public List<ExplosionParticule> liste_explosions2; //Liste particules d'explosion secondaire
+        public List<ExplosionParticule> liste_explosions2;//Liste particules d'explosion secondaire
+        public List<ExplosionParticule> liste_explosions3;
 
         public List<Player> liste_joueurs = new List<Player>(); //Liste joueur
         public List<Player> liste_joueurs2 = new List<Player>(); //Liste joueurs secondaire
@@ -47,7 +48,7 @@ namespace Sunday_Bloody_Sunday
         bool etape2 = false;
         public bool game_over = false;
         Param_Map parametre;
-
+        public Arrivee fin;
 
         // CONSTRUCTOR
         public Map(Param_Map parametre)
@@ -55,9 +56,9 @@ namespace Sunday_Bloody_Sunday
             this.parametre = parametre;
 
             MapTexture = new Rectangle(0, 0, parametre.hauteur * 16, (parametre.largeur - 1) * 16);
-            this.map_physique = new PhysicsEngine(parametre.liste,parametre.liste_projectile);
+            this.map_physique = new PhysicsEngine(parametre.liste, parametre.liste_projectile);
             this.liste_ia = new List<IA>();
-            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x,parametre.y));
+            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y));
 
             //HEALTH + AMMO BOXES
             this.liste_box = new List<Items>();
@@ -70,10 +71,13 @@ namespace Sunday_Bloody_Sunday
             //EXPLOSION PARTICULE
             this.liste_explosions = new List<ExplosionParticule>();
             this.liste_explosions2 = new List<ExplosionParticule>();
+            this.liste_explosions3 = new List<ExplosionParticule>();
             this.explosionTexture = Ressources.ExplosionParticule;
 
             this.spawns = parametre.liste_spawn;
             this.spawn_items = parametre.liste_caisses;
+
+            fin = parametre.fin;
 
         }
 
@@ -390,7 +394,313 @@ namespace Sunday_Bloody_Sunday
 
         }
 
+        public void pathfing_vol(ref string action, Player joueur)
+        {
 
+            if (ia.compteur_path % 30 == 0)
+            {
+                ia.compteur_path = 0;
+                Random rand = new Random();
+                ia.ia_dir = rand.Next(0, 2);
+            }
+
+            ia.compteur_path++;
+
+            if (ia.ia_dir == 0)
+            {
+                if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                {
+                    action = "left";
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
+                            action = "up";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                        {
+                            action = "down";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+                else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                {
+                    action = "right";
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        action = "up";
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
+
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                        {
+                            action = "down";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+                else if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                {
+                    action = "up";
+
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                     && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+                else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                {
+                    action = "down";
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                     && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+
+                    }
+                }
+            }
+            else
+            {
+
+                if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                {
+                    action = "up";
+
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                     && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+                else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                {
+                    action = "down";
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                     && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                        {
+                            action = "left";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                        {
+                            action = "right";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                                 && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+
+                    }
+                }
+                else if (joueur.PlayerTexture.X < this.ia.IATexture.X)
+                {
+                    action = "left";
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
+                            action = "up";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                        {
+                            action = "down";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+                else if (joueur.PlayerTexture.X > this.ia.IATexture.X)
+                {
+                    action = "right";
+                    if (!(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut()))
+                         && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                    {
+                    }
+                    else
+                    {
+                        action = "up";
+                        if (joueur.PlayerTexture.Y < this.ia.IATexture.Y)
+                        {
+
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_haut()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_haut())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                        else if (joueur.PlayerTexture.Y > this.ia.IATexture.Y)
+                        {
+                            action = "down";
+                            if (!(map_physique.mur_projectile(this.ia.futur_position_X_gauche(), this.ia.futur_position_Y_bas()))
+                             && !(map_physique.mur_projectile(this.ia.futur_position_X_droite(), this.ia.futur_position_Y_bas())))
+                            {
+                            }
+                            else
+                            {
+                                action = "";
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
 
         //Gère le raffraichissement de la liste d'IA
         public void update_ia()
@@ -403,7 +713,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1,parametre.x,parametre.y);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
                     Vector2 vector_joueur = new Vector2();
                     foreach (Player joueur in liste_joueurs)
                     {
@@ -436,7 +746,14 @@ namespace Sunday_Bloody_Sunday
                     /*
                     this.ia.action = Pathfinding.pathfind(map, départ, arrivée);
                     */
-                    pathfing(ref this.ia.action, joueur_cible);
+                    if (ia.ia_vol)
+                    {
+                        pathfing_vol(ref this.ia.action, joueur_cible);
+                    }
+                    else
+                    {
+                        pathfing(ref this.ia.action, joueur_cible);
+                    }
                     //Trouve quelle action va faire l'IA
                     ia.action_ia(ia, joueur_cible, liste_barrel, map_physique, liste_ia, liste_joueurs); //Verifie la possibilité de réalisation des actions
                     ia.Update(); //Met à jour l'IA
@@ -461,7 +778,7 @@ namespace Sunday_Bloody_Sunday
 
                 float distance = 10000;
                 Vector2 vector_ia = new Vector2(ia_.IATexture.X, ia_.IATexture.Y);
-                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1,parametre.x,parametre.y);
+                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
                 Vector2 vector_joueur = new Vector2();
                 foreach (Player joueur in liste_joueurs)
                 {
@@ -681,15 +998,20 @@ namespace Sunday_Bloody_Sunday
         public void update_explosions(GameTime gameTime)
         {
             liste_explosions2 = new List<ExplosionParticule>();
+            liste_explosions3 = new List<ExplosionParticule>();
             foreach (ExplosionParticule explosion in liste_explosions)
             {
-                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel);
+                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions3);
                 if (explosion.Active == true)
                 {
                     liste_explosions2.Add(explosion);
                 }
             }
+            foreach (ExplosionParticule explosion in liste_explosions3)
+            {
+                liste_explosions2.Add(explosion);
 
+            }
             liste_explosions = liste_explosions2;
         }
 
@@ -793,7 +1115,7 @@ namespace Sunday_Bloody_Sunday
             if (keyboard.IsKeyDown(Keys.D2) && !etape2)
             {
                 etape2 = true;
-                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2,parametre.x,parametre.y));/*
+                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y));/*
                 this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
             if (liste_joueurs.Count == 0) //Si il n'y a plus de joueurs
@@ -812,6 +1134,7 @@ namespace Sunday_Bloody_Sunday
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
+            fin.Update(liste_joueurs);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -823,25 +1146,39 @@ namespace Sunday_Bloody_Sunday
                 x = joueur.PlayerTexture.X;
                 y = joueur.PlayerTexture.Y;
             }
-            MapTexture.X  = 400 - x;
-            MapTexture.Y = 240 - y;
+            if (parametre.scrolling)
+            {
+                MapTexture.X = 400 - x;
+                MapTexture.Y = 240 - y;
+            }
+            else
+            {
+                MapTexture.X = 0;
+                MapTexture.Y = 0;
+            }
             if (parametre.texture_map == 0)
             {
                 spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
             }
-            else
+            else if (parametre.texture_map == 1)
             {
                 spriteBatch.Draw(Ressources.Map02, this.MapTexture, Color.CadetBlue);
+            }
+            else if (parametre.texture_map == 2)
+            {
+                spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
             }
             foreach (Items box in liste_box)
             {
                 box.Draw(spriteBatch, MapTexture);
             }
+
             foreach (DestructibleItems barrel in liste_barrel)
             {
                 barrel.Draw(spriteBatch, MapTexture);
             }
             draw_ordre(spriteBatch);
+
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch, MapTexture);
@@ -850,6 +1187,7 @@ namespace Sunday_Bloody_Sunday
             {
                 explosion.Draw(spriteBatch, MapTexture);
             }
+
         }
     }
 }
