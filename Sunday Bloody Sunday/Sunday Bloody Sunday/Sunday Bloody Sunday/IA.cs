@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Sunday_Bloody_Sunday
 {
@@ -51,13 +53,14 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
 
-       public int id_texture;
-       public int id_son;
+        public int id_texture;
+        public int id_son;
 
-       public int compteur_path;
-       public int ia_dir;
+        public int compteur_path;
+        public int ia_dir;
 
-       public bool ia_vol;
+        public bool ia_vol;
+
 
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
@@ -66,6 +69,12 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public IA(int x, int y, int id_texture, int id_son, int pv_max, int dégats)//ID texture, son joué, PV max, Vitesse
         {
+            int caca = 0;
+            BinaryFormatter prout = new BinaryFormatter();
+            FileStream flux = null;
+            flux = new FileStream("prout", FileMode.Create,FileAccess.Read);
+            
+
             compteur_path = 0;
             ia_dir = 0;
             ia_vol = false;
