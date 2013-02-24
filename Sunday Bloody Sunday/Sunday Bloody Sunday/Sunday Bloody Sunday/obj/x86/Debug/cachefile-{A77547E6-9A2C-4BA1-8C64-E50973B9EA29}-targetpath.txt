@@ -25,13 +25,11 @@ Content\cross.xnb
 Content\WinScreen.xnb
 Content\Raichu.xnb
 Content\Tortank.xnb
-Content\blood.xnb
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
 Content\RaichuSon.xnb
 Content\RaichuSon2.xnb
-Content\blood_effect.xnb
 Content\tire.xnb
 Content\pikachu001.xnb
 Content\pikachu002.xnb
@@ -41,3 +39,5 @@ Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
 Content\win_effect.xnb
+Content\blood_effect.xnb
+Content\blood.xnb
