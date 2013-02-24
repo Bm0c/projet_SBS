@@ -8,11 +8,6 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-<<<<<<< HEAD
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-=======
->>>>>>> 10ee74546234c64199ffe3756773c509878b0168
 
 namespace Sunday_Bloody_Sunday
 {
@@ -56,7 +51,6 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
 
-<<<<<<< HEAD
         public int id_texture;
         public int id_son;
 
@@ -65,15 +59,6 @@ namespace Sunday_Bloody_Sunday
 
         public bool ia_vol;
 
-=======
-       public int id_texture;
-       public int id_son;
-
-       public int compteur_path;
-       public int ia_dir;
-
-       public bool ia_vol;
->>>>>>> 10ee74546234c64199ffe3756773c509878b0168
 
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
@@ -82,15 +67,7 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public IA(int x, int y, int id_texture, int id_son, int pv_max, int dégats)//ID texture, son joué, PV max, Vitesse
         {
-<<<<<<< HEAD
-            int caca = 0;
-            BinaryFormatter prout = new BinaryFormatter();
-            FileStream flux = null;
-            flux = new FileStream("prout", FileMode.Create,FileAccess.Read);
             
-
-=======
->>>>>>> 10ee74546234c64199ffe3756773c509878b0168
             compteur_path = 0;
             ia_dir = 0;
             ia_vol = false;
@@ -120,14 +97,11 @@ namespace Sunday_Bloody_Sunday
                 this.IATexture = new Rectangle(x, y, 20, 20);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
             }
-<<<<<<< HEAD
-=======
             else if (id_texture == 5)
             {
                 this.IATexture = new Rectangle(x, y, 22, 22);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
             }
->>>>>>> 10ee74546234c64199ffe3756773c509878b0168
             this.frameLine = 1;
             this.frameColumn = 2;
             this.Direction = DirectionIA.Down;
@@ -440,13 +414,10 @@ namespace Sunday_Bloody_Sunday
             {
                 spriteBatch.Draw(Ressources.IA5, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 30, (this.frameLine - 1) * 29, 30, 29), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
-<<<<<<< HEAD
-=======
             else if (id_texture == 5)
             {
                 spriteBatch.Draw(Ressources.IA6, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 27, (this.frameLine - 1) * 29, 27, 29), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
->>>>>>> 10ee74546234c64199ffe3756773c509878b0168
         }
     }
 }
