@@ -51,14 +51,13 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
 
-        public int id_texture;
-        public int id_son;
+       public int id_texture;
+       public int id_son;
 
-        public int compteur_path;
-        public int ia_dir;
+       public int compteur_path;
+       public int ia_dir;
 
-        public bool ia_vol;
-
+       public bool ia_vol;
 
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
@@ -67,7 +66,6 @@ namespace Sunday_Bloody_Sunday
         // CONSTRUCTOR
         public IA(int x, int y, int id_texture, int id_son, int pv_max, int dégats)//ID texture, son joué, PV max, Vitesse
         {
-            
             compteur_path = 0;
             ia_dir = 0;
             ia_vol = false;
