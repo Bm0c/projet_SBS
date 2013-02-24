@@ -24,14 +24,29 @@ Content\thumbnails_map_03.xnb
 Content\cross.xnb
 Content\WinScreen.xnb
 Content\Raichu.xnb
+<<<<<<< HEAD
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
+=======
+Content\Tortank.xnb
+Content\zombie_groan.xnb
+Content\explosion_effect.xnb
+Content\pop.xnb
+Content\RaichuSon.xnb
+Content\RaichuSon2.xnb
+>>>>>>> 10ee74546234c64199ffe3756773c509878b0168
 Content\tire.xnb
 Content\pikachu001.xnb
 Content\pikachu002.xnb
 Content\elevator_music.xnb
 Content\lose_effect.xnb
 Content\gameplay_music.xnb
+<<<<<<< HEAD
+=======
+Content\win_effect.xnb
+Content\blood_effect.xnb
+Content\blood.xnb
+>>>>>>> 10ee74546234c64199ffe3756773c509878b0168
 Content\elevator_music.wma
 Content\gameplay_music.wma
