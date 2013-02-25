@@ -1201,9 +1201,9 @@ namespace Sunday_Bloody_Sunday
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
         {
 
+            liste_clavier = new List<Keys>();
             if (testc && etape3)
             {
-                liste_clavier = new List<Keys>();
                 liste_clavier = Reseau.Liste(Reseau.Charger());
             }
             update_blood(gameTime);
