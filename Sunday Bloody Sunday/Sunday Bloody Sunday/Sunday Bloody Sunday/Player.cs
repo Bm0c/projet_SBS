@@ -59,7 +59,7 @@ namespace Sunday_Bloody_Sunday
         public int refroidissement = 0;
         public int bomb;
 
-        Texture2D texture;
+        public Texture2D texture;
 
         public bool est_afficher = false;
         

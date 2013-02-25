@@ -170,9 +170,9 @@ namespace Sunday_Bloody_Sunday
                 {
                     compteur_delai = 0;
                     compteur_thumbnails += 1;
-                    if (compteur_thumbnails > 2)
+                    if (compteur_thumbnails > 3)
                     {
-                        compteur_thumbnails = 2;
+                        compteur_thumbnails = 3;
                     }
                 }
                 if (action == 3)
@@ -194,6 +194,12 @@ namespace Sunday_Bloody_Sunday
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map03.txt"));
                         path_map = "map03.txt";
+                    }
+                    else if (compteur_thumbnails == 3)
+                    {
+                        Main = new GameMain();
+                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"));
+                        path_map = "map04.txt";
                     }
                     ecran = Screen.jeu;
                     PlayMusic(GamePlayMusic);
@@ -413,6 +419,12 @@ namespace Sunday_Bloody_Sunday
                     menuMain.Draw(spriteBatch);
                 }
                 else if (compteur_thumbnails == 2)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+
+                else if (compteur_thumbnails == 3)
                 {
                     spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);

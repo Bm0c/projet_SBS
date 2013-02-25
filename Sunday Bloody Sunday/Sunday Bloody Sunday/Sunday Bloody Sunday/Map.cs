@@ -964,10 +964,25 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Player joueur in liste_joueurs)
             {
-                if (joueur.poser && joueur.bomb > 0)
+
+                if (parametre.texture_map == 3)
                 {
-                    AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.Activer);
-                    joueur.bomb--;
+                    if (joueur.poser && joueur.refroidissement > 30 && joueur.bomb > 0)
+                    {
+
+                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.Activer);
+                        joueur.refroidissement = 0;
+                        joueur.bomb--;
+                    }
+
+                }
+                else
+                {
+                    if (joueur.poser && joueur.bomb > 0)
+                    {
+                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.Activer);
+                        joueur.bomb--;
+                    }
                 }
             }
 
@@ -975,25 +990,44 @@ namespace Sunday_Bloody_Sunday
             {
                 if (bomb.type == "bomb")
                 {
-                    bool test = keyboard.IsKeyDown(bomb.boum);
-                    foreach (Keys key in liste_clavier)
+                    bool test = false;
+                    if (parametre.texture_map != 3)
                     {
-                        if (key == bomb.boum)
+                        test = keyboard.IsKeyDown(bomb.boum);
+                        foreach (Keys key in liste_clavier)
                         {
-                            test = true;
+                            if (key == bomb.boum)
+                            {
+                                test = true;
+
+                            }
+                        }
+
+                        if (test)
+                        {
+                            AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
+                            moteur_son.PlayExplosionEffect();
+                            bomb.isVisible = false;
                         }
                     }
-                    if (test)
+
+                    else
                     {
-                        AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
-                        moteur_son.PlayExplosionEffect();
-                        bomb.isVisible = false;
+                        foreach (Player joueur in liste_joueurs)
+                        {
+                            if ( keyboard.IsKeyDown(bomb.boum) && joueur.Activer == bomb.boum )
+                            {
+                                joueur.bomb = 4;
+                                AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
+                                moteur_son.PlayExplosionEffect();
+                                bomb.isVisible = false;
+                            }
+                        }
                     }
                 }
             }
 
         }
-
 
         public void AddBloodEffect(Vector2 position, int x, int y, int largeur)
         {
@@ -1020,7 +1054,6 @@ namespace Sunday_Bloody_Sunday
             }
             liste_blood = liste_blood2;
         }
-
 
         public void update_Barrel(KeyboardState keyboard)
         {
@@ -1174,6 +1207,11 @@ namespace Sunday_Bloody_Sunday
                 {
                     liste_joueurs2.Add(joueur);
                 }
+                else
+                {
+                    Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.Poser, joueur.Activer, joueur.texture, parametre.x, parametre.y);
+                    liste_joueurs2.Add(joueur_);
+                }
             }
             liste_joueurs = liste_joueurs2;
             liste_joueurs2 = new List<Player>();
@@ -1259,6 +1297,11 @@ namespace Sunday_Bloody_Sunday
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
             }
             else if (parametre.texture_map == 2)
+            {
+                spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+            }
+            else if (parametre.texture_map == 3)
             {
                 spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
