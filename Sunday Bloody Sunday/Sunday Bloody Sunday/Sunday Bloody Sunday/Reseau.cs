@@ -91,17 +91,23 @@ namespace Sunday_Bloody_Sunday
 
         public static void Reception()
         {
-            UdpClient serveur = new UdpClient(1337);
+            UdpClient serveur = null;
+            try
+            {
+                serveur = new UdpClient(55542);
 
+                IPEndPoint client = null;
+                byte[] data = serveur.Receive(ref client);
+                string message = Encoding.Default.GetString(data);
 
-            IPEndPoint client = null;
-            byte[] data = serveur.Receive(ref client);
-            string message = Encoding.Default.GetString(data);
-
-            StreamWriter ecriture = new StreamWriter("lecture");
-            ecriture.Write(message);
-            ecriture.Close();
-            serveur.Close();
+                StreamWriter ecriture = new StreamWriter("lecture");
+                ecriture.Write(message);
+                ecriture.Close();
+                serveur.Close();
+            }
+            catch
+            {
+            }
 
         }
     }

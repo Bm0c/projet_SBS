@@ -5,3 +5,10 @@ c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft
 c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
 c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
 C:\Users\Bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\gameFont.xnb
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\gameFont.xnb
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
+C:\Users\Alexis\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb

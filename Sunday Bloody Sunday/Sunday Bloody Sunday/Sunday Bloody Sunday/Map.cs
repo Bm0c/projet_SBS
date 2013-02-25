@@ -74,8 +74,8 @@ namespace Sunday_Bloody_Sunday
             this.liste_ia = new List<IA>();
             if (parametre.texture_map == 3)
             {
-                Player p1 =  new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
-                Player p2 =  new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y);
+                Player p1 = new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
+                Player p2 = new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y);
                 p1.bomb = 5;
                 p2.bomb = 5;
                 liste_joueurs.Add(p1);
@@ -1023,20 +1023,21 @@ namespace Sunday_Bloody_Sunday
                             bomb.isVisible = false;
                         }
                     }
+                }
 
-                    else
+                else if (bomb.type == "bomb_2")
+                {
+                    foreach (Player joueur in liste_joueurs)
                     {
-                        foreach (Player joueur in liste_joueurs)
+                        if ((keyboard.IsKeyDown(bomb.boum) && joueur.Activer == bomb.boum) || bomb.detonnateur == 0)
                         {
-                            if ( keyboard.IsKeyDown(bomb.boum) && joueur.Activer == bomb.boum )
-                            {
-                                joueur.bomb = 5;
-                                AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
-                                moteur_son.PlayExplosionEffect();
-                                bomb.isVisible = false;
-                            }
+                            joueur.bomb = 5;
+                            AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
+                            moteur_son.PlayExplosionEffect();
+                            bomb.isVisible = false;
                         }
                     }
+                    bomb.detonnateur--;
                 }
             }
 
@@ -1134,7 +1135,16 @@ namespace Sunday_Bloody_Sunday
 
         public void AddBomb(int x, int y, Keys activer)
         {
-            DestructibleItems bomb = new DestructibleItems(x, y, "bomb", activer);
+            DestructibleItems bomb;
+            if (parametre.texture_map != 3)
+            {
+                 bomb = new DestructibleItems(x, y, "bomb", activer);
+
+            }
+            else
+            {
+                 bomb = new DestructibleItems(x, y, "bomb_2", activer);
+            }
             liste_barrel.Add(bomb);
         }
 

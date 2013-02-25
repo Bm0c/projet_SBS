@@ -26,6 +26,7 @@ Content\WinScreen.xnb
 Content\Raichu.xnb
 Content\Tortank.xnb
 Content\blood.xnb
+Content\thumbnails_map_04.xnb
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
@@ -41,4 +42,3 @@ Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
 Content\win_effect.xnb
-Content\thumbnails_map_04.xnb

@@ -23,6 +23,7 @@ namespace Sunday_Bloody_Sunday
         public bool isVisible;
         public string type;
         public Keys boum;
+        public int detonnateur;
 
 
         //CONSTRUCTOR
@@ -46,6 +47,7 @@ namespace Sunday_Bloody_Sunday
             this.Aire_bomb = new Rectangle(BombTexture.X, BombTexture.Y, BombTexture.Width, BombTexture.Height);
             this.type = type;
             this.boum = boum;
+            detonnateur = 120;
         }
 
 
@@ -66,6 +68,9 @@ namespace Sunday_Bloody_Sunday
                     spriteBatch.Draw(Ressources.mExplosiveBox, new Rectangle(Maptexture.X + BarrelTexture.X, Maptexture.Y + BarrelTexture.Y, BarrelTexture.Width, BarrelTexture.Width), Color.White);
                     break;
                 case ("bomb"):
+                    spriteBatch.Draw(Ressources.mBomb, new Rectangle(Maptexture.X + BombTexture.X, Maptexture.Y + BombTexture.Y, BombTexture.Width, BombTexture.Width), Color.White);
+                    break;
+                case ("bomb_2"):
                     spriteBatch.Draw(Ressources.mBomb, new Rectangle(Maptexture.X + BombTexture.X, Maptexture.Y + BombTexture.Y, BombTexture.Width, BombTexture.Width), Color.White);
                     break;
                 default:
