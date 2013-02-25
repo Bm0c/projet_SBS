@@ -95,6 +95,9 @@ namespace Sunday_Bloody_Sunday
             this.spawns = parametre.liste_spawn;
             this.spawn_items = parametre.liste_caisses;
 
+
+            this.liste_clavier = new List<Keys>();
+            this.liste_clavier_2 = new List<Keys>();
             fin = parametre.fin;
 
         }
