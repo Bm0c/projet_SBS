@@ -45,7 +45,7 @@ namespace Sunday_Bloody_Sunday
 
         public bool mur_projectile(int x, int y)
         {
-
+            
             try
             {
                 return this.liste_projectile[x / 16, y / 16];
@@ -55,10 +55,10 @@ namespace Sunday_Bloody_Sunday
                 return true;
             }
             /*
-            if ((x <= 0) || (y <= 0) || (x >= 800) ||(y >=1600))
+            if ((x < 0) || (y < 0) || (x >= 800) ||(y >=480))
                 return true;
             else
-                return this.liste[x / 16, y / 16]; */
+                return this.liste[x / 16, y / 16];*/
         }
 
         public bool[,] map()

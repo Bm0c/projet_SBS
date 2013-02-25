@@ -53,8 +53,11 @@ namespace Sunday_Bloody_Sunday
         int compteur = 0;
         Random rand = new Random();
         Sound moteur_son = new Sound();
+
         bool etape1 = false;
         bool etape2 = false;
+        bool etape3 = false;
+
         public bool game_over = false;
         Param_Map parametre;
         public Arrivee fin;
@@ -830,14 +833,11 @@ namespace Sunday_Bloody_Sunday
                     if (test)
                     {
                         liste_ia.Add(ia_);
-                        if (joue_son)
+                        if (true)
                         {
-                            moteur_son.PlayRaichu();
+                            moteur_son.PlayPika(ia_.id_son);
                         }
-                        else
-                        {
-                            moteur_son.PlayPika();
-                        }
+
                         joue_son = !joue_son;
                         compteur = 0;
                     }
@@ -969,11 +969,22 @@ namespace Sunday_Bloody_Sunday
 
             foreach (DestructibleItems bomb in liste_barrel)
             {
-                if (bomb.type == "bomb" && keyboard.IsKeyDown(bomb.boum))
+                if (bomb.type == "bomb")
                 {
-                    AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
-                    moteur_son.PlayExplosionEffect();
-                    bomb.isVisible = false;
+                    bool test = keyboard.IsKeyDown(bomb.boum);
+                    foreach (Keys key in liste_clavier)
+                    {
+                        if (key == bomb.boum)
+                        {
+                            test = true;
+                        }
+                    }
+                    if (test)
+                    {
+                        AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
+                        moteur_son.PlayExplosionEffect();
+                        bomb.isVisible = false;
+                    }
                 }
             }
 
@@ -993,7 +1004,7 @@ namespace Sunday_Bloody_Sunday
 
             foreach (Particule blood in liste_blood)
             {
-                blood.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions,liste_explosions3, liste_blood);
+                blood.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood);
                 if (blood.Active == true)
                 {
                     liste_blood2.Add(blood);
@@ -1057,7 +1068,7 @@ namespace Sunday_Bloody_Sunday
             liste_explosions3 = new List<Particule>();
             foreach (Particule explosion in liste_explosions)
             {
-                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions,liste_explosions3, liste_blood);
+                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood);
                 if (explosion.Active == true)
                 {
                     liste_explosions2.Add(explosion);
@@ -1153,7 +1164,7 @@ namespace Sunday_Bloody_Sunday
             // Update l'objet joueur contenu par la map
             foreach (Player joueur in liste_joueurs)
             {
-                joueur.Update(mouse, keyboard,liste_clavier);
+                joueur.Update(mouse, keyboard, liste_clavier);
                 joueur.action_hero(map_physique, liste_ia, liste_barrel);
                 if (joueur.Health > 0)
                 {
@@ -1174,6 +1185,12 @@ namespace Sunday_Bloody_Sunday
                 this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y));/*
                 this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
+
+            if (keyboard.IsKeyDown(Keys.D3) && !etape3)
+            {
+                etape3 = true;
+            }
+
             if (liste_joueurs.Count == 0) //Si il n'y a plus de joueurs
             {
                 game_over = true;
@@ -1183,7 +1200,8 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
         {
-            if (testc)
+
+            if (testc && etape3)
             {
                 liste_clavier = new List<Keys>();
                 liste_clavier = Reseau.Liste(Reseau.Charger());
@@ -1197,7 +1215,7 @@ namespace Sunday_Bloody_Sunday
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
-            
+
             fin.Update(liste_joueurs);
         }
 

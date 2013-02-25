@@ -97,7 +97,7 @@ namespace Sunday_Bloody_Sunday
             }
             else if (id_texture == 5)
             {
-                this.IATexture = new Rectangle(x, y, 22, 22);
+                this.IATexture = new Rectangle(x, y, 20, 20);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
             }
             this.frameLine = 1;
@@ -112,7 +112,7 @@ namespace Sunday_Bloody_Sunday
             this.id_son = id_son;
             this.action = "";
             this.id_texture = id_texture;
-            this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 2, IATexture.Height + 2);
+            this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 1, IATexture.Height + 1);
         }
 
 

@@ -37,36 +37,63 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void PlayPika()
+        public void PlayPika(int id)
         {
 
             Random random = new Random();
-            int randomNumber = random.Next(0, 4);
-            if (randomNumber < 2)
+            int randomNumber = random.Next(0, 5);
+            if (id == 0)
             {
-                try
+                if (randomNumber < 2)
                 {
-                    pika.Play();
+                    try
+                    {
+                        pika.Play();
 
+                    }
+                    catch
+                    {
+                    }
                 }
-                catch
+                else
                 {
+                    try
+                    {
+                        pika2.Play();
+
+                    }
+                    catch
+                    {
+                    }
+
                 }
             }
-            else
+            else if (id == 1)
             {
-                try
+                if (randomNumber < 2)
                 {
-                    pika2.Play();
-
+                    try
+                    {
+                        raichu.Play();
+                    }
+                    catch
+                    {
+                    }
                 }
-                catch
+                else
                 {
+                    try
+                    {
+                        raichu2.Play();
+                    }
+                    catch
+                    {
+                    }
                 }
-
             }
         }
 
+        /*
         public void PlayRaichu()
         {
 
@@ -92,7 +119,7 @@ namespace Sunday_Bloody_Sunday
                 {
                 }
             }
-        }
+        }*/
 
 
 

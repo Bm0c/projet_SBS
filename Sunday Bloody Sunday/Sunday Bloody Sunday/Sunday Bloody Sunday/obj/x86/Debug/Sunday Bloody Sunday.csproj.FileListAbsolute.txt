@@ -350,3 +350,9 @@ C:\Users\Bmoc\SBS\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Su
 C:\Users\Bmoc\SBS\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\win_effect.xnb
 C:\Users\Bmoc\SBS\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood_effect.xnb
 C:\Users\Bmoc\SBS\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Tortank.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\RaichuSon.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\RaichuSon2.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood_effect.xnb
+C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\win_effect.xnb

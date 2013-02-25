@@ -25,7 +25,7 @@ namespace WindowsGame1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        bool test = true;
+        SpriteFont je_suis_une_font;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -53,6 +53,7 @@ namespace WindowsGame1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            je_suis_une_font = Content.Load<SpriteFont>("gameFont");
 
             // TODO: use this.Content to load your game content here
         }
@@ -84,7 +85,7 @@ namespace WindowsGame1
             {
                 message = message + '1';
             }
-             if (Keyboard.GetState().IsKeyDown(Keys.S))//Down
+            if (Keyboard.GetState().IsKeyDown(Keys.S))//Down
             {
                 message = message + '2';
             }
@@ -118,19 +119,15 @@ namespace WindowsGame1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (test)
-            {
-                GraphicsDevice.Clear(Color.CornflowerBlue);
-            }
-            else
-            {
-                GraphicsDevice.Clear(Color.Red);
-            }
-            test = !test;
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.DrawString(je_suis_une_font, "Ecran joueur 2", new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(je_suis_une_font, "Controles: ZQSD, tirer avec A", new Vector2(0, 100), Color.White);
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
-            base.Draw(gameTime);            
+            base.Draw(gameTime);
         }
     }
 }

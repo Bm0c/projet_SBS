@@ -4,3 +4,4 @@ c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAs
 c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
 c:\users\bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
+C:\Users\Bmoc\SBS\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\gameFont.xnb
