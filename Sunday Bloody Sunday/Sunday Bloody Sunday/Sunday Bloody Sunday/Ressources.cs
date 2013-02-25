@@ -14,7 +14,7 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Map02, Map03, ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, Projectile,BloodParticule, ExplosionParticule, IA1, IA1_dead, IA2, IA3, IA4, IA5, IA6, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen, mWinSreen, mCross;
+        public static Texture2D Player1, Player2, Player3, Map, Map02, Map03, ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03,ThumbnailsMap04, Projectile,BloodParticule, ExplosionParticule, IA1, IA1_dead, IA2, IA3, IA4, IA5, IA6, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen, mWinSreen, mCross;
         // HUD
         public static SpriteFont HUD;
         // Sounds
@@ -31,6 +31,7 @@ namespace Sunday_Bloody_Sunday
             ThumbnailsMap01 = content.Load<Texture2D>("thumbnails_map_01");
             ThumbnailsMap02 = content.Load<Texture2D>("thumbnails_map_02");
             ThumbnailsMap03 = content.Load<Texture2D>("thumbnails_map_03");
+            ThumbnailsMap04 = content.Load<Texture2D>("thumbnails_map_04");
             Player1 = content.Load<Texture2D>("Chara");
             Player2 = content.Load<Texture2D>("Chara2");
             Player3 = content.Load<Texture2D>("Chara3");

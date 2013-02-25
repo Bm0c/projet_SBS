@@ -426,7 +426,7 @@ namespace Sunday_Bloody_Sunday
 
                 else if (compteur_thumbnails == 3)
                 {
-                    spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap04, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
             }

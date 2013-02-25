@@ -72,7 +72,20 @@ namespace Sunday_Bloody_Sunday
             MapTexture = new Rectangle(0, 0, parametre.hauteur * 16, (parametre.largeur - 1) * 16);
             this.map_physique = new PhysicsEngine(parametre.liste, parametre.liste_projectile);
             this.liste_ia = new List<IA>();
-            this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y));
+            if (parametre.texture_map == 3)
+            {
+                Player p1 =  new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
+                Player p2 =  new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y);
+                p1.bomb = 5;
+                p2.bomb = 5;
+                liste_joueurs.Add(p1);
+                liste_joueurs.Add(p2);
+            }
+            else
+            {
+
+                this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y));
+            }
 
             //HEALTH + AMMO BOXES
             this.liste_box = new List<Items>();
@@ -1017,7 +1030,7 @@ namespace Sunday_Bloody_Sunday
                         {
                             if ( keyboard.IsKeyDown(bomb.boum) && joueur.Activer == bomb.boum )
                             {
-                                joueur.bomb = 4;
+                                joueur.bomb = 5;
                                 AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
                                 moteur_son.PlayExplosionEffect();
                                 bomb.isVisible = false;
@@ -1209,26 +1222,30 @@ namespace Sunday_Bloody_Sunday
                 }
                 else
                 {
-                    Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.Poser, joueur.Activer, joueur.texture, parametre.x, parametre.y);
-                    liste_joueurs2.Add(joueur_);
+                    if (parametre.texture_map == 3)
+                    {
+                        Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.Poser, joueur.Activer, joueur.texture, parametre.x, parametre.y);
+                        joueur_.bomb = 5;
+                        liste_joueurs2.Add(joueur_);
+                    }
                 }
             }
             liste_joueurs = liste_joueurs2;
             liste_joueurs2 = new List<Player>();
 
-            if (keyboard.IsKeyDown(Keys.D1) && !etape1)
+            if (keyboard.IsKeyDown(Keys.D1) && !etape1 && parametre.texture_map != 3)
             {
                 etape1 = true;
             }
 
-            if (keyboard.IsKeyDown(Keys.D2) && !etape2)
+            if (keyboard.IsKeyDown(Keys.D2) && !etape2 && parametre.texture_map != 3)
             {
                 etape2 = true;
                 this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y));/*
                 this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
 
-            if (keyboard.IsKeyDown(Keys.D3) && !etape3)
+            if (keyboard.IsKeyDown(Keys.D3) && !etape3 && parametre.texture_map != 3)
             {
                 etape3 = true;
             }

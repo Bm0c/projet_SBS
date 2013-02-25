@@ -372,6 +372,15 @@
       <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\win_effect.xnb</Output>
       <Time>2013-02-24T18:55:13.6703581+01:00</Time>
     </Item>
+    <Item>
+      <Source>thumbnails_map_04.png</Source>
+      <Name>thumbnails_map_04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Bmoc\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_04.xnb</Output>
+      <Time>2013-02-25T19:11:19.1179541+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
