@@ -119,11 +119,11 @@ namespace WindowsGame1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Black);/*
             spriteBatch.Begin();
             spriteBatch.DrawString(je_suis_une_font, "Ecran joueur 2", new Vector2(0, 0), Color.White);
             spriteBatch.DrawString(je_suis_une_font, "Controles: ZQSD, tirer avec A", new Vector2(0, 100), Color.White);
-            spriteBatch.End();
+            spriteBatch.End();*/
 
             // TODO: Add your drawing code here
 

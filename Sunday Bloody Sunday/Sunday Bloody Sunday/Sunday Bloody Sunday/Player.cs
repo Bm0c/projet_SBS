@@ -301,6 +301,7 @@ namespace Sunday_Bloody_Sunday
                 this.Direction = Direction.Left;
                 this.Animate();
             }
+            speed = 2;
 
         }
 
@@ -329,30 +330,37 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (key == Haut)
                     {
+                        speed =2;   
                         haut = true;
                     }
                     else if (key == Bas)
                     {
+                        speed = 2;
                         bas = true;
                     }
                     else if (key == Droite)
                     {
+                        speed = 2;
                         droite = true;
                     }
                     else if (key == Gauche)
                     {
+                        speed = 2;
                         gauche = true;
                     }
                     else if (key == Tire)
                     {
+                        speed = 2;
                         tir = true;
                     }
                     else if (key == Activer)
                     {
+                        speed = 2;
                         activer = true;
                     }
                     else if (key == Poser)
                     {
+                        speed = 2;
                         poser = true;
                     }
                 }

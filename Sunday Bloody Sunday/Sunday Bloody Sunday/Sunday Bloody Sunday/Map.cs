@@ -42,6 +42,7 @@ namespace Sunday_Bloody_Sunday
         public List<IA> liste_ia2; //Liste IA secondaire
 
         public List<Keys> liste_clavier;
+        public List<Keys> liste_clavier_2;
 
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
@@ -1205,6 +1206,11 @@ namespace Sunday_Bloody_Sunday
             if (testc && etape3)
             {
                 liste_clavier = Reseau.Liste(Reseau.Charger());
+                liste_clavier_2 = liste_clavier;
+            }
+            else
+            {
+                liste_clavier = liste_clavier_2;
             }
             update_blood(gameTime);
             testc = !testc;
