@@ -22,7 +22,7 @@ namespace Sunday_Bloody_Sunday
         public Rectangle Aire_bomb;
         public bool isVisible;
         public string type;
-        public Keys boum;
+        public Keys déclencher;
         public int detonnateur;
 
 
@@ -38,7 +38,7 @@ namespace Sunday_Bloody_Sunday
         }
 
 
-        public DestructibleItems(int x, int y, string type, Keys boum)
+        public DestructibleItems(int x, int y, string type, Keys déclencher)
         {
             this.isVisible = true;
             this.BarrelTexture = new Rectangle(x, y, 16, 16);
@@ -46,7 +46,7 @@ namespace Sunday_Bloody_Sunday
             this.BombTexture = new Rectangle(x, y, 16, 16);
             this.Aire_bomb = new Rectangle(BombTexture.X, BombTexture.Y, BombTexture.Width, BombTexture.Height);
             this.type = type;
-            this.boum = boum;
+            this.déclencher = déclencher;
             detonnateur = 120;
         }
 
@@ -55,7 +55,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(List<Player> liste_joueurs, KeyboardState keyboard, List<DestructibleItems> liste_barril)
+        public void Update(List<Player> liste_joueurs, KeyboardState keyboard, List<DestructibleItems> liste_barrels)
         {
             
         }

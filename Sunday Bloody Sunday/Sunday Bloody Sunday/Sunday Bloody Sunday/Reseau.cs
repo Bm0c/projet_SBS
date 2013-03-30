@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -60,9 +59,7 @@ namespace Sunday_Bloody_Sunday
             catch
             {
             }
-
             return liste;
-
         }
 
         public static string Charger()
@@ -85,8 +82,6 @@ namespace Sunday_Bloody_Sunday
                 if (flux != null)
                     flux.Close();
             }
-
-
         }
 
         public static void Reception()
@@ -108,7 +103,6 @@ namespace Sunday_Bloody_Sunday
             catch
             {
             }
-
         }
     }
 }

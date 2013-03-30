@@ -14,14 +14,14 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Map02, Map03, ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03,ThumbnailsMap04, Projectile,BloodParticule, ExplosionParticule, IA1, IA1_dead, IA2, IA3, IA4, IA5, IA6, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen, mWinSreen, mCross;
+        public static Texture2D Player1, Player2, Player3, Map, Map02, Map03, ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, ThumbnailsMap04, Projectile, BloodParticule, ExplosionParticule, IA1, IA2, IA3, IA4, IA5, IA6, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen, mWinSreen, mCross, mRain;
         // HUD
         public static SpriteFont HUD;
         // Sounds
         public static Song GamePlayMusic, MenuMusic;
         public static SoundEffect mTire, mPika, mPika2, mRaichu, mRaichu2, mIntroEffect, mLoseEffect, mWinEffect, mExplosionEffect, mPop, mBloodEffect;
 
-
+        
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
@@ -66,6 +66,7 @@ namespace Sunday_Bloody_Sunday
             mGameOverScreen = content.Load<Texture2D>("GameOver");
             mWinSreen = content.Load<Texture2D>("WinScreen");
             mCross = content.Load<Texture2D>("cross");
+            mRain = content.Load<Texture2D>("rain");
         }
     }
 }

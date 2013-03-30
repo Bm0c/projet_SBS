@@ -71,7 +71,7 @@ namespace Sunday_Bloody_Sunday
                     break;
 
                 case MenuType.GameOver:
-                    if (MenuButton.langage == "French")
+                    if (MenuButton.language == "French")
                         button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(Divers.WidthScreen / 2 - 100, 20, 200, 50));
                     else
                         button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(Divers.WidthScreen / 2 - 50, 20, 100, 50));
@@ -85,7 +85,7 @@ namespace Sunday_Bloody_Sunday
                     break;
 
                 case MenuType.WinScreen:
-                    if (MenuButton.langage == "French")
+                    if (MenuButton.language == "French")
                         button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(20, 20, 200, 50));
                     else
                         button_1 = new MenuButton(MenuButton.ButtonType.Restart, new Rectangle(20, 20, 100, 50));
@@ -166,7 +166,7 @@ namespace Sunday_Bloody_Sunday
             if (type == MenuType.MenuGeneralSettings)
             {
                 string langue, son, resolution;
-                if (MenuButton.langage == "French")
+                if (MenuButton.language == "French")
                 {
                     langue = "Langue";
                     son = "Musique";
@@ -186,7 +186,7 @@ namespace Sunday_Bloody_Sunday
             if (type == MenuType.MenuPreferences)
             {
                 string langue, son;
-                if (MenuButton.langage == "French")
+                if (MenuButton.language == "French")
                 {
                     langue = "Langue";
                     son = "Musique";

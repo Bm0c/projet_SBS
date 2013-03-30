@@ -174,3 +174,5 @@ C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Blood
 C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.pdb
 C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb
 C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb

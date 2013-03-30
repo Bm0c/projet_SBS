@@ -45,19 +45,22 @@ namespace Sunday_Bloody_Sunday
         public Keys Gauche;
         public Keys Droite;
         public Keys Tire;
-        public Keys Poser;
-        public Keys Activer;
+        public Keys PoserBomb;
+        public Keys ActiverBomb;
+        public Keys PoserTurret;
 
         public bool haut;
         public bool droite;
         public bool gauche;
         public bool bas;
         public bool tir;
-        public bool poser;
-        public bool activer;
+        public bool poserBomb;
+        public bool poserTurret;
+        public bool activerBomb;
 
         public int refroidissement = 0;
         public int bomb;
+        public int turret;
 
         public Texture2D texture;
 
@@ -67,7 +70,7 @@ namespace Sunday_Bloody_Sunday
 
 
         // CONSTRUCTOR
-        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poser, Keys activer, Texture2D texture, int x, int y)
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poserBomb, Keys activerBomb, Keys poserTurret, Texture2D texture, int x, int y)
         {
             this.PlayerTexture = new Rectangle(x, y, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
@@ -88,12 +91,13 @@ namespace Sunday_Bloody_Sunday
             this.Gauche = Gauche;
             this.Droite = Droite;
             this.Tire = Tire;
-            this.Poser = poser;
-            this.Activer = activer;
-
+            this.PoserBomb = poserBomb;
+            this.ActiverBomb = activerBomb;
+            this.PoserTurret = poserTurret;
 
             this.texture = texture;
             bomb = 1;
+            turret = 1;
         }
 
 
@@ -302,7 +306,6 @@ namespace Sunday_Bloody_Sunday
                 this.Animate();
             }
             speed = 2;
-
         }
 
         //Renvois le futur rectangle du joueur
@@ -321,8 +324,9 @@ namespace Sunday_Bloody_Sunday
              gauche = keyboard.IsKeyDown(Gauche);
              bas = keyboard.IsKeyDown(Bas);
              tir = keyboard.IsKeyDown(Tire);
-             poser = keyboard.IsKeyDown(this.Poser);
-             activer = keyboard.IsKeyDown(this.Activer);
+             poserBomb = keyboard.IsKeyDown(this.PoserBomb);
+             activerBomb = keyboard.IsKeyDown(this.ActiverBomb);
+             poserTurret = keyboard.IsKeyDown(this.PoserTurret);
             
             try
             {
@@ -330,7 +334,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (key == Haut)
                     {
-                        speed =2;   
+                        speed = 2;   
                         haut = true;
                     }
                     else if (key == Bas)
@@ -353,15 +357,20 @@ namespace Sunday_Bloody_Sunday
                         speed = 2;
                         tir = true;
                     }
-                    else if (key == Activer)
+                    else if (key == ActiverBomb)
                     {
                         speed = 2;
-                        activer = true;
+                        activerBomb = true;
                     }
-                    else if (key == Poser)
+                    else if (key == PoserBomb)
                     {
                         speed = 2;
-                        poser = true;
+                        poserBomb = true;
+                    }
+                    else if (key == PoserTurret)
+                    {
+                        speed = 2;
+                        poserTurret = true;
                     }
                 }
             }

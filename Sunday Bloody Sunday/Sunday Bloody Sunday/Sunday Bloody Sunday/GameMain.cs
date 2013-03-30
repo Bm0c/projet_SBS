@@ -30,9 +30,9 @@ namespace Sunday_Bloody_Sunday
 
 
         // UPDATE & DRAW
-        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
+        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime, GraphicsDevice graphics)
         {
-            MainMap.Update(mouse, keyboard, gameTime);
+            MainMap.Update(mouse, keyboard, gameTime, graphics);
             MainHUD.Update(keyboard, MainMap.liste_joueurs);
         }
 

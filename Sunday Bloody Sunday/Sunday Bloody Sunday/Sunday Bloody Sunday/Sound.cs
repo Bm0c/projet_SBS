@@ -22,7 +22,6 @@ namespace Sunday_Bloody_Sunday
         SoundEffect explosionEffect = Ressources.mExplosionEffect;
         SoundEffect pop = Ressources.mPop;
         SoundEffect bloodEffect = Ressources.mBloodEffect;
-        bool qui_crie = true;
 
 
         // METHODS
@@ -92,37 +91,6 @@ namespace Sunday_Bloody_Sunday
                 }
             }
         }
-
-        /*
-        public void PlayRaichu()
-        {
-
-            Random random = new Random();
-            int randomNumber = random.Next(0, 4);
-            if (randomNumber < 2)
-            {
-                try
-                {
-                    raichu.Play();
-                }
-                catch
-                {
-                }
-            }
-            else
-            {
-                try
-                {
-                    raichu2.Play();
-                }
-                catch
-                {
-                }
-            }
-        }*/
-
-
-
 
         public void PlayExplosionEffect()
         {
