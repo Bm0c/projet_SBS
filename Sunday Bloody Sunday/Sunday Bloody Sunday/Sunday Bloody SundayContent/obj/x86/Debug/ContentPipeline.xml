@@ -390,6 +390,33 @@
       <Output>C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rain.xnb</Output>
       <Time>2013-03-30T18:12:46.920331+01:00</Time>
     </Item>
+    <Item>
+      <Source>place_sentry.wav</Source>
+      <Name>place_sentry</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\place_sentry.xnb</Output>
+      <Time>2013-03-31T00:47:57.9295926+01:00</Time>
+    </Item>
+    <Item>
+      <Source>sentry_shoot.wav</Source>
+      <Name>sentry_shoot</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\sentry_shoot.xnb</Output>
+      <Time>2013-03-31T00:47:57.9295926+01:00</Time>
+    </Item>
+    <Item>
+      <Source>rain.wav</Source>
+      <Name>rainEffect</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rainEffect.xnb</Output>
+      <Time>2013-03-31T01:07:30.2571002+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

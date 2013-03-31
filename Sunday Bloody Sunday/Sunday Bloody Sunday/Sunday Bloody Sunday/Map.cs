@@ -48,8 +48,8 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
 
-        public List<Turret> liste_turret; //Liste Turrets
-        public List<Turret> liste_turret2; // Liste Turrets secondaire
+        public List<SentryGun> liste_turret; //Liste Turrets
+        public List<SentryGun> liste_turret2; // Liste Turrets secondaire
 
         Projectile balle;
         IA ia;
@@ -114,8 +114,8 @@ namespace Sunday_Bloody_Sunday
             this.liste_blood2 = new List<ParticuleExplosion>();
 
             //TURRETS
-            this.liste_turret = new List<Turret>();
-            this.liste_turret2 = new List<Turret>();
+            this.liste_turret = new List<SentryGun>();
+            this.liste_turret2 = new List<SentryGun>();
 
             //RAIN (que sur la map01)
             this.liste_rain = new List<ParticuleRain>();
@@ -1154,35 +1154,20 @@ namespace Sunday_Bloody_Sunday
             liste_barrel.Add(bomb);
         }
 
-        public void AddTurret(int x, int y, Keys poserTurret)
+        public void AddSentryGun(int x, int y, Keys poserTurret)
         {
-            Turret turret = new Turret(x, y, poserTurret);
-            liste_turret.Add(turret);
+            SentryGun sentryGun = new SentryGun(x, y, poserTurret);
+            liste_turret.Add(sentryGun);
         }
 
-        public void update_Turret(List<Player> liste_joueurs, KeyboardState keyboard)
+        public void update_SentryGun(List<Player> liste_joueurs, KeyboardState keyboard)
         {
             foreach (Player joueur in liste_joueurs)
             {
                 if (joueur.poserTurret && joueur.turret > 0)
                 {
-                    AddTurret(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.PoserTurret);
-                }
-            }
-
-            foreach (Turret turret in liste_turret)
-            {
-                bool test = false;
-                foreach (Keys key in liste_clavier)
-                {
-                    if (key == turret.poserTurret)
-                    {
-                        test = true;
-                    }
-                }
-                if (test)
-                {
-                    turret.isActive = true;
+                    AddSentryGun(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.PoserTurret);
+                    moteur_son.PlaySentryReady();
                 }
             }
         }
@@ -1352,9 +1337,17 @@ namespace Sunday_Bloody_Sunday
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
-            update_Turret(liste_joueurs, keyboard);
+            update_SentryGun(liste_joueurs, keyboard);
             if (parametre.texture_map == 0)
             {
+                Random rand3 = new Random();
+                int i = rand3.Next(0, 10000);
+
+                if (i == 42)
+                {
+                    moteur_son.PlayRainEffect();
+                    density = 100;
+                }
                 update_Rain(gameTime, graphics);
             }
             fin.Update(liste_joueurs);
@@ -1414,9 +1407,9 @@ namespace Sunday_Bloody_Sunday
             {
                 barrel.Draw(spriteBatch, MapTexture);
             }
-            foreach (Turret turret in liste_turret)
+            foreach (SentryGun sentryGun in liste_turret)
             {
-                turret.Draw(spriteBatch, MapTexture);
+                sentryGun.Draw(spriteBatch, MapTexture);
             }
             draw_ordre(spriteBatch);
 

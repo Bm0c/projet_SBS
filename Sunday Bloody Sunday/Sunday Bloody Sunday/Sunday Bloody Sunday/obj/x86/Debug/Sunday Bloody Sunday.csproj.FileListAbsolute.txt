@@ -388,3 +388,6 @@ C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Su
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood_effect.xnb
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\win_effect.xnb
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rain.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\place_sentry.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\sentry_shoot.xnb
+C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rainEffect.xnb

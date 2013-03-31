@@ -14,12 +14,28 @@ namespace Sunday_Bloody_Sunday
     class Ressources
     {
         // STATICS FIELDS
-        public static Texture2D Player1, Player2, Player3, Map, Map02, Map03, ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, ThumbnailsMap04, Projectile, BloodParticule, ExplosionParticule, IA1, IA2, IA3, IA4, IA5, IA6, mHealthBox, mAmmoBox, mExplosiveBox, mBomb, mTitleScreen, mGameOverScreen, mWinSreen, mCross, mRain;
+        public static Texture2D Player1, Player2, Player3,
+                                Map, Map02, Map03,
+                                ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, ThumbnailsMap04,
+                                Projectile,
+                                BloodParticule, ExplosionParticule,
+                                IA1, IA2, IA3, IA4, IA5, IA6,
+                                mHealthBox, mAmmoBox,
+                                mExplosiveBox, mBomb, mTitleScreen,
+                                mGameOverScreen, mWinSreen,
+                                mCross,
+                                mRain;
         // HUD
         public static SpriteFont HUD;
         // Sounds
         public static Song GamePlayMusic, MenuMusic;
-        public static SoundEffect mTire, mPika, mPika2, mRaichu, mRaichu2, mIntroEffect, mLoseEffect, mWinEffect, mExplosionEffect, mPop, mBloodEffect;
+        public static SoundEffect mTire,
+                                  mPika, mPika2, mRaichu, mRaichu2,
+                                  mIntroEffect, mLoseEffect, mWinEffect,
+                                  mExplosionEffect, mBloodEffect,
+                                  mPop,
+                                  mSentryReady, mSentryShoot,
+                                  mRainEffect;
 
         
         // LOAD CONTENTS
@@ -67,6 +83,9 @@ namespace Sunday_Bloody_Sunday
             mWinSreen = content.Load<Texture2D>("WinScreen");
             mCross = content.Load<Texture2D>("cross");
             mRain = content.Load<Texture2D>("rain");
+            mSentryReady = content.Load<SoundEffect>("place_sentry");
+            mSentryShoot = content.Load<SoundEffect>("sentry_shoot");
+            mRainEffect = content.Load<SoundEffect>("rainEffect");
         }
     }
 }

@@ -131,7 +131,7 @@
     <Compile Include="Reseau.cs" />
     <Compile Include="Ressources.cs" />
     <Compile Include="Sound.cs" />
-    <Compile Include="Turret.cs" />
+    <Compile Include="SentryGun.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

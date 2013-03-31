@@ -17,11 +17,6 @@ namespace Sunday_Bloody_Sunday
         Vector2 RainPosition;
         Vector2 RainVelocity;
 
-        public Vector2 Position
-        {
-            get { return RainPosition; }
-        }
-
 
         //CONSTRUCTOR
         public ParticuleRain(Texture2D texture, Vector2 position, Vector2 velocity)
@@ -33,7 +28,10 @@ namespace Sunday_Bloody_Sunday
 
 
         //METHODS
-
+        public Vector2 Position
+        {
+            get { return RainPosition; }
+        }
 
         //UPDATE & DRAW
         public void Update()
