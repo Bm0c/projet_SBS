@@ -73,7 +73,6 @@ namespace Sunday_Bloody_Sunday
             {
                 return (int)ProjectilePosition.X;
             }
-
         }
 
         public int futur_y()
@@ -90,7 +89,6 @@ namespace Sunday_Bloody_Sunday
             {
                 return (int)ProjectilePosition.Y;
             }
-
         }
 
         public void collision_entite_balle(List<IA> liste_ia) //S'occupe de la collision des balles avec les IA
@@ -106,7 +104,6 @@ namespace Sunday_Bloody_Sunday
                         this.isVisible = false; //La balle n'existe plus
                         test = false; //On casse le si
                         ia1.Health = ia1.Health - this.Damage; //On applique les dégats à l'IA
-
                     }
                 }
             }

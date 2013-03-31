@@ -195,8 +195,6 @@ namespace Sunday_Bloody_Sunday
                 liste_spawn.Add(new Spawn(liste_ia));
 
                 ligne = lecture.ReadLine();
-
-
             }
         }
 
@@ -237,7 +235,6 @@ namespace Sunday_Bloody_Sunday
                 liste_barrel.Add(new DestructibleItems(x, y, type));
 
                 ligne = lecture.ReadLine();
-
             }
         }
 
@@ -251,7 +248,6 @@ namespace Sunday_Bloody_Sunday
 
             fin = new Arrivee(x, y);
             ligne = lecture.ReadLine();
-
         }
     }
 }

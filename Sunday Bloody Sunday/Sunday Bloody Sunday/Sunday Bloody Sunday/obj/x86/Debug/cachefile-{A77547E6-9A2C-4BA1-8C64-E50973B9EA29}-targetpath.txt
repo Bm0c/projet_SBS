@@ -42,3 +42,7 @@ Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
 Content\win_effect.xnb
+Content\rain.xnb
+Content\place_sentry.xnb
+Content\sentry_shoot.xnb
+Content\rainEffect.xnb
