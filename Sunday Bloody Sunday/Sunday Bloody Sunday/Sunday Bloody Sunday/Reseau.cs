@@ -61,9 +61,7 @@ namespace Sunday_Bloody_Sunday
             catch
             {
             }
-
             return liste;
-
         }
 
         Socket Envoie;
@@ -72,6 +70,7 @@ namespace Sunday_Bloody_Sunday
 
         public Reseau()
         {
+<<<<<<< HEAD
         }
 
         public void initialisationClient(int port)
@@ -88,6 +87,26 @@ namespace Sunday_Bloody_Sunday
 
             byte[] messageData = System.Text.Encoding.UTF8.GetBytes(message);
             Envoie.Send(messageData);
+=======
+            Reception();
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream flux = null;
+            try
+            {
+                flux = new FileStream("lecture", FileMode.Open, FileAccess.Read);
+                return (string)formatter.Deserialize(flux);
+            }
+            catch
+            {
+                //On retourne la valeur par défaut du type T.
+                return default(string);
+            }
+            finally
+            {
+                if (flux != null)
+                    flux.Close();
+            }
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         }
 
         public void intialisationServeur(int port)
@@ -103,6 +122,7 @@ namespace Sunday_Bloody_Sunday
         {
             byte[] messageLengthData = new byte[4];
 
+<<<<<<< HEAD
             Reception.Receive(messageLengthData);
             int messageLength = BitConverter.ToInt32(messageLengthData, 0);
 
@@ -110,6 +130,16 @@ namespace Sunday_Bloody_Sunday
             Reception.Receive(messageData);
 
             return System.Text.Encoding.UTF8.GetString(messageData);
+=======
+                StreamWriter ecriture = new StreamWriter("lecture");
+                ecriture.Write(message);
+                ecriture.Close();
+                serveur.Close();
+            }
+            catch
+            {
+            }
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         }
 
     }

@@ -33,7 +33,10 @@ namespace Sunday_Bloody_Sunday
             get { return RainPosition; }
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         //UPDATE & DRAW
         public void Update()
         {
@@ -42,7 +45,11 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
+<<<<<<< HEAD
             spriteBatch.Draw(Ressources.mRain, RainPosition, Color.White);
+=======
+            spriteBatch.Draw(Ressources.mRain, RainPosition/*new Rectangle(MapTexture.X + (int)RainPosition.X, MapTexture.Y + (int)RainPosition.Y, 3, 5)*/, Color.White);
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         }
     }
 }

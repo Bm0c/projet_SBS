@@ -22,7 +22,11 @@ namespace Sunday_Bloody_Sunday
         SoundEffect explosionEffect = Ressources.mExplosionEffect;
         SoundEffect pop = Ressources.mPop;
         SoundEffect bloodEffect = Ressources.mBloodEffect;
+<<<<<<< HEAD
         SoundEffect sentryReady = Ressources.mSentryReady;
+=======
+        SoundEffect placeSentry = Ressources.mSentryReady;
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         SoundEffect sentryShoot = Ressources.mSentryShoot;
         SoundEffect rainEffect = Ressources.mRainEffect;
 
@@ -134,7 +138,11 @@ namespace Sunday_Bloody_Sunday
         {
             try
             {
+<<<<<<< HEAD
                 sentryReady.Play();
+=======
+                placeSentry.Play();
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
             }
             catch
             {

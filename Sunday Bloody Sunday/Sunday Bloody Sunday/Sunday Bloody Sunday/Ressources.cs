@@ -21,9 +21,15 @@ namespace Sunday_Bloody_Sunday
                                 BloodParticule, ExplosionParticule,
                                 IA1, IA2, IA3, IA4, IA5, IA6,
                                 mHealthBox, mAmmoBox,
+<<<<<<< HEAD
                                 mExplosiveBox, mBomb,
                                 mTitleScreen, mGameOverScreen, mWinSreen,
                                 mCross, mBossEntry,
+=======
+                                mExplosiveBox, mBomb, mTitleScreen,
+                                mGameOverScreen, mWinSreen,
+                                mCross,
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
                                 mRain;
         // HUD
         public static SpriteFont HUD;
@@ -82,7 +88,10 @@ namespace Sunday_Bloody_Sunday
             mGameOverScreen = content.Load<Texture2D>("GameOver");
             mWinSreen = content.Load<Texture2D>("WinScreen");
             mCross = content.Load<Texture2D>("cross");
+<<<<<<< HEAD
             mBossEntry = content.Load<Texture2D>("boss_entry");
+=======
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
             mRain = content.Load<Texture2D>("rain");
             mSentryReady = content.Load<SoundEffect>("place_sentry");
             mSentryShoot = content.Load<SoundEffect>("sentry_shoot");

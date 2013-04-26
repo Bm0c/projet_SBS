@@ -391,6 +391,7 @@ C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Su
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\place_sentry.xnb
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\sentry_shoot.xnb
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rainEffect.xnb
+<<<<<<< HEAD
 C:\Users\David\Documents\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\boss_entry.xnb
 E:\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameFont.xnb
 E:\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion.xnb
@@ -502,3 +503,5 @@ C:\Users\Alexis\SBS\Fusion\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\
 C:\Users\Alexis\SBS\Fusion\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Alexis\SBS\Fusion\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.exe
 C:\Users\Alexis\SBS\Fusion\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\obj\x86\Debug\Sunday Bloody Sunday.pdb
+=======
+>>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95

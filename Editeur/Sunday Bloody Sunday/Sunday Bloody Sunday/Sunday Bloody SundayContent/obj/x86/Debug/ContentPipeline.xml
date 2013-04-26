@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Valide.xnb</Output>
-      <Time>2013-02-22T10:01:19.7568359+01:00</Time>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Valide.xnb</Output>
+      <Time>2013-02-25T21:41:38.9808778+01:00</Time>
     </Item>
     <Item>
       <Source>Invalide.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Invalide.xnb</Output>
-      <Time>2013-02-22T10:01:19.7255859+01:00</Time>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Invalide.xnb</Output>
+      <Time>2013-02-25T21:41:38.9808778+01:00</Time>
     </Item>
     <Item>
       <Source>Map.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
-      <Time>2013-02-22T10:01:27.5537109+01:00</Time>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
+      <Time>2013-02-25T21:41:38.9808778+01:00</Time>
     </Item>
     <Item>
       <Source>Map02.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb</Output>
-      <Time>2013-02-23T13:00:13.5832691+01:00</Time>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb</Output>
+      <Time>2013-02-25T21:41:38.9808778+01:00</Time>
     </Item>
     <Item>
       <Source>map03.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb</Output>
-      <Time>2013-02-23T13:00:13.5842691+01:00</Time>
+      <Output>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb</Output>
+      <Time>2013-02-25T21:41:38.9808778+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -52,10 +52,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Bmoc\SBS\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\David\Documents\GitHub\projet_sbs\Editeur\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -84,7 +84,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-08-03T17:33:58.6222029+02:00</Value>
+        <Value>2012-10-07T23:15:36.5570686+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
