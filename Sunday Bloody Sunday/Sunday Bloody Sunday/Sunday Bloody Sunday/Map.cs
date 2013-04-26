@@ -13,6 +13,12 @@ namespace Sunday_Bloody_Sunday
 {
     class Map
     {
+
+        Reseau Client = new Reseau();
+        Reseau Serveur = new Reseau();
+
+        string message = "";
+        string message_2 = "";
         // FIELDS
         Rectangle MapTexture;
         public List<Spawn> spawns;
@@ -24,18 +30,19 @@ namespace Sunday_Bloody_Sunday
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
 
-        public List<DestructibleItems> liste_barrel; //Liste barrel
-        public List<DestructibleItems> liste_barrel2; //Liste barrel secondaire
+        public List<DestructibleItems> liste_barrel; //Liste barrels
+        public List<DestructibleItems> liste_barrel2; //Liste barrels secondaire
 
-        public List<Particule> liste_explosions; //Liste particules d'explosion
-        public List<Particule> liste_explosions2;//Liste particules d'explosion secondaire
-        public List<Particule> liste_explosions3;
+        public List<ParticuleExplosion> liste_explosions; //Liste particules d'explosion
+        public List<ParticuleExplosion> liste_explosions2; //Liste particules d'explosion secondaire
+        public List<ParticuleExplosion> liste_explosions3;
 
+        public List<ParticuleExplosion> liste_blood; //Liste particules sang
+        public List<ParticuleExplosion> liste_blood2; //Liste particules sang secondaire
 
-        public List<Particule> liste_blood;//Liste particule sang
-        public List<Particule> liste_blood2;//Liste particule sang secondaire
+        public List<ParticuleRain> liste_rain; //Liste rain
 
-        public List<Player> liste_joueurs = new List<Player>(); //Liste joueur
+        public List<Player> liste_joueurs = new List<Player>(); //Liste joueurs
         public List<Player> liste_joueurs2 = new List<Player>(); //Liste joueurs secondaire
 
         public List<IA> liste_ia; //Liste des IA
@@ -44,15 +51,22 @@ namespace Sunday_Bloody_Sunday
         public List<Keys> liste_clavier;
         public List<Keys> liste_clavier_2;
 
-        public List<Projectile> liste_projectile = new List<Projectile>(); //Liste des Projectiles
+        public List<Projectile> liste_projectile = new List<Projectile>(); //Liste Projectiles
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
+
+        public List<Turret> liste_turret; //Liste Turrets
+        public List<Turret> liste_turret2; //Liste Turrets secondaire
+
         Projectile balle;
         IA ia;
-        Texture2D explosionTexture;
+        Texture2D explosionTexture, rainTexture;
+        float spawnWidth = Divers.WidthScreen, density = 35, timer;
         PhysicsEngine map_physique;
-        private Rectangle futur_rectangle; //Rectangle utilisé por stocker des données
+        private Rectangle futur_rectangle; //Rectangle utilisé pour stocker des données
         int compteur = 0;
-        Random rand = new Random();
+        Random rand0 = new Random();
+        Random rand1 = new Random();
+        Random rand2 = new Random();
         Sound moteur_son = new Sound();
 
         bool etape1 = false;
@@ -61,8 +75,9 @@ namespace Sunday_Bloody_Sunday
 
         public bool game_over = false;
         Param_Map parametre;
-        public Arrivee fin;
+        public CheckPoint fin_niveau, boss_entry;
         int compteur_kill = 0;
+
 
         // CONSTRUCTOR
         public Map(Param_Map parametre)
@@ -74,8 +89,8 @@ namespace Sunday_Bloody_Sunday
             this.liste_ia = new List<IA>();
             if (parametre.texture_map == 3)
             {
-                Player p1 = new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
-                Player p2 = new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y);
+                Player p1 = new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Keys.T, Ressources.Player1, parametre.x, parametre.y);
+                Player p2 = new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Keys.W, Ressources.Player2, parametre.x, parametre.y);
                 p1.bomb = 5;
                 p2.bomb = 5;
                 liste_joueurs.Add(p1);
@@ -83,8 +98,7 @@ namespace Sunday_Bloody_Sunday
             }
             else
             {
-
-                this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y));
+                this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Keys.T, Ressources.Player1, parametre.x, parametre.y));
             }
 
             //HEALTH + AMMO BOXES
@@ -96,23 +110,34 @@ namespace Sunday_Bloody_Sunday
             this.liste_barrel = parametre.liste_barrel;
 
             //EXPLOSION PARTICULE
-            this.liste_explosions = new List<Particule>();
-            this.liste_explosions2 = new List<Particule>();
-            this.liste_explosions3 = new List<Particule>();
+            this.liste_explosions = new List<ParticuleExplosion>();
+            this.liste_explosions2 = new List<ParticuleExplosion>();
+            this.liste_explosions3 = new List<ParticuleExplosion>();
             this.explosionTexture = Ressources.ExplosionParticule;
 
             //BLOOD PARTICULE
-            this.liste_blood = new List<Particule>();
-            this.liste_blood2 = new List<Particule>();
+            this.liste_blood = new List<ParticuleExplosion>();
+            this.liste_blood2 = new List<ParticuleExplosion>();
+
+            //TURRETS
+            this.liste_turret = new List<Turret>();
+            this.liste_turret2 = new List<Turret>();
+
+            //RAIN (que sur la map01)
+            this.liste_rain = new List<ParticuleRain>();
+            this.rainTexture = Ressources.mRain;
 
             this.spawns = parametre.liste_spawn;
             this.spawn_items = parametre.liste_caisses;
 
-
             this.liste_clavier = new List<Keys>();
             this.liste_clavier_2 = new List<Keys>();
-            fin = parametre.fin;
 
+            fin_niveau = parametre.checkpointArrivee;
+            boss_entry = parametre.checkpointBossEntry;
+
+            //Client.initialisationClient(4242);
+            //Serveur.intialisationServeur(1338);
         }
 
 
@@ -733,7 +758,6 @@ namespace Sunday_Bloody_Sunday
                     }
                 }
             }
-
         }
 
         //Gère le raffraichissement de la liste d'IA
@@ -747,7 +771,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Keys.T, Ressources.Player1, parametre.x, parametre.y);
                     Vector2 vector_joueur = new Vector2();
                     foreach (Player joueur in liste_joueurs)
                     {
@@ -805,9 +829,9 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
             {
 
-                int choix = rand.Next(spawns.Count);
+                int choix = rand0.Next(spawns.Count);
                 Spawn spawn = spawns.ElementAt(choix);
-                choix = rand.Next(spawn.créatures.Count);
+                choix = rand0.Next(spawn.créatures.Count);
 
                 IA ia = spawn.créatures.ElementAt(choix);
                 IA ia_ = new IA(ia.IATexture.X, ia.IATexture.Y, ia.id_son, ia.id_texture, ia.Health, ia.Damage);
@@ -815,7 +839,7 @@ namespace Sunday_Bloody_Sunday
 
                 float distance = 10000;
                 Vector2 vector_ia = new Vector2(ia_.IATexture.X, ia_.IATexture.Y);
-                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Ressources.Player1, parametre.x, parametre.y);
+                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Keys.T, Ressources.Player1, parametre.x, parametre.y);
                 Vector2 vector_joueur = new Vector2();
                 foreach (Player joueur in liste_joueurs)
                 {
@@ -898,7 +922,6 @@ namespace Sunday_Bloody_Sunday
                     joueur.refroidissement = 0;
                     joueur.Ammo = joueur.Ammo - 1;
                     moteur_son.PlayTire();
-
                 }
                 joueur.refroidissement++;
             }
@@ -931,8 +954,8 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180) //Ajout de nouveaux "barrels" a la map
             {
                 Items box;
-                int spawn = rand.Next(spawn_items.emplacement.Count);
-                int texture = rand.Next(2);
+                int spawn = rand0.Next(spawn_items.emplacement.Count);
+                int texture = rand0.Next(2);
                 Vector2 emplacement = spawn_items.emplacement.ElementAt(spawn);
                 bool test = true;
                 if (texture == 0)
@@ -977,23 +1000,21 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (Player joueur in liste_joueurs)
             {
-
                 if (parametre.texture_map == 3)
                 {
-                    if (joueur.poser && joueur.refroidissement > 30 && joueur.bomb > 0)
+                    if (joueur.poserBomb && joueur.refroidissement > 30 && joueur.bomb > 0)
                     {
 
-                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.Activer);
+                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.ActiverBomb);
                         joueur.refroidissement = 0;
                         joueur.bomb--;
                     }
-
                 }
                 else
                 {
-                    if (joueur.poser && joueur.bomb > 0)
+                    if (joueur.poserBomb && joueur.bomb > 0)
                     {
-                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.Activer);
+                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.ActiverBomb);
                         joueur.bomb--;
                     }
                 }
@@ -1006,13 +1027,12 @@ namespace Sunday_Bloody_Sunday
                     bool test = false;
                     if (parametre.texture_map != 3)
                     {
-                        test = keyboard.IsKeyDown(bomb.boum);
+                        test = keyboard.IsKeyDown(bomb.déclencher);
                         foreach (Keys key in liste_clavier)
                         {
-                            if (key == bomb.boum)
+                            if (key == bomb.déclencher)
                             {
                                 test = true;
-
                             }
                         }
 
@@ -1029,7 +1049,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     foreach (Player joueur in liste_joueurs)
                     {
-                        if ((keyboard.IsKeyDown(bomb.boum) && joueur.Activer == bomb.boum) || bomb.detonnateur == 0)
+                        if ((keyboard.IsKeyDown(bomb.déclencher) && joueur.ActiverBomb == bomb.déclencher) || bomb.detonnateur == 0)
                         {
                             joueur.bomb = 5;
                             AddExplosion(new Vector2(bomb.BombTexture.X + 8, bomb.BombTexture.Y + 8), bomb.Aire_barrel.X - 16, bomb.Aire_barrel.Y - 16, 48);
@@ -1040,21 +1060,20 @@ namespace Sunday_Bloody_Sunday
                     bomb.detonnateur--;
                 }
             }
-
         }
 
         public void AddBloodEffect(Vector2 position, int x, int y, int largeur)
         {
-            Particule blood = new Particule();
+            ParticuleExplosion blood = new ParticuleExplosion();
             blood.Initialize(Ressources.BloodParticule, position, 150, 186, 12, 45, Color.White, 1f, false, x, y, largeur, "blood");
             liste_blood.Add(blood);
         }
 
-        public void update_blood(GameTime gameTime)
+        public void update_Blood(GameTime gameTime)
         {
-            liste_blood2 = new List<Particule>();
+            liste_blood2 = new List<ParticuleExplosion>();
 
-            foreach (Particule blood in liste_blood)
+            foreach (ParticuleExplosion blood in liste_blood)
             {
                 blood.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood);
                 if (blood.Active == true)
@@ -1062,7 +1081,7 @@ namespace Sunday_Bloody_Sunday
                     liste_blood2.Add(blood);
                 }
             }
-            foreach (Particule prout in liste_explosions3)
+            foreach (ParticuleExplosion prout in liste_explosions3)
             {
                 liste_blood2.Add(prout);
             }
@@ -1108,16 +1127,16 @@ namespace Sunday_Bloody_Sunday
 
         public void AddExplosion(Vector2 position, int x, int y, int largeur)
         {
-            Particule explosion = new Particule();
+            ParticuleExplosion explosion = new ParticuleExplosion();
             explosion.Initialize(Ressources.ExplosionParticule, position, 134, 134, 12, 45, Color.White, 1f, false, x, y, largeur, "explosion");
             liste_explosions.Add(explosion);
         }
 
-        public void update_explosions(GameTime gameTime)
+        public void update_Explosion(GameTime gameTime)
         {
-            liste_explosions2 = new List<Particule>();
-            liste_explosions3 = new List<Particule>();
-            foreach (Particule explosion in liste_explosions)
+            liste_explosions2 = new List<ParticuleExplosion>();
+            liste_explosions3 = new List<ParticuleExplosion>();
+            foreach (ParticuleExplosion explosion in liste_explosions)
             {
                 explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood);
                 if (explosion.Active == true)
@@ -1125,10 +1144,9 @@ namespace Sunday_Bloody_Sunday
                     liste_explosions2.Add(explosion);
                 }
             }
-            foreach (Particule explosion in liste_explosions3)
+            foreach (ParticuleExplosion explosion in liste_explosions3)
             {
                 liste_explosions2.Add(explosion);
-
             }
             liste_explosions = liste_explosions2;
         }
@@ -1139,13 +1157,58 @@ namespace Sunday_Bloody_Sunday
             if (parametre.texture_map != 3)
             {
                  bomb = new DestructibleItems(x, y, "bomb", activer);
-
             }
             else
             {
                  bomb = new DestructibleItems(x, y, "bomb_2", activer);
             }
             liste_barrel.Add(bomb);
+        }
+
+        public void AddTurret(int x, int y, Keys poserTurret)
+        {
+            Turret turret = new Turret(x, y, poserTurret);
+            liste_turret.Add(turret);
+        }
+
+        public void update_turret(List<Player> liste_joueurs, KeyboardState keyboard)
+        {
+            foreach (Player joueur in liste_joueurs)
+            {
+                if (joueur.poserTurret && joueur.turret > 0)
+                {
+                    AddTurret(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.PoserTurret);
+                    moteur_son.PlaySentryReady();
+                    joueur.turret--;
+                }
+            }
+        }
+
+        public void AddRain()
+        {
+            liste_rain.Add(new ParticuleRain(rainTexture, new Vector2(-50 + (float)rand1.NextDouble() * spawnWidth, 0), new Vector2(1, rand2.Next(5, 8))));
+        }
+
+        public void update_Rain(GameTime gameTime, GraphicsDevice graphics)
+        {
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            while (timer > 0)
+            {
+                timer -= 1f / density;
+                AddRain();
+            }
+
+            for (int i = 0; i < liste_rain.Count; i++)
+            {
+                liste_rain[i].Update();
+
+                if (liste_rain[i].Position.Y > graphics.Viewport.Height)
+                {
+                    liste_rain.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         //Gère l'affichage de la liste d'IA
@@ -1213,14 +1276,12 @@ namespace Sunday_Bloody_Sunday
                 {
                     joueur.Draw(spriteBatch, MapTexture);
                     joueur.est_afficher = true;
-
                 }
             }
         }
 
         public void update_player(KeyboardState keyboard, MouseState mouse)
         {
-
             // Update l'objet joueur contenu par la map
             foreach (Player joueur in liste_joueurs)
             {
@@ -1234,7 +1295,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (parametre.texture_map == 3)
                     {
-                        Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.Poser, joueur.Activer, joueur.texture, parametre.x, parametre.y);
+                        Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.PoserBomb, joueur.ActiverBomb, joueur.PoserTurret, joueur.texture, parametre.x, parametre.y);
                         joueur_.bomb = 5;
                         liste_joueurs2.Add(joueur_);
                     }
@@ -1251,7 +1312,7 @@ namespace Sunday_Bloody_Sunday
             if (keyboard.IsKeyDown(Keys.D2) && !etape2 && parametre.texture_map != 3)
             {
                 etape2 = true;
-                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Ressources.Player2, parametre.x, parametre.y));/*
+                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Keys.W, Ressources.Player2, parametre.x, parametre.y));/*
                 this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
 
@@ -1267,36 +1328,78 @@ namespace Sunday_Bloody_Sunday
         }
 
         // UPDATE & DRAW
-        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime)
+        public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime, GraphicsDevice graphics)
         {
+            /*
+            message = "0";
+            if (Keyboard.GetState().IsKeyDown(Keys.Z))//Up
+            {
+                message = message + '1';
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S))//Down
+            {
+                message = message + '2';
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))//Right
+            {
+                message = message + '3';
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D))//Left
+            {
+                message = message + '4';
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A))//Tir
+            {
+                message = message + '5';
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.E))//Pose
+            {
+                message = message + '6';
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.R))//Bombe
+            {
+                message = message + '7';
+            }
 
-            liste_clavier = new List<Keys>();
-            if (testc && etape3)
-            {
-                liste_clavier = Reseau.Liste(Reseau.Charger());
-                liste_clavier_2 = liste_clavier;
-            }
-            else
-            {
-                liste_clavier = liste_clavier_2;
-            }
-            update_blood(gameTime);
+            Client.envoieMessage(message);
+            liste_clavier = Serveur.Liste(Serveur.receptionMessage());
+            */
+
             testc = !testc;
             update_ia();
             update_Box();
             update_Barrel(keyboard);
-            update_explosions(gameTime);
+            update_Explosion(gameTime);
+            update_Blood(gameTime);
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
+            update_turret(liste_joueurs, keyboard);
 
-            fin.Update(liste_joueurs);
+            if (parametre.texture_map == 0)
+            {
+                Random rand3 = new Random();
+                int i = rand3.Next(0, 5000);
+
+                if (i == 42)
+                {
+                    moteur_son.PlayRainEffect();
+                    density = 50;
+                }
+                update_Rain(gameTime, graphics);
+                boss_entry.Update(liste_joueurs);
+            }
+            if (parametre.texture_map == 1)
+            {
+                fin_niveau.Update(liste_joueurs);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             int x = 0;
             int y = 0;
+
             foreach (Player joueur in liste_joueurs)
             {
                 x = joueur.PlayerTexture.X;
@@ -1316,47 +1419,53 @@ namespace Sunday_Bloody_Sunday
             {
                 spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+                boss_entry.Draw(spriteBatch, MapTexture);
+                foreach (ParticuleRain rain in liste_rain)
+                {
+                    rain.Draw(spriteBatch);
+                }
             }
             else if (parametre.texture_map == 1)
             {
                 spriteBatch.Draw(Ressources.Map02, this.MapTexture, Color.CadetBlue);
-                fin.Draw(spriteBatch, MapTexture);
+                fin_niveau.Draw(spriteBatch, MapTexture);
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
             }
             else if (parametre.texture_map == 2)
             {
                 spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
             }
             else if (parametre.texture_map == 3)
             {
                 spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
             }
             foreach (Items box in liste_box)
             {
                 box.Draw(spriteBatch, MapTexture);
             }
-
             foreach (DestructibleItems barrel in liste_barrel)
             {
                 barrel.Draw(spriteBatch, MapTexture);
             }
+            foreach (Turret sentryGun in liste_turret)
+            {
+                sentryGun.Draw(spriteBatch, MapTexture);
+            }
             draw_ordre(spriteBatch);
-
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch, MapTexture);
             }
-            foreach (Particule blood in liste_blood)
+            foreach (ParticuleExplosion blood in liste_blood)
             {
                 blood.Draw(spriteBatch, MapTexture);
             }
-            foreach (Particule explosion in liste_explosions)
+            foreach (ParticuleExplosion explosion in liste_explosions)
             {
                 explosion.Draw(spriteBatch, MapTexture);
             }
-
         }
     }
 }

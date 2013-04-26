@@ -26,6 +26,7 @@ namespace WindowsGame1
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont je_suis_une_font;
+        string message;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -80,7 +81,7 @@ namespace WindowsGame1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             byte[] data;
-            string message = "0";
+            message = "0";
             if (Keyboard.GetState().IsKeyDown(Keys.Z))//Up
             {
                 message = message + '1';

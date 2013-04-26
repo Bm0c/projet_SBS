@@ -69,7 +69,7 @@ namespace WindowsGame1
             string prout = je_suis_un_flux.ReadToEnd();
             byte[] msg = Encoding.Default.GetBytes(prout);
             UdpClient udpClient = new UdpClient();
-            udpClient.Send(msg, msg.Length, "127.0.0.1", 55542);
+            udpClient.Send(msg, msg.Length, "127.0.0.1", 1338);
             udpClient.Close();
             je_suis_un_flux.Close();
         }

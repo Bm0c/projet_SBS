@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sunday_Bloody_Sunday
 {
-    class Particule
+    class ParticuleExplosion
     {
         //FIELDS
         // The image representing the collection of images used for animation
@@ -62,13 +62,14 @@ namespace Sunday_Bloody_Sunday
             this.currentFrame = 0;
             this.Active = true;
             this.type = type;
-            // EXPLOSION AREAS FOR BOMBS
+
+            //EXPLOSION AREAS FOR BOMBS
             this.Aire_explosionBomb = new Rectangle(x, y, largeur, largeur);
         }
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel, List<Particule> liste_explosion, List<Particule> liste_explosion2, List<Particule> liste_blood)
+        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel, List<ParticuleExplosion> liste_explosion, List<ParticuleExplosion> liste_explosion2, List<ParticuleExplosion> liste_blood)
         {
             // Do not update the game if we are not active
             if (Active == false)
@@ -109,7 +110,7 @@ namespace Sunday_Bloody_Sunday
             (int)(FrameHeight * scale));
 
 
-            // Player ou IA dans la zone d'explosion = DEAD
+            //Player ou IA et Barrel dans la zone d'explosion = DEAD
             foreach (Player joueur in liste_joueurs)
             {
                 if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)) && type == "explosion")
@@ -131,7 +132,7 @@ namespace Sunday_Bloody_Sunday
                 if ((barrel.BarrelTexture.Intersects(this.Aire_explosionBomb)) && type == "explosion")
                 {
                     barrel.isVisible = false;
-                    Particule explosion = new Particule();
+                    ParticuleExplosion explosion = new ParticuleExplosion();
                     explosion.Initialize(Ressources.ExplosionParticule, new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8), 134, 134, 12, 45, Color.White, 1f, false, barrel.Aire_barrel.X - 16, barrel.Aire_barrel.Y - 16, 48, "explosion");
                     liste_explosion2.Add(explosion);
                 }
@@ -148,7 +149,7 @@ namespace Sunday_Bloody_Sunday
                         spriteBatch.Draw(Ressources.ExplosionParticule, new Rectangle(Maptexture.X + destinationRect.X, Maptexture.Y + destinationRect.Y, destinationRect.Width, destinationRect.Width), sourceRect, color);
                         break;
                     case ("blood"):
-                        spriteBatch.Draw(Ressources.BloodParticule, new Rectangle(Maptexture.X + Aire_explosionBomb.X, Maptexture.Y + Aire_explosionBomb.Y, /*destinationRect.Width*/30, /*destinationRect.Width*/30), sourceRect, color);
+                        spriteBatch.Draw(Ressources.BloodParticule, new Rectangle(Maptexture.X + Aire_explosionBomb.X, Maptexture.Y + Aire_explosionBomb.Y, 30, 30), sourceRect, color);
                         break;
                     default:
                         break;

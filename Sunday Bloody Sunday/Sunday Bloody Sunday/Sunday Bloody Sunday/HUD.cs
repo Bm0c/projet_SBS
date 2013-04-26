@@ -43,17 +43,17 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (MenuButton.langage == "French")
+            if (MenuButton.language == "French")
             {
                 spriteBatch.DrawString(Ressources.HUD, "Vie: " + this.health, new Vector2(620, 400), Color.White);
                 spriteBatch.DrawString(Ressources.HUD, "Munition: " + munition, new Vector2(620, 440), Color.White);
-                spriteBatch.DrawString(Ressources.HUD, "Victimes :", new Vector2(5, 5), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, "Victimes:", new Vector2(5, 5), Color.White);
             }
             else
             {
                 spriteBatch.DrawString(Ressources.HUD, "Health: " + this.health, new Vector2(650, 400), Color.White);
                 spriteBatch.DrawString(Ressources.HUD, "Ammo: " + munition, new Vector2(650, 440), Color.White);
-                spriteBatch.DrawString(Ressources.HUD, "Kills :", new Vector2(5, 5), Color.White);
+                spriteBatch.DrawString(Ressources.HUD, "Kills:", new Vector2(5, 5), Color.White);
             }
         }
     }

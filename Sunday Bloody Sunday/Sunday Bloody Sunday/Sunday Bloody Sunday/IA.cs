@@ -51,14 +51,13 @@ namespace Sunday_Bloody_Sunday
         public bool est_update = false;
         public bool en_vie = true;
 
-       public int id_texture;
-       public int id_son;
+        public int id_texture;
+        public int id_son;
 
-       public int compteur_path;
-       public int ia_dir;
+        public int compteur_path;
+        public int ia_dir;
 
-       public bool ia_vol;
-
+        public bool ia_vol;
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
 
@@ -197,12 +196,10 @@ namespace Sunday_Bloody_Sunday
                     test = !futur_rectangle.Intersects(joueur.rectangle()); //Teste l'intersection entre une IA (parametre) et les héros (foreach) à l'aide de rectangle
                 }
             }
-
             return test;
         }
 
-        public void action_ia(IA ia, Player joueur, List<DestructibleItems> liste_barrel, PhysicsEngine map_physique,
-                              List<IA> liste_ia, List<Player> liste_joueur)
+        public void action_ia(IA ia, Player joueur, List<DestructibleItems> liste_barrel, PhysicsEngine map_physique, List<IA> liste_ia, List<Player> liste_joueur)
         {
             foreach (DestructibleItems barrel in liste_barrel)
             {
@@ -241,7 +238,6 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         else
                             ia.actionIA = "";
-
                     }
 
                     if (ia.actionIA == "right")
@@ -251,7 +247,6 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         else
                             ia.actionIA = "";
-
                     }
                 }
                 else
@@ -291,7 +286,6 @@ namespace Sunday_Bloody_Sunday
                             ia.mise_a_jour(ia.actionIA);
                         else
                             ia.actionIA = "";
-
                     }
                 }
             }

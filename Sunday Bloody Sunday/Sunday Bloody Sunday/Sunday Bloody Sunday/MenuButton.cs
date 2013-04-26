@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum ButtonType
         {
-            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, Mute, Restart, On, Off
+            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, Mute, Restart, On, Off, Credits
         };
 
 
@@ -24,7 +24,7 @@ namespace Sunday_Bloody_Sunday
         string buttonMessage;
         Rectangle rectangle;
         Rectangle mouseCursor_container;
-        static public string langage = "English";
+        static public string language = "French";
 
 
         //CONSTRUCTOR
@@ -34,7 +34,7 @@ namespace Sunday_Bloody_Sunday
             {
                 case ButtonType.SelectLevel:
                     this.myButton = ButtonType.SelectLevel;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Choisir ce niveau";
                     else
                         buttonMessage = "Choose this level";
@@ -42,7 +42,7 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.Play:
                     this.myButton = ButtonType.Play;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Jouer";
                     else
                         buttonMessage = "Play";
@@ -55,7 +55,7 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.Quit:
                     this.myButton = ButtonType.Quit;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Quitter";
                     else
                         buttonMessage = "Quit";
@@ -63,7 +63,7 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.Back:
                     this.myButton = ButtonType.Quit;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Retour";
                     else
                         buttonMessage = "Back";
@@ -81,7 +81,7 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.Mute:
                     this.myButton = ButtonType.Quit;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Muet";
                     else
                         buttonMessage = "Mute";
@@ -89,7 +89,7 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.Resume:
                     this.myButton = ButtonType.Resume;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Reprendre";
                     else
                         buttonMessage = "Resume";
@@ -97,7 +97,7 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.Restart:
                     this.myButton = ButtonType.Restart;
-                    if (langage == "French")
+                    if (language == "French")
                         buttonMessage = "Recommencer";
                     else
                         buttonMessage = "Restart";
@@ -113,11 +113,17 @@ namespace Sunday_Bloody_Sunday
                     buttonMessage = "Off";
                     break;
 
+                case ButtonType.Credits:
+                    this.myButton = ButtonType.Credits;
+                    buttonMessage = "Credits";
+                    break;
+
                 default:
                     this.myButton = ButtonType.Play;
                     buttonMessage = "";
                     break;
             }
+            this.myButton = myButtonType;
             this.rectangle = container;
         }
 

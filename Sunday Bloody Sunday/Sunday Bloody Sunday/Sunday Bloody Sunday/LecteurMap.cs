@@ -24,10 +24,10 @@ namespace Sunday_Bloody_Sunday
         public int texture_map;
         public int largeur;
         public int hauteur;
-        public Arrivee fin;
+        public CheckPoint checkpointArrivee, checkpointBossEntry;
         public bool scrolling;
 
-        public Param_Map(bool[,] liste, bool[,] liste_projectile, List<Spawn> liste_spawn, List<DestructibleItems> liste_barrel, Spawn_Items liste_caisses, int x, int y, int texture_map, int hauteur, int largeur, Arrivee fin, bool scrolling)
+        public Param_Map(bool[,] liste, bool[,] liste_projectile, List<Spawn> liste_spawn, List<DestructibleItems> liste_barrel, Spawn_Items liste_caisses, int x, int y, int texture_map, int hauteur, int largeur, CheckPoint checkpointArrivee, CheckPoint checkpointBossEntry, bool scrolling)
         {
             this.liste = liste;
             this.liste_projectile = liste_projectile;
@@ -39,7 +39,8 @@ namespace Sunday_Bloody_Sunday
             this.texture_map = texture_map;
             this.hauteur = hauteur;
             this.largeur = largeur;
-            this.fin = fin;
+            this.checkpointArrivee = checkpointArrivee;
+            this.checkpointBossEntry = checkpointBossEntry;
             this.scrolling = scrolling;
         }
     }
@@ -56,7 +57,7 @@ namespace Sunday_Bloody_Sunday
         static int texture_map;
         static int largeur;
         static int hauteur;
-        static Arrivee fin;
+        static CheckPoint checkpointArrivee, checkPointBossEntry;
         static bool scrolling;
 
         public static Param_Map lecture(string path)
@@ -96,11 +97,15 @@ namespace Sunday_Bloody_Sunday
                 {
                     lecture_arrivee(lecture);
                 }
+                else if (ligne == "bossentry")
+                {
+                    lecture_bossentry(lecture);
+                }
                 ligne = lecture.ReadLine();
             }
             lecture.Close();
 
-            return new Param_Map(liste, liste_projectile, liste_spawn, liste_barrel, liste_caisses, x, y, texture_map, hauteur, largeur, fin, scrolling);
+            return new Param_Map(liste, liste_projectile, liste_spawn, liste_barrel, liste_caisses, x, y, texture_map, hauteur, largeur, checkpointArrivee, checkPointBossEntry, scrolling);
         }
 
         public static void lecture_physique(StreamReader lecture)
@@ -195,8 +200,6 @@ namespace Sunday_Bloody_Sunday
                 liste_spawn.Add(new Spawn(liste_ia));
 
                 ligne = lecture.ReadLine();
-
-
             }
         }
 
@@ -237,7 +240,6 @@ namespace Sunday_Bloody_Sunday
                 liste_barrel.Add(new DestructibleItems(x, y, type));
 
                 ligne = lecture.ReadLine();
-
             }
         }
 
@@ -249,9 +251,20 @@ namespace Sunday_Bloody_Sunday
             ligne = lecture.ReadLine();
             int y = System.Convert.ToInt32(ligne);
 
-            fin = new Arrivee(x, y);
+            checkpointArrivee = new CheckPoint(x, y, "arrivee");
             ligne = lecture.ReadLine();
+        }
 
+        public static void lecture_bossentry(StreamReader lecture)
+        {
+            string ligne = lecture.ReadLine();
+            int x = System.Convert.ToInt32(ligne);
+
+            ligne = lecture.ReadLine();
+            int y = System.Convert.ToInt32(ligne);
+
+            checkPointBossEntry = new CheckPoint(x, y, "bossentry");
+            ligne = lecture.ReadLine();
         }
     }
 }

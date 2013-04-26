@@ -107,7 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arrivee.cs" />
+    <Compile Include="CheckPoint.cs" />
     <Compile Include="Divers.cs" />
     <Compile Include="DestructibleItems.cs" />
     <Compile Include="GameMain.cs" />
@@ -117,9 +117,10 @@
     <Compile Include="LecteurMap.cs" />
     <Compile Include="Manual.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Particule.cs" />
+    <Compile Include="ParticuleExplosion.cs" />
     <Compile Include="MenuButton.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="ParticuleRain.cs" />
     <Compile Include="Pathfinding.cs" />
     <Compile Include="PhysicsEngine.cs" />
     <Compile Include="Player.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Reseau.cs" />
     <Compile Include="Ressources.cs" />
     <Compile Include="Sound.cs" />
+    <Compile Include="Turret.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
