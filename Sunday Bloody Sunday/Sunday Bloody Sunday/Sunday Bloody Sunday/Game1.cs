@@ -424,7 +424,6 @@ namespace Sunday_Bloody_Sunday
             spriteBatch.Begin();
 
                 if (ecran == Screen.menu_principal)
-<<<<<<< HEAD
                 {
                     spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
                     menuMain.Draw(spriteBatch);
@@ -458,41 +457,10 @@ namespace Sunday_Bloody_Sunday
                     menuMain.Draw(spriteBatch);
                 }
                 if (ecran == Screen.menu_preferences)
-=======
-                {
-                    spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.selecteur_map)
-                {
-                    if (compteur_thumbnails == 0)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    else if (compteur_thumbnails == 1)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap02, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    else if (compteur_thumbnails == 2)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    else if (compteur_thumbnails == 3)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap04, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
-                        menuMain.Draw(spriteBatch);
-                    }
-                }
-                if (ecran == Screen.menu_pause)
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
                 {
                     Main.Draw(spriteBatch);
                     menuMain.Draw(spriteBatch);
                 }
-<<<<<<< HEAD
                 if (ecran == Screen.menu_parametres)
                 {
                     GraphicsDevice.Clear(Color.Black);
@@ -516,32 +484,6 @@ namespace Sunday_Bloody_Sunday
                     spriteBatch.Draw(Ressources.mWinSreen, new Rectangle(0, 0, 800, 480), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
-=======
-                if (ecran == Screen.menu_preferences)
-                {
-                    Main.Draw(spriteBatch);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.menu_parametres)
-                {
-                    GraphicsDevice.Clear(Color.Black);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.jeu)
-                {
-                    Main.Draw(spriteBatch);
-                }
-                if (ecran == Screen.game_over)
-                {
-                    spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.win)
-                {
-                    spriteBatch.Draw(Ressources.mWinSreen, new Rectangle(0, 0, 800, 480), Color.White);
-                    menuMain.Draw(spriteBatch);
-                }
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
 
             spriteBatch.End();
 

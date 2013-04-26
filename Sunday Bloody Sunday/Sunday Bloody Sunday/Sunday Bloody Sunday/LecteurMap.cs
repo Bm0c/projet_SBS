@@ -261,13 +261,10 @@ namespace Sunday_Bloody_Sunday
             int x = System.Convert.ToInt32(ligne);
 
             ligne = lecture.ReadLine();
-<<<<<<< HEAD
             int y = System.Convert.ToInt32(ligne);
 
             checkPointBossEntry = new CheckPoint(x, y, "bossentry");
             ligne = lecture.ReadLine();
-=======
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         }
     }
 }

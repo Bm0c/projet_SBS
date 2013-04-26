@@ -37,13 +37,8 @@ namespace Sunday_Bloody_Sunday
         public List<ParticuleExplosion> liste_explosions2; //Liste particules d'explosion secondaire
         public List<ParticuleExplosion> liste_explosions3;
 
-<<<<<<< HEAD
         public List<ParticuleExplosion> liste_blood; //Liste particules sang
         public List<ParticuleExplosion> liste_blood2; //Liste particules sang secondaire
-=======
-        public List<ParticuleExplosion> liste_blood; //Liste particule sang
-        public List<ParticuleExplosion> liste_blood2; //Liste particule sang secondaire
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
 
         public List<ParticuleRain> liste_rain; //Liste rain
 
@@ -59,13 +54,8 @@ namespace Sunday_Bloody_Sunday
         public List<Projectile> liste_projectile = new List<Projectile>(); //Liste Projectiles
         public List<Projectile> liste_projectile2 = new List<Projectile>(); //Liste Projectiles secondaire
 
-<<<<<<< HEAD
         public List<Turret> liste_turret; //Liste Turrets
         public List<Turret> liste_turret2; //Liste Turrets secondaire
-=======
-        public List<SentryGun> liste_turret; //Liste Turrets
-        public List<SentryGun> liste_turret2; // Liste Turrets secondaire
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
 
         Projectile balle;
         IA ia;
@@ -130,13 +120,8 @@ namespace Sunday_Bloody_Sunday
             this.liste_blood2 = new List<ParticuleExplosion>();
 
             //TURRETS
-<<<<<<< HEAD
             this.liste_turret = new List<Turret>();
             this.liste_turret2 = new List<Turret>();
-=======
-            this.liste_turret = new List<SentryGun>();
-            this.liste_turret2 = new List<SentryGun>();
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
 
             //RAIN (que sur la map01)
             this.liste_rain = new List<ParticuleRain>();
@@ -147,16 +132,12 @@ namespace Sunday_Bloody_Sunday
 
             this.liste_clavier = new List<Keys>();
             this.liste_clavier_2 = new List<Keys>();
-<<<<<<< HEAD
 
             fin_niveau = parametre.checkpointArrivee;
             boss_entry = parametre.checkpointBossEntry;
 
             //Client.initialisationClient(4242);
             //Serveur.intialisationServeur(1338);
-=======
-            fin = parametre.fin;
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         }
 
 
@@ -1184,7 +1165,6 @@ namespace Sunday_Bloody_Sunday
             liste_barrel.Add(bomb);
         }
 
-<<<<<<< HEAD
         public void AddTurret(int x, int y, Keys poserTurret)
         {
             Turret turret = new Turret(x, y, poserTurret);
@@ -1192,28 +1172,14 @@ namespace Sunday_Bloody_Sunday
         }
 
         public void update_turret(List<Player> liste_joueurs, KeyboardState keyboard)
-=======
-        public void AddSentryGun(int x, int y, Keys poserTurret)
-        {
-            SentryGun sentryGun = new SentryGun(x, y, poserTurret);
-            liste_turret.Add(sentryGun);
-        }
-
-        public void update_SentryGun(List<Player> liste_joueurs, KeyboardState keyboard)
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         {
             foreach (Player joueur in liste_joueurs)
             {
                 if (joueur.poserTurret && joueur.turret > 0)
                 {
-<<<<<<< HEAD
                     AddTurret(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.PoserTurret);
                     moteur_son.PlaySentryReady();
                     joueur.turret--;
-=======
-                    AddSentryGun(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.PoserTurret);
-                    moteur_son.PlaySentryReady();
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
                 }
             }
         }
@@ -1364,14 +1330,9 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime, GraphicsDevice graphics)
         {
-<<<<<<< HEAD
             /*
             message = "0";
             if (Keyboard.GetState().IsKeyDown(Keys.Z))//Up
-=======
-            liste_clavier = new List<Keys>();
-            if (testc && etape3)
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
             {
                 message = message + '1';
             }
@@ -1391,7 +1352,6 @@ namespace Sunday_Bloody_Sunday
             {
                 message = message + '5';
             }
-<<<<<<< HEAD
             if (Keyboard.GetState().IsKeyDown(Keys.E))//Pose
             {
                 message = message + '6';
@@ -1405,8 +1365,6 @@ namespace Sunday_Bloody_Sunday
             liste_clavier = Serveur.Liste(Serveur.receptionMessage());
             */
 
-=======
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
             testc = !testc;
             update_ia();
             update_Box();
@@ -1416,7 +1374,6 @@ namespace Sunday_Bloody_Sunday
             update_projectiles(keyboard);
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
-<<<<<<< HEAD
             update_turret(liste_joueurs, keyboard);
 
             if (parametre.texture_map == 0)
@@ -1436,22 +1393,6 @@ namespace Sunday_Bloody_Sunday
             {
                 fin_niveau.Update(liste_joueurs);
             }
-=======
-            update_SentryGun(liste_joueurs, keyboard);
-            if (parametre.texture_map == 0)
-            {
-                Random rand3 = new Random();
-                int i = rand3.Next(0, 10000);
-
-                if (i == 42)
-                {
-                    moteur_son.PlayRainEffect();
-                    density = 100;
-                }
-                update_Rain(gameTime, graphics);
-            }
-            fin.Update(liste_joueurs);
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -1478,10 +1419,7 @@ namespace Sunday_Bloody_Sunday
             {
                 spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
                 spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
-<<<<<<< HEAD
                 boss_entry.Draw(spriteBatch, MapTexture);
-=======
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
                 foreach (ParticuleRain rain in liste_rain)
                 {
                     rain.Draw(spriteBatch);
@@ -1511,11 +1449,7 @@ namespace Sunday_Bloody_Sunday
             {
                 barrel.Draw(spriteBatch, MapTexture);
             }
-<<<<<<< HEAD
             foreach (Turret sentryGun in liste_turret)
-=======
-            foreach (SentryGun sentryGun in liste_turret)
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
             {
                 sentryGun.Draw(spriteBatch, MapTexture);
             }

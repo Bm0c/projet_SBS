@@ -24,11 +24,7 @@ namespace Sunday_Bloody_Sunday
         string buttonMessage;
         Rectangle rectangle;
         Rectangle mouseCursor_container;
-<<<<<<< HEAD
         static public string language = "French";
-=======
-        static public string language = "English";
->>>>>>> 33d94ddb3966adf1ccf112c0ccb337962fae5e95
 
 
         //CONSTRUCTOR
