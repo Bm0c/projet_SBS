@@ -17,6 +17,8 @@ namespace Sunday_Bloody_Sunday
         Reseau Client = new Reseau();
         Reseau Serveur = new Reseau();
 
+        int seed= 0;
+
         string message = "";
         string message_2 = "";
         // FIELDS
@@ -71,7 +73,7 @@ namespace Sunday_Bloody_Sunday
 
         bool etape1 = false;
         bool etape2 = false;
-        bool etape3 = false;
+        bool etape3 = true;
 
         public bool game_over = false;
         Param_Map parametre;
@@ -136,8 +138,11 @@ namespace Sunday_Bloody_Sunday
             fin_niveau = parametre.checkpointArrivee;
             boss_entry = parametre.checkpointBossEntry;
 
-            //Client.initialisationClient(4242);
-            //Serveur.intialisationServeur(1338);
+            if (etape3)
+            {
+                Client.initialisationClient(4242);
+                Serveur.intialisationServeur(1338);
+            }
         }
 
 
@@ -151,8 +156,7 @@ namespace Sunday_Bloody_Sunday
             if (ia.compteur_path % 30 == 0)
             {
                 ia.compteur_path = 0;
-                Random rand = new Random();
-                ia.ia_dir = rand.Next(0, 2);
+                ia.ia_dir = seed % 2;
             }
 
             ia.compteur_path++;
@@ -459,8 +463,7 @@ namespace Sunday_Bloody_Sunday
             if (ia.compteur_path % 30 == 0)
             {
                 ia.compteur_path = 0;
-                Random rand = new Random();
-                ia.ia_dir = rand.Next(0, 2);
+                ia.ia_dir = seed % 2;
             }
 
             ia.compteur_path++;
@@ -829,9 +832,9 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180 && etape1) //Ajout de nouvelles IA a la map
             {
 
-                int choix = rand0.Next(spawns.Count);
+                int choix = seed % spawns.Count; ;
                 Spawn spawn = spawns.ElementAt(choix);
-                choix = rand0.Next(spawn.créatures.Count);
+                choix = seed % spawn.créatures.Count;
 
                 IA ia = spawn.créatures.ElementAt(choix);
                 IA ia_ = new IA(ia.IATexture.X, ia.IATexture.Y, ia.id_son, ia.id_texture, ia.Health, ia.Damage);
@@ -954,8 +957,8 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180) //Ajout de nouveaux "barrels" a la map
             {
                 Items box;
-                int spawn = rand0.Next(spawn_items.emplacement.Count);
-                int texture = rand0.Next(2);
+                int spawn = seed % spawn_items.emplacement.Count;
+                int texture = seed % 2;
                 Vector2 emplacement = spawn_items.emplacement.ElementAt(spawn);
                 bool test = true;
                 if (texture == 0)
@@ -1182,6 +1185,10 @@ namespace Sunday_Bloody_Sunday
                     joueur.turret--;
                 }
             }
+            foreach(Turret sentry in liste_turret)
+            {
+                sentry.Update(liste_joueurs, liste_ia, liste_projectile,moteur_son);
+            }
         }
 
         public void AddRain()
@@ -1330,7 +1337,7 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime, GraphicsDevice graphics)
         {
-            /*
+            
             message = "0";
             if (Keyboard.GetState().IsKeyDown(Keys.Z))//Up
             {
@@ -1361,9 +1368,17 @@ namespace Sunday_Bloody_Sunday
                 message = message + '7';
             }
 
-            Client.envoieMessage(message);
-            liste_clavier = Serveur.Liste(Serveur.receptionMessage());
-            */
+            if (etape3)
+            {
+                seed = System.Convert.ToInt32(Serveur.receptionMessage());
+                Client.envoieMessage(message);
+                liste_clavier = Serveur.Liste(Serveur.receptionMessage());
+            }
+            else
+            {
+                seed = new Random().Next(1000);
+            }
+            
 
             testc = !testc;
             update_ia();
@@ -1465,6 +1480,22 @@ namespace Sunday_Bloody_Sunday
             foreach (ParticuleExplosion explosion in liste_explosions)
             {
                 explosion.Draw(spriteBatch, MapTexture);
+            }
+            if (parametre.texture_map == 1)
+            {
+                spriteBatch.Draw(Ressources.Map02_surcouche, this.MapTexture, Color.CadetBlue);
+                fin_niveau.Draw(spriteBatch, MapTexture);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+            }
+            else if (parametre.texture_map == 2)
+            {
+                spriteBatch.Draw(Ressources.Map03surcouche, this.MapTexture, Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
+            }
+            else if (parametre.texture_map == 3)
+            {
+                spriteBatch.Draw(Ressources.Map03surcouche, this.MapTexture, Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
             }
         }
     }

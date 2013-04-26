@@ -376,10 +376,10 @@ namespace Sunday_Bloody_Sunday
                     StopMusic(GamePlayMusic);
                     winEffect.Play();
                 }
-                if (Main.MainMap.boss_entry.combat_boss)
+                /*if (Main.MainMap.boss_entry.combat_boss)
                 {
 
-                }
+                }*/
             }
 
             else if (ecran == Screen.game_over)
