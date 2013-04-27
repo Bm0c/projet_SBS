@@ -68,3 +68,5 @@ Content\Map03_surcouche.xnb
 Content\Map_Transparent.xnb
 Content\Map04.xnb
 Content\Map05.xnb
+Content\thumbnails_map_03_bonus.xnb
+Content\thumbnails_map_05.xnb

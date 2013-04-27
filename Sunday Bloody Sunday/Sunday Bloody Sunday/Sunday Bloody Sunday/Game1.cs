@@ -213,7 +213,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     compteur_delai = 0;
                     compteur_thumbnails += 1;
-                    if (compteur_thumbnails > 3)
+                    if (compteur_thumbnails > 5)
                     {
                         compteur_thumbnails = 3;
                     }
@@ -241,7 +241,19 @@ namespace Sunday_Bloody_Sunday
                     else if (compteur_thumbnails == 3)
                     {
                         Main = new GameMain();
+                        Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur);
+                        path_map = "map04.txt";
+                    }
+                    else if (compteur_thumbnails == 4)
+                    {
+                        Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur);
+                        path_map = "map04.txt";
+                    }
+                    else if (compteur_thumbnails == 5)
+                    {
+                        Main = new GameMain();
+                        Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur);
                         path_map = "map04.txt";
                     }
                     ecran = Screen.jeu;
@@ -524,7 +536,17 @@ namespace Sunday_Bloody_Sunday
                 }
                 else if (compteur_thumbnails == 3)
                 {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap03_bonus, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 4)
+                {
                     spriteBatch.Draw(Ressources.ThumbnailsMap04, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 5)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap05, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
             }

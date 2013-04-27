@@ -260,7 +260,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_04.xnb</Output>
-      <Time>2013-02-25T19:11:20+01:00</Time>
+      <Time>2013-04-28T00:16:17.9826065+02:00</Time>
     </Item>
     <Item>
       <Source>rain.png</Source>
@@ -287,7 +287,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\plane.xnb</Output>
-      <Time>2013-04-26T20:59:36+02:00</Time>
+      <Time>2013-04-28T00:11:23.8567835+02:00</Time>
     </Item>
     <Item>
       <Source>target.png</Source>
@@ -614,6 +614,24 @@
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map05.xnb</Output>
       <Time>2013-04-27T23:29:18.0733169+02:00</Time>
+    </Item>
+    <Item>
+      <Source>thumbnails_map_03_bonus.png</Source>
+      <Name>thumbnails_map_03_bonus</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_03_bonus.xnb</Output>
+      <Time>2013-04-28T00:16:11.2682225+02:00</Time>
+    </Item>
+    <Item>
+      <Source>thumbnails_map_05.png</Source>
+      <Name>thumbnails_map_05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_05.xnb</Output>
+      <Time>2013-04-28T00:15:18.4141994+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
