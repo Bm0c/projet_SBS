@@ -48,6 +48,7 @@ namespace Sunday_Bloody_Sunday
         public Keys PoserBomb;
         public Keys ActiverBomb;
         public Keys PoserTurret;
+        public Keys ActiverPlane;
 
         public bool haut;
         public bool droite;
@@ -57,6 +58,7 @@ namespace Sunday_Bloody_Sunday
         public bool poserBomb;
         public bool poserTurret;
         public bool activerBomb;
+        public bool activerPlane;
 
         public int refroidissement = 0;
         public int bomb;
@@ -70,7 +72,7 @@ namespace Sunday_Bloody_Sunday
 
 
         // CONSTRUCTOR
-        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poserBomb, Keys activerBomb, Keys poserTurret, Texture2D texture, int x, int y)
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poserBomb, Keys activerBomb, Keys poserTurret, Keys activerPlane, Texture2D texture, int x, int y)
         {
             this.PlayerTexture = new Rectangle(x, y, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
@@ -94,6 +96,7 @@ namespace Sunday_Bloody_Sunday
             this.PoserBomb = poserBomb;
             this.ActiverBomb = activerBomb;
             this.PoserTurret = poserTurret;
+            this.ActiverPlane = activerPlane;
 
             this.texture = texture;
             bomb = 1;
@@ -318,7 +321,6 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, List<Keys> liste)
         {
-
              haut = keyboard.IsKeyDown(Haut);
              droite = keyboard.IsKeyDown(Droite);
              gauche = keyboard.IsKeyDown(Gauche);
@@ -327,6 +329,7 @@ namespace Sunday_Bloody_Sunday
              poserBomb = keyboard.IsKeyDown(this.PoserBomb);
              activerBomb = keyboard.IsKeyDown(this.ActiverBomb);
              poserTurret = keyboard.IsKeyDown(this.PoserTurret);
+             activerPlane = keyboard.IsKeyDown(this.ActiverPlane);
             
             try
             {
@@ -371,6 +374,11 @@ namespace Sunday_Bloody_Sunday
                     {
                         speed = 2;
                         poserTurret = true;
+                    }
+                    else if (key == ActiverPlane)
+                    {
+                        speed = 2;
+                        activerPlane = true;
                     }
                 }
             }

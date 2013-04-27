@@ -13,3 +13,6 @@ C:\Users\Bmoc\Travail reseau SBS\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\S
 C:\Users\Bmoc\SBS\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
 E:\GitHub\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Alexis\SBS\Fusion\projet_sbs\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alexis\SBS\FUCHION\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\obj\x86\Debug\ResolveAssemblyReference.cache

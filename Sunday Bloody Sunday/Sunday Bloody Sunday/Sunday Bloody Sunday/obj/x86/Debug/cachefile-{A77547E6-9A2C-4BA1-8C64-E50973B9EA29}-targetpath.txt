@@ -29,6 +29,18 @@ Content\blood.xnb
 Content\thumbnails_map_04.xnb
 Content\rain.xnb
 Content\boss_entry.xnb
+Content\plane.xnb
+Content\target.xnb
+Content\melodelf.xnb
+Content\attackeclair.xnb
+Content\attackeclair2.xnb
+Content\carabaffeattack.xnb
+Content\carabaffeattack2.xnb
+Content\fantominusattack.xnb
+Content\pikaattack.xnb
+Content\raichuattack.xnb
+Content\spectrumattack.xnb
+Content\spectrumattack2.xnb
 Content\zombie_groan.xnb
 Content\explosion_effect.xnb
 Content\pop.xnb
@@ -38,6 +50,10 @@ Content\blood_effect.xnb
 Content\place_sentry.xnb
 Content\sentry_shoot.xnb
 Content\rainEffect.xnb
+Content\plane_running.xnb
+Content\carabaffeson.xnb
+Content\spectrumson.xnb
+Content\tortankson.xnb
 Content\tire.xnb
 Content\pikachu001.xnb
 Content\pikachu002.xnb
@@ -47,5 +63,3 @@ Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
 Content\win_effect.xnb
-Content\Map02_surcouche.xnb
-Content\Map03_surcouche.xnb

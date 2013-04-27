@@ -8,7 +8,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameFont.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.1754004+02:00</Time>
     </Item>
     <Item>
       <Source>explosion.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.8632682+02:00</Time>
     </Item>
     <Item>
       <Source>Chara.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7572621+02:00</Time>
     </Item>
     <Item>
       <Source>Title.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Title.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5964245+02:00</Time>
     </Item>
     <Item>
       <Source>Map.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.307408+02:00</Time>
     </Item>
     <Item>
       <Source>Bitmap1.bmp</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Bitmap1.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.6942585+02:00</Time>
     </Item>
     <Item>
       <Source>pikachu.png</Source>
@@ -62,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.4264148+02:00</Time>
     </Item>
     <Item>
       <Source>balle.png</Source>
@@ -71,7 +71,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\balle.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.685258+02:00</Time>
     </Item>
     <Item>
       <Source>Chara2.png</Source>
@@ -80,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara2.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7752632+02:00</Time>
     </Item>
     <Item>
       <Source>Chara3.png</Source>
@@ -89,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Chara3.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7822636+02:00</Time>
     </Item>
     <Item>
       <Source>pikachu_2.png</Source>
@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu_2.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.4534163+02:00</Time>
     </Item>
     <Item>
       <Source>GameOver.png</Source>
@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\GameOver.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.1824008+02:00</Time>
     </Item>
     <Item>
       <Source>health_box.png</Source>
@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\health_box.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.2854067+02:00</Time>
     </Item>
     <Item>
       <Source>ammo_box.jpg</Source>
@@ -125,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\ammo_box.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.667257+02:00</Time>
     </Item>
     <Item>
       <Source>explosive_box.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosive_box.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.8792691+02:00</Time>
     </Item>
     <Item>
       <Source>bomb.png</Source>
@@ -143,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\bomb.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7172598+02:00</Time>
     </Item>
     <Item>
       <Source>thumbnails_map_01.png</Source>
@@ -152,7 +152,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_01.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5754233+02:00</Time>
     </Item>
     <Item>
       <Source>Map02.png</Source>
@@ -161,7 +161,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.3494104+02:00</Time>
     </Item>
     <Item>
       <Source>Carabaffe_.png</Source>
@@ -170,7 +170,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Carabaffe_.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7212601+02:00</Time>
     </Item>
     <Item>
       <Source>Spectrum.png</Source>
@@ -179,7 +179,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Spectrum.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5334209+02:00</Time>
     </Item>
     <Item>
       <Source>thumbnails_map_02.png</Source>
@@ -188,7 +188,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_02.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5804236+02:00</Time>
     </Item>
     <Item>
       <Source>map03.png</Source>
@@ -197,7 +197,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\map03.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.3984132+02:00</Time>
     </Item>
     <Item>
       <Source>thumbnails_map_03.png</Source>
@@ -206,7 +206,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_03.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5854239+02:00</Time>
     </Item>
     <Item>
       <Source>cross.png</Source>
@@ -215,7 +215,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\cross.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7862638+02:00</Time>
     </Item>
     <Item>
       <Source>WinScreen.png</Source>
@@ -224,7 +224,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\WinScreen.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.6724289+02:00</Time>
     </Item>
     <Item>
       <Source>Raichu.png</Source>
@@ -233,7 +233,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Raichu.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5054193+02:00</Time>
     </Item>
     <Item>
       <Source>Tortank.png</Source>
@@ -242,7 +242,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Tortank.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.6014248+02:00</Time>
     </Item>
     <Item>
       <Source>blood.png</Source>
@@ -251,7 +251,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.6982588+02:00</Time>
     </Item>
     <Item>
       <Source>thumbnails_map_04.png</Source>
@@ -260,7 +260,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\thumbnails_map_04.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-02-25T19:11:20+01:00</Time>
     </Item>
     <Item>
       <Source>rain.png</Source>
@@ -269,7 +269,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rain.xnb</Output>
-      <Time>2013-03-30T18:12:48+01:00</Time>
+      <Time>2013-04-26T17:48:24+02:00</Time>
     </Item>
     <Item>
       <Source>boss_entry.png</Source>
@@ -278,7 +278,115 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\boss_entry.xnb</Output>
-      <Time>2013-04-17T21:54:36+02:00</Time>
+      <Time>2013-04-26T17:48:24+02:00</Time>
+    </Item>
+    <Item>
+      <Source>plane.png</Source>
+      <Name>plane</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\plane.xnb</Output>
+      <Time>2013-04-26T20:59:36+02:00</Time>
+    </Item>
+    <Item>
+      <Source>target.png</Source>
+      <Name>target</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\target.xnb</Output>
+      <Time>2013-04-27T00:20:10+02:00</Time>
+    </Item>
+    <Item>
+      <Source>melodelf.png</Source>
+      <Name>melodelf</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\melodelf.xnb</Output>
+      <Time>2013-04-27T19:13:12.298253+02:00</Time>
+    </Item>
+    <Item>
+      <Source>attackeclair.png</Source>
+      <Name>attackeclair</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\attackeclair.xnb</Output>
+      <Time>2013-04-27T21:02:03.6722573+02:00</Time>
+    </Item>
+    <Item>
+      <Source>attackeclair2.png</Source>
+      <Name>attackeclair2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\attackeclair2.xnb</Output>
+      <Time>2013-04-27T21:02:03.6812578+02:00</Time>
+    </Item>
+    <Item>
+      <Source>carabaffeattack.png</Source>
+      <Name>carabaffeattack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\carabaffeattack.xnb</Output>
+      <Time>2013-04-27T22:14:44.4284779+02:00</Time>
+    </Item>
+    <Item>
+      <Source>carabaffeattack2.png</Source>
+      <Name>carabaffeattack2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\carabaffeattack2.xnb</Output>
+      <Time>2013-04-27T21:02:03.7272604+02:00</Time>
+    </Item>
+    <Item>
+      <Source>fantominusattack.png</Source>
+      <Name>fantominusattack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\fantominusattack.xnb</Output>
+      <Time>2013-04-27T21:02:04.1862867+02:00</Time>
+    </Item>
+    <Item>
+      <Source>pikaattack.png</Source>
+      <Name>pikaattack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikaattack.xnb</Output>
+      <Time>2013-04-27T22:09:19.2002699+02:00</Time>
+    </Item>
+    <Item>
+      <Source>raichuattack.png</Source>
+      <Name>raichuattack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\raichuattack.xnb</Output>
+      <Time>2013-04-27T22:20:44.7184555+02:00</Time>
+    </Item>
+    <Item>
+      <Source>spectrumattack.png</Source>
+      <Name>spectrumattack</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\spectrumattack.xnb</Output>
+      <Time>2013-04-27T21:02:06.5384212+02:00</Time>
+    </Item>
+    <Item>
+      <Source>spectrumattack2.png</Source>
+      <Name>spectrumattack2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\spectrumattack2.xnb</Output>
+      <Time>2013-04-27T22:15:16.9165696+02:00</Time>
     </Item>
     <Item>
       <Source>zombie_groan.wav</Source>
@@ -287,7 +395,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\zombie_groan.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.7234318+02:00</Time>
     </Item>
     <Item>
       <Source>explosion_effect.wav</Source>
@@ -296,7 +404,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\explosion_effect.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.8752689+02:00</Time>
     </Item>
     <Item>
       <Source>pop.wav</Source>
@@ -305,7 +413,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pop.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5014191+02:00</Time>
     </Item>
     <Item>
       <Source>RaichuSon.wav</Source>
@@ -314,7 +422,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\RaichuSon.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5234204+02:00</Time>
     </Item>
     <Item>
       <Source>RaichuSon2.wav</Source>
@@ -323,7 +431,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\RaichuSon2.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5284206+02:00</Time>
     </Item>
     <Item>
       <Source>blood_effect.wav</Source>
@@ -332,7 +440,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\blood_effect.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.7142597+02:00</Time>
     </Item>
     <Item>
       <Source>place_sentry.wav</Source>
@@ -341,7 +449,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\place_sentry.xnb</Output>
-      <Time>2013-03-31T00:47:58+01:00</Time>
+      <Time>2013-04-26T17:48:24+02:00</Time>
     </Item>
     <Item>
       <Source>sentry_shoot.wav</Source>
@@ -350,7 +458,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\sentry_shoot.xnb</Output>
-      <Time>2013-03-31T00:47:58+01:00</Time>
+      <Time>2013-04-26T17:48:24+02:00</Time>
     </Item>
     <Item>
       <Source>rain.wav</Source>
@@ -359,7 +467,43 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\rainEffect.xnb</Output>
-      <Time>2013-03-31T01:07:32+01:00</Time>
+      <Time>2013-04-26T17:48:24+02:00</Time>
+    </Item>
+    <Item>
+      <Source>plane_running.wav</Source>
+      <Name>plane_running</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\plane_running.xnb</Output>
+      <Time>2013-04-26T22:12:54+02:00</Time>
+    </Item>
+    <Item>
+      <Source>carabaffeson.wav</Source>
+      <Name>carabaffeson</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\carabaffeson.xnb</Output>
+      <Time>2013-04-27T21:02:03.7462615+02:00</Time>
+    </Item>
+    <Item>
+      <Source>spectrumson.wav</Source>
+      <Name>spectrumson</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\spectrumson.xnb</Output>
+      <Time>2013-04-27T21:02:06.5634226+02:00</Time>
+    </Item>
+    <Item>
+      <Source>tortankson.wav</Source>
+      <Name>tortankson</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tortankson.xnb</Output>
+      <Time>2013-04-27T21:02:06.6064251+02:00</Time>
     </Item>
     <Item>
       <Source>tire.MP3</Source>
@@ -368,7 +512,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tire.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.5914242+02:00</Time>
     </Item>
     <Item>
       <Source>pikachu001.mp3</Source>
@@ -377,7 +521,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu001.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.4724174+02:00</Time>
     </Item>
     <Item>
       <Source>pikachu002.mp3</Source>
@@ -386,7 +530,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\pikachu002.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.4964188+02:00</Time>
     </Item>
     <Item>
       <Source>elevator_music.mp3</Source>
@@ -396,7 +540,7 @@
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.xnb</Output>
       <Extra>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\elevator_music.wma</Extra>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:03.8512675+02:00</Time>
     </Item>
     <Item>
       <Source>lose_effect.mp3</Source>
@@ -405,7 +549,7 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\lose_effect.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.2984075+02:00</Time>
     </Item>
     <Item>
       <Source>gameplay_music.mp3</Source>
@@ -415,7 +559,7 @@
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.xnb</Output>
       <Extra>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\gameplay_music.wma</Extra>
-      <Time>2013-02-25T21:41:40+01:00</Time>
+      <Time>2013-04-27T21:02:06.2794064+02:00</Time>
     </Item>
     <Item>
       <Source>win_effect.mp3</Source>
@@ -424,30 +568,12 @@
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\win_effect.xnb</Output>
-      <Time>2013-02-25T21:41:40+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Map02_surcouche.png</Source>
-      <Name>Map02_surcouche</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02_surcouche.xnb</Output>
-      <Time>2013-04-26T20:46:27.2045843+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Map03_surcouche.png</Source>
-      <Name>Map03_surcouche</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map03_surcouche.xnb</Output>
-      <Time>2013-04-26T21:14:38.3495873+02:00</Time>
+      <Time>2013-04-27T21:02:06.6674286+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
       <RootDirectory>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody SundayContent\</RootDirectory>

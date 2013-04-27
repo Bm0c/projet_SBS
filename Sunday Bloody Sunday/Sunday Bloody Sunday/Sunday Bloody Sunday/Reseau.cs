@@ -56,6 +56,34 @@ namespace Sunday_Bloody_Sunday
                     {
                         liste.Add(Keys.R);
                     }
+                    else if (a == 'u')
+                    {
+                        liste.Add(Keys.Up);
+                    }
+                    else if (a == 'd')
+                    {
+                        liste.Add(Keys.Down);
+                    }
+                    else if (a == 'l')
+                    {
+                        liste.Add(Keys.Left);
+                    }
+                    else if (a == 'r')
+                    {
+                        liste.Add(Keys.Right);
+                    }
+                    else if (a == 'n')
+                    {
+                        liste.Add(Keys.N);
+                    }
+                    else if (a == 'p')
+                    {
+                        liste.Add(Keys.P);
+                    }
+                    else if (a == 'e')
+                    {
+                        liste.Add(Keys.Enter);
+                    }
                 }
             }
             catch
@@ -74,42 +102,90 @@ namespace Sunday_Bloody_Sunday
         {
         }
 
-        public void initialisationClient(int port)
+        public void initialisationClient(int port, ref bool connection)
         {
-            Envoie = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Envoie.Connect(IPAddress.Parse("127.0.0.1"), port);
-            Envoie.NoDelay = true;
+            try
+            {
+                Envoie = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                Envoie.Connect(IPAddress.Parse("127.0.0.1"), port);
+                Envoie.NoDelay = true;
+            }
+            catch
+            {
+                try
+                {
+                    Envoie.Close();
+                }
+                catch { };
+
+                connection = false;
+            }
         }
 
-        public void envoieMessage(string message)
+        public void envoieMessage(string message, ref bool connection)
         {
-            byte[] messageLength = BitConverter.GetBytes(message.Length);
-            Envoie.Send(messageLength);
+            try
+            {
+                byte[] messageLength = BitConverter.GetBytes(message.Length);
+                Envoie.Send(messageLength);
 
-            byte[] messageData = System.Text.Encoding.UTF8.GetBytes(message);
-            Envoie.Send(messageData);
+                byte[] messageData = System.Text.Encoding.UTF8.GetBytes(message);
+                Envoie.Send(messageData);
+            }
+            catch
+            {
+                try
+                {
+                    Envoie.Close();
+                }
+                catch { };
+                connection = false;
+            }
         }
 
-        public void intialisationServeur(int port)
+        public void intialisationServeur(int port, ref bool connection)
         {
-            Attente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Attente.Bind(new IPEndPoint(IPAddress.Any, port));
-            Attente.Listen(2);
-            Reception = Attente.Accept();
-            Reception.NoDelay = true;
+            try
+            {
+                Attente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                Attente.Bind(new IPEndPoint(IPAddress.Any, port));
+                Attente.Listen(2);
+                Reception = Attente.Accept();
+                Reception.NoDelay = true;
+            }
+            catch
+            {
+                try { Attente.Close(); }
+                catch { }
+                try { Reception.Close(); }
+                catch { }
+                connection = false;
+            }
         }
 
-        public string receptionMessage()
+        public string receptionMessage(ref bool connection)
         {
-            byte[] messageLengthData = new byte[4];
+            try
+            {
+                byte[] messageLengthData = new byte[4];
 
-            Reception.Receive(messageLengthData);
-            int messageLength = BitConverter.ToInt32(messageLengthData, 0);
+                Reception.Receive(messageLengthData);
+                int messageLength = BitConverter.ToInt32(messageLengthData, 0);
 
-            byte[] messageData = new byte[messageLength];
-            Reception.Receive(messageData);
+                byte[] messageData = new byte[messageLength];
+                Reception.Receive(messageData);
 
-            return System.Text.Encoding.UTF8.GetString(messageData);
+                return System.Text.Encoding.UTF8.GetString(messageData);
+            }
+            catch
+            {
+                connection = false;
+                try { Attente.Close(); }
+                catch { }
+                try { Reception.Close(); }
+                catch { }
+                return "0";
+            }
         }
 
     }

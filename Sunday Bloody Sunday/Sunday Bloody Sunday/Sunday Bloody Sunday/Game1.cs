@@ -18,11 +18,12 @@ namespace Sunday_Bloody_Sunday
         SpriteBatch spriteBatch;
         GameMain Main;
         string path_map;
-
+        int joueur;
+        bool multi;
         //Enum of the Screen States
         public enum Screen
         {
-            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map, win, credits
+            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map, win, credits, multioupas, transition, deconnexion
         };
 
         //Init Screen States + Menu
@@ -127,8 +128,8 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 1)
                 {
-                    ecran = Screen.selecteur_map;
-                    menuMain = new Menu(Menu.MenuType.MapSelector);
+                    ecran = Screen.multioupas;
+                    menuMain = new Menu(Menu.MenuType.MultiOrNot);
                     button_timer = 0;
                 }
                 if (action == 2)
@@ -142,6 +143,49 @@ namespace Sunday_Bloody_Sunday
                     Exit();
                 }
             }
+
+             else if (ecran == Screen.multioupas)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
+                    joueur = 0;
+                    multi = false;
+                    ecran = Screen.selecteur_map;
+                    menuMain = new Menu(Menu.MenuType.MapSelector);
+                    button_timer = 0;
+                }
+                if (action == 2)
+                {
+                    joueur = 1;
+                    multi = true;
+                    ecran = Screen.selecteur_map;
+                    menuMain = new Menu(Menu.MenuType.MapSelector);
+
+                    button_timer = 0;
+                }
+                if (action == 3)
+                {
+                    joueur = 2;
+                    multi = true;
+                    ecran = Screen.selecteur_map;
+                    menuMain = new Menu(Menu.MenuType.MapSelector);
+
+                    button_timer = 0;
+                }
+                if (action == 4)
+                {
+                    ecran = Screen.menu_principal;
+                    menuMain = new Menu(Menu.MenuType.MainMenu);
+                    button_timer = 0;
+                }
+            }
+            
 
             else if (ecran == Screen.selecteur_map)
             {
@@ -179,25 +223,25 @@ namespace Sunday_Bloody_Sunday
                     if (compteur_thumbnails == 0)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"));
+                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"),multi,joueur);
                         path_map = "map01.txt";
                     }
                     else if (compteur_thumbnails == 1)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"));
+                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur);
                         path_map = "map02.txt";
                     }
                     else if (compteur_thumbnails == 2)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"));
+                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur);
                         path_map = "map03.txt";
                     }
                     else if (compteur_thumbnails == 3)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"));
+                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur);
                         path_map = "map04.txt";
                     }
                     ecran = Screen.jeu;
@@ -206,8 +250,8 @@ namespace Sunday_Bloody_Sunday
                 }
                 if (action == 4)
                 {
-                    ecran = Screen.menu_principal;
-                    menuMain = new Menu(Menu.MenuType.MainMenu);
+                    ecran = Screen.multioupas;
+                    menuMain = new Menu(Menu.MenuType.MultiOrNot);
                     button_timer = 0;
                 }
             }
@@ -376,10 +420,21 @@ namespace Sunday_Bloody_Sunday
                     StopMusic(GamePlayMusic);
                     winEffect.Play();
                 }
-                /*if (Main.MainMap.boss_entry.combat_boss)
+                if (Main.MainMap.boss_entry.combat_boss)
                 {
-
-                }*/
+                    Main = new GameMain();
+                    Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur);
+                    path_map = "map02.txt";
+                    ecran = Screen.jeu;
+                    PlayMusic(GamePlayMusic);
+                    button_timer = 0;
+                }
+                if (!Main.MainMap.connection)
+                {
+                    ecran = Screen.deconnexion;
+                    menuMain = new Menu(Menu.MenuType.Deconnexion);
+                    StopMusic(GamePlayMusic);
+                }
             }
 
             else if (ecran == Screen.game_over)
@@ -414,6 +469,23 @@ namespace Sunday_Bloody_Sunday
                 }
             }
 
+            else if (ecran == Screen.deconnexion)
+            {
+                int action = 0;
+
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1)
+                {
+                    ecran = Screen.menu_principal;
+                    menuMain = new Menu(Menu.MenuType.MainMenu);
+                    button_timer = 0;
+                }
+            }
+
+
             base.Update(gameTime);
         }
 
@@ -423,67 +495,76 @@ namespace Sunday_Bloody_Sunday
 
             spriteBatch.Begin();
 
-                if (ecran == Screen.menu_principal)
+            if (ecran == Screen.menu_principal)
+            {
+                spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.multioupas)
+            {
+                spriteBatch.Draw(Ressources.mPlayScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.selecteur_map)
+            {
+                if (compteur_thumbnails == 0)
                 {
-                    spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.selecteur_map)
+                else if (compteur_thumbnails == 1)
                 {
-                    if (compteur_thumbnails == 0)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    else if (compteur_thumbnails == 1)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap02, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    else if (compteur_thumbnails == 2)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
-                        menuMain.Draw(spriteBatch);
-                    }
-                    else if (compteur_thumbnails == 3)
-                    {
-                        spriteBatch.Draw(Ressources.ThumbnailsMap04, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
-                        menuMain.Draw(spriteBatch);
-                    }
-                }
-                if (ecran == Screen.menu_pause)
-                {
-                    Main.Draw(spriteBatch);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap02, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.menu_preferences)
+                else if (compteur_thumbnails == 2)
                 {
-                    Main.Draw(spriteBatch);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.menu_parametres)
+                else if (compteur_thumbnails == 3)
                 {
-                    GraphicsDevice.Clear(Color.Black);
+                    spriteBatch.Draw(Ressources.ThumbnailsMap04, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
                     menuMain.Draw(spriteBatch);
                 }
-                if (ecran == Screen.credits)
-                {
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.jeu)
-                {
-                    Main.Draw(spriteBatch);
-                }
-                if (ecran == Screen.game_over)
-                {
-                    spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
-                    menuMain.Draw(spriteBatch);
-                }
-                if (ecran == Screen.win)
-                {
-                    spriteBatch.Draw(Ressources.mWinSreen, new Rectangle(0, 0, 800, 480), Color.White);
-                    menuMain.Draw(spriteBatch);
-                }
+            }
+            if (ecran == Screen.menu_pause)
+            {
+                Main.Draw(spriteBatch);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.menu_preferences)
+            {
+                Main.Draw(spriteBatch);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.menu_parametres)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.credits)
+            {
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.jeu)
+            {
+                Main.Draw(spriteBatch);
+            }
+            if (ecran == Screen.game_over)
+            {
+                spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.win)
+            {
+                spriteBatch.Draw(Ressources.mWinSreen, new Rectangle(0, 0, 800, 480), Color.White);
+                menuMain.Draw(spriteBatch);
+            }
+            if (ecran == Screen.deconnexion)
+            {
+                menuMain.Draw(spriteBatch);
+            }
 
             spriteBatch.End();
 

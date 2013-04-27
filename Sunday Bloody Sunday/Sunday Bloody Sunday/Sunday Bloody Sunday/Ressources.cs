@@ -16,37 +16,34 @@ namespace Sunday_Bloody_Sunday
         // STATICS FIELDS
         public static Texture2D Player1, Player2, Player3,
                                 Map, Map02, Map03,
-                                Map02_surcouche, Map03surcouche,
                                 ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, ThumbnailsMap04,
                                 Projectile,
                                 BloodParticule, ExplosionParticule,
-                                IA1, IA2, IA3, IA4, IA5, IA6,
+                                IA1, IA1attack, IA1_dead, IA2, IA5attack, IA3, IA3attack, IA4, IA4attack, IA5, IA6,
                                 mHealthBox, mAmmoBox,
                                 mExplosiveBox, mBomb,
-                                mTitleScreen, mGameOverScreen, mWinSreen,
+                                mTitleScreen, mGameOverScreen, mWinSreen, mPlayScreen,
                                 mCross, mBossEntry,
-                                mRain;
+                                mRain, mPlane, mTarget, mattackeclair;
+        
         // HUD
         public static SpriteFont HUD;
         // Sounds
         public static Song GamePlayMusic, MenuMusic;
-        public static SoundEffect mTire,
-                                  mPika, mPika2, mRaichu, mRaichu2,
-                                  mIntroEffect, mLoseEffect, mWinEffect,
-                                  mExplosionEffect, mBloodEffect,
-                                  mPop,
-                                  mSentryReady, mSentryShoot,
-                                  mRainEffect;
+        public static SoundEffect mSentryReady, mSentryShoot,
+                                  mRainEffect, mPlaneEffect,
+                                  mTire, mPika, mPika2, mRaichu, mRaichu2, 
+                                  mIntroEffect, mLoseEffect, mWinEffect, 
+                                  mExplosionEffect, mPop, mBloodEffect, 
+                                  mTortank, mCarabaffe, mSpectrum;
 
-        
+
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
             Map = content.Load<Texture2D>("Map");
             Map02 = content.Load<Texture2D>("Map02");
-            Map02_surcouche = content.Load<Texture2D>("Map02_surcouche");
             Map03 = content.Load<Texture2D>("Map03");
-            Map03surcouche = content.Load<Texture2D>("Map03_surcouche");
             ThumbnailsMap01 = content.Load<Texture2D>("thumbnails_map_01");
             ThumbnailsMap02 = content.Load<Texture2D>("thumbnails_map_02");
             ThumbnailsMap03 = content.Load<Texture2D>("thumbnails_map_03");
@@ -58,10 +55,15 @@ namespace Sunday_Bloody_Sunday
             ExplosionParticule = content.Load<Texture2D>("explosion");
             BloodParticule = content.Load<Texture2D>("blood");
             IA1 = content.Load<Texture2D>("pikachu");
+            IA1attack = content.Load<Texture2D>("pikaattack");
             IA2 = content.Load<Texture2D>("pikachu_2");
             IA3 = content.Load<Texture2D>("Carabaffe_");
+            IA3attack = content.Load<Texture2D>("carabaffeattack");
             IA4 = content.Load<Texture2D>("Spectrum");
+            IA4attack = content.Load<Texture2D>("spectrumattack2");
             IA5 = content.Load<Texture2D>("Raichu");
+            IA5attack = content.Load<Texture2D>("raichuattack");
+            mattackeclair = content.Load<Texture2D>("attackeclair2");
             IA6 = content.Load<Texture2D>("Tortank");
             HUD = content.Load<SpriteFont>("gameFont");
             GamePlayMusic = content.Load<Song>("gameplay_music");
@@ -75,7 +77,10 @@ namespace Sunday_Bloody_Sunday
             mTire = content.Load<SoundEffect>("tire");
             mPika = content.Load<SoundEffect>("pikachu001");
             mPika2 = content.Load<SoundEffect>("pikachu002");
-            mRaichu = content.Load<SoundEffect>("raichuSon");
+            mRaichu = content.Load<SoundEffect>("raichuSon"); 
+            mCarabaffe = content.Load<SoundEffect>("carabaffeson");
+            mTortank = content.Load<SoundEffect>("tortankson");
+            mSpectrum = content.Load<SoundEffect>("spectrumson");
             mRaichu2 = content.Load<SoundEffect>("raichuSon2");
             mHealthBox = content.Load<Texture2D>("health_box");
             mAmmoBox = content.Load<Texture2D>("ammo_box");
@@ -84,12 +89,16 @@ namespace Sunday_Bloody_Sunday
             mTitleScreen = content.Load<Texture2D>("Title");
             mGameOverScreen = content.Load<Texture2D>("GameOver");
             mWinSreen = content.Load<Texture2D>("WinScreen");
+            mPlayScreen = content.Load<Texture2D>("melodelf");
             mCross = content.Load<Texture2D>("cross");
             mBossEntry = content.Load<Texture2D>("boss_entry");
             mRain = content.Load<Texture2D>("rain");
+            mPlane = content.Load<Texture2D>("plane");
+            mTarget = content.Load<Texture2D>("target");
             mSentryReady = content.Load<SoundEffect>("place_sentry");
             mSentryShoot = content.Load<SoundEffect>("sentry_shoot");
             mRainEffect = content.Load<SoundEffect>("rainEffect");
+            mPlaneEffect = content.Load<SoundEffect>("plane_running");
         }
     }
 }

@@ -55,7 +55,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(List<Player> liste_joueurs, KeyboardState keyboard, List<DestructibleItems> liste_barrels)
+        public void Update()
         {
             
         }

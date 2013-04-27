@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum MenuType
         {
-            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen, Credits
+            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen, Credits, MultiOrNot, Transition, Deconnexion
         };
 
 
@@ -96,6 +96,21 @@ namespace Sunday_Bloody_Sunday
                 case MenuType.Credits:
                     button_1 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, Divers.HeightScreen / 2 + 150, 100, 50));
                     break;
+
+                case MenuType.MultiOrNot:
+                    button_1 = new MenuButton(MenuButton.ButtonType.Solo, new Rectangle(Divers.WidthScreen / 2 - 50, 100, 100, 50));
+                    button_2 = new MenuButton(MenuButton.ButtonType.J1, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 100, 50));
+                    button_3 = new MenuButton(MenuButton.ButtonType.J2, new Rectangle(Divers.WidthScreen / 2 + 50, 200, 100, 50));
+                    button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
+                    break;
+
+                case MenuType.Deconnexion:
+                    button_1 = new MenuButton(MenuButton.ButtonType.Deconnexion, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2, 200, 50));
+                    break;
+
+                case MenuType.Transition:
+                    break;
+
                 default:
                     break;
             }
@@ -156,8 +171,10 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            button_1.DrawButton(spriteBatch);
+            //button_1.DrawButton(spriteBatch);
 
+            if (button_1 != null)
+                button_1.DrawButton(spriteBatch);
             if (button_2 != null)
                 button_2.DrawButton(spriteBatch);
             if (button_3 != null)

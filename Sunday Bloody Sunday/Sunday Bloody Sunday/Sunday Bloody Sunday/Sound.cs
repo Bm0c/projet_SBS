@@ -25,6 +25,7 @@ namespace Sunday_Bloody_Sunday
         SoundEffect sentryReady = Ressources.mSentryReady;
         SoundEffect sentryShoot = Ressources.mSentryShoot;
         SoundEffect rainEffect = Ressources.mRainEffect;
+        SoundEffect planeEffect = Ressources.mPlaneEffect;
 
 
         // METHODS
@@ -107,7 +108,6 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-
         public void PlayBloodEffect()
         {
             try
@@ -157,6 +157,17 @@ namespace Sunday_Bloody_Sunday
             try
             {
                 rainEffect.Play();
+            }
+            catch
+            {
+            }
+        }
+
+        public void PlayPlaneEffect()
+        {
+            try
+            {
+                planeEffect.Play();
             }
             catch
             {

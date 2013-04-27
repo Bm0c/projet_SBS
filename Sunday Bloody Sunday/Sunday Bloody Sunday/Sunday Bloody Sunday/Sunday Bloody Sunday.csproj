@@ -13,7 +13,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
-    <XnaProfile>HiDef</XnaProfile>
+    <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>c76a7212-c025-4c95-871a-5f7abd59973c</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animationattack.cs" />
     <Compile Include="CheckPoint.cs" />
     <Compile Include="Divers.cs" />
     <Compile Include="DestructibleItems.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="ParticuleRain.cs" />
     <Compile Include="Pathfinding.cs" />
     <Compile Include="PhysicsEngine.cs" />
+    <Compile Include="Plane.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
