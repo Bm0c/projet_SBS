@@ -570,6 +570,51 @@
       <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\win_effect.xnb</Output>
       <Time>2013-04-27T21:02:06.6674286+02:00</Time>
     </Item>
+    <Item>
+      <Source>Map02_surcouche.png</Source>
+      <Name>Map02_surcouche</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02_surcouche.xnb</Output>
+      <Time>2013-04-26T20:46:27.2045843+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Map03_surcouche.png</Source>
+      <Name>Map03_surcouche</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map03_surcouche.xnb</Output>
+      <Time>2013-04-26T21:14:38.3495873+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Map_Transparent.png</Source>
+      <Name>Map_Transparent</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map_Transparent.xnb</Output>
+      <Time>2013-04-27T23:41:55.8706605+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Map04.png</Source>
+      <Name>Map04</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map04.xnb</Output>
+      <Time>2013-04-27T23:15:08.9337489+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Map05.png</Source>
+      <Name>Map05</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map05.xnb</Output>
+      <Time>2013-04-27T23:29:18.0733169+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

@@ -15,7 +15,8 @@ namespace Sunday_Bloody_Sunday
     {
         // STATICS FIELDS
         public static Texture2D Player1, Player2, Player3,
-                                Map, Map02, Map03,
+                                Map, Map02, Map03,Map04,Map05,
+                                Map_transparent,Map02_transparent,Map03_transparent,
                                 ThumbnailsMap01, ThumbnailsMap02, ThumbnailsMap03, ThumbnailsMap04,
                                 Projectile,
                                 BloodParticule, ExplosionParticule,
@@ -44,6 +45,11 @@ namespace Sunday_Bloody_Sunday
             Map = content.Load<Texture2D>("Map");
             Map02 = content.Load<Texture2D>("Map02");
             Map03 = content.Load<Texture2D>("Map03");
+            Map02 = content.Load<Texture2D>("Map04");
+            Map03 = content.Load<Texture2D>("Map05");
+            Map_transparent = content.Load<Texture2D>("Map_Transparent");
+            Map02_transparent = content.Load<Texture2D>("Map02_surcouche");
+            Map03_transparent = content.Load<Texture2D>("Map03_surcouche");
             ThumbnailsMap01 = content.Load<Texture2D>("thumbnails_map_01");
             ThumbnailsMap02 = content.Load<Texture2D>("thumbnails_map_02");
             ThumbnailsMap03 = content.Load<Texture2D>("thumbnails_map_03");

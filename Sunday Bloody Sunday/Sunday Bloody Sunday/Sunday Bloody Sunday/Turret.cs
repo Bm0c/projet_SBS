@@ -57,24 +57,26 @@ namespace Sunday_Bloody_Sunday
         {
             foreach (IA ia in liste_ias)
             {
-                if (reffroidissement == 0)
+                if (reffroidissement == 0 && munition > 0)
                 {
                     if (ia.IATexture.Contains((int)centre().X, (int)ia.IATexture.Y))
                     {
                         if (ia.IATexture.Y < turretTexture.Y)
-                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 5, Direction.Up, 40));
+                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 10, Direction.Up, 50));
                         else
-                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 5, Direction.Down, 40));
-                        reffroidissement = 30;
+                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 10, Direction.Down, 50));
+                        reffroidissement = 10;
+                        munition--;
                         sons.PlaySentryShoot();
                     }
                     else if (ia.IATexture.Contains((int)ia.IATexture.X, (int)centre().Y))
                     {
                         if (ia.IATexture.X < turretTexture.X)
-                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 5, Direction.Left, 40));
+                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 10, Direction.Left, 50));
                         else
-                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 5, Direction.Right, 40));
-                        reffroidissement = 30;
+                            liste_projectiles.Add(new Projectile(Ressources.Projectile, (int)centre().X - 5, (int)centre().Y - 5, 10, Direction.Right, 50));
+                        reffroidissement = 10;
+                        munition--;
                         sons.PlaySentryShoot();
                     }
                 }

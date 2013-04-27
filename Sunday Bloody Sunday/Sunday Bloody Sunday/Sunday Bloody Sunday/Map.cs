@@ -1186,7 +1186,7 @@ namespace Sunday_Bloody_Sunday
             }
             liste_barrel.Add(bomb);
         }
-        
+
         public void AddTurret(int x, int y, Keys poserTurret)
         {
             Turret turret = new Turret(x, y, poserTurret);
@@ -1237,23 +1237,25 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void update_Plane(List<Player> liste_joueurs, List<Plane> liste_planes, KeyboardState keyboard, MouseState mouse, int x, int y)
+        public void update_Plane(List<Player> liste_joueurs, KeyboardState keyboard, MouseState mouse, int x, int y)
         {
+            if (liste_plane.Count == 0)
+                avion = 1;
             if (mouse.LeftButton == ButtonState.Pressed && keyboard.IsKeyDown(Keys.F) && avion > 0)
             {
-                liste_plane.Add(new Plane(mouse.X , mouse.Y, x,y));
+                liste_plane.Add(new Plane(mouse.X, mouse.Y, x, y));
                 moteur_son.PlayPlaneEffect();
                 avion--;
             }
             liste_plane2 = new List<Plane>();
-            foreach (Plane plane in liste_planes)
+            foreach (Plane plane in liste_plane)
             {
                 plane.Update();
                 int i = 0;
                 while (i < 5)
                 {
                     plane.PlaneTexture.X++;
-                    if (plane.PlaneTexture.X + x== plane.target.X)
+                    if (plane.PlaneTexture.X + x == plane.target.X)
                     {
                         AddExplosion(new Vector2(plane.target.X /*+ x*/, plane.target.Y /*+ y*/), (int)plane.target.X - 50 /*+ x*/, (int)plane.target.Y - 50 /*+ y*/, 100);
                         moteur_son.PlayExplosionEffect();
@@ -1265,7 +1267,7 @@ namespace Sunday_Bloody_Sunday
                     liste_plane2.Add(plane);
                 }
             }
-            liste_planes = liste_plane2;
+            liste_plane = liste_plane2;
         }
 
         //Gère l'affichage de la liste d'IA
@@ -1489,7 +1491,7 @@ namespace Sunday_Bloody_Sunday
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
             update_Turret(liste_joueurs, keyboard);
-            update_Plane(liste_joueurs, liste_plane, keyboard, mouse, -MapTexture.X, -MapTexture.Y);
+            update_Plane(liste_joueurs, keyboard, mouse, -MapTexture.X, -MapTexture.Y);
 
             if (parametre.texture_map == 0)
             {
@@ -1579,6 +1581,32 @@ namespace Sunday_Bloody_Sunday
             foreach (ParticuleExplosion blood in liste_blood)
             {
                 blood.Draw(spriteBatch, MapTexture);
+            }
+            if (parametre.texture_map == 0)
+            {
+                spriteBatch.Draw(Ressources.Map_transparent, this.MapTexture, Color.CadetBlue);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+                boss_entry.Draw(spriteBatch, MapTexture);
+                foreach (ParticuleRain rain in liste_rain)
+                {
+                    rain.Draw(spriteBatch);
+                }
+            }
+            else if (parametre.texture_map == 1)
+            {
+                spriteBatch.Draw(Ressources.Map02_transparent, this.MapTexture, Color.CadetBlue);
+                fin_niveau.Draw(spriteBatch, MapTexture);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+            }
+            else if (parametre.texture_map == 2)
+            {
+                spriteBatch.Draw(Ressources.Map03_transparent, this.MapTexture, Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
+            }
+            else if (parametre.texture_map == 3)
+            {
+                spriteBatch.Draw(Ressources.Map03_transparent, this.MapTexture, Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
             }
             foreach (ParticuleExplosion explosion in liste_explosions)
             {

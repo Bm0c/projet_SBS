@@ -717,3 +717,8 @@ C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sund
 C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\carabaffeson.xnb
 C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\spectrumson.xnb
 C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\tortankson.xnb
+C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map02_surcouche.xnb
+C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map03_surcouche.xnb
+C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map_Transparent.xnb
+C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map04.xnb
+C:\Users\Alexis\SBS\Sunday Bloody Sunday\Sunday Bloody Sunday\Sunday Bloody Sunday\bin\x86\Debug\Content\Map05.xnb

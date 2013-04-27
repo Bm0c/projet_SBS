@@ -63,3 +63,8 @@ Content\lose_effect.xnb
 Content\gameplay_music.xnb
 Content\gameplay_music.wma
 Content\win_effect.xnb
+Content\Map02_surcouche.xnb
+Content\Map03_surcouche.xnb
+Content\Map_Transparent.xnb
+Content\Map04.xnb
+Content\Map05.xnb
