@@ -49,15 +49,15 @@ namespace Sunday_Bloody_Sunday
     {
         static bool[,] liste;
         static bool[,] liste_projectile;
-        static List<Spawn> liste_spawn;
-        static List<DestructibleItems> liste_barrel;
-        static Spawn_Items liste_caisses;
+        static List<Spawn> liste_spawn = new List<Spawn>();
+        static List<DestructibleItems> liste_barrel = new List<DestructibleItems>();
+        static Spawn_Items liste_caisses = new Spawn_Items(new List<Vector2>());
         static int x;
         static int y;
         static int texture_map;
         static int largeur;
         static int hauteur;
-        static CheckPoint checkpointArrivee, checkPointBossEntry;
+        static CheckPoint checkpointArrivee = new CheckPoint(0,0,"arrivee"), checkPointBossEntry = new CheckPoint(0,0,"bossentry");
         static bool scrolling;
 
         public static Param_Map lecture(string path)

@@ -14,7 +14,6 @@ namespace Sunday_Bloody_Sunday
 {
     class Map
     {
-
         Reseau Client = new Reseau();
         Reseau Serveur = new Reseau();
         int seed = 0;
@@ -48,7 +47,7 @@ namespace Sunday_Bloody_Sunday
         public List<Player> liste_joueurs = new List<Player>(); //Liste joueurs
         public List<Player> liste_joueurs2 = new List<Player>(); //Liste joueurs secondaire
 
-        public List<IA> liste_ia; //Liste des IA
+        public List<IA> liste_ia; //Liste des IA         
         public List<IA> liste_ia2; //Liste IA secondaire
 
         public List<Keys> liste_clavier;
@@ -63,10 +62,13 @@ namespace Sunday_Bloody_Sunday
         public List<Plane> liste_plane; //Liste Plane
         public List<Plane> liste_plane2; //Liste Plane secondaire
 
+        public List<Animationattack> liste_attaque;
+        public List<Animationattack> liste_attaque2;
+
         Projectile balle;
         IA ia;
         Texture2D explosionTexture, rainTexture;
-        float spawnWidth = Divers.WidthScreen, density = 35, timer;
+        float spawnWidth = Divers.WidthScreen, density = 50, timer;
         PhysicsEngine map_physique;
         private Rectangle futur_rectangle; //Rectangle utilisé pour stocker des données
         int compteur = 0;
@@ -79,8 +81,8 @@ namespace Sunday_Bloody_Sunday
         bool etape2 = false;
         bool etape3 = false;
 
-        public bool game_over = false;
-        Param_Map parametre;
+        public bool game_over = false, gagne = false;
+        public Param_Map parametre;
         public CheckPoint fin_niveau, boss_entry;
         int compteur_kill = 0;
 
@@ -142,6 +144,15 @@ namespace Sunday_Bloody_Sunday
 
             this.liste_clavier = new List<Keys>();
             this.liste_clavier_2 = new List<Keys>();
+
+            this.liste_attaque = new List<Animationattack>();
+            this.liste_attaque2 = new List<Animationattack>();
+
+            if (parametre.texture_map == 4)
+            {
+                this.liste_ia = new List<IA>();
+                liste_ia.Add(new IA(150, 150, 6, 0, 100, 10));
+            }
 
             fin_niveau = parametre.checkpointArrivee;
             boss_entry = parametre.checkpointBossEntry;
@@ -838,6 +849,18 @@ namespace Sunday_Bloody_Sunday
                     ia.action_ia(ia, joueur_cible, liste_barrel, map_physique, liste_ia, liste_joueurs); //Verifie la possibilité de réalisation des actions
                     ia.Update(); //Met à jour l'IA
                     ia.attaque_ia(liste_joueurs);
+                    if (ia.id_texture == 6)
+                    {
+                        if (ia.couldown_eclaire > 60)
+                        {
+                            int x = seed % 100 - 50 + ia.IATexture.X;
+                            int y = seed % 100 - 50 + ia.IATexture.Y;
+                            liste_attaque.Add(new Animationattack(x, y));
+                            moteur_son.Playeclair();
+                            ia.couldown_eclaire = 0;
+                        }
+                        ia.couldown_eclaire++;
+                    }
                     ia.est_update = false; //Désactive l'update de l'IA
                 }
                 else
@@ -896,12 +919,7 @@ namespace Sunday_Bloody_Sunday
                     if (test)
                     {
                         liste_ia.Add(ia_);
-                        if (true)
-                        {
-                            moteur_son.PlayPika(ia_.id_son);
-                        }
-
-                        joue_son = !joue_son;
+                        moteur_son.Playpoke(ia_.id_texture);
                         compteur = 0;
                     }
                 }
@@ -976,8 +994,8 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180) //Ajout de nouvelles "boxes" a la map
             {
                 Items box;
-                int spawn = rand0.Next(spawn_items.emplacement.Count);
-                int texture = rand0.Next(2);
+                int spawn = seed%spawn_items.emplacement.Count;
+                int texture = seed%(2);
                 Vector2 emplacement = spawn_items.emplacement.ElementAt(spawn);
                 bool test = true;
                 if (texture == 0)
@@ -1097,7 +1115,7 @@ namespace Sunday_Bloody_Sunday
 
             foreach (ParticuleExplosion blood in liste_blood)
             {
-                blood.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood);
+                blood.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood, liste_turret);
                 if (blood.Active == true)
                 {
                     liste_blood2.Add(blood);
@@ -1160,7 +1178,7 @@ namespace Sunday_Bloody_Sunday
             liste_explosions3 = new List<ParticuleExplosion>();
             foreach (ParticuleExplosion explosion in liste_explosions)
             {
-                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood);
+                explosion.Update(gameTime, liste_joueurs, liste_ia, liste_barrel, liste_explosions, liste_explosions3, liste_blood, liste_turret);
                 if (explosion.Active == true)
                 {
                     liste_explosions2.Add(explosion);
@@ -1386,6 +1404,22 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
+        public void update_attaque(KeyboardState keyboard, MouseState mouse)
+        {
+            liste_attaque2 = new List<Animationattack>();
+            foreach (Animationattack Dolphin in this.liste_attaque)
+            {
+                Dolphin.Update(mouse, keyboard);
+                foreach (Player poney in liste_joueurs)
+                    if (poney.PlayerTexture.Intersects(Dolphin.Hitbox))
+                        poney.Health--;
+                if (Dolphin.Animation)
+                    liste_attaque2.Add(Dolphin);
+            }
+            liste_attaque = liste_attaque2;
+        }
+
+
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime, GraphicsDevice graphics)
         {
@@ -1451,7 +1485,6 @@ namespace Sunday_Bloody_Sunday
 
             if (etape3)
             {
-
                 seed = System.Convert.ToInt32(Serveur.receptionMessage(ref connection));
                 Client.envoieMessage(message, ref connection);
                 liste_clavier = Serveur.Liste(Serveur.receptionMessage(ref connection));
@@ -1479,8 +1512,6 @@ namespace Sunday_Bloody_Sunday
                 MapTexture.X = 0;
                 MapTexture.Y = 0;
             }
-
-
             testc = !testc;
             update_ia();
             update_Box();
@@ -1491,9 +1522,9 @@ namespace Sunday_Bloody_Sunday
             update_player(keyboard, mouse);
             update_Bomb(liste_joueurs, keyboard);
             update_Turret(liste_joueurs, keyboard);
-            update_Plane(liste_joueurs, keyboard, mouse, -MapTexture.X, -MapTexture.Y);
+            update_attaque(keyboard, mouse);
 
-            if (parametre.texture_map == 0)
+            if (parametre.texture_map == 5)
             {
                 Random rand3 = new Random();
                 int i = rand3.Next(0, 5000);
@@ -1501,14 +1532,33 @@ namespace Sunday_Bloody_Sunday
                 if (i == 42)
                 {
                     moteur_son.PlayRainEffect();
-                    density = 75;
+                    density = 100;
                 }
                 update_Rain(gameTime, graphics);
+            }
+            if (parametre.texture_map == 0)
+            {
                 boss_entry.Update(liste_joueurs);
             }
             if (parametre.texture_map == 1)
             {
                 fin_niveau.Update(liste_joueurs);
+            }
+            if (parametre.texture_map == 0 || parametre.texture_map == 1 || parametre.texture_map == 5)
+            {
+                update_Plane(liste_joueurs, keyboard, mouse, -MapTexture.X, -MapTexture.Y);
+            }
+            if (parametre.texture_map == 4)
+            {
+                bool poney = true;
+                foreach (IA ia in liste_ia)
+                {
+                    if (ia.id_texture == 6)
+                    {
+                        poney = false;
+                    }
+                }
+                gagne = poney;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -1531,32 +1581,43 @@ namespace Sunday_Bloody_Sunday
                 MapTexture.X = 0;
                 MapTexture.Y = 0;
             }
+
             if (parametre.texture_map == 0)
             {
                 spriteBatch.Draw(Ressources.Map, this.MapTexture, Color.CadetBlue);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
                 boss_entry.Draw(spriteBatch, MapTexture);
-                foreach (ParticuleRain rain in liste_rain)
-                {
-                    rain.Draw(spriteBatch);
-                }
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
             }
             else if (parametre.texture_map == 1)
             {
                 spriteBatch.Draw(Ressources.Map02, this.MapTexture, Color.CadetBlue);
                 fin_niveau.Draw(spriteBatch, MapTexture);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
             }
             else if (parametre.texture_map == 2)
             {
                 spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
             }
             else if (parametre.texture_map == 3)
             {
                 spriteBatch.Draw(Ressources.Map03, this.MapTexture, Color.White);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
             }
+            else if (parametre.texture_map == 4)
+            {
+                spriteBatch.Draw(Ressources.Map04, this.MapTexture, Color.White);
+            }
+            else if (parametre.texture_map == 5)
+            {
+                spriteBatch.Draw(Ressources.Map05, this.MapTexture, Color.White);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
+                foreach (ParticuleRain rain in liste_rain)
+                {
+                    rain.Draw(spriteBatch);
+                }
+            }
+
             foreach (Items box in liste_box)
             {
                 box.Draw(spriteBatch, MapTexture);
@@ -1569,48 +1630,43 @@ namespace Sunday_Bloody_Sunday
             {
                 turret.Draw(spriteBatch, MapTexture);
             }
-            foreach (Plane plane in liste_plane)
-            {
-                plane.Draw(spriteBatch);
-            }
             draw_ordre(spriteBatch);
+
             foreach (Projectile projectile in liste_projectile)
             {
                 projectile.Draw(spriteBatch, MapTexture);
             }
-            foreach (ParticuleExplosion blood in liste_blood)
-            {
-                blood.Draw(spriteBatch, MapTexture);
-            }
+            if (parametre.texture_map != 4)
+                foreach (ParticuleExplosion blood in liste_blood)
+                {
+                    blood.Draw(spriteBatch, MapTexture);
+                }
+
             if (parametre.texture_map == 0)
             {
                 spriteBatch.Draw(Ressources.Map_transparent, this.MapTexture, Color.CadetBlue);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
-                boss_entry.Draw(spriteBatch, MapTexture);
-                foreach (ParticuleRain rain in liste_rain)
-                {
-                    rain.Draw(spriteBatch);
-                }
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
             }
             else if (parametre.texture_map == 1)
             {
                 spriteBatch.Draw(Ressources.Map02_transparent, this.MapTexture, Color.CadetBlue);
-                fin_niveau.Draw(spriteBatch, MapTexture);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.LightGreen);
+                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.White);
             }
-            else if (parametre.texture_map == 2)
+            foreach (Animationattack eclaire in liste_attaque)
             {
-                spriteBatch.Draw(Ressources.Map03_transparent, this.MapTexture, Color.White);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
-            }
-            else if (parametre.texture_map == 3)
-            {
-                spriteBatch.Draw(Ressources.Map03_transparent, this.MapTexture, Color.White);
-                spriteBatch.DrawString(Ressources.HUD, Convert.ToString(compteur_kill), new Vector2(5, 42), Color.Orange);
+                eclaire.Draw(spriteBatch, MapTexture);
             }
             foreach (ParticuleExplosion explosion in liste_explosions)
             {
                 explosion.Draw(spriteBatch, MapTexture);
+            }
+            foreach (Animationattack eclaire in liste_attaque)
+            {
+                eclaire.Draw(spriteBatch, MapTexture);
+            }
+            foreach (Plane plane in liste_plane)
+            {
+                plane.Draw(spriteBatch);
             }
         }
     }

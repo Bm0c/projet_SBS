@@ -69,7 +69,7 @@ namespace Sunday_Bloody_Sunday
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel, List<ParticuleExplosion> liste_explosion, List<ParticuleExplosion> liste_explosion2, List<ParticuleExplosion> liste_blood)
+        public void Update(GameTime gameTime, List<Player> liste_joueurs, List<IA> liste_ia, List<DestructibleItems> liste_barrel, List<ParticuleExplosion> liste_explosion, List<ParticuleExplosion> liste_explosion2, List<ParticuleExplosion> liste_blood, List<Turret> liste_turret)
         {
             // Do not update the game if we are not active
             if (Active == false)
@@ -115,7 +115,7 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((joueur.PlayerTexture.Intersects(this.Aire_explosionBomb)) && type == "explosion")
                 {
-                    joueur.Health = 0;
+                    joueur.Health -= 100;
                 }
             }
 
@@ -123,7 +123,10 @@ namespace Sunday_Bloody_Sunday
             {
                 if ((ia.IATexture.Intersects(this.Aire_explosionBomb)) && type == "explosion")
                 {
-                    ia.Health = 0;
+                    if (ia.id_texture != 6)
+                        ia.Health -= 100;
+                    else
+                        ia.Health -= 1;
                 }
             }
 
@@ -135,6 +138,15 @@ namespace Sunday_Bloody_Sunday
                     ParticuleExplosion explosion = new ParticuleExplosion();
                     explosion.Initialize(Ressources.ExplosionParticule, new Vector2(barrel.Aire_barrel.X + 8, barrel.Aire_barrel.Y + 8), 134, 134, 12, 45, Color.White, 1f, false, barrel.Aire_barrel.X - 16, barrel.Aire_barrel.Y - 16, 48, "explosion");
                     liste_explosion2.Add(explosion);
+                }
+            }
+
+            foreach (Turret turret in liste_turret)
+            {
+                if (turret.turretTexture.Intersects(this.Aire_explosionBomb))
+                {
+                    turret.munition = 0;
+                    turret.isActive = false;
                 }
             }
         }

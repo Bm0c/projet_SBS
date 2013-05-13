@@ -41,7 +41,7 @@ namespace Interface
         {
             Attente = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             Attente.Bind(new IPEndPoint(IPAddress.Any, port));
-            Attente.Listen(2);
+            Attente.Listen(42);
             Reception = Attente.Accept();
             Reception.NoDelay = true;
         }

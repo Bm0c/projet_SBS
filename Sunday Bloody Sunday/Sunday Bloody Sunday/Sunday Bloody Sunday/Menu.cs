@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum MenuType
         {
-            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen, Credits, MultiOrNot, Transition, Deconnexion
+            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen, Credits, MultiOrNot, Deconnexion
         };
 
 
@@ -56,7 +56,7 @@ namespace Sunday_Bloody_Sunday
                     button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 100, 50, 50));
                     button_3 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 50, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 200, 50, 50));
-                    button_5 = new MenuButton(MenuButton.ButtonType.Mute, new Rectangle(Divers.WidthScreen / 2 + 200, 200, 100, 50));
+                    button_5 = new MenuButton(MenuButton.ButtonType.Mute, new Rectangle(Divers.WidthScreen / 2 + 200, 200, 70, 50));
                     button_6 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
                     break;
 
@@ -65,7 +65,7 @@ namespace Sunday_Bloody_Sunday
                     button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 70, 50, 50));
                     button_3 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 50, 170, 50, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 100, 170, 50, 50));
-                    button_5 = new MenuButton(MenuButton.ButtonType.Mute, new Rectangle(Divers.WidthScreen / 2 + 200, 170, 100, 50));
+                    button_5 = new MenuButton(MenuButton.ButtonType.Mute, new Rectangle(Divers.WidthScreen / 2 + 200, 170, 70, 50));
                     button_6 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, Divers.HeightScreen / 2 + 150, 100, 50));
                     button_7 = new MenuButton(MenuButton.ButtonType.On, new Rectangle(Divers.WidthScreen / 2 - 50, 270, 50, 50));
                     button_8 = new MenuButton(MenuButton.ButtonType.Off, new Rectangle(Divers.WidthScreen / 2 + 100, 270, 50, 50));
@@ -82,7 +82,7 @@ namespace Sunday_Bloody_Sunday
                 case MenuType.MapSelector:
                     button_1 = new MenuButton(MenuButton.ButtonType.Less, new Rectangle(Divers.WidthScreen / 2 - 300, Divers.HeightScreen / 2 - 30, 50, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.More, new Rectangle(Divers.WidthScreen / 2 + 300, Divers.HeightScreen / 2 - 30, 50, 50));
-                    button_3 = new MenuButton(MenuButton.ButtonType.SelectLevel, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2 - 200, 200, 50));
+                    button_3 = new MenuButton(MenuButton.ButtonType.SelectLevel, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2 - 200, 230, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 30, Divers.HeightScreen / 2 + 150, 100, 50));
                     break;
 
@@ -100,15 +100,12 @@ namespace Sunday_Bloody_Sunday
                 case MenuType.MultiOrNot:
                     button_1 = new MenuButton(MenuButton.ButtonType.Solo, new Rectangle(Divers.WidthScreen / 2 - 50, 100, 100, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.J1, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 100, 50));
-                    button_3 = new MenuButton(MenuButton.ButtonType.J2, new Rectangle(Divers.WidthScreen / 2 + 50, 200, 100, 50));
+                    button_3 = new MenuButton(MenuButton.ButtonType.J2, new Rectangle(Divers.WidthScreen / 2 + 100, 200, 100, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
                     break;
 
                 case MenuType.Deconnexion:
                     button_1 = new MenuButton(MenuButton.ButtonType.Deconnexion, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2, 200, 50));
-                    break;
-
-                case MenuType.Transition:
                     break;
 
                 default:
@@ -192,6 +189,11 @@ namespace Sunday_Bloody_Sunday
             if (button_9 != null)
                 button_9.DrawButton(spriteBatch);
 
+
+            if (type == MenuType.MainMenu)
+            {
+                spriteBatch.DrawString(Ressources.HUD, "Copyright Dangerous Csharks", new Vector2(640, 460), Color.Red, 0f, new Vector2(0, 0), 0.4f, SpriteEffects.None, 0f);
+            }
             if (type == MenuType.MenuGeneralSettings)
             {
                 string langue, son, resolution;

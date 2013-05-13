@@ -20,7 +20,7 @@ namespace Sunday_Bloody_Sunday
         // LOAD CONTENTS
         public static void LoadContent(ContentManager content)
         {
-            Map = content.Load<Texture2D>("Map02");
+            Map = content.Load<Texture2D>("Map03");
             valide = content.Load<Texture2D>("Valide");
             invalide = content.Load<Texture2D>("Invalide");
         }

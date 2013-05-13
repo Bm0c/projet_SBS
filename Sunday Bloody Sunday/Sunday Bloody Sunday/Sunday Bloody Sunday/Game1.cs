@@ -37,7 +37,7 @@ namespace Sunday_Bloody_Sunday
         SoundEffect introEffect, loseEffect, winEffect;
 
         //Compteur Sélecteur Map
-        int compteur_thumbnails = 1;
+        int compteur_thumbnails = 0;
         int compteur_delai = 30;
 
 
@@ -206,7 +206,7 @@ namespace Sunday_Bloody_Sunday
                     compteur_thumbnails -= 1;
                     if (compteur_thumbnails < 0)
                     {
-                        compteur_thumbnails = 0;
+                        compteur_thumbnails = 5;
                     }
                 }
                 if (action == 2 && compteur_delai >= 20)
@@ -215,7 +215,7 @@ namespace Sunday_Bloody_Sunday
                     compteur_thumbnails += 1;
                     if (compteur_thumbnails > 5)
                     {
-                        compteur_thumbnails = 3;
+                        compteur_thumbnails = 0;
                     }
                 }
                 if (action == 3)
@@ -225,36 +225,43 @@ namespace Sunday_Bloody_Sunday
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map01.txt"),multi,joueur);
                         path_map = "map01.txt";
+                        GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 1)
                     {
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur);
                         path_map = "map02.txt";
+                        GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 2)
                     {
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur);
                         path_map = "map03.txt";
+                        GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 3)
                     {
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur);
                         path_map = "map04.txt";
+                        GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 4)
                     {
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur);
                         path_map = "map04.txt";
+                        GamePlayMusic = Ressources.HightVoltage;
+                        
                     }
                     else if (compteur_thumbnails == 5)
                     {
                         Main = new GameMain();
                         Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur);
-                        path_map = "map04.txt";
+                        path_map = "map05.txt";
+                        GamePlayMusic = Ressources.BlackIce;
                     }
                     ecran = Screen.jeu;
                     PlayMusic(GamePlayMusic);
@@ -425,7 +432,7 @@ namespace Sunday_Bloody_Sunday
                     StopMusic(GamePlayMusic);
                     loseEffect.Play();
                 }
-                if (Main.MainMap.fin_niveau.est_arrivee)
+                if (Main.MainMap.fin_niveau.est_arrivee || Main.MainMap.gagne)
                 {
                     ecran = Screen.win;
                     menuMain = new Menu(Menu.MenuType.WinScreen);
@@ -435,9 +442,10 @@ namespace Sunday_Bloody_Sunday
                 if (Main.MainMap.boss_entry.combat_boss)
                 {
                     Main = new GameMain();
-                    Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur);
-                    path_map = "map02.txt";
+                    Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur);
+                    path_map = "map04.txt";
                     ecran = Screen.jeu;
+                    GamePlayMusic = Ressources.HightVoltage; 
                     PlayMusic(GamePlayMusic);
                     button_timer = 0;
                 }

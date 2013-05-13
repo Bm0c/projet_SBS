@@ -39,7 +39,11 @@ namespace Sunday_Bloody_Sunday
         public void Draw(SpriteBatch spriteBatch)
         {
             MainMap.Draw(spriteBatch);
-            MainHUD.Draw(spriteBatch);
+
+            if (MainMap.parametre.texture_map == 4 || MainMap.parametre.texture_map == 5)
+                MainHUD.Draw(spriteBatch, 4);
+            else
+                MainHUD.Draw(spriteBatch, 0);
         }
     }
 }

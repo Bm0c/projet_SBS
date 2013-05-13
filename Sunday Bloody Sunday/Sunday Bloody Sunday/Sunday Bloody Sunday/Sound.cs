@@ -26,6 +26,12 @@ namespace Sunday_Bloody_Sunday
         SoundEffect sentryShoot = Ressources.mSentryShoot;
         SoundEffect rainEffect = Ressources.mRainEffect;
         SoundEffect planeEffect = Ressources.mPlaneEffect;
+        SoundEffect spectrum = Ressources.mSpectrum;
+        SoundEffect carabaffe1 = Ressources.mCarabaffe;
+        SoundEffect tortank1 = Ressources.mTortank;
+        SoundEffect eclair = Ressources.mSoneclair;
+        int cooldownson = 0;
+        public List<SoundEffect> listson = new List<SoundEffect>();
 
 
         // METHODS
@@ -40,7 +46,41 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void PlayPika(int id)
+        public void Playpoke(int x)
+        {
+            listson.Add(pika);
+            listson.Add(pika);
+            //listson.Add(pika2);
+            //listson.Add(raichu2);
+            listson.Add(carabaffe1);
+            listson.Add(spectrum);
+            listson.Add(raichu);
+            listson.Add(tortank1);
+            if (/*cooldownson > 10*/true)
+            {
+                if (x >= 0)
+                    listson[x].Play();
+                cooldownson = 0;
+            }
+            else
+            {
+                cooldownson = cooldownson + 6;
+            }
+
+        }
+
+        public void Playeclair()
+        {
+            try
+            {
+                eclair.Play();
+            }
+            catch
+            {
+            }
+        }
+
+        /*public void PlayPika(int id)
         {
 
             Random random = new Random();
@@ -96,7 +136,7 @@ namespace Sunday_Bloody_Sunday
                 }
             }
         }
-
+        */
         public void PlayExplosionEffect()
         {
             try

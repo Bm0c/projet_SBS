@@ -70,3 +70,12 @@ Content\Map04.xnb
 Content\Map05.xnb
 Content\thumbnails_map_03_bonus.xnb
 Content\thumbnails_map_05.xnb
+Content\Elector.xnb
+Content\Carabaffe_2.xnb
+Content\Raichu2.xnb
+Content\tortankattack.xnb
+Content\soneclair.xnb
+Content\HightVoltage.xnb
+Content\HightVoltage.wma
+Content\Black Ice.xnb
+Content\Black Ice.wma

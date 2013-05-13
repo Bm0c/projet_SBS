@@ -61,7 +61,7 @@ namespace Sunday_Bloody_Sunday
         public bool ia_vol;
 
         public int couldown = 60; //Temps d'attente entre chaque attaque
-
+        public int couldown_eclaire = 60;
 
         // CONSTRUCTOR
         public IA(int x, int y, int id_texture, int id_son, int pv_max, int dégats)//ID texture, son joué, PV max, Vitesse
@@ -69,6 +69,18 @@ namespace Sunday_Bloody_Sunday
             compteur_path = 0;
             ia_dir = 0;
             ia_vol = false;
+            this.frameLine = 1;
+            this.frameColumn = 2;
+            this.Direction = DirectionIA.Down;
+            this.Effect = SpriteEffects.None;
+            this.Animation = true;
+            this.Timer = 0;
+            this.Active = true;
+            this.Health = pv_max;
+            this.Damage = dégats;
+            this.id_son = id_son;
+            this.action = "";
+            this.id_texture = id_texture;
             if (id_texture == 0)
             {
                 this.IATexture = new Rectangle(x, y, 16, 17);
@@ -86,6 +98,8 @@ namespace Sunday_Bloody_Sunday
                 this.IATexture = new Rectangle(x, y, 20, 20);
                 this.VecteurAttaque = new Vector2(26, 23);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+                this.Health = 200;
+                this.Damage = 5;
             }
             else if (id_texture == 3)
             {
@@ -93,30 +107,31 @@ namespace Sunday_Bloody_Sunday
                 this.IATexture = new Rectangle(x, y, 20, 20);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
                 this.VecteurAttaque = new Vector2(41, 51);
+                this.Health = 75;
+                this.speed = 2;
             }
             else if (id_texture == 4)
             {
                 this.IATexture = new Rectangle(x, y, 20, 20);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
                 this.VecteurAttaque = new Vector2(30, 29);
+                this.Damage = 20;
+                this.Health = 150;
             }
             else if (id_texture == 5)
             {
-                this.IATexture = new Rectangle(x, y, 30, 29);
+                this.IATexture = new Rectangle(x, y, 26, 24);
                 IA.IAPosition = new Vector2(IATexture.X, IATexture.Y);
+                this.VecteurAttaque = new Vector2(34, 29);
             }
-            this.frameLine = 1;
-            this.frameColumn = 2;
-            this.Direction = DirectionIA.Down;
-            this.Effect = SpriteEffects.None;
-            this.Animation = true;
-            this.Timer = 0;
-            this.Active = true;
-            this.Health = pv_max;
-            this.Damage = dégats;
-            this.id_son = id_son;
-            this.action = "";
-            this.id_texture = id_texture;
+            else if (id_texture == 6)
+            {
+                this.IATexture = new Rectangle(x, y, 40, 40);
+                this.AnimationSpeed = 7;
+                this.VecteurAttaque = new Vector2(45, 47);
+                this.Health = 10000;
+                this.speed = 1;
+            }
             this.Aire_attaque = new Rectangle(IATexture.X - 1, IATexture.Y - 1, IATexture.Width + 1, IATexture.Height + 1);
         }
 
@@ -461,7 +476,25 @@ namespace Sunday_Bloody_Sunday
             else if (id_texture == 5)
             {
                 {
-                    spriteBatch.Draw(Ressources.IA6, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 27, (this.frameLine - 1) * 29, 27, 29), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    if (couldown < 10)
+                    {
+                        spriteBatch.Draw(Ressources.IA6attack, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle(0 * (int)VecteurAttaque.X, (this.frameLine - 1) * (int)VecteurAttaque.Y, (int)VecteurAttaque.X, (int)VecteurAttaque.Y), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+
+                    }
+                    else if (couldown < 20)
+                    {
+                        spriteBatch.Draw(Ressources.IA6attack, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle(1 * (int)VecteurAttaque.X, (this.frameLine - 1) * (int)VecteurAttaque.Y, (int)VecteurAttaque.X, (int)VecteurAttaque.Y), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(Ressources.IA6, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 27, (this.frameLine - 1) * 29, 27, 29), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    }
+                }
+            }
+            else if (id_texture == 6)
+            {
+                {
+                    spriteBatch.Draw(Ressources.IA7, new Rectangle(Maptexture.X + IATexture.X, Maptexture.Y + IATexture.Y, IATexture.Width, IATexture.Width), new Rectangle((this.frameColumn - 1) * 45, (this.frameLine - 1) * 47, 45, 47), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
         }

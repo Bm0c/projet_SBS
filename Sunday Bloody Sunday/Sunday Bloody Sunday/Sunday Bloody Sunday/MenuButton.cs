@@ -125,12 +125,12 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.J1:
                     this.myButton = ButtonType.J1;
-                    buttonMessage = "Multi1";
+                    buttonMessage = "Player 1";
                     break;
 
                 case ButtonType.J2:
                     this.myButton = ButtonType.J2;
-                    buttonMessage = "Multi2";
+                    buttonMessage = "Player 2";
                     break;
 
                 case ButtonType.Deconnexion:
@@ -161,7 +161,7 @@ namespace Sunday_Bloody_Sunday
 
         public void DrawButton(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.White);
+            spriteBatch.DrawString(Ressources.HUD, buttonMessage, new Vector2(rectangle.X, rectangle.Y), Color.LightGray);
 
             if (mouseCursor_container.Intersects(rectangle))
             {

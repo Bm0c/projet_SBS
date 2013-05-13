@@ -42,7 +42,7 @@ namespace Sunday_Bloody_Sunday
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressources.mRain, RainPosition, Color.White);
+            spriteBatch.Draw(Ressources.mRain, RainPosition, Color.CadetBlue);
         }
     }
 }
