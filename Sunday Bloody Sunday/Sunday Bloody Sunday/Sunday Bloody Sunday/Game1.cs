@@ -8,22 +8,29 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Sunday_Bloody_Sunday
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         //FIELDS
+        KeyboardState oldKeyboard;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameMain Main;
+        Input IP_ = new Input();
+        IPAddress IPMulti = IPAddress.Parse("127.0.0.1");
+        Input Chat = new Input();
         string path_map;
+        string IP = "";
         int joueur;
         bool multi;
         //Enum of the Screen States
         public enum Screen
         {
-            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map, win, credits, multioupas, transition, deconnexion
+            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map, win, credits, multioupas, transition, connection, deconnexion
         };
 
         //Init Screen States + Menu
@@ -164,8 +171,8 @@ namespace Sunday_Bloody_Sunday
                 {
                     joueur = 1;
                     multi = true;
-                    ecran = Screen.selecteur_map;
-                    menuMain = new Menu(Menu.MenuType.MapSelector);
+                    ecran = Screen.connection;
+                    menuMain = new Menu(Menu.MenuType.Connection);
 
                     button_timer = 0;
                 }
@@ -173,8 +180,8 @@ namespace Sunday_Bloody_Sunday
                 {
                     joueur = 2;
                     multi = true;
-                    ecran = Screen.selecteur_map;
-                    menuMain = new Menu(Menu.MenuType.MapSelector);
+                    ecran = Screen.connection;
+                    menuMain = new Menu(Menu.MenuType.Connection);
 
                     button_timer = 0;
                 }
@@ -223,35 +230,35 @@ namespace Sunday_Bloody_Sunday
                     if (compteur_thumbnails == 0)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"),multi,joueur);
+                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"), multi, joueur, IPMulti);
                         path_map = "map01.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 1)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur);
+                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur, IPMulti);
                         path_map = "map02.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 2)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur);
+                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur, IPMulti);
                         path_map = "map03.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 3)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur);
+                        Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur, IPMulti);
                         path_map = "map04.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 4)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur);
+                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti);
                         path_map = "map04.txt";
                         GamePlayMusic = Ressources.HightVoltage;
                         
@@ -259,7 +266,7 @@ namespace Sunday_Bloody_Sunday
                     else if (compteur_thumbnails == 5)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur);
+                        Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur, IPMulti);
                         path_map = "map05.txt";
                         GamePlayMusic = Ressources.BlackIce;
                     }
@@ -442,7 +449,7 @@ namespace Sunday_Bloody_Sunday
                 if (Main.MainMap.boss_entry.combat_boss)
                 {
                     Main = new GameMain();
-                    Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur);
+                    Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti);
                     path_map = "map04.txt";
                     ecran = Screen.jeu;
                     GamePlayMusic = Ressources.HightVoltage; 
@@ -505,7 +512,32 @@ namespace Sunday_Bloody_Sunday
                 }
             }
 
+            else if (ecran == Screen.connection)
+            {
+                int action = 0;
+                IP_.Update(Keyboard.GetState(), oldKeyboard);
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                    
+                }
+                if (action == 1)
+                {
+                    try
+                    {
+                        IPMulti = IPAddress.Parse(IP_.input);
+                        ecran = Screen.selecteur_map;
+                        menuMain = new Menu(Menu.MenuType.MapSelector);
+                        button_timer = 0;
+                    }
+                    catch
+                    {
+                        IP_.input = "Mauvaise IP";
+                    }
+                }
+            }
 
+            oldKeyboard = Keyboard.GetState();
             base.Update(gameTime);
         }
 
@@ -520,12 +552,12 @@ namespace Sunday_Bloody_Sunday
                 spriteBatch.Draw(Ressources.mTitleScreen, new Rectangle(0, 0, 800, 480), Color.White);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.multioupas)
+            else if (ecran == Screen.multioupas)
             {
                 spriteBatch.Draw(Ressources.mPlayScreen, new Rectangle(0, 0, 800, 480), Color.White);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.selecteur_map)
+            else if (ecran == Screen.selecteur_map)
             {
                 if (compteur_thumbnails == 0)
                 {
@@ -558,42 +590,47 @@ namespace Sunday_Bloody_Sunday
                     menuMain.Draw(spriteBatch);
                 }
             }
-            if (ecran == Screen.menu_pause)
+            else if (ecran == Screen.menu_pause)
             {
                 Main.Draw(spriteBatch);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.menu_preferences)
+            else if (ecran == Screen.menu_preferences)
             {
                 Main.Draw(spriteBatch);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.menu_parametres)
+            else if (ecran == Screen.menu_parametres)
             {
                 GraphicsDevice.Clear(Color.Black);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.credits)
+            else if (ecran == Screen.credits)
             {
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.jeu)
+            else if (ecran == Screen.jeu)
             {
                 Main.Draw(spriteBatch);
             }
-            if (ecran == Screen.game_over)
+            else if (ecran == Screen.game_over)
             {
                 spriteBatch.Draw(Ressources.mGameOverScreen, new Rectangle(0, 0, 800, 480), Color.White);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.win)
+            else if (ecran == Screen.win)
             {
                 spriteBatch.Draw(Ressources.mWinSreen, new Rectangle(0, 0, 800, 480), Color.White);
                 menuMain.Draw(spriteBatch);
             }
-            if (ecran == Screen.deconnexion)
+            else if (ecran == Screen.deconnexion)
             {
                 menuMain.Draw(spriteBatch);
+            }
+            else if (ecran == Screen.connection)
+            {
+                menuMain.Draw(spriteBatch);
+                IP_.DrawButton(spriteBatch);
             }
 
             spriteBatch.End();

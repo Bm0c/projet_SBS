@@ -8,7 +8,12 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Sunday_Bloody_Sunday
 {
@@ -27,7 +32,6 @@ namespace Sunday_Bloody_Sunday
         public Spawn_Items spawn_items;
 
         bool testc = true;
-        bool joue_son = true;
 
         public List<Items> liste_box; //Liste Items
         public List<Items> liste_box2; //Liste Items secondaire, utilisée pour nettoyer la mémoire
@@ -86,19 +90,39 @@ namespace Sunday_Bloody_Sunday
         public CheckPoint fin_niveau, boss_entry;
         int compteur_kill = 0;
 
+        int id_joueur = 0;
+        int nb_joueur = 1;
+        List<Keys>[] input = new List<Keys>[1];
+
 
         // CONSTRUCTOR
-        public Map(Param_Map parametre, bool Multi, int joueur)
+        public Map(Param_Map parametre, bool Multi, int joueur, IPAddress IP)
         {
             this.parametre = parametre;
 
             MapTexture = new Rectangle(0, 0, parametre.hauteur * 16, (parametre.largeur - 1) * 16);
             this.map_physique = new PhysicsEngine(parametre.liste, parametre.liste_projectile);
             this.liste_ia = new List<IA>();
+
+            if (Multi)
+            {
+                Reseau Lien = new Reseau();
+                Lien.initialisationClient(1337, IP,ref connection);
+                int port = System.Convert.ToInt32(Lien.receptionMessage(ref connection));
+                Lien.Envoie.Close();
+                Client.initialisationClient(port,IP, ref connection);
+                id_joueur = port - 4242;
+                nb_joueur = System.Convert.ToInt32(Client.receptionMessage(ref connection));
+                Client.nb_joueurs = nb_joueur;
+                input = new List<Keys>[nb_joueur];
+            }
+            else
+                Client.nb_joueurs = 1;
+
             if (parametre.texture_map == 3)
             {
-                Player p1 = new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y);
-                Player p2 = new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Keys.W, Keys.X, Ressources.Player2, parametre.x, parametre.y);
+                Player p1 = new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y, 0);
+                Player p2 = new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Keys.W, Keys.X, Ressources.Player2, parametre.x, parametre.y, 1);
                 p1.bomb = 5;
                 p2.bomb = 5;
                 liste_joueurs.Add(p1);
@@ -106,7 +130,12 @@ namespace Sunday_Bloody_Sunday
             }
             else
             {
-                this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y));
+                int i = 0;
+                while (i < nb_joueur)
+                {
+                    this.liste_joueurs.Add(new Player(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.N, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y, i));
+                    i++;
+                }
             }
 
             //HEALTH + AMMO BOXES
@@ -158,19 +187,6 @@ namespace Sunday_Bloody_Sunday
             boss_entry = parametre.checkpointBossEntry;
             etape3 = Multi;
 
-            if (etape3)
-            {
-                if (joueur == 1)
-                {
-                    Client.initialisationClient(4242, ref connection);
-                    Serveur.intialisationServeur(1338, ref connection);
-                }
-                else
-                {
-                    Client.initialisationClient(4243, ref connection);
-                    Serveur.intialisationServeur(1337, ref connection);
-                }
-            }
         }
 
 
@@ -804,7 +820,7 @@ namespace Sunday_Bloody_Sunday
                     this.ia = ia;
                     float distance = 10000;
                     Vector2 vector_ia = new Vector2(ia.IATexture.X, ia.IATexture.Y);
-                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y);
+                    Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y, 0);
                     Vector2 vector_joueur = new Vector2();
                     foreach (Player joueur in liste_joueurs)
                     {
@@ -884,7 +900,7 @@ namespace Sunday_Bloody_Sunday
 
                 float distance = 10000;
                 Vector2 vector_ia = new Vector2(ia_.IATexture.X, ia_.IATexture.Y);
-                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y);
+                Player joueur_cible = new Player(Keys.Up, Keys.Down, Keys.Right, Keys.Left, Keys.S, Keys.P, Keys.Enter, Keys.T, Keys.F, Ressources.Player1, parametre.x, parametre.y, 0);
                 Vector2 vector_joueur = new Vector2();
                 foreach (Player joueur in liste_joueurs)
                 {
@@ -994,8 +1010,8 @@ namespace Sunday_Bloody_Sunday
             if (compteur > 180) //Ajout de nouvelles "boxes" a la map
             {
                 Items box;
-                int spawn = seed%spawn_items.emplacement.Count;
-                int texture = seed%(2);
+                int spawn = seed % spawn_items.emplacement.Count;
+                int texture = seed % (2);
                 Vector2 emplacement = spawn_items.emplacement.ElementAt(spawn);
                 bool test = true;
                 if (texture == 0)
@@ -1045,7 +1061,7 @@ namespace Sunday_Bloody_Sunday
                     if (joueur.poserBomb && joueur.refroidissement > 30 && joueur.bomb > 0)
                     {
 
-                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.ActiverBomb);
+                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.ActiverBomb, joueur.id_joueur);
                         joueur.refroidissement = 0;
                         joueur.bomb--;
                     }
@@ -1054,7 +1070,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (joueur.poserBomb && joueur.bomb > 0)
                     {
-                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.ActiverBomb);
+                        AddBomb(joueur.PlayerTexture.X, joueur.PlayerTexture.Y, joueur.ActiverBomb, joueur.id_joueur);
                         joueur.bomb--;
                     }
                 }
@@ -1068,7 +1084,7 @@ namespace Sunday_Bloody_Sunday
                     if (parametre.texture_map != 3)
                     {
                         test = keyboard.IsKeyDown(bomb.déclencher);
-                        foreach (Keys key in liste_clavier)
+                        foreach (Keys key in input[bomb.owner])
                         {
                             if (key == bomb.déclencher)
                             {
@@ -1191,16 +1207,16 @@ namespace Sunday_Bloody_Sunday
             liste_explosions = liste_explosions2;
         }
 
-        public void AddBomb(int x, int y, Keys activer)
+        public void AddBomb(int x, int y, Keys activer, int owner)
         {
             DestructibleItems bomb;
             if (parametre.texture_map != 3)
             {
-                bomb = new DestructibleItems(x, y, "bomb", activer);
+                bomb = new DestructibleItems(x, y, "bomb", activer, owner);
             }
             else
             {
-                bomb = new DestructibleItems(x, y, "bomb_2", activer);
+                bomb = new DestructibleItems(x, y, "bomb_2", activer, owner);
             }
             liste_barrel.Add(bomb);
         }
@@ -1362,7 +1378,7 @@ namespace Sunday_Bloody_Sunday
             // Update l'objet joueur contenu par la map
             foreach (Player joueur in liste_joueurs)
             {
-                joueur.Update(mouse, keyboard, liste_clavier);
+                joueur.Update(mouse/*, keyboard*/, input[joueur.id_joueur]);
                 joueur.action_hero(map_physique, liste_ia, liste_barrel);
                 if (joueur.Health > 0)
                 {
@@ -1372,7 +1388,7 @@ namespace Sunday_Bloody_Sunday
                 {
                     if (parametre.texture_map == 3)
                     {
-                        Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.PoserBomb, joueur.ActiverBomb, joueur.PoserTurret, joueur.ActiverPlane, joueur.texture, parametre.x, parametre.y);
+                        Player joueur_ = new Player(joueur.Haut, joueur.Bas, joueur.Gauche, joueur.Droite, joueur.Tire, joueur.PoserBomb, joueur.ActiverBomb, joueur.PoserTurret, joueur.ActiverPlane, joueur.texture, parametre.x, parametre.y, 0);
                         joueur_.bomb = 5;
                         liste_joueurs2.Add(joueur_);
                     }
@@ -1389,7 +1405,7 @@ namespace Sunday_Bloody_Sunday
             if (keyboard.IsKeyDown(Keys.D2) && !etape2 && parametre.texture_map != 3)
             {
                 etape2 = true;
-                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Keys.W, Keys.X, Ressources.Player2, parametre.x, parametre.y));/*
+                this.liste_joueurs.Add(new Player(Keys.Z, Keys.S, Keys.Q, Keys.D, Keys.A, Keys.E, Keys.R, Keys.W, Keys.X, Ressources.Player2, parametre.x, parametre.y, 0));/*
                 this.liste_joueurs.Add(new Player(Keys.NumPad8, Keys.NumPad5, Keys.NumPad4, Keys.NumPad6, Keys.NumPad7, Ressources.Player3));*/
             }
 
@@ -1423,36 +1439,8 @@ namespace Sunday_Bloody_Sunday
         // UPDATE & DRAW
         public void Update(MouseState mouse, KeyboardState keyboard, GameTime gameTime, GraphicsDevice graphics)
         {
-
-            message = "0";
-            if (Keyboard.GetState().IsKeyDown(Keys.Z))//Up
-            {
-                message = message + '1';
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))//Down
-            {
-                message = message + '2';
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))//Right
-            {
-                message = message + '3';
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))//Left
-            {
-                message = message + '4';
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))//Tir
-            {
-                message = message + '5';
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.E))//Pose
-            {
-                message = message + '6';
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.R))//Bombe
-            {
-                message = message + '7';
-            }
+            message = "";
+            message = System.Convert.ToString(id_joueur);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up))//Up
             {
@@ -1485,14 +1473,15 @@ namespace Sunday_Bloody_Sunday
 
             if (etape3)
             {
-                seed = System.Convert.ToInt32(Serveur.receptionMessage(ref connection));
+                seed = System.Convert.ToInt32(Client.receptionMessage(ref connection));
                 Client.envoieMessage(message, ref connection);
-                liste_clavier = Serveur.Liste(Serveur.receptionMessage(ref connection));
+                input = Client.Liste(Client.receptionMessage(ref connection));
                 Thread.Sleep(0);
             }
             else
             {
                 seed = new Random().Next(1000);
+                input = Client.Liste(message); 
             }
             int x = 0;
             int y = 0;

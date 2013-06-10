@@ -24,6 +24,7 @@ namespace Sunday_Bloody_Sunday
         public string type;
         public Keys déclencher;
         public int detonnateur;
+        public int owner;
 
 
         //CONSTRUCTOR
@@ -38,7 +39,7 @@ namespace Sunday_Bloody_Sunday
         }
 
 
-        public DestructibleItems(int x, int y, string type, Keys déclencher)
+        public DestructibleItems(int x, int y, string type, Keys déclencher, int owner)
         {
             this.isVisible = true;
             this.BarrelTexture = new Rectangle(x, y, 16, 16);
@@ -48,6 +49,7 @@ namespace Sunday_Bloody_Sunday
             this.type = type;
             this.déclencher = déclencher;
             detonnateur = 120;
+            this.owner = owner;
         }
 
 

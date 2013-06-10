@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum ButtonType
         {
-            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, Mute, Restart, On, Off, Credits, Solo, J1, J2, Deconnexion
+            SelectLevel, Play, Option, Quit, Resume, Back, More, Less, Mute, Restart, On, Off, Credits, Solo, J1, Deconnexion, Connection
         };
 
 
@@ -125,12 +125,12 @@ namespace Sunday_Bloody_Sunday
 
                 case ButtonType.J1:
                     this.myButton = ButtonType.J1;
-                    buttonMessage = "Player 1";
+                    buttonMessage = "Multijoueurs";
                     break;
 
-                case ButtonType.J2:
-                    this.myButton = ButtonType.J2;
-                    buttonMessage = "Player 2";
+                case ButtonType.Connection:
+                    this.myButton = ButtonType.Connection;
+                    buttonMessage = "Connection";
                     break;
 
                 case ButtonType.Deconnexion:

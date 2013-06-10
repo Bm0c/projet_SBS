@@ -12,30 +12,15 @@ namespace Interface
 {
     class Reseau
     {
-        
-        Socket Envoie;
-        Socket Reception;
-        Socket Attente;
+        public string message;
+
+        public Socket Reception;
+        public Socket Attente;
 
         public Reseau()
         {
         }
-
-        public void initialisationClient(int port)
-        {
-            Envoie = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            Envoie.Connect(IPAddress.Parse("127.0.0.1"), port);
-            Envoie.NoDelay = true;
-        }
-
-        public void envoieMessage(string message)
-        {
-            byte[] messageLength = BitConverter.GetBytes(message.Length);
-            Envoie.Send(messageLength);
-
-            byte[] messageData = System.Text.Encoding.UTF8.GetBytes(message);
-            Envoie.Send(messageData);
-        }
+        
 
         public void intialisationServeur(int port)
         {
@@ -46,7 +31,7 @@ namespace Interface
             Reception.NoDelay = true;
         }
 
-        public string receptionMessage()
+        public void receptionMessage()
         {
             byte[] messageLengthData = new byte[4];
 
@@ -56,7 +41,16 @@ namespace Interface
             byte[] messageData = new byte[messageLength];
             Reception.Receive(messageData);
 
-            return System.Text.Encoding.UTF8.GetString(messageData);
+            message = System.Text.Encoding.UTF8.GetString(messageData);
+        }
+        
+        public void envoieMessage(string message)
+        {
+            byte[] messageLength = BitConverter.GetBytes(message.Length);
+            Reception.Send(messageLength);
+
+            byte[] messageData = System.Text.Encoding.UTF8.GetBytes(message);
+            Reception.Send(messageData);
         }
     
     }

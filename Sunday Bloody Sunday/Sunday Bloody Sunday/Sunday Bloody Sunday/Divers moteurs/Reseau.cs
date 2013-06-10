@@ -19,70 +19,50 @@ namespace Sunday_Bloody_Sunday
 {
     class Reseau
     {
-        public List<Keys> Liste(string dl)
+        public int nb_joueurs;
+        public List<Keys>[] Liste(string dl)
         {
-            List<Keys> liste = new List<Keys>();
+            List<Keys>[] liste = new List<Keys>[nb_joueurs];
 
             try
             {
+                int i = 0;
 
                 foreach (char a in dl)
                 {
-                    if (a == '1')
+                    
+                    if (a == 'u')
                     {
-                        liste.Add(Keys.Z);
-                    }
-                    else if (a == '2')
-                    {
-                        liste.Add(Keys.S);
-                    }
-                    else if (a == '3')
-                    {
-                        liste.Add(Keys.Q);
-                    }
-                    else if (a == '4')
-                    {
-                        liste.Add(Keys.D);
-                    }
-                    else if (a == '5')
-                    {
-                        liste.Add(Keys.A);
-                    }
-                    else if (a == '6')
-                    {
-                        liste.Add(Keys.E);
-                    }
-                    else if (a == '7')
-                    {
-                        liste.Add(Keys.R);
-                    }
-                    else if (a == 'u')
-                    {
-                        liste.Add(Keys.Up);
+                        liste[i].Add(Keys.Up);
                     }
                     else if (a == 'd')
                     {
-                        liste.Add(Keys.Down);
+                        liste[i].Add(Keys.Down);
                     }
                     else if (a == 'l')
                     {
-                        liste.Add(Keys.Left);
+                        liste[i].Add(Keys.Left);
                     }
                     else if (a == 'r')
                     {
-                        liste.Add(Keys.Right);
+                        liste[i].Add(Keys.Right);
                     }
                     else if (a == 'n')
                     {
-                        liste.Add(Keys.N);
+                        liste[i].Add(Keys.N);
                     }
                     else if (a == 'p')
                     {
-                        liste.Add(Keys.P);
+                        liste[i].Add(Keys.P);
                     }
                     else if (a == 'e')
                     {
-                        liste.Add(Keys.Enter);
+                        liste[i].Add(Keys.Enter);
+                    }
+                    else
+                    {
+                        i = a - 48;
+                        liste[i] = new List<Keys>();
                     }
                 }
             }
@@ -94,20 +74,29 @@ namespace Sunday_Bloody_Sunday
 
         }
 
-        Socket Envoie;
-        Socket Reception;
-        Socket Attente;
-
+        public Socket Envoie;
         public Reseau()
         {
         }
 
-        public void initialisationClient(int port, ref bool connection)
+        public void initialisationClient(int port,IPAddress IP, ref bool connection)
         {
             try
             {
                 Envoie = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                Envoie.Connect(IPAddress.Parse("127.0.0.1"), port);
+                int i = 0;
+                while (i < 10)
+                {
+                    try
+                    {
+                        Envoie.Connect(IPAddress.Parse("127.0.0.1"), port + i);
+                        i = 42;
+                    }
+                    catch
+                    {
+                        i++;
+                    }
+                }
                 Envoie.NoDelay = true;
             }
             catch
@@ -143,7 +132,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void intialisationServeur(int port, ref bool connection)
+        /*public void intialisationServeur(int port, ref bool connection)
         {
             try
             {
@@ -162,6 +151,7 @@ namespace Sunday_Bloody_Sunday
                 connection = false;
             }
         }
+        */
 
         public string receptionMessage(ref bool connection)
         {
@@ -169,20 +159,18 @@ namespace Sunday_Bloody_Sunday
             {
                 byte[] messageLengthData = new byte[4];
 
-                Reception.Receive(messageLengthData);
+                Envoie.Receive(messageLengthData);
                 int messageLength = BitConverter.ToInt32(messageLengthData, 0);
 
                 byte[] messageData = new byte[messageLength];
-                Reception.Receive(messageData);
+                Envoie.Receive(messageData);
 
                 return System.Text.Encoding.UTF8.GetString(messageData);
             }
             catch
             {
                 connection = false;
-                try { Attente.Close(); }
-                catch { }
-                try { Reception.Close(); }
+                try { Envoie.Close(); }
                 catch { }
                 return "0";
             }

@@ -15,7 +15,7 @@ namespace Sunday_Bloody_Sunday
     {
         public enum MenuType
         {
-            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen, Credits, MultiOrNot, Deconnexion
+            MainMenu, PauseMenu, MenuPreferences, MenuGeneralSettings, GameOver, MapSelector, WinScreen, Credits, MultiOrNot,Connection, Deconnexion
         };
 
 
@@ -100,8 +100,11 @@ namespace Sunday_Bloody_Sunday
                 case MenuType.MultiOrNot:
                     button_1 = new MenuButton(MenuButton.ButtonType.Solo, new Rectangle(Divers.WidthScreen / 2 - 50, 100, 100, 50));
                     button_2 = new MenuButton(MenuButton.ButtonType.J1, new Rectangle(Divers.WidthScreen / 2 - 50, 200, 100, 50));
-                    button_3 = new MenuButton(MenuButton.ButtonType.J2, new Rectangle(Divers.WidthScreen / 2 + 100, 200, 100, 50));
                     button_4 = new MenuButton(MenuButton.ButtonType.Back, new Rectangle(Divers.WidthScreen / 2 - 50, 300, 100, 50));
+                    break;
+                    
+                case MenuType.Connection:
+                    button_1 = new MenuButton(MenuButton.ButtonType.Connection, new Rectangle(Divers.WidthScreen / 2 - 100, Divers.HeightScreen / 2, 200, 50));
                     break;
 
                 case MenuType.Deconnexion:

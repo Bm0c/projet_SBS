@@ -6,105 +6,74 @@ using System.Threading;
 
 namespace Interface
 {
+
     class Program
     {
+        static string buffer;
         static Random seed = new Random();
-        static Reseau receptionClient;//1337
-        static Reseau receptionServeur;//4242
-        static Reseau envoieClient;//4243
-        static Reseau envoieServeur;//1338
-        static string Client = "";
-        static string Serveur = "";
-        static int i = 0;
-
-
-        static bool C = false;
-        static bool V = false;
-
-        static bool C2 = false;
-        static bool V2 = false;
-
+        static List<Reseau> Clients = new List<Reseau>();
+        
+        static int i;                
         static bool synchro = false;
-
-        static void Serveur_()
-        {
-
-            receptionServeur = new Reseau();
-            receptionServeur.intialisationServeur(4242);
-            Console.WriteLine("Login J2");
-
-            V = true;
-        }
-
-        static void Client_()
-        {
-            receptionClient = new Reseau();
-            receptionClient.intialisationServeur(4243);
-            Console.WriteLine("Login J1");
-            C = true;
-        }
-
-        static void Client_Ping()
-        {
-            envoieClient = new Reseau();
-            envoieClient.initialisationClient(1337);
-            Console.WriteLine("Ping J1");
-            C2 = true;
-        }
-
-        static void Serveur_Ping()
-        {
-
-            envoieServeur = new Reseau();
-            envoieServeur.initialisationClient(1338);
-            Console.WriteLine("Ping J2");
-            V2 = true;
-        }
-
+        
         static void Main(string[] args)
         {
-            Thread Client__ = new Thread(Client_);
-            Thread Serveur__ = new Thread(Serveur_);
+            int nombre_joueurs = 1;
+            i = 0;
+            while (i < nombre_joueurs)
+            {
+                Reseau Lien = new Reseau();
+                Lien.intialisationServeur(1337);
+                Lien.envoieMessage(System.Convert.ToString(4242 + i));
+                Lien.Attente.Close();
+                Lien.Reception.Close();
 
-            Client__.Start();
-            Serveur__.Start();
+                Reseau Client = new Reseau();
+                Client.intialisationServeur(4242 + i);
+                Clients.Add(Client);
+                Console.WriteLine("Ping :" + (i+1));
+                i++;
+            }
 
             i = 1;
-            Thread.Sleep(42);
-            while (!(C & V)) { Thread.Sleep(500); }
 
-            Thread.Sleep(100);
+            foreach(Reseau Client in Clients)
+            {
+                Client.envoieMessage(System.Convert.ToString(nombre_joueurs));
+            }
 
-            Thread Client2 = new Thread(Client_Ping);
-            Thread Serveur2 = new Thread(Serveur_Ping);
+            Thread.Sleep(5000);
 
-            Client2.Start();
-            Serveur2.Start();
-
-            while (!(C2 & V2)) { Thread.Sleep(500); }
-            Thread.Sleep(100);
             while (true)
             {
                 int seed_ = seed.Next(1000);
 
-                envoieClient.envoieMessage(System.Convert.ToString(seed_));
-                envoieServeur.envoieMessage(System.Convert.ToString(seed_));
+                foreach (Reseau Client in Clients)
+                {
+                    Client.envoieMessage(System.Convert.ToString(seed_));
+                }
 
-                Serveur = receptionServeur.receptionMessage();
-                Client = receptionClient.receptionMessage();
-                if (i % 100 == 0)
+                buffer = "";
+
+                //Reception des messages
+                foreach (Reseau Client in Clients)
                 {
-                    Thread.Sleep(20);
+                    Client.receptionMessage();
+                    buffer += Client.message;
                 }
-                if (!synchro)
+
+                //Envoie des messages
+                foreach (Reseau Client in Clients)
                 {
-                    Thread.Sleep(2500);
-                    synchro = true;
+                    Client.envoieMessage(buffer);
                 }
-                envoieServeur.envoieMessage(Client);
-                envoieClient.envoieMessage(Serveur);
                 i++;
                 Thread.Sleep(1);
+
+                if (i % 100 == 0)
+                {
+                    Thread.Sleep(10 * nombre_joueurs * 2);
+                }
             }
         }
     }

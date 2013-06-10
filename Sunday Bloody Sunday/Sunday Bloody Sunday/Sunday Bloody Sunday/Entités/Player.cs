@@ -67,12 +67,14 @@ namespace Sunday_Bloody_Sunday
         public Texture2D texture;
 
         public bool est_afficher = false;
-        
+
         int compteur = 0;
+
+        public int id_joueur;
 
 
         // CONSTRUCTOR
-        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poserBomb, Keys activerBomb, Keys poserTurret, Keys activerPlane, Texture2D texture, int x, int y)
+        public Player(Keys Haut, Keys Bas, Keys Gauche, Keys Droite, Keys Tire, Keys poserBomb, Keys activerBomb, Keys poserTurret, Keys activerPlane, Texture2D texture, int x, int y, int id_joueur)
         {
             this.PlayerTexture = new Rectangle(x, y, 16, 19);
             Player.PlayerPosition = new Vector2(PlayerTexture.X, PlayerTexture.Y);
@@ -101,6 +103,8 @@ namespace Sunday_Bloody_Sunday
             this.texture = texture;
             bomb = 1;
             turret = 1;
+
+            this.id_joueur = id_joueur;
         }
 
 
@@ -319,25 +323,33 @@ namespace Sunday_Bloody_Sunday
 
 
         // UPDATE & DRAW
-        public void Update(MouseState mouse, KeyboardState keyboard, List<Keys> liste)
-        {
-             haut = keyboard.IsKeyDown(Haut);
-             droite = keyboard.IsKeyDown(Droite);
-             gauche = keyboard.IsKeyDown(Gauche);
-             bas = keyboard.IsKeyDown(Bas);
-             tir = keyboard.IsKeyDown(Tire);
-             poserBomb = keyboard.IsKeyDown(this.PoserBomb);
-             activerBomb = keyboard.IsKeyDown(this.ActiverBomb);
-             poserTurret = keyboard.IsKeyDown(this.PoserTurret);
-             activerPlane = keyboard.IsKeyDown(this.ActiverPlane);
-            
+        public void Update(MouseState mouse/*, KeyboardState keyboard*/, List<Keys> liste)
+        {/*
+            haut = keyboard.IsKeyDown(Haut);
+            droite = keyboard.IsKeyDown(Droite);
+            gauche = keyboard.IsKeyDown(Gauche);
+            bas = keyboard.IsKeyDown(Bas);
+            tir = keyboard.IsKeyDown(Tire);
+            poserBomb = keyboard.IsKeyDown(this.PoserBomb);
+            activerBomb = keyboard.IsKeyDown(this.ActiverBomb);
+            poserTurret = keyboard.IsKeyDown(this.PoserTurret);
+            activerPlane = keyboard.IsKeyDown(this.ActiverPlane);*/
+            haut = false;
+            droite = false;
+            gauche = false;
+            bas = false;
+            tir = false;
+            poserBomb = false;
+            activerBomb = false;
+            poserTurret = false;
+            activerPlane = false;
             try
             {
                 foreach (Keys key in liste)
                 {
                     if (key == Haut)
                     {
-                        speed = 2;   
+                        speed = 2;
                         haut = true;
                     }
                     else if (key == Bas)
@@ -406,13 +418,24 @@ namespace Sunday_Bloody_Sunday
                 this.action = "left";
                 compteur = 0;
             }
-            
-            if ((keyboard.IsKeyUp(Haut) && keyboard.IsKeyUp(Bas) && keyboard.IsKeyUp(Gauche) && keyboard.IsKeyUp(Droite)) && this.compteur > 2)
+            /*
+            if((keyboard.IsKeyUp(Haut) && keyboard.IsKeyUp(Bas) && keyboard.IsKeyUp(Gauche) && keyboard.IsKeyUp(Droite)) && this.compteur > 2)
             {
                 this.frameColumn = 2;
                 this.Timer = 0;
             }
             else if ((keyboard.IsKeyUp(Haut) && keyboard.IsKeyUp(Bas) && keyboard.IsKeyUp(Gauche) && keyboard.IsKeyUp(Droite)))
+            {
+                compteur++;
+            }*/
+
+
+            if (haut && bas && gauche && droite && this.compteur > 2)
+            {
+                this.frameColumn = 2;
+                this.Timer = 0;
+            }
+            else if ((haut && bas && gauche && droite))
             {
                 compteur++;
             }

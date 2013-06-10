@@ -11,7 +11,8 @@ namespace Sunday_Bloody_Sunday
             static void Main(string[] args)
             {
                 using (Game1 game = new Game1())
-                {
+                {                  
+                    
                     game.Run();
                 }
             }
