@@ -115,6 +115,7 @@
     <Compile Include="HUD.cs" />
     <Compile Include="Entités\IA.cs" />
     <Compile Include="Entités\Items.cs" />
+    <Compile Include="Lobby.cs" />
     <Compile Include="Utilitaires\Input.cs" />
     <Compile Include="Utilitaires\LecteurMap.cs" />
     <Compile Include="Utilitaires\Manual.cs" />

@@ -27,10 +27,12 @@ namespace Sunday_Bloody_Sunday
         string IP = "";
         int joueur;
         bool multi;
+        Lobby lobby;
+        bool Lobby_ready = false;
         //Enum of the Screen States
         public enum Screen
         {
-            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map, win, credits, multioupas, transition, connection, deconnexion
+            menu_principal, menu_pause, menu_preferences, menu_parametres, jeu, game_over, selecteur_map, win, credits, multioupas, transition, connection, deconnexion, lobby
         };
 
         //Init Screen States + Menu
@@ -151,7 +153,7 @@ namespace Sunday_Bloody_Sunday
                 }
             }
 
-             else if (ecran == Screen.multioupas)
+            else if (ecran == Screen.multioupas)
             {
                 int action = 0;
 
@@ -192,7 +194,7 @@ namespace Sunday_Bloody_Sunday
                     button_timer = 0;
                 }
             }
-            
+
 
             else if (ecran == Screen.selecteur_map)
             {
@@ -230,43 +232,43 @@ namespace Sunday_Bloody_Sunday
                     if (compteur_thumbnails == 0)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"), multi, joueur, IPMulti);
+                        Main.MainMap = new Map(LecteurMap.lecture("map01.txt"), multi, joueur, IPMulti, 1, 0);
                         path_map = "map01.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 1)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur, IPMulti);
+                        Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur, IPMulti, 1, 0);
                         path_map = "map02.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 2)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur, IPMulti);
+                        Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur, IPMulti, 1, 0);
                         path_map = "map03.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 3)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur, IPMulti);
+                        Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur, IPMulti, 1, 0);
                         path_map = "map04.txt";
                         GamePlayMusic = Ressources.GamePlayMusic;
                     }
                     else if (compteur_thumbnails == 4)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti);
+                        Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti, 1, 0);
                         path_map = "map04.txt";
                         GamePlayMusic = Ressources.HightVoltage;
-                        
+
                     }
                     else if (compteur_thumbnails == 5)
                     {
                         Main = new GameMain();
-                        Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur, IPMulti);
+                        Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur, IPMulti, 1, 0);
                         path_map = "map05.txt";
                         GamePlayMusic = Ressources.BlackIce;
                     }
@@ -280,6 +282,111 @@ namespace Sunday_Bloody_Sunday
                     menuMain = new Menu(Menu.MenuType.MultiOrNot);
                     button_timer = 0;
                 }
+                if (action == 5)
+                {
+                }
+            }
+
+            else if (ecran == Screen.lobby)
+            {
+                lobby.Update(Keyboard.GetState(), oldKeyboard);
+                int action = 0;
+                compteur_delai++;
+
+                if (compteur_delai > 20)
+                {
+                    compteur_delai = 20;
+                }
+                if (button_timer == 20)
+                {
+                    action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
+                }
+                if (action == 1 && compteur_delai >= 20)
+                {
+                    compteur_delai = 0;
+                    compteur_thumbnails -= 1;
+                    if (compteur_thumbnails < 0)
+                    {
+                        compteur_thumbnails = 5;
+                    }
+                }
+                if (action == 2 && compteur_delai >= 20)
+                {
+                    compteur_delai = 0;
+                    compteur_thumbnails += 1;
+                    if (compteur_thumbnails > 5)
+                    {
+                        compteur_thumbnails = 0;
+                    }
+                }
+                if (action == 3 && compteur_delai >= 20)
+                    Lobby_ready = !Lobby_ready;
+
+
+                if (action == 4)
+                {
+                    ecran = Screen.multioupas;
+                    menuMain = new Menu(Menu.MenuType.MultiOrNot);
+                    button_timer = 0;
+                }
+
+                if (Lobby_ready)
+                    lobby.Envoie(action == 5, compteur_thumbnails, 1, ref lobby.connection);
+                else
+                    lobby.Envoie(action == 5, compteur_thumbnails, 0, ref lobby.connection);
+
+                if (lobby.Reception())
+                {
+                    {
+                        if (compteur_thumbnails == 0)
+                        {
+                            Main = new GameMain();
+                            Main.MainMap = new Map(LecteurMap.lecture("map01.txt"), multi, joueur, IPMulti, lobby.nb_joueur, lobby.id_joueur);
+                            path_map = "map01.txt";
+                            GamePlayMusic = Ressources.GamePlayMusic;
+                        }
+                        else if (compteur_thumbnails == 1)
+                        {
+                            Main = new GameMain();
+                            Main.MainMap = new Map(LecteurMap.lecture("map02.txt"), multi, joueur, IPMulti, lobby.nb_joueur, lobby.id_joueur);
+                            path_map = "map02.txt";
+                            GamePlayMusic = Ressources.GamePlayMusic;
+                        }
+                        else if (compteur_thumbnails == 2)
+                        {
+                            Main = new GameMain();
+                            Main.MainMap = new Map(LecteurMap.lecture("map03.txt"), multi, joueur, IPMulti, lobby.nb_joueur, lobby.id_joueur);
+                            path_map = "map03.txt";
+                            GamePlayMusic = Ressources.GamePlayMusic;
+                        }
+                        else if (compteur_thumbnails == 3)
+                        {
+                            Main = new GameMain();
+                            Main.MainMap = new Map(LecteurMap.lecture("map03_bonus.txt"), multi, joueur, IPMulti, lobby.nb_joueur, lobby.id_joueur);
+                            path_map = "map04.txt";
+                            GamePlayMusic = Ressources.GamePlayMusic;
+                        }
+                        else if (compteur_thumbnails == 4)
+                        {
+                            Main = new GameMain();
+                            Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti, lobby.nb_joueur, lobby.id_joueur);
+                            path_map = "map04.txt";
+                            GamePlayMusic = Ressources.HightVoltage;
+
+                        }
+                        else if (compteur_thumbnails == 5)
+                        {
+                            Main = new GameMain();
+                            Main.MainMap = new Map(LecteurMap.lecture("map05.txt"), multi, joueur, IPMulti, lobby.nb_joueur, lobby.id_joueur);
+                            path_map = "map05.txt";
+                            GamePlayMusic = Ressources.BlackIce;
+                        }
+                        ecran = Screen.jeu;
+                        PlayMusic(GamePlayMusic);
+                        button_timer = 0;
+                    }
+                }
+
             }
 
             else if (ecran == Screen.menu_pause)
@@ -449,10 +556,10 @@ namespace Sunday_Bloody_Sunday
                 if (Main.MainMap.boss_entry.combat_boss)
                 {
                     Main = new GameMain();
-                    Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti);
+                    Main.MainMap = new Map(LecteurMap.lecture("map04.txt"), multi, joueur, IPMulti, 1, 0);
                     path_map = "map04.txt";
                     ecran = Screen.jeu;
-                    GamePlayMusic = Ressources.HightVoltage; 
+                    GamePlayMusic = Ressources.HightVoltage;
                     PlayMusic(GamePlayMusic);
                     button_timer = 0;
                 }
@@ -514,12 +621,13 @@ namespace Sunday_Bloody_Sunday
 
             else if (ecran == Screen.connection)
             {
+                Lobby_ready = false;
                 int action = 0;
                 IP_.Update(Keyboard.GetState(), oldKeyboard);
                 if (button_timer == 20)
                 {
                     action = menuMain.Update(Mouse.GetState(), Keyboard.GetState());
-                    
+
                 }
                 if (action == 1)
                 {
@@ -527,7 +635,9 @@ namespace Sunday_Bloody_Sunday
                     {
                         IPMulti = IPAddress.Parse(IP_.input);
                         ecran = Screen.selecteur_map;
-                        menuMain = new Menu(Menu.MenuType.MapSelector);
+                        menuMain = new Menu(Menu.MenuType.Lobby);
+                        ecran = Screen.lobby;
+                        lobby = new Lobby(IPMulti);
                         button_timer = 0;
                     }
                     catch
@@ -631,6 +741,40 @@ namespace Sunday_Bloody_Sunday
             {
                 menuMain.Draw(spriteBatch);
                 IP_.DrawButton(spriteBatch);
+            }
+            else if (ecran == Screen.lobby)
+            {
+                if (compteur_thumbnails == 0)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap01, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 1)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap02, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.CadetBlue);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 2)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap03, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 3)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap03_bonus, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 4)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap04, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                else if (compteur_thumbnails == 5)
+                {
+                    spriteBatch.Draw(Ressources.ThumbnailsMap05, new Rectangle(Divers.WidthScreen / 2 - 200, Divers.HeightScreen / 2 - 120, 400, 240), Color.White);
+                    menuMain.Draw(spriteBatch);
+                }
+                lobby.Draw(spriteBatch);
             }
 
             spriteBatch.End();

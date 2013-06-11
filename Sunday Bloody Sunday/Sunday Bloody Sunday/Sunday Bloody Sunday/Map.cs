@@ -96,7 +96,7 @@ namespace Sunday_Bloody_Sunday
 
 
         // CONSTRUCTOR
-        public Map(Param_Map parametre, bool Multi, int joueur, IPAddress IP)
+        public Map(Param_Map parametre, bool Multi, int joueur, IPAddress IP, int nb_joueur, int id_joueur)
         {
             this.parametre = parametre;
 
@@ -106,18 +106,11 @@ namespace Sunday_Bloody_Sunday
 
             if (Multi)
             {
-                Reseau Lien = new Reseau();
-                Lien.initialisationClient(1337, IP,ref connection);
-                int port = System.Convert.ToInt32(Lien.receptionMessage(ref connection));
-                Lien.Envoie.Close();
-                Client.initialisationClient(port,IP, ref connection);
-                id_joueur = port - 4242;
-                nb_joueur = System.Convert.ToInt32(Client.receptionMessage(ref connection));
-                Client.nb_joueurs = nb_joueur;
-                input = new List<Keys>[nb_joueur];
+                this.nb_joueur = nb_joueur;
+                this.id_joueur = id_joueur;
             }
             else
-                Client.nb_joueurs = 1;
+                Reseau.nb_joueurs = 1;
 
             if (parametre.texture_map == 3)
             {
@@ -1473,15 +1466,15 @@ namespace Sunday_Bloody_Sunday
 
             if (etape3)
             {
-                seed = System.Convert.ToInt32(Client.receptionMessage(ref connection));
-                Client.envoieMessage(message, ref connection);
-                input = Client.Liste(Client.receptionMessage(ref connection));
+                seed = System.Convert.ToInt32(Reseau.receptionMessage(ref connection));
+                Reseau.envoieMessage(message, ref connection);
+                input = Reseau.Liste(Reseau.receptionMessage(ref connection));
                 Thread.Sleep(0);
             }
             else
             {
                 seed = new Random().Next(1000);
-                input = Client.Liste(message); 
+                input = Reseau.Liste(message);
             }
             int x = 0;
             int y = 0;
@@ -1550,6 +1543,7 @@ namespace Sunday_Bloody_Sunday
                 gagne = poney;
             }
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             int x = 0;

@@ -19,8 +19,8 @@ namespace Sunday_Bloody_Sunday
 {
     class Reseau
     {
-        public int nb_joueurs;
-        public List<Keys>[] Liste(string dl)
+        public static int nb_joueurs;
+        public static List<Keys>[] Liste(string dl)
         {
             List<Keys>[] liste = new List<Keys>[nb_joueurs];
 
@@ -74,29 +74,14 @@ namespace Sunday_Bloody_Sunday
 
         }
 
-        public Socket Envoie;
-        public Reseau()
-        {
-        }
+        public static Socket Envoie;
 
-        public void initialisationClient(int port,IPAddress IP, ref bool connection)
+        public static void initialisationClient(int port, IPAddress IP, ref bool connection)
         {
             try
             {
-                Envoie = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                int i = 0;
-                while (i < 10)
-                {
-                    try
-                    {
-                        Envoie.Connect(IPAddress.Parse("127.0.0.1"), port + i);
-                        i = 42;
-                    }
-                    catch
-                    {
-                        i++;
-                    }
-                }
+                Envoie = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); 
+                Envoie.Connect(IP,port);
                 Envoie.NoDelay = true;
             }
             catch
@@ -111,7 +96,7 @@ namespace Sunday_Bloody_Sunday
             }
         }
 
-        public void envoieMessage(string message, ref bool connection)
+        public static void envoieMessage(string message, ref bool connection)
         {
             try
             {
@@ -153,7 +138,7 @@ namespace Sunday_Bloody_Sunday
         }
         */
 
-        public string receptionMessage(ref bool connection)
+        public static string receptionMessage(ref bool connection)
         {
             try
             {
